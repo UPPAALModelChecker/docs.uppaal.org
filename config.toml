@@ -1,2 +1,4 @@
 languageCode = "en-us"
 title = "TAPAAL Documentation"
+
+theme = "hugo-theme-learn"
