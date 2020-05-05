@@ -1,6 +1,6 @@
 ---
 title: GUI Reference
-weight: 5
+weight: 10
 pre: "<b>1. </b>"
 chapter: true
 ---
