@@ -1,0 +1,12 @@
+---
+title: Generating Traces
+weight: 10
+---
+
+Traces are generated using three purposes: queries, depth search, and individual edges.
+
+In the [Verifier](../Verifier/Introduction.html) tab the [existential queries (<tt>E<></tt>)](../Requirements.html) can be used to specify a desired functionality to be tested and hence can be selected as a test purpose for test case generation. All or specific queries can be selected and the resulting trace is added to be used as a test case.
+
+The second option uses heuristics of random depth first search of the specified number of steps with a hope of increasing the coverage. The resulting trace is used as a test case. The search process is repeated until the newly generated trace does not contribute new coverage over the previous traces. In order to use this method a global integer variable named <tt>__reach__</tt> must be declared, initialized to zero and should not be used anywhere in the model.
+
+The third option attempts to cover the remaining edges which are not covered by the previously generated traces. This method submits a separate reachability query for each uncovered edge. Large models may have many edges, and therefore many queries may take a long time to execute. Even worse: some edges might be unreachable at all and thus require exhaustive search which may consume a lot of time and memory. In order to use this method a global integer variable named <tt>__single__</tt> must be declared, initialized to zero and should not be used throughout the model.
