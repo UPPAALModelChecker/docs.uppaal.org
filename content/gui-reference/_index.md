@@ -10,3 +10,5 @@ chapter: true
 # GUI Reference
 
 Discover the UPPAAL gui.
+
+![UPPAAL GUI](uppaal-gui.png)
