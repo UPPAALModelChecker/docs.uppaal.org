@@ -1,5 +1,5 @@
 ---
-title: DrawDeclarationsing
+title: Declarations
 weight: 30
 ---
 
