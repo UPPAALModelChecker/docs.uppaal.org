@@ -9,4 +9,4 @@ Processes are instantiated by placing a [process assignments](../System_Descript
 
 Finally, the system is defined as a parallel composition of a number of processes by placing a system declaration in the _System declarations_ section.
 
-The syntax for each of these sections is defined in the [Language Reference](../System_Descriptions/Introduction.html).
+The syntax for each of these sections is defined in the [Language Reference](/language-reference/system-description/system-definition/template-instantiation/).

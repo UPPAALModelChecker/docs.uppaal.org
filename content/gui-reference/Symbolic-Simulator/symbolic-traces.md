@@ -3,7 +3,7 @@ title: Symbolic Traces
 weight: 60
 ---
 
-Since clocks range over the non-negative reals, timed automata can have infinitely many states (not to be confused with locations) and infinitely many traces. The simulator cannot visualize all these concrete traces. Instead it shows an infinite set of traces - a so called symbolic trace. Each symbolic state of a symbolic trace is a set of states and their delay successors described by a number of [constraints on the clocks](Variables_Window.html). In a given symbolic state, the active locations and the values of discrete variables are the same for all states.
+Since clocks range over the non-negative reals, timed automata can have infinitely many states (not to be confused with locations) and infinitely many traces. The simulator cannot visualize all these concrete traces. Instead it shows an infinite set of traces - a so called symbolic trace. Each symbolic state of a symbolic trace is a set of states and their delay successors described by a number of [constraints on the clocks](../variables/). In a given symbolic state, the active locations and the values of discrete variables are the same for all states.
 
 Symbolic traces shown in the simulator are backward stable, but not forward stable:
 

@@ -5,7 +5,7 @@ weight: 20
 
 Traces are translated into executable test cases based on test code entered into the model. The test code is entered as verbatim text, so any language or execution back-end can be used. Test code can be entered in five areas: Prefix code, location enter code, location exit code, edge code, and postfix code. Each test case starts with the prefix code, continues with test code along the locations and edges of the trace and ends with the postfix code.
 
-The prefix (and the postfix) code is entered as a comment after the [system definition](../System_Descriptions/System_Definition.html) section using a special multi-line comment starting with the word <tt>TEST_PREFIX</tt> (and <tt>TEST_POSTFIX</tt> respectively).
+The prefix (and the postfix) code is entered as a comment after the [system definition](/language-reference/system-description/system-definition/) section using a special multi-line comment starting with the word <tt>TEST_PREFIX</tt> (and <tt>TEST_POSTFIX</tt> respectively).
 
 Each location in the transition system has two areas for test code. Double clicking a location in the editor will bring up a window with a test code tab. The location enter code is added to the test case when this location is entered, and the location exit code is added when the location is left.
 

@@ -3,7 +3,7 @@ title: Verifying Requirements
 weight: 20
 ---
 
-The queries (i.e. the system requirements) are verified from the verifier interface of UPPAAL. A verification is always performed according to the settings specified in the [Options menu](../Menu_Bar/Options.html) of the main menu bar.
+The queries (i.e. the system requirements) are verified from the verifier interface of UPPAAL. A verification is always performed according to the settings specified in the [Options menu](/gui-reference/menu-bar/options/) of the main menu bar.
 
 The selected queries are verified when the button named _Check_ is pressed. The verification progress dialog displays the progress of how many queries have been verified, what is the current load of a passed-waiting list, current processor time usage (the time spent for verification is in blue, the time spent by operating system is in red), current usage of host's random access memory (verification memory is in blue, memory used by other running processes is in gray and operating system cache and buffers are in yellow), swap disk usage (swapped out verification is in blue, other is in grey). Note that resource figures do not include the overhead of UPPAAL GUI and command line utilities (like <tt>memtime</tt> run on <tt>verifyta</tt>) are more accurate. Some figures are not available on some OSes (system cache allocation is not documented on Windows API and swap usage per process is not maintained by Linux kernel), therefore they might not show up.
 
@@ -13,7 +13,7 @@ In case the _Over Approximation_ or the _Under Approximation_ options are enable
 
 ## Statistical Model Checking
 
-Parameters for statistical model checking can be changed in the [Options](../Menu_Bar/Options.html) menu. Various data plots (if available) can be accessed via popup-menu by right-clicking the statistical property. The y-axis always denotes a probability or its density, while x-axis denotes either the variable values limited by the statistical query or a step (transition) count in the model run.
+Parameters for statistical model checking can be changed in the [Options](/gui-reference/menu-bar/options/) menu. Various data plots (if available) can be accessed via popup-menu by right-clicking the statistical property. The y-axis always denotes a probability or its density, while x-axis denotes either the variable values limited by the statistical query or a step (transition) count in the model run.
 
 <dl>
 
@@ -45,7 +45,7 @@ Parameters for statistical model checking can be changed in the [Options](../Men
 
 Any plot can be customized from a popup menu by right-clicking on the plot.
 
-Further, the plot labels and titles can be edited and several data sets can be superimposed in one figure by using Plot Composer, accessible from the [Tools](../Menu_Bar/Tools.html) menu. It is possible to create several composite plots at a time by invoking Plot Composer multiple times.
+Further, the plot labels and titles can be edited and several data sets can be superimposed in one figure by using Plot Composer, accessible from the [Tools](/gui-reference/menu-bar/tools/) menu. It is possible to create several composite plots at a time by invoking Plot Composer multiple times.
 
 An extensive overview and comparison of methods for computing confidence intervals for binomial distribution can be found in the following publications:
 

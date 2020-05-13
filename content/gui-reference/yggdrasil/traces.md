@@ -5,7 +5,7 @@ weight: 10
 
 Traces are generated using three purposes: queries, depth search, and individual edges.
 
-In the [Verifier](../Verifier/Introduction.html) tab the [existential queries (<tt>E<></tt>)](../Requirements.html) can be used to specify a desired functionality to be tested and hence can be selected as a test purpose for test case generation. All or specific queries can be selected and the resulting trace is added to be used as a test case.
+In the [Verifier](/gui-reference/verifier/) tab the [existential queries (<tt>E<></tt>)](/language-reference/requirements-specification/) can be used to specify a desired functionality to be tested and hence can be selected as a test purpose for test case generation. All or specific queries can be selected and the resulting trace is added to be used as a test case.
 
 The second option uses heuristics of random depth first search of the specified number of steps with a hope of increasing the coverage. The resulting trace is used as a test case. The search process is repeated until the newly generated trace does not contribute new coverage over the previous traces. In order to use this method a global integer variable named <tt>__reach__</tt> must be declared, initialized to zero and should not be used anywhere in the model.
 

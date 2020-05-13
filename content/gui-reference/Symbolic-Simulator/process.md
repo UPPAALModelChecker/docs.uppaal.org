@@ -12,4 +12,4 @@ Clicking inside a process box with the right mouse button opens a pop-up menu wi
 *   **Hide:** hides the process,
 *   **Export:** opens a file dialog for saving the process in encapsulated postscript format.
 
-**Note:** several items in the [View menu](../Menu_Bar/View.html) affect the processes in the process panel. For example, the "Processes..." item may be used to hide and show processes.
+**Note:** several items in the [View menu](/gui-reference/menu-bar/view/) affect the processes in the process panel. For example, the "Processes..." item may be used to hide and show processes.
