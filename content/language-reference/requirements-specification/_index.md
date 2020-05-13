@@ -59,7 +59,7 @@ Estimate ::= 'E[' ( Clock | '#' ) '<=' CONST ';' CONST ']' '(' ('min:' | 'max:')
 
 All expressions are state predicates and must be side effect free. It is possible to test whether a certain process is in a given location using expressions on the form <tt>process.location</tt>. For <tt>sup</tt> properties, expression may not contain clock constraints and must evaluate to either an integer or a clock.
 
-**See also:** [Semantics of the Requirement Specification Language](RSL-Semantics.html)
+**See also:** [Semantics of the Requirement Specification Language](semantics/)
 
 ## Examples
 

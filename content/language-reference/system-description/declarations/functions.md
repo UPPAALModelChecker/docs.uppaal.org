@@ -6,23 +6,23 @@ weight: 20
 Functions can be declared alongside other declarations. The syntax for functions is defined by the grammar for <tt>Function</tt>:
 
 <pre>
-Function        ::= [Type](TypeDeclarations.html) [ID](Identifiers.html) '(' [Parameters](Parameters.html) ')' Block 
-Block	        ::= '{' [Declarations](Declarations.html) Statement* '}'
+Function        ::= [Type] [ID] '(' [Parameters] ')' Block 
+Block	        ::= '{' [Declarations] Statement* '}'
 Statement       ::= Block
                  | ';'
-                 |  [Expression](Expressions.html) ';'
+                 |  [Expression] ';'
 	         |  ForLoop
 		 |  Iteration
 	         |  WhileLoop 
 	         |  DoWhileLoop 
 	         |  IfStatement 
 		 |  ReturnStatement
-ForLoop	        ::= 'for' '(' [Expression](Expressions.html) ';' [Expression](Expressions.html) ';' [Expression](Expressions.html) ')' Statement 
-Iteration	::= 'for' '(' [ID](Identifiers.html) ':' [Type](TypeDeclarations.html) ')' Statement
-WhileLoop       ::= 'while' '(' [Expression](Expressions.html) ')' Statement
-DoWhile         ::= 'do' Statement 'while' '(' [Expression](Expressions.html) ')' ';'
-IfStatment      ::= 'if' '(' [Expression](Expressions.html) ')' Statement [ 'else' Statement ]
-ReturnStatement ::= 'return' [ [Expression](Expressions.html) ] ';'
+ForLoop	        ::= 'for' '(' [Expression] ';' [Expression] ';' [Expression] ')' Statement 
+Iteration	::= 'for' '(' [ID] ':' [Type] ')' Statement
+WhileLoop       ::= 'while' '(' [Expression] ')' Statement
+DoWhile         ::= 'do' Statement 'while' '(' [Expression] ')' ';'
+IfStatment      ::= 'if' '(' [Expression] ')' Statement [ 'else' Statement ]
+ReturnStatement ::= 'return' [ [Expression] ] ';'
 </pre>
 
 ## Iterators

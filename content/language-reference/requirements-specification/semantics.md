@@ -4,7 +4,7 @@ weight: 10
 menuTitle: "Semantics"
 ---
 
-In the following we give a pseudo-formal semantics for the requirement specification language of UPPAAL. We assume the existence of a timed transition system (_S, s<sub>0</sub>,_ →) as defined in the [semantics of UPPAAL](System_Descriptions/Semantics.html). In the following, <tt>p</tt> and <tt>q</tt> are [state properties](#stateprop) for which we define the following temporal properties:
+In the following we give a pseudo-formal semantics for the requirement specification language of UPPAAL. We assume the existence of a timed transition system (_S, s<sub>0</sub>,_ →) as defined in the [semantics of UPPAAL](/language-reference/system-description/semantics/l). In the following, <tt>p</tt> and <tt>q</tt> are [state properties](#state-properties) for which we define the following temporal properties:
 
 ### Possibly
 
@@ -37,13 +37,13 @@ The syntax <tt>p --> q</tt> denotes a leads to property meaning that whenever <t
 
 A _leads to_ property <tt>p --> q</tt> can be expressed as the property <tt>A[] (p imply A<> q)</tt>.
 
-<a name="stateprop">
+
 
 ## State Properties
 
-</a>
 
-Any side-effect free [expression](System_Descriptions/Expressions.html) is a valid state property. In addition it is possible to test whether a process is in a particular location and whether a state is a deadlock. State proprerties are evaluated for the initial state and after each transition. This means for example that a property <tt>A[] i != 1</tt> might be satisfied even if the value of <tt>i</tt> becomes 1 momentarily during the evaluation of initializers or update-expressions on edges.
+
+Any side-effect free [expression](/language-reference/expressions/) is a valid state property. In addition it is possible to test whether a process is in a particular location and whether a state is a deadlock. State proprerties are evaluated for the initial state and after each transition. This means for example that a property <tt>A[] i != 1</tt> might be satisfied even if the value of <tt>i</tt> becomes 1 momentarily during the evaluation of initializers or update-expressions on edges.
 
 ### Locations
 
@@ -53,11 +53,10 @@ Expressions on the form <tt>P.ℓ</tt>, where <tt>P</tt> is a process and <tt>�
 
 The state property <tt>deadlock</tt> evaluates to true for a state (_L, v_) if and only if for all _d ≥ 0_ there is no action successor of (_L, v + d_).
 
-<a name="stat">
 
 ## Statistical Properties
 
-</a>
+
 
 UPPAAL can estimate the probability of expression values statistically. There are four types of statistical properties: quantitative, qualitative, comparison and probable value estimation.
 

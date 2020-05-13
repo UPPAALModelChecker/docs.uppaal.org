@@ -5,14 +5,15 @@ weight: 10
 
 There are 6 predefined types: <tt>int</tt>, <tt>bool</tt>, <tt>clock</tt>, <tt>chan</tt>, <tt>double</tt> and <tt>string</tt>. Array and record types can be defined over all types except <tt>string</tt>.
 
-<pre>Type          ::= Prefix TypeId
+<pre>
+Type          ::= Prefix TypeId
 Prefix        ::= 'urgent' | 'broadcast' | 'meta' | 'const'
 TypeId        ::= ID | 'int' | 'clock' | 'chan' | 'bool' | 'double' | 'string'
-               |  'int' '[' [Expression](Expressions.html) ',' [Expression](Expressions.html) ']'
+               |  'int' '[' [Expression] ',' [Expression] ']'
                |  'scalar' '[' Expression ']'
                |  'struct' '{' FieldDecl (FieldDecl)* '}'
 FieldDecl     ::= Type ID ArrayDecl* (',' ID ArrayDecl*)* ';'
-ArrayDecl     ::= '[' [Expression](Expressions.html) ']'
+ArrayDecl     ::= '[' [Expression] ']'
                |  '[' Type ']'
 </pre>
 
@@ -20,7 +21,7 @@ The default range of an integer is [-32768, 32767]. Any assignment out of range 
 
 Variables of type <tt>bool</tt> can have the values <tt>false</tt> and <tt>true</tt>, which are equivalent to the the integer values 0 and 1\. Like in C, any non-zero integer value evalutes to true and 0 evaluates to false.
 
-Channels can be declared as urgent and/or broadcast channels. See the section on [synchronisations](Edges.html#sync) for information on urgent and broadcast channels.
+Channels can be declared as urgent and/or broadcast channels. See the section on [synchronisations](/language-reference/system-description/templates/edges/#synchronisations) for information on urgent and broadcast channels.
 
 Floating-point variables of the <tt>double</tt>-type behave like <tt>C</tt>-doubles. Certain restriction applies to the use of doubles in symbolic contexts.
 

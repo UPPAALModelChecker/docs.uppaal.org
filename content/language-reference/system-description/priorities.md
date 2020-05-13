@@ -3,13 +3,13 @@ title: Priorities
 weight: 50
 ---
 
-Given some priority order on the transitions, the intuition is that, at a given time-point, a transition is enabled only if no higher priority transition is enabled (see also [Semantics](Semantics.html).) We say that the higher priority transition _blocks_ the lower priority transition.
+Given some priority order on the transitions, the intuition is that, at a given time-point, a transition is enabled only if no higher priority transition is enabled (see also [Semantics](../semantics/).) We say that the higher priority transition _blocks_ the lower priority transition.
 
 Priorities can be assigned to the channels and processes of a system. The priority orders defined in the system are translated into a priority order on tau-transitions and synchronizing transitions. _Delay transitions are still non-deterministic_ (unless urgent channels are used.)
 
-*   [Priorities on Channels](#chan)
-*   [Priorities on Processes](#proc)
-*   [Priorities on both Channels and Processes](#combined)
+*   [Priorities on Channels](#priorities-on-channels)
+*   [Priorities on Processes](#priorities-on-processes)
+*   [Priorities on both Channels and Processes](#priorities-on-both-channels-and-processes)
 
 
 ## Priorities on Channels
@@ -26,11 +26,12 @@ A channel priority declaration can be inserted anywhere in the global declaratio
 
 ### Example
 
-<pre>
+``` c
 chan a,b,c,d[2],e[2];
-chan priority a,d[0] < default < b,e;</pre>
+chan priority a,d[0] < default < b,e;
+```
 
-The example assigns the lowest priority to channels `a` and `d[0]`, and the highest priority to channels `b`, `e[0]` and `e[1]`. The default priority level is assigned to channels `c` and `d[1]`.<a name="proc"></a>
+The example assigns the lowest priority to channels `a` and `d[0]`, and the highest priority to channels `b`, `e[0]` and `e[1]`. The default priority level is assigned to channels `c` and `d[1]`.
 
 ## Priorities on Processes
 
@@ -38,7 +39,9 @@ Process priorities are specified on the system line, using the separator '<' to 
 
 ### Example
 
-<pre>system A < B,C < D;</pre>
+``` c
+system A < B,C < D;
+```
 
 ### Resolving Synchronization
 

@@ -9,7 +9,7 @@ Given a valuation _v_ and an expression _e_, we say that _v_ satisfies _e_ if _e
 
 ## Invalid Evaluations
 
-If during a successor computation any expression evaluation is invalid (consult the section on [expressions](Expressions.html) for further details about invalid evaluations), the verification is aborted.
+If during a successor computation any expression evaluation is invalid (consult the section on [expressions](/language-reference/expressions/) for further details about invalid evaluations), the verification is aborted.
 
 ## Delay Transitions
 
@@ -26,7 +26,7 @@ Delay transitions model the passing of time without changing the current locatio
 
 For action transtions, the synchronisation label of edges is important. Since UPPAAL supports arrays of channels, we have that the label contains an expression evaluating to a channel. The concrete channel depends on the current valuation. To avoid cluttering the semantics we make the simplifying assumption that each synchronisation label refers to a channel directly.
 
-[Priorities](Priorities.html) increase the determinism of a system by letting a high priority action transition block a lower priority action transition. Note that delay transitions can never be blocked, and no action transition can be blocked by a delay transition.
+[Priorities](../priorities/) increase the determinism of a system by letting a high priority action transition block a lower priority action transition. Note that delay transitions can never be blocked, and no action transition can be blocked by a delay transition.
 
 For action transitions, there are three cases: Internal transitions, binary synchronisations and broadcast synchronisations. Each will be described in the following.
 
@@ -40,7 +40,7 @@ We have a transition (_L, v_) −<sup>*</sup>→ (_L', v'_) if there is an edge 
 *   _v'_ is obtained from _v_ by executing the update label given on _e_
 *   _v'_ satisfies _Inv_(_L'_)
 *   Either _ℓ_ is committed or no other location in _L_ is committed.
-*   There is no action transition from (_L, v_) with a strictly higher [priority](Priorities.html).
+*   There is no action transition from (_L, v_) with a strictly higher [priority](../priorities/).
 
 ### Binary Synchronisations
 
@@ -54,7 +54,7 @@ We have a transition (_L, v_) −<sup>*</sup>→ (_L', v'_) if there are two edg
 *   Either
     *   _ℓ<sub>1</sub>_ or _ℓ<sub>2</sub>_ or both locations are committed, or
     *   no other location in _L_ is committed.
-*   There is no action transition from (_L, v_) with a strictly higher [priority](Priorities.html).
+*   There is no action transition from (_L, v_) with a strictly higher [priority](../priorities/).
 
 ### Broadcast Synchronisations
 
@@ -71,7 +71,7 @@ Assume an order _p<sub>1</sub>, p<sub>2</sub>, … p<sub>n</sub>_ of processes g
 *   Either
     *   one or more of the locations _ℓ, ℓ<sub>1</sub>, ℓ<sub>2</sub>, … ℓ<sub>m</sub>_ are committed, or
     *   no other location in _L_ is committed.
-*   There is no action transition from (_L, v_) with a strictly higher [priority](Priorities.html).
+*   There is no action transition from (_L, v_) with a strictly higher [priority](../priorities/).
 
 <a name="prob">
 
@@ -79,7 +79,7 @@ Assume an order _p<sub>1</sub>, p<sub>2</sub>, … p<sub>n</sub>_ of processes g
 
 </a>
 
-In [statistical model checking](../Verifier/Verifying.html) the concrete delay and transition are determined as follows:
+In [statistical model checking](/gui-reference/verifier/verifying/) the concrete delay and transition are determined as follows:
 
 1.  Each process chooses a delay based on its current location:
     *   If the current location invariant has a time bound, then the concrete delay is taken according uniform distribution up to that bound.
@@ -91,7 +91,7 @@ In [statistical model checking](../Verifier/Verifying.html) the concrete delay a
     *   Pick the concrete edge according to uniform distribution.
     *   If the edge has probabilistic branches, then the probability of taking a branch _i_ is determined by the ratio _<sup>w<sub>i</sub></sup>/<sub>W</sub>_, where _w<sub>i</sub>_ is the weight of the branch _i_ and _W_ is the sum of all branch weights: _W=Σ<sub>j</sub>w<sub>j</sub>_.
 
-[Statistical model checking](../Verifier/Verifying.html) has the following assumptions about the model:
+[Statistical model checking](/gui-reference/verifier/verifying/) has the following assumptions about the model:
 
 <dl>
 

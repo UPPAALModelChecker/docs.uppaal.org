@@ -11,12 +11,12 @@ Progress measures are placed after the system definition. The syntax is defined 
 <tt>ProgressDecl</tt>:
 
 <pre>
-ProgressDecl  ::= 'progress' '{' ( [Expression](Expressions.html) ';' )* '}'
+ProgressDecl  ::= 'progress' '{' ( [Expression] ';' )* '}'
 </pre>
 
 ## Examples
 
-```c
+``` c
 int i, j, k;
 
 ...

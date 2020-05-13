@@ -6,16 +6,16 @@ weight: 10
 
 Declarations are either global or local (to a template) and can contain declarations of clocks, bounded integers, channels (although local channels are useless), arrays, records, and types. The syntax is described by the grammar for <tt>Declarations</tt>:
 
-``` 
-Declarations  ::= (VariableDecl | TypeDecl | [Function](Functions.html) | [ChanPriority](Priorities.html))*
-VariableDecl  ::= [Type](TypeDeclarations.html) VariableID (',' VariableID)* ';'
-VariableID    ::= ID [ArrayDecl](TypeDeclarations.html)* [ '=' Initialiser ]
-Initialiser   ::= [Expression](Expressions.html)
+<pre>
+Declarations  ::= (VariableDecl | TypeDecl | [Function] | [ChanPriority])*
+VariableDecl  ::= [Type] VariableID (',' VariableID)* ';'
+VariableID    ::= ID [ArrayDecl]* [ '=' Initialiser ]
+Initialiser   ::= [Expression]
                |  '{' Initialiser (',' Initialiser)* '}'
 TypeDecls     ::= 'typedef' Type ID ArrayDecl* (',' ID ArrayDecl*)* ';'
-```
+</pre>
 
-The global declarations may also contain at most one [channel priority](Priorities.html#chan) declaration.
+The global declarations may also contain at most one [channel priority](/language-reference/system-description/priorities/) declaration.
 
 ## Examples
 

@@ -6,7 +6,7 @@ weight: 30
 Templates and functions are parameterised. The syntax for parameters is defined by the grammar for <tt>Parameters</tt>:
 
 <pre>Parameters ::= [ Parameter (',' Parameter)* ]
-Parameter  ::= [Type](TypeDeclarations.html) [ '&' ] [ID](Identifiers.html) [ArrayDecl](TypeDeclarations.html)*
+Parameter  ::= [Type] [ '&' ] [ID] [ArrayDecl]*
 </pre>
 
 In contrast to global and local declarations, the parameter list should not be terminated by a semicolon.

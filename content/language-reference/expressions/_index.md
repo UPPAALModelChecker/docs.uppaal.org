@@ -7,7 +7,8 @@ Most of the expression syntax of UPPAAL coincides with that of C, C++ and Java. 
 
 The syntax of expressions is defined by the grammar for <tt>Expression</tt>.
 
-<pre>Expression ::= [ID](Identifiers.html)
+<pre>
+Expression ::= [ID]
             |  NAT
             |  Expression '[' Expression ']'
             |  Expression '''
@@ -38,7 +39,7 @@ Binary     ::= '<' | '<=' | '==' | '!=' | '>=' | '>'
 
 Like in C++, assignment, preincrement and predecrement expressions evaluate to references to the first operand. The inline-if operator does in some cases (_e.g._ when both the true and false operands evaluate to compatible references) also evaluate to a reference, _i.e._, it is possible to use an inline-if on the left hand side of an assignment.
 
-The use of the <tt>deadlock</tt> keyword is restricted to the [requirement specification language](../Requirements.html).
+The use of the <tt>deadlock</tt> keyword is restricted to the [requirement specification language](/language-reference/requirements-specification/).
 
 ## Boolean Values
 
@@ -644,11 +645,12 @@ An expression <tt>forall (ID : Type) Expr</tt> evaluates to true if <tt>Expr</tt
 
 The following function can be used to check if all elements of the boolean array <tt>a</tt> have the value <tt>true</tt>.
 
-> <pre>bool alltrue(bool a[5])
-> {
->   return forall (i : int[0,4]) a[i];
-> }
-> </pre>
+``` c
+bool alltrue(bool a[5])
+{
+  return forall (i : int[0,4]) a[i];
+}
+```
 
 ## Sum
 
@@ -712,7 +714,8 @@ The following is the list of builtin floating point functions (mostly imported f
 
 A few common constants and types can be declared as follows:
 
-<pre>const int INT16_MIN     = -32768;
+``` c
+const int INT16_MIN     = -32768;
 const int INT16_MAX     =  32767;
 const int UINT16_MAX    =  65535;
 const int INT32_MIN     = -2147483648;
@@ -733,4 +736,4 @@ const double M_2_PI     = 0.636619772367581382; // 2/Pi
 const double M_2_SQRTPI = 1.12837916709551256;  // 2/sqrt(Pi)
 const double M_SQRT2    = 1.41421356237309515;  // sqrt(2)
 const double M_SQRT1_2  = 0.707106781186547573; // 1/sqrt(2)
-</pre>
+```

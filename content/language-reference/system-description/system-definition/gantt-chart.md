@@ -6,7 +6,7 @@ A Gantt chart, commonly used in project management, is a bar chart that shows ac
 
 In UPPAAL Gantt Charts are used to automatic visualize traces. One needs to specify the list of activities and for each activity, what the different colored parts of the bar should reflect.
 
-The Gantt Chart specification is placed after the [system definition](System_Definition.html). The syntax is defined by the following grammar:
+The Gantt Chart specification is placed after the [system definition](..). The syntax is defined by the following grammar:
 
 <pre>
 GanttDecl ::= 'gantt {' GanttDef '}'
@@ -15,12 +15,12 @@ GanttDef ::= '' | GanttDef NonTypeId GanttArgs ':' GanttExprList ';'
 
 GanttArgs ::= '' | '(' GanttDeclSelect ')'
 
-GanttDeclSelect ::= [Id](Identifiers.html) ':' [Type](TypeDeclarations.html)   | GanttDeclSelect ',' Id ':' Type
+GanttDeclSelect ::= [Id] ':' [Type]   | GanttDeclSelect ',' Id ':' Type
 
 GanttExprList ::= GanttExpr  | GanttExprList ',' GanttExpr
 
-GanttExpr ::= [Expression](Expressions.html) '->' [Expression](Expressions.html) 
-              | 'for (' GanttEntrySelect ')' [Expression](Expressions.html) '->' [Expression](Expressions.html)
+GanttExpr ::= [Expression] '->' [Expression]
+              | 'for (' GanttEntrySelect ')' [Expression] '->' [Expression]
 
 GanttEntrySelect ::= Id ':' Type    | GanttEntrySelect ',' Id ':' Type
 
