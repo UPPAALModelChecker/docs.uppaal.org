@@ -3,14 +3,18 @@ title = "UPPAAL Documentation"
 
 theme = "hugo-theme-learn"
 
+baseURL = "https://statictest.test.cs.aau.dk/uppaaldoc"
+canonifyURLs = "true"
+
+
 # For search functionality
 [outputs]
 home = [ "HTML", "RSS", "JSON"]
 
 [params]
   # Change default color scheme with a variant one. Can be "red", "blue", "green".
-  themeVariant = "blue"
+  themeVariant = ""
   editURL = "https://git.its.aau.dk/UPPAAL/docs.uppaal.org/src/branch/master/content/"
 
 [markup.goldmark.renderer]
-unsafe= true
+unsafe=true
