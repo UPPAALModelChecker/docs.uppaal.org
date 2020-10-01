@@ -6,6 +6,11 @@ theme = "hugo-theme-learn"
 baseURL = "https://statictest.test.cs.aau.dk/uppaaldoc"
 canonifyURLs = "true"
 
+#baseURL = "."
+#canonifyURLs = "true"
+#uglyURLs="true"
+#relativeURLs="true"
+
 
 # For search functionality
 [outputs]
