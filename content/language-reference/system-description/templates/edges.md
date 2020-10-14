@@ -31,9 +31,10 @@ Locations are connected by _edges_. Edges are annotated with _selections_, _guar
 
 ## Selections
 
-<pre>SelectList ::= ID ':' Type
+``` EBNF
+SelectList ::= ID ':' Type
              | SelectList ',' ID ':' Type
-</pre>
+```
 
 For each <tt>ID</tt> in <tt>SelectList</tt>, bind <tt>ID</tt> non-deterministically to a value of type <tt>Type</tt>. The identifiers are available as variables within the other labels of this edge (guard, synchronization, or update). The supported types are bounded integers and scalar sets.  
 **Note:** The identifiers will shadow any variables with the same names.
@@ -79,8 +80,9 @@ Notice that for both urgent and broadcast channels it is important to understand
 
 An _update_ is a comma separated list of [expressions](/language-reference/expressions/). These expressions will typically have side effects. Assignments to clocks are limited to the regular <tt>=</tt> assignment operator and only integer expressions are allowed on the right hand side of such assignments. The syntax of updates is defined by the grammar for <tt>Update</tt>:
 
-<pre>Update ::= [Expression (',' Expression)*]
-</pre>
+``` EBNF
+Update ::= [Expression (',' Expression)*]
+```
 
 **Note:** Assignments are evaluated sequentially (not concurrently). On synchronizing edges, the assignments on the !-side (the emitting side) are evaluated before the ?-side (the receiving side).
 
