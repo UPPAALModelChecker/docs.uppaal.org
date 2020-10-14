@@ -1,5 +1,5 @@
 ---
-title: Command line & API
+title: Tools & API
 weight: 30
 pre: "<b>3. </b>"
 chapter: true
@@ -7,4 +7,4 @@ chapter: true
 
 ### Chapter 1
 
-# Command line & API
+# Tools & API
