@@ -5,7 +5,7 @@ weight: 10
 
 There are 6 predefined types: <tt>int</tt>, <tt>bool</tt>, <tt>clock</tt>, <tt>chan</tt>, <tt>double</tt> and <tt>string</tt>. Array and record types can be defined over all types except <tt>string</tt>.
 
-<pre>
+``` EBNF
 Type          ::= Prefix TypeId
 Prefix        ::= 'urgent' | 'broadcast' | 'meta' | 'const'
 TypeId        ::= ID | 'int' | 'clock' | 'chan' | 'bool' | 'double' | 'string'
@@ -15,7 +15,7 @@ TypeId        ::= ID | 'int' | 'clock' | 'chan' | 'bool' | 'double' | 'string'
 FieldDecl     ::= Type ID ArrayDecl* (',' ID ArrayDecl*)* ';'
 ArrayDecl     ::= '[' [Expression] ']'
                |  '[' Type ']'
-</pre>
+```
 
 The default range of an integer is [-32768, 32767]. Any assignment out of range will cause the verification to abort.
 

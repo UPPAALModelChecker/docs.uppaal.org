@@ -14,11 +14,11 @@ Priorities can be assigned to the channels and processes of a system. The priori
 
 ## Priorities on Channels
 
-<pre>
+``` EBNF
 ChanPriority ::= 'chan' 'priority' (ChanExpr | 'default') ((',' | '<') (ChanExpr | 'default'))* ';'
 ChanExpr ::= ID
            | ChanExpr '[' Expression ']'
-</pre>
+```
 
 A channel priority declaration can be inserted anywhere in the global declarations section of a system (only one per system). The priority declaration consist of a list of channels, where the '<' separator defines a higher priority level for channels listed on its right side. The `default` priority level is used for all channels that are not mentioned, including tau transitions.
 

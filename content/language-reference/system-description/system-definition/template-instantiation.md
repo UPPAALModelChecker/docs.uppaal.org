@@ -5,8 +5,9 @@ weight: 10
 
 New templates can be defined from existing templates using the grammar for <tt>Instantiation</tt>. The new template has the same automaton structure and the same local variables as the template it is defined from. However, arguments are provided for any formal parameters of the template, thus changing the interface of the template.
 
-<pre>Instantiation ::= ID [ '(' [Parameters]  ')' ] '=' ID '(' [Arguments] ')' ';'
-</pre>
+``` EBNF
+Instantiation ::= ID [ '(' [Parameters]  ')' ] '=' ID '(' [Arguments] ')' ';'
+```
 
 Template instantiation is most often used to bind formal parameters to actual arguments. The resulting template is later instantiated into a process by listing it in the [system line](../).
 
@@ -18,7 +19,7 @@ For more examples, see the example systems included in the UPPAAL distribution.
 
 ### Renaming
 
-``` c
+```
 P1 = Q();
 P2 = Q();
 system P1, P2;

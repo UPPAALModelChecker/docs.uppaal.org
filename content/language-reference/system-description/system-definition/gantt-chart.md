@@ -8,7 +8,7 @@ In UPPAAL Gantt Charts are used to automatic visualize traces. One needs to spec
 
 The Gantt Chart specification is placed after the [system definition](..). The syntax is defined by the following grammar:
 
-<pre>
+``` EBNF
 GanttDecl ::= 'gantt {' GanttDef '}'
 
 GanttDef ::= '' | GanttDef NonTypeId GanttArgs ':' GanttExprList ';'
@@ -24,7 +24,7 @@ GanttExpr ::= [Expression] '->' [Expression]
 
 GanttEntrySelect ::= Id ':' Type    | GanttEntrySelect ',' Id ':' Type
 
-</pre>
+``` 
 
 The first part of <tt>GanttDef</tt> (the one before the colon) specifies the list of activities. The second part (the one after the colon) specifies for each activity, what the bar should reflect.  
 An instance of <tt>GanttExpr</tt> consists of two expressions. The one before <tt>-></tt> is evaluated to a boolean value. If it is evaluated to true, the expression after <tt>-></tt> will be evaluated to an integer. Note that this integer is not necessarily a constant. The integer will be map to a color (e.g. 0 will be map to red and 1 to green), which is the color of the bar when the expression is evaluated to true.  

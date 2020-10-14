@@ -10,13 +10,13 @@ If progress measures are defined, UPPAAL uses the generalized sweepline method t
 Progress measures are placed after the system definition. The syntax is defined by the grammar for 
 <tt>ProgressDecl</tt>:
 
-<pre>
+``` EBNF
 ProgressDecl  ::= 'progress' '{' ( [Expression] ';' )* '}'
-</pre>
+```
 
 ## Examples
 
-``` c
+``` C
 int i, j, k;
 
 ...

@@ -9,15 +9,15 @@ Global variables, channels and functions can be defined in the system definition
 
 The processes of the system model are defined in the form of a system declaration line, using the grammar for <tt>System</tt> given below. The system line contains a list of templates to be instantiated into processes. Processes can be prioritised as described in the section on [priorities](/language-reference/system-description/priorities/).
 
-<pre>
+``` EBNF
 System ::= 'system' ID ((',' | '<') ID)* ';'
-</pre>
+```
 
 Templates without parameters are instantiated into exactly one process with the same name as the template. Parameterised templates give rise to one process per combination of arguments, i.e., UPPAAL automatically binds any free template parameters. Any such parameter must be either a call-by-value bounded integer and or a call-by-value scalar. Individual processes can be referenced in expressions using the grammar for <tt>Process</tt> given below. Notice that this is already covered by the grammar for [expressions](/language-reference/expressions/).
 
-<pre>
+``` EBNF
 Process ::= ID '(' [Arguments] ')'
-</pre>
+```
 
 It is often desirable to manually bind some or all formal parameters of a template to actual arguments. This can be done by partial [instantiation of templates](/language-reference/system-description/system-definition/template-instantiation/).
 

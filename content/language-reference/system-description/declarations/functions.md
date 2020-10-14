@@ -5,25 +5,26 @@ weight: 20
 
 Functions can be declared alongside other declarations. The syntax for functions is defined by the grammar for <tt>Function</tt>:
 
-<pre>
+``` EBNF
 Function        ::= [Type] [ID] '(' [Parameters] ')' Block 
 Block	        ::= '{' [Declarations] Statement* '}'
 Statement       ::= Block
                  | ';'
                  |  [Expression] ';'
-	         |  ForLoop
-		 |  Iteration
-	         |  WhileLoop 
-	         |  DoWhileLoop 
-	         |  IfStatement 
-		 |  ReturnStatement
+                 |  ForLoop
+                 |  Iteration
+                 |  WhileLoop 
+                 |  DoWhileLoop 
+                 |  IfStatement 
+                 |  ReturnStatement
+
 ForLoop	        ::= 'for' '(' [Expression] ';' [Expression] ';' [Expression] ')' Statement 
-Iteration	::= 'for' '(' [ID] ':' [Type] ')' Statement
+Iteration	    ::= 'for' '(' [ID] ':' [Type] ')' Statement
 WhileLoop       ::= 'while' '(' [Expression] ')' Statement
 DoWhile         ::= 'do' Statement 'while' '(' [Expression] ')' ';'
 IfStatment      ::= 'if' '(' [Expression] ')' Statement [ 'else' Statement ]
 ReturnStatement ::= 'return' [ [Expression] ] ';'
-</pre>
+```
 
 ## Iterators
 

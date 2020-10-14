@@ -5,7 +5,8 @@ weight: 20
 
 In this help section we give a BNF-grammar for the requirement specification language used in the verifier of UPPAAL.
 
-<pre>Prop ::= 
+``` EBNF
+Prop ::= 
         'A[]' Expression 
       | 'E<>' Expression 
       | 'E[]' Expression 
@@ -31,7 +32,7 @@ Probability ::= 'Pr[' ( Clock | '#' ) '<=' CONST ']' '(' ('<>'|'[]') Expression 
 ProbUntil   ::= 'Pr[' ( Clock | '#' ) '<=' CONST ']' '(' Expression 'U' Expression ')'  
 
 Estimate ::= 'E[' ( Clock | '#' ) '<=' CONST ';' CONST ']' '(' ('min:' | 'max:') Expression ')'
-</pre>
+```
 
 <dl>
 
