@@ -4,7 +4,7 @@ weight: 10
 ---
 
 
-Locations of a timed automaton are graphically represented as circles. If a timed automaton is considered as a directed graph, then locations represent the vertices of this graph. Locations are connected by [edges](Edges.html).
+Locations of a timed automaton are graphically represented as circles. If a timed automaton is considered as a directed graph, then locations represent the vertices of this graph. Locations are connected by [edges](/language-reference/system-description/templates/edges/).
 
 ## Names
 
