@@ -1,29 +1,52 @@
-## Build Page
+This repo contains the source for building the UPPAAL help files. 
+The documentation is automatically build and published to https://uppaalmodelchecker.github.io/docs.uppaal.org/ (temporary domain).
+
+If you wish to contribute to the documentation please fork the repo and submit a pull-request. 
+Please notice, by creating a pull-request you give the UPPAAL development team permission to use and distribute you changes together with UPPAAL, this includes the commercial versions of UPPAAL.
+
+
+
+# Build pages locally
 
   * get hugo: https://gohugo.io/getting-started/installing 
 
-  * Checkout source: git clone git@git.its.aau.dk:UPPAAL/docs.uppaal.org.git
-  * cd docs.its.aau.dk
-  * hugo serve
+  * Checkout source: `git clone git@github.com:UPPAALModelChecker/docs.uppaal.org.git`
+  * `cd docs.uppaal.org`
+  * `hugo serve`
+
   * Open http://localhost:1313
 
+
+# Release
 
 ## Updated theme
 
 git subtree pull --prefix=themes/hugo-theme-learn https://github.com/matcornic/hugo-theme-learn.git master --squash
 
 
-### Local search
+## Build for Offline
+We build the documentation of offline reading and includes it with the UPPAAL distribution. To build the offline version please notice the following changes:
 
-Update search.js initLunr to contain the following, where <index.json-content> is the content of index.json
-`
+### General config
+Change config to:
+```
+baseURL = "."
+canonifyURLs = "true"
+uglyURLs="true"
+relativeURLs="true"
+```
+
+### Update Search
+Some browsers CORS settings does not allow loading json via file:// protocol. To circumvent this issue we inline the 
+content of index.json into search.js function initLunr. Update search.js - initLunr to contain the following: 
+``` js
 function initLunr() {
     if (!endsWith(baseurl,"/")){
         baseurl = baseurl+'/'
     };
 
     #pagesIndex = [{...}...]
-    pagesIndex = <index.json-content>;
+    pagesIndex = <Content of index.json>;
     
         lunrIndex = lunr(function() {
                 this.ref("uri");
@@ -46,4 +69,4 @@ function initLunr() {
                 }, this);
             })
 }
-`
+```
