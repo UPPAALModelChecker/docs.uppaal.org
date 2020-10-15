@@ -8,3 +8,5 @@ The concrete simulator is similar to the symbolic simulation in the sense that i
 The concrete simulator consists of the following panels:
 
  {{% children  %}}
+
+ ![Concrete Simulator](/gui-reference/concrete-simulator/uppaal-consimulator.png)
