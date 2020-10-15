@@ -8,10 +8,10 @@ Most of the expression syntax of UPPAAL coincides with that of C, C++ and Java. 
 The syntax of expressions is defined by the grammar for <tt>Expression</tt>.
 
 ``` EBNF
-Expression ::= [ID]
+Expression = [ID]
             |  NAT
             |  Expression '[' Expression ']'
-            |  Expression '''
+            |  Expression "'"
             |  '(' Expression ')'
             |  Expression '++' | '++' Expression
             |  Expression '--' | '--' Expression
@@ -24,17 +24,17 @@ Expression ::= [ID]
             |  'forall' '(' ID ':' Type ')' Expression
             |  'exists' '(' ID ':' Type ')' Expression
             |  'sum' '(' ID ':' Type ')' Expression
-            |  'deadlock' | 'true' | 'false'
+            |  'deadlock' | 'true' | 'false';
 
-Arguments  ::= [ Expression ( ',' Expression )* ]
+Arguments  = [ Expression ( ',' Expression )* ];
 
-Assign     ::= '=' | ':=' | '+=' | '-=' | '*=' | '/=' | '%='
-            | '|=' | '&=' | '^=' | '<<=' | '>>='
-Unary      ::= '+' | '-' | '!' | 'not'
-Binary     ::= '<' | '<=' | '==' | '!=' | '>=' | '>'
+Assign     = '=' | ':=' | '+=' | '-=' | '*=' | '/=' | '%='
+            | '|=' | '&=' | '^=' | '<<=' | '>>=';
+Unary      = '+' | '-' | '!' | 'not';
+Binary     = '<' | '<=' | '==' | '!=' | '>=' | '>'
             |  '+' | '-' | '*' | '/' | '%' | '&'
             |  '|' | '^' | '<<' | '>>' | '&&' | '||'
-            |  '<?' | '>?' | 'or' | 'and' | 'imply'
+            |  '<?' | '>?' | 'or' | 'and' | 'imply';
 ```
 
 Like in C++, assignment, preincrement and predecrement expressions evaluate to references to the first operand. The inline-if operator does in some cases (_e.g._ when both the true and false operands evaluate to compatible references) also evaluate to a reference, _i.e._, it is possible to use an inline-if on the left hand side of an assignment.
