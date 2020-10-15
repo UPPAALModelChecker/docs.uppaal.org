@@ -5,7 +5,7 @@ weight: 30
 
 Most of the expression syntax of UPPAAL coincides with that of C, C++ and Java. E.g. assignments are done using the '=' operator (the older ':=' still works, but '=' is preferred). Notice that assignments are them self expressions.
 
-The syntax of expressions is defined by the grammar for <tt>Expression</tt>.
+The syntax of expressions is defined by the grammar for `Expression`.
 
 ``` EBNF
 Expression = [ID]
@@ -39,579 +39,96 @@ Binary     = '<' | '<=' | '==' | '!=' | '>=' | '>'
 
 Like in C++, assignment, preincrement and predecrement expressions evaluate to references to the first operand. The inline-if operator does in some cases (_e.g._ when both the true and false operands evaluate to compatible references) also evaluate to a reference, _i.e._, it is possible to use an inline-if on the left hand side of an assignment.
 
-The use of the <tt>deadlock</tt> keyword is restricted to the [requirement specification language](/language-reference/requirements-specification/).
+The use of the `deadlock` keyword is restricted to the [requirement specification language](/language-reference/requirements-specification/).
 
 ## Boolean Values
 
-Boolean values are type compatible with integers. An integer value of 0 (zero) is evaluated to false and any other integer value is evaluated to true. The boolean value <tt>true</tt> evaluates to the integer value 1 and the boolean value <tt>false</tt> evaluates to the integer value 0\. **Notice:** A comparison like <tt>5 == true</tt> evaluates to false, since <tt>true</tt> evaluates to the integer value 1\. This is consistent with C++.
+Boolean values are type compatible with integers. An integer value of 0 (zero) is evaluated to false and any other integer value is evaluated to true. The boolean value `true` evaluates to the integer value 1 and the boolean value `false` evaluates to the integer value 0\. **Notice:** A comparison like `5 == true` evaluates to false, since `true` evaluates to the integer value 1\. This is consistent with C++.
 
 ## Precedence
 
 UPPAAL operators have the following associativity and precedence, listed from the highest to lowest. Operators borrowed from C keep the same precedence relationship with each other.
 
-<table>
-
-<tbody>
-
-<tr>
-
-<td>left</td>
-
-<td>() [] .</td>
-
-</tr>
-
-<tr>
-
-<td>right</td>
-
-<td>! not ++ -- unary -</td>
-
-</tr>
-
-<tr>
-
-<td>left</td>
-
-<td>* / %</td>
-
-</tr>
-
-<tr>
-
-<td>left</td>
-
-<td>- +</td>
-
-</tr>
-
-<tr>
-
-<td>left</td>
-
-<td><< >></td>
-
-</tr>
-
-<tr>
-
-<td>left</td>
-
-<td><? >?</td>
-
-</tr>
-
-<tr>
-
-<td>left</td>
-
-<td>< <= >= ></td>
-
-</tr>
-
-<tr>
-
-<td>left</td>
-
-<td>== !=</td>
-
-</tr>
-
-<tr>
-
-<td>left</td>
-
-<td>&</td>
-
-</tr>
-
-<tr>
-
-<td>left</td>
-
-<td>^</td>
-
-</tr>
-
-<tr>
-
-<td>left</td>
-
-<td>|</td>
-
-</tr>
-
-<tr>
-
-<td>left</td>
-
-<td>&& and</td>
-
-</tr>
-
-<tr>
-
-<td>left</td>
-
-<td>|| or imply</td>
-
-</tr>
-
-<tr>
-
-<td>right</td>
-
-<td>?:</td>
-
-</tr>
-
-<tr>
-
-<td>right</td>
-
-<td>= := += -= *= /= %= &= |= <<= >>= ^=</td>
-
-</tr>
-
-<tr>
-
-<td>left</td>
-
-<td>forall exists sum</td>
-
-</tr>
-
-</tbody>
-
-</table>
+| Associativity | Operator                                  |
+|---------------|:------------------------------------------|
+| left          | () [] .                                   |
+| right         | ! not ++ -- unary -                       |
+| left          | * / %                                     |
+| left          | - +                                       |
+| left          | &lt;&lt; &gt;&gt;                         |
+| left          | <? >?                                     |
+| left          | < <= >= >                                 |
+| left          | == !=                                     |
+| left          | &                                         |
+| left          | ^                                         |
+| left          | &#124;                                    |
+| left          | && and                                    |
+| left          | &#124;&#124; or imply                     |
+| right         | ?:                                        |
+| right         | = := += -= *= /= %= &= &#124;= <<= >>= ^= |
+| left          | forall exists sum                         |
 
 ## Operators
 
 Anybody familiar with the operators in C, C++, Java or Perl should immediately feel comfortable with the operators in UPPAAL. Here we summarise the meaning of each operator.
 
-<table>
-
-<tbody>
-
-<tr>
-
-<td>()</td>
-
-<td>Parenthesis alter the evaluation order</td>
-
-</tr>
-
-<tr>
-
-<td>[]</td>
-
-<td>Array lookup</td>
-
-</tr>
-
-<tr>
-
-<td>.</td>
-
-<td>Infix lookup operator to access process or structure type scope</td>
-
-</tr>
-
-<tr>
-
-<td>!</td>
-
-<td>Logical negation</td>
-
-</tr>
-
-<tr>
-
-<td>++</td>
-
-<td>Increment (can be used as both prefix and postfix operator)</td>
-
-</tr>
-
-<tr>
-
-<td>--</td>
-
-<td>Decrement (can be used as both prefix and --> --postfix operator)</td>
-
-</tr>
-
-<tr>
-
-<td>-</td>
-
-<td>Integer subtraction (can also be used as unary negation)</td>
-
-</tr>
-
-<tr>
-
-<td>+</td>
-
-<td>Integer addition</td>
-
-</tr>
-
-<tr>
-
-<td>*</td>
-
-<td>Integer multiplication</td>
-
-</tr>
-
-<tr>
-
-<td>/</td>
-
-<td>Integer division</td>
-
-</tr>
-
-<tr>
-
-<td>%</td>
-
-<td>Modulo</td>
-
-</tr>
-
-<tr>
-
-<td><<</td>
-
-<td>Left bitshift</td>
-
-</tr>
-
-<tr>
-
-<td>>></td>
-
-<td>Right bitshift</td>
-
-</tr>
-
-<tr>
-
-<td><?</td>
-
-<td>Minimum</td>
-
-</tr>
-
-<tr>
-
-<td>>?</td>
-
-<td>Maximum</td>
-
-</tr>
-
-<tr>
-
-<td><</td>
-
-<td>Less than</td>
-
-</tr>
-
-<tr>
-
-<td><=</td>
-
-<td>Less than or equal to</td>
-
-</tr>
-
-<tr>
-
-<td>==</td>
-
-<td>Equality operator</td>
-
-</tr>
-
-<tr>
-
-<td>!=</td>
-
-<td>Inequality operator</td>
-
-</tr>
-
-<tr>
-
-<td>>=</td>
-
-<td>Greater than or equal to</td>
-
-</tr>
-
-<tr>
-
-<td>></td>
-
-<td>Greater than</td>
-
-</tr>
-
-<tr>
-
-<td>&</td>
-
-<td>Bitwise and</td>
-
-</tr>
-
-<tr>
-
-<td>^</td>
-
-<td>Bitwise xor</td>
-
-</tr>
-
-<tr>
-
-<td>|</td>
-
-<td>Bitwise or</td>
-
-</tr>
-
-<tr>
-
-<td>&&</td>
-
-<td>Logical and</td>
-
-</tr>
-
-<tr>
-
-<td>||</td>
-
-<td>Logical or</td>
-
-</tr>
-
-<tr>
-
-<td>?:</td>
-
-<td>If-then-else operator</td>
-
-</tr>
-
-<tr>
-
-<td>not</td>
-
-<td>Logical negation</td>
-
-</tr>
-
-<tr>
-
-<td>and</td>
-
-<td>Logical and</td>
-
-</tr>
-
-<tr>
-
-<td>or</td>
-
-<td>Logical or</td>
-
-</tr>
-
-<tr>
-
-<td>imply</td>
-
-<td>Logical implication</td>
-
-</tr>
-
-<tr>
-
-<td>forall</td>
-
-<td>Forall quantifier</td>
-
-</tr>
-
-<tr>
-
-<td>exists</td>
-
-<td>Exists quantifier</td>
-
-</tr>
-
-<tr>
-
-<td>sum</td>
-
-<td>Sum expression</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-Notice that the keywords <tt>not</tt>, <tt>and</tt> and <tt>or</tt> behave the same as the <tt>!</tt>, <tt>&&</tt>, and <tt>||</tt> operators, except that the former have lower precedence.
+| Operator     | Description                                                       |
+|--------------|-------------------------------------------------------------------|
+| ()           | Parenthesis alter the evaluation order                            |
+| []           | Array lookup                                                      |
+| .            | Infix lookup operator to access process or structure type scope   |
+| !            | Logical negation                                                  |
+| ++           | Increment (can be used as both prefix and postfix operator)       |
+| --           | Decrement (can be used as both prefix and --> --postfix operator) |
+| -            | Integer subtraction (can also be used as unary negation)          |
+| +            | Integer addition                                                  |
+| *            | Integer multiplication                                            |
+| /            | Integer division                                                  |
+| %            | Modulo                                                            |
+| &lt;&lt;     | Left bitshift                                                     |
+| &gt;&gt;     | Right bitshift                                                    |
+| <?           | Minimum                                                           |
+| >?           | Maximum                                                           |
+| <            | Less than                                                         |
+| <=           | Less than or equal to                                             |
+| ==           | Equality operator                                                 |
+| !=           | Inequality operator                                               |
+| >=           | Greater than or equal to                                          |
+| >            | Greater than                                                      |
+| &            | Bitwise and                                                       |
+| ^            | Bitwise xor                                                       |
+| &#124;       | Bitwise or                                                        |
+| &&           | Logical and                                                       |
+| &#124;&#124; | Logical or                                                        |
+| ?:           | If-then-else operator                                             |
+| not          | Logical negation                                                  |
+| and          | Logical and                                                       |
+| or           | Logical or                                                        |
+| imply        | Logical implication                                               |
+| forall       | Forall quantifier                                                 |
+| exists       | Exists quantifier                                                 |
+| sum          | Sum expression                                                    |
+
+
+
+Notice that the keywords `not`, `and` and `or` behave the same as the `!`, `&&`, and `||` operators, except that the former have lower precedence.
 
 A few binary operators can be syntactically combined with assignment to produce a compact assignment expression:
 
-<table>
+| Operator | Assignment | Example       | Meaning          |
+|----------|------------|---------------|------------------|
+| +        | +=         | x += y        | x = x + y        |
+| -        | -=         | x -= y        | x = x - y        |
+| *        | *=         | x *= y        | x = x * y        |
+| /        | /=         | x /= y        | x = x / y        |
+| %        | %=         | x %= y        | x = x % y        |
+| &        | &=         | x &= y        | x = x & y        |
+| ^        | ^=         | x ^= y        | x = x ^ y        |
+| &#124;   | &#124;=    | x &#124;= y   | x = x &#124; y   |
+| &lt;&lt; | &lt;&lt;=  | x &lt;&lt;= y | x = x &lt;&lt; y |
+| &gt;&gt; | &gt;&gt;=  | x &gt;&gt;= y | x = x &gt;&gt; y |
 
-<tbody>
 
-<tr>
-
-<th>Operator</th>
-
-<th>Assignment</th>
-
-<th>Example</th>
-
-<th>Meaning</th>
-
-</tr>
-
-<tr>
-
-<td>+</td>
-
-<td>+=</td>
-
-<td>x += y</td>
-
-<td>x = x + y</td>
-
-</tr>
-
-<tr>
-
-<td>-</td>
-
-<td>-=</td>
-
-<td>x -= y</td>
-
-<td>x = x - y</td>
-
-</tr>
-
-<tr>
-
-<td>*</td>
-
-<td>*=</td>
-
-<td>x *= y</td>
-
-<td>x = x * y</td>
-
-</tr>
-
-<tr>
-
-<td>/</td>
-
-<td>/=</td>
-
-<td>x /= y</td>
-
-<td>x = x / y</td>
-
-</tr>
-
-<tr>
-
-<td>%</td>
-
-<td>%=</td>
-
-<td>x %= y</td>
-
-<td>x = x % y</td>
-
-</tr>
-
-<tr>
-
-<td>&</td>
-
-<td>&=</td>
-
-<td>x &= y</td>
-
-<td>x = x & y</td>
-
-</tr>
-
-<tr>
-
-<td>^</td>
-
-<td>^=</td>
-
-<td>x ^= y</td>
-
-<td>x = x ^ y</td>
-
-</tr>
-
-<tr>
-
-<td>|</td>
-
-<td>|=</td>
-
-<td>x |= y</td>
-
-<td>x = x | y</td>
-
-</tr>
-
-<tr>
-
-<td><<</td>
-
-<td><<=</td>
-
-<td>x <<= y</td>
-
-<td>x = x << y</td>
-
-</tr>
-
-<tr>
-
-<td>>></td>
-
-<td>>>=</td>
-
-<td>x >>= y</td>
-
-<td>x = x >> y</td>
-
-</tr>
-
-</tbody>
-
-</table>
 
 ## Expressions Involving Clocks
 
@@ -639,11 +156,11 @@ In case an invalid evaluation occurs during the computation of a successor, _i.e
 
 ## Quantifiers
 
-An expression <tt>forall (ID : Type) Expr</tt> evaluates to true if <tt>Expr</tt> evaluates to true for all values <tt>ID</tt> of the type <tt>Type</tt>. An expression <tt>exists (ID : Type) Expr</tt> evaluates to true if <tt>Expr</tt> evaluates to true for some value <tt>ID</tt> of the type <tt>Type</tt>. In both cases, the scope of <tt>ID</tt> is the inner expression <tt>Expr</tt>, and <tt>Type</tt> must be a bounded integer or a scalar set.
+An expression `forall (ID : Type) Expr` evaluates to true if `Expr` evaluates to true for all values `ID` of the type `Type`. An expression `exists (ID : Type) Expr` evaluates to true if `Expr` evaluates to true for some value `ID` of the type `Type`. In both cases, the scope of `ID` is the inner expression `Expr`, and `Type` must be a bounded integer or a scalar set.
 
 ### Example
 
-The following function can be used to check if all elements of the boolean array <tt>a</tt> have the value <tt>true</tt>.
+The following function can be used to check if all elements of the boolean array `a` have the value `true`.
 
 ``` c
 bool alltrue(bool a[5])
@@ -654,63 +171,63 @@ bool alltrue(bool a[5])
 
 ## Sum
 
-An expression <tt>sum (ID : Type) Expr</tt> evaluates to an integer and is equal to the sum of the expressions evaluated with <tt>ID</tt> ranging over the given type argument. Boolean or state predicates (in TCTL expressions only) are accepted but not clock constraints. The expressions must be side-effect free. The type must be a bounded integer or a scalar set.
+An expression `sum (ID : Type) Expr` evaluates to an integer and is equal to the sum of the expressions evaluated with `ID` ranging over the given type argument. Boolean or state predicates (in TCTL expressions only) are accepted but not clock constraints. The expressions must be side-effect free. The type must be a bounded integer or a scalar set.
 
 ## Floating Point Type Support
 
-Statistical model checking (SMC) supports double precision floating point type <tt>double</tt>. The clock variables also have floating point values in SMC. Symbolic and statistical model checking can be applied on the same model provided that <tt>double</tt> and <tt>hybrid clock</tt> type variables do not influencing the model logic, i.e. they cannot be used in guard and invariant constraints (but can be used in ODE expressions).
+Statistical model checking (SMC) supports double precision floating point type `double`. The clock variables also have floating point values in SMC. Symbolic and statistical model checking can be applied on the same model provided that `double` and `hybrid clock` type variables do not influencing the model logic, i.e. they cannot be used in guard and invariant constraints (but can be used in ODE expressions).
 
 The following is the list of builtin floating point functions (mostly imported from C math library, hence the C math manual can be consulted for more details):
 
-*   <tt>int abs(int)</tt> — absolute value of integer argument.
-*   <tt>double fabs(double)</tt> — absolute value of double argument.
-*   <tt>double fmod(double x, double y)</tt> — remainder of the division opration _x/y_.
-*   <tt>double fma(double x, double y, double z)</tt> — computes _x*y+z_ as if to infinite precision.
-*   <tt>double fmax(double x, double y)</tt> — the larger of the two arguments.
-*   <tt>double fmin(double x, double y)</tt> — the smaller of the two arguments.
-*   <tt>double exp(double x)</tt> — Euler's number raised to the given power: _e<sup>x</sup>_.
-*   <tt>double exp2(double x)</tt> — 2 raised to the given power: _2<sup>x</sup>_.
-*   <tt>double expm1(double x)</tt> — Euler's number raised to the given power minus 1: _e<sup>x</sup>-1_.
-*   <tt>double ln(double x)</tt> — logarithm to the base of Euler's number: _log<sub>e</sub>(x)_.
-*   <tt>double log(double x)</tt> — logarithm to the base of 10 _log<sub>10</sub>(x)_ (this is different from C library, kept for backward compatibility reasons).
-*   <tt>double log10(double x)</tt> — logarithm to the base of 10: _log<sub>10</sub>(x)_.
-*   <tt>double log2(double x)</tt> — logarithm to the base of 2: _log<sub>2</sub>(x)_.
-*   <tt>double log1p(double x)</tt> — logarithm to the base of Euler's number with argument plus 1 _log<sub>e</sub>(1+x)_.
-*   <tt>double pow(double x, int y)</tt> — raises to the specified integer power _x<sup>y</sup>_.
-*   <tt>double pow(double x, double y)</tt> — raises to the specified floating point power _x<sup>y</sup>_.
-*   <tt>double sqrt(double x)</tt> — computes square root.
-*   <tt>double cbrt(double x)</tt> — computes cubic root.
-*   <tt>double hypot(double x, double x)</tt> — computes hypotenuse of a right triangle: _sqrt(x<sup>2</sup>+y<sup>2</sup>)_.
-*   <tt>double sin(double x)</tt> — sine of an angle in radians.
-*   <tt>double cos(double x)</tt> — cosine of an angle in radians.
-*   <tt>double tan(double x)</tt> — tangent of an angle in radians.
-*   <tt>double asin(double x)</tt> — arc sine in radians.
-*   <tt>double acos(double x)</tt> — arc cosine in radians.
-*   <tt>double atan(double x)</tt> — arc tangent in radians.
-*   <tt>double atan2(double y, double x)</tt> — arc tangent of the ratio _y/x_ in radians.
-*   <tt>double sinh(double x)</tt> — hyperbolic sine: _(exp(x)-exp(-x))/2_.
-*   <tt>double cosh(double x)</tt> — hyperbolic cosine: _(exp(x)+exp(-x))/2_.
-*   <tt>double tanh(double x)</tt> — hyperbolic tangent: _(exp(x)-exp(-x))/(exp(x)+exp(-x))_.
-*   <tt>double asinh(double x)</tt> — inverse hyperbolic sine.
-*   <tt>double acosh(double x)</tt> — inverse hyperbolic cosine.
-*   <tt>double atanh(double x)</tt> — inverse hyperbolic tangent.
-*   <tt>double erf(double x)</tt> — Gauss error function (special non-elementary function of sigmoid).
-*   <tt>double erfc(double x)</tt> — complement of a Gauss error function.
-*   <tt>double tgamma(double x)</tt> — absolute value of the Gamma function (an extension of a factorial function _Γ(n)=(n-1)!_).
-*   <tt>double lgamma(double x)</tt> — natural logarithm of the Gamma function.
-*   <tt>double ceil(double x)</tt> — the ceiling function, the smallest integer value not less than _x_.
-*   <tt>double floor(double x)</tt> — the floor function, the largest integer value not greater than _x_.
-*   <tt>double trunc(double x)</tt> — nearest integer not greater in magnitude than _x_.
-*   <tt>double round(double x)</tt> — nearest integer value to _x_ rounding halfway cases away from zero.
-*   <tt>int fint(double x)</tt> — converts floating point value into integer (works like _trunc()_).
-*   <tt>double ldexp(double x, int y)</tt> — multiplies by a specified power of two: _x*2<sup>y</sup>_.
-*   <tt>int ilogb(double x)</tt> — extracts unbiased exponent: _trunc(log2(x+1))_.
-*   <tt>double logb(double x)</tt> — extracts unbiased exponent: _trunc(log2(x+1))_.
-*   <tt>double nextafter(double from, double to)</tt> — a next representable floating point value of _from_ in the direction of _to_.
-*   <tt>double copysign(double x, double y)</tt> — floating point value with magnitude of _x_ and sign of _y_.
-*   <tt>bool signbit(double x)</tt> — true if the argument _x_ is negative.<
-*   <tt>double random(double max)</tt> — pseudo random number distributed uniformly over the interval _[0,max)_.
-*   <tt>double normal(double mean, double stddev)</tt> — pseudo random number distributed according to normal (Gaussian) distribution for a given _mean_ and standard deviation _stddev_.
+*   `int abs(int)` — absolute value of integer argument.
+*   `double fabs(double)` — absolute value of double argument.
+*   `double fmod(double x, double y)` — remainder of the division opration _x/y_.
+*   `double fma(double x, double y, double z)` — computes _x*y+z_ as if to infinite precision.
+*   `double fmax(double x, double y)` — the larger of the two arguments.
+*   `double fmin(double x, double y)` — the smaller of the two arguments.
+*   `double exp(double x)` — Euler's number raised to the given power: _e<sup>x</sup>_.
+*   `double exp2(double x)` — 2 raised to the given power: _2<sup>x</sup>_.
+*   `double expm1(double x)` — Euler's number raised to the given power minus 1: _e<sup>x</sup>-1_.
+*   `double ln(double x)` — logarithm to the base of Euler's number: _log<sub>e</sub>(x)_.
+*   `double log(double x)` — logarithm to the base of 10 _log<sub>10</sub>(x)_ (this is different from C library, kept for backward compatibility reasons).
+*   `double log10(double x)` — logarithm to the base of 10: _log<sub>10</sub>(x)_.
+*   `double log2(double x)` — logarithm to the base of 2: _log<sub>2</sub>(x)_.
+*   `double log1p(double x)` — logarithm to the base of Euler's number with argument plus 1 _log<sub>e</sub>(1+x)_.
+*   `double pow(double x, int y)` — raises to the specified integer power _x<sup>y</sup>_.
+*   `double pow(double x, double y)` — raises to the specified floating point power _x<sup>y</sup>_.
+*   `double sqrt(double x)` — computes square root.
+*   `double cbrt(double x)` — computes cubic root.
+*   `double hypot(double x, double x)` — computes hypotenuse of a right triangle: _sqrt(x<sup>2</sup>+y<sup>2</sup>)_.
+*   `double sin(double x)` — sine of an angle in radians.
+*   `double cos(double x)` — cosine of an angle in radians.
+*   `double tan(double x)` — tangent of an angle in radians.
+*   `double asin(double x)` — arc sine in radians.
+*   `double acos(double x)` — arc cosine in radians.
+*   `double atan(double x)` — arc tangent in radians.
+*   `double atan2(double y, double x)` — arc tangent of the ratio _y/x_ in radians.
+*   `double sinh(double x)` — hyperbolic sine: _(exp(x)-exp(-x))/2_.
+*   `double cosh(double x)` — hyperbolic cosine: _(exp(x)+exp(-x))/2_.
+*   `double tanh(double x)` — hyperbolic tangent: _(exp(x)-exp(-x))/(exp(x)+exp(-x))_.
+*   `double asinh(double x)` — inverse hyperbolic sine.
+*   `double acosh(double x)` — inverse hyperbolic cosine.
+*   `double atanh(double x)` — inverse hyperbolic tangent.
+*   `double erf(double x)` — Gauss error function (special non-elementary function of sigmoid).
+*   `double erfc(double x)` — complement of a Gauss error function.
+*   `double tgamma(double x)` — absolute value of the Gamma function (an extension of a factorial function _Γ(n)=(n-1)!_).
+*   `double lgamma(double x)` — natural logarithm of the Gamma function.
+*   `double ceil(double x)` — the ceiling function, the smallest integer value not less than _x_.
+*   `double floor(double x)` — the floor function, the largest integer value not greater than _x_.
+*   `double trunc(double x)` — nearest integer not greater in magnitude than _x_.
+*   `double round(double x)` — nearest integer value to _x_ rounding halfway cases away from zero.
+*   `int fint(double x)` — converts floating point value into integer (works like _trunc()_).
+*   `double ldexp(double x, int y)` — multiplies by a specified power of two: _x*2<sup>y</sup>_.
+*   `int ilogb(double x)` — extracts unbiased exponent: _trunc(log2(x+1))_.
+*   `double logb(double x)` — extracts unbiased exponent: _trunc(log2(x+1))_.
+*   `double nextafter(double from, double to)` — a next representable floating point value of _from_ in the direction of _to_.
+*   `double copysign(double x, double y)` — floating point value with magnitude of _x_ and sign of _y_.
+*   `bool signbit(double x)` — true if the argument _x_ is negative.<
+*   `double random(double max)` — pseudo random number distributed uniformly over the interval _[0,max)_.
+*   `double normal(double mean, double stddev)` — pseudo random number distributed according to normal (Gaussian) distribution for a given _mean_ and standard deviation _stddev_.
 
 A few common constants and types can be declared as follows:
 
