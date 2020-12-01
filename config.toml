@@ -3,8 +3,8 @@ title = "UPPAAL Documentation"
 
 theme = "hugo-theme-learn"
 
-baseURL = "https://uppaalmodelchecker.github.io/docs.uppaal.org/"
-canonifyURLs = "true"
+#baseURL = "https://uppaalmodelchecker.github.io/docs.uppaal.org/"
+#canonifyURLs = "true"
 
 #baseURL = "."
 #canonifyURLs = "true"
