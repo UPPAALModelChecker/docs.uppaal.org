@@ -42,7 +42,7 @@ The global declarations may also contain at most one [channel priority](/languag
     </tt>a meta variable is used to swap the contents of two integers.
     
 {{% notice note %}}
-Currently strucks can't contain members of type double or clocks.
+Currently struct can't contain members of type double or clocks.
 {{% /notice %}}
 
 ## Type Declarations
