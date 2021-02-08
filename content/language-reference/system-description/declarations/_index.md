@@ -40,6 +40,10 @@ The global declarations may also contain at most one [channel priority](/languag
     int b;  
     assign swap = a; a = b; b = swap;  
     </tt>a meta variable is used to swap the contents of two integers.
+    
+{{% notice note %}}
+Currently strucks can't contain members of type double or clocks.
+{{% /notice %}}
 
 ## Type Declarations
 
@@ -47,13 +51,12 @@ The <tt>typedef</tt> keyword is used to name types.
 
 ### Example
 
-The following declares a record type S containing an integer <tt>a</tt>, a boolean <tt>b</tt> and a clock <tt>c</tt>:
+The following declares a record type S containing an integer <tt>a</tt>, a boolean <tt>b</tt>:
 
 ```
 typedef struct 
 { 
   int a;   
   bool b;
-  clock c;
 } S;
 ```
