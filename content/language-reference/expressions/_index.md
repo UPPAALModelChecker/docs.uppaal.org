@@ -237,9 +237,7 @@ const int INT16_MAX     =  32767;
 const int UINT16_MAX    =  65535;
 const int INT32_MIN     = -2147483648;
 const int INT32_MAX     =  2147483647;
-const int UINT32_MAX    =  4294967295;
 typedef int[INT32_MIN, INT32_MAX] int32_t;
-typedef int[0, UINT32_MAX]        uint32_t;
 const double M_PI       = 3.14159265358979312;  // Pi
 const double M_PI_2     = 1.57079632679489656;  // Pi/2
 const double M_PI_4     = 0.785398163397448279; // Pi/4
