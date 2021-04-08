@@ -23,7 +23,12 @@ Variables of type <tt>bool</tt> can have the values <tt>false</tt> and <tt>true<
 
 Channels can be declared as urgent and/or broadcast channels. See the section on [synchronisations](/language-reference/system-description/templates/edges/#synchronisations) for information on urgent and broadcast channels.
 
-Floating-point variables of the <tt>double</tt>-type behave like <tt>C</tt>-doubles. Certain restriction applies to the use of doubles in symbolic contexts.
+Floating-point variables of the <tt>double</tt>-type behave like <tt>C</tt>-doubles.
+{{% notice note %}}
+Doubles values are not supported in the symbolic verification or simulation engine and are simply ignored, which can lead to unexpected results. 
+{{% /notice %}}
+
+
 
 Variables of <tt>string</tt> type must be declared constant. The primary use of <tt>string</tt> variables is in combination with [External Functions](ExternalFunctions.html)
 
