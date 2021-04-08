@@ -25,7 +25,7 @@ Channels can be declared as urgent and/or broadcast channels. See the section on
 
 Floating-point variables of the <tt>double</tt>-type behave like <tt>C</tt>-doubles.
 {{% notice warning %}}
-Doubles values are not supported in the symbolic verification or simulation engine and are simply ignored, which can lead to unexpected results. 
+Doubles values are not supported in the _symbolic_ verification and simulation engine and are simply ignored, which can lead to unexpected results. 
 {{% /notice %}}
 
 
