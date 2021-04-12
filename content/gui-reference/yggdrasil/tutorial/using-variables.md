@@ -4,8 +4,7 @@ weight: 10
 ---
  
 
-This tutorial assumes you have understood [basic test case generation](basic-test-generation). 
-
+This tutorial assumes you have understood [basic test case generation](../basic-test-generation). 
 
 ## The model: Up/Down system
 
@@ -27,40 +26,41 @@ The system model is decorated with slightly different test code.
 
 - The location _Off_ is still decorated with <tt>expect_off();</tt>, similarly the location _Max_ is decorated with <tt>expect_max();</tt>. 
 - The state _On_ is different, since here we want to verify the value of the variable <tt>val</tt> as well as the location. This is done by entering the value of <tt>val</tt> into the test case using the code <tt>
-expect_on($(System.val));</tt>. This will execute the <tt>expect_on<tt> with the value of <tt>val</tt> as parameter. Since <tt>val</tt> is local to the process _System_ the name is entered as <tt>System.val</tt>. 
+expect_on($(System.val));</tt>. This will execute the <tt>expect_on</tt> with the value of <tt>val</tt> as parameter. Since <tt>val</tt> is local to the process _System_ the name is entered as <tt>System.val</tt>. 
 
 ## Generating the test cases
-Like the basic case, to generate test cases go to the _*Yggdrasil*_ tab.
-<img src="ygg-tab2.png">
-
-Select which techniques for test case generation to use. For now only select _*Depth auto mode*_ and a depth of 20.
-<img src="ygg-tab-options.png">
-
-
-Select the output folder for test cases. Make this point to the <tt>updown</tt> folder in this tutorial. 
-<img src="ygg-output2.png">
-
-Pressing _*Generate*_ should generate three trace. Each trace generated will have a line in the list similar to <tt>Trace coverage: 5/8</tt>. This shows that the trace covered five out of eight edges. 
-
-<img src="ygg-generate2.png">
+Like the basic case, to generate test cases go to the _*Yggdrasil*_ tab.Select which techniques for test case generation to use. For now only select _*Depth auto mode*_ and a depth of 20. Click _*Add*_ to generate the test cases. 
+![Generate test cases](../img/test-cases-generate-2.png)
 
 ## Inspecting the coverage 
 
-By double clicking the trace and selecting the _*Simulator*_ tab, the trace can be examined. By selecting _*Mark Visited*_ in the _*View*_ menu, all covered edges will be colored blue in the simulator. 
+The test generation will normally generate 2-3 test case traces (depending on randomization). Here 3 traces were generated. 
+Each trace generated will have a line in the list similar to <tt>Trace coverage: 5/8</tt>. This shows that the trace covered five out of eight edges. Selecting a specific trace will show furter coverage statistics about that trace, i.e., which locations/edges are traversed how many times. Here, the _System_'s edge from location _On_ to _On_ has been traversed 6 times, whereas the edge from _On_ to _Off_ is traversed 0 times, revealing that it is not covered by this trace. 
 
-<img src="ygg-simulator2.png">
+![Inspecting trace 1](../img/test-cases-coverage-2-1.png)
 
-Due to the randomness of the model and the test case generation algorithm it is unlikely to get 100% coverage.
+
+By double clicking the trace and then selecting the _*Simulator*_ tab, the trace can be further examined. By selecting _*Mark Visited*_ in the _*View*_ menu, all covered edges will be colored blue in the simulator. 
+
+![Inspecting the test trace](../img/test-cases-coverage-2-visualization.png)
+
+
+The total coverage achieved by the previous steps can be viewed by clicking the _*Total Coverage*_ button which updates the trace statistics with the combined coverage. Due to the randomness of the model and the test case generation algorithm it is unlikely to get 100% coverage. Here, 1 location and 3 edges are left uncovered. 
+
+![Inspecting trace 1](../img/test-cases-coverage-2-2.png)
 
 ## Completing coverage using the Single Step method
 
+
 This coverage can be increased by using the _*Single step*_ method. This method searches for traces for uncovered edges.
-Activating this method and pressing generate again should generate four traces with <tt>8/8</tt> in total coverage. <br/>
-<img src="ygg-generate3.png">
+Adding these, should result in a number of test trace being added (here one, thus four in total) giving <tt>8/8</tt> in total coverage, thereby achieving the desired high coverage; here complete edge- and location-coverage. 
+
+![Completing coverage](../img/test-cases-coverage-2-3.png)
 
 
-## Inspecting the test cases
-Pressing the _*Output*_ button in the _*Test Cases*_ tab will generate a file called <tt>testcase0.code</tt> in the selected output folder. If several traces have been generated, several files will be generated with sequential numbering. 
+## Inspecting the test case code
+
+Save the test cases using the _*Save Test Cases*_ button; select the output folder for test case to be the <tt>updown</tt> folder in this tutorial. This will produce a test-case file named <tt>testcase0.code</tt> in the selected output folder. If several traces have been generated, several files will be generated with sequential numbering. 
 
 Each of these will be a Java class with the sequence of method invocations induce by the generated trace. A snippet is shown below.
 ``` java 
@@ -111,8 +111,7 @@ testcase2.code
 testcase3.code
 updown$
 </pre>
-</p>
-<p>
+
 Running the <tt>testMutant.sh</tt> (or <tt>testMutant.bat</tt> on Windows) will compile and run the test cases on the mutant implementation. 
 This should result in an exception being thrown when executing test case number 3, signifying a test error. 
 <pre>
