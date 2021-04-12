@@ -10,7 +10,7 @@ The main features of the Test Cases generator are:
 - Three modes for test case generation: 
   - Test purpose mode:  Generates a test case specified by a reachability query
   - An auto-depth mode: Generates tests automatically aiming at achieving edge/location coverage 
-  - Single-edge mode: Generates an individual test case per uncoverd edge. 
+  - Single-step mode: Generates an individual test case per uncoverd edge. 
 - Visualization of coverage
 
 ### Determinism 
@@ -29,6 +29,6 @@ _**Note:** the traces and statistics are lost when the model is reloaded. Traces
 
 ### Suggested methodology: 
 Test Cases can be generated in several ways, depending on the actual project, but it is designed to support the method outlined below: 
-1. Test purposes very often represent mandatory critical observations that must be observed on the system under test. First, _*Add*_ the test cases representing the test purposes. These test will cover some parts of the model, but is typically insufficient.  
+1. Test purposes very often represent mandatory critical observations that must be observed on the system under test. First, _*Add*_ the test cases representing the test purposes. These test are mandated anyway, and will cover some parts of the model, but this coverage is typically insufficient.  
 2. Generate tests that improves the (edge/location) coverage of the model (but does not guarantee so). Second, _*Add*_ the test cases using the auto-depth mode to improve the coverage.   
-3. The coverage achieved by the second step can be completed by adding an individual test-case for each of these uncovered edges or locations. Hence, third, _*Add*_ the test cases using the single-edge mode.
+3. The coverage achieved by the second step can be completed by adding an individual test-case for each of these uncovered edges or locations. Hence, third, _*Add*_ the test cases using the single-step mode.
