@@ -1,5 +1,5 @@
 ---
-title: Using model variables
+title: Using Model Variables
 weight: 10
 ---
  
