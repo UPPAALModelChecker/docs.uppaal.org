@@ -43,10 +43,6 @@ The available command line options are:
 
 <dd>Port number used by verification server on remote machine.</dd>
 
-<dt><tt>--splashScreen on|off</tt></dt>
-
-<dd>Disables or enables the splash screen. Note that starting from Java 6 the only way to override or disable the splash screen is <tt>-splash</tt> java option, e.g. <tt>java -splash:/dev/null -jar uppaal.jar</tt>.</dd>
-
 <dt><tt>--export templateName filename.ext</tt></dt>
 
 <dd>Export the named template to a graphics file. The graphics format is determined by the filename extension, and EPS will be used instead if format is not recognized. Use <tt>system</tt> keyword to export all templates where the filenames will be taken from the template name.</dd>
