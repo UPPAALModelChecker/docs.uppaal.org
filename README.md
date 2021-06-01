@@ -1,9 +1,8 @@
 This repo contains the source for building the UPPAAL help files. 
-The documentation is automatically build and published to https://uppaalmodelchecker.github.io/docs.uppaal.org/ (temporary domain).
+The documentation is automatically build and published to https://docs.uppaal.org.
 
 If you wish to contribute to the documentation please fork the repo and submit a pull-request. 
 Please notice, by creating a pull-request you give the UPPAAL development team permission to use and distribute you changes together with UPPAAL, this includes the commercial versions of UPPAAL.
-
 
 
 # Build pages locally
