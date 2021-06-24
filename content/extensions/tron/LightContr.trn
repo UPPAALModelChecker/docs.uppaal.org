@@ -1,0 +1,4 @@
+input grasp(), release();
+output level(adapLevel);
+precision 1000;
+timeout 1000;
