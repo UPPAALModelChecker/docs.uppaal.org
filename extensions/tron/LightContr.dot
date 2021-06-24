@@ -1,0 +1,82 @@
+digraph LightContr_xml {
+// printer friendly options, fill A4 landscape:
+  size="10.2,7.8"; ratio=fill; margin=0.2;
+  nodesep=0.3; // separation of labelled edges
+
+// fdp options:
+  K=1.25;
+
+// neato options:
+  epsilon=0.0001;
+
+  node[fontname="Helvetica-Bold"];
+  edge[fontname="Helvetica",fontsize=10];
+
+// legend:
+//  process[shape=ellipse]; int[shape=rectangle]; chan[shape=diamond];
+
+// IUT processes:
+  node [shape=ellipse,peripheries=1,style=filled,fillcolor="#B8C0FF"];
+  levelAdapter; dimmer; graspAdapter; interface; switch; releaseAdapter; 
+// IUT channels:
+  node [shape=diamond,peripheries=1,style=filled,fillcolor="#B8C0FF"];
+  endhold; setGrasp; setLevel; setRelease; starthold; touch; 
+// IUT variables:
+  node [shape=rectangle,peripheries=1,style=filled,fillcolor="#B8C0FF"];
+  OL; adapLevel; iutLevel; on; 
+// observable output channels (controlled by IUT):
+  node [shape=diamond,peripheries=2,style=filled,fillcolor="#B8C0FF"];
+  level; 
+// observable input channels (controlled by Env):
+  node [shape=diamond,peripheries=2,style=filled,fillcolor="#C8FFC8"];
+  grasp; release; 
+// Env processes:
+  node [shape=ellipse,peripheries=1,style=filled,fillcolor="#C8FFC8"];
+  user; 
+// Env channels:
+// Env variables:
+// set attributes for non-partitioned procs/chans/vars:
+  node [shape=rectangle,peripheries=1,style=filled,fillcolor="#A0A0A0"];
+
+// edges for write to variable:
+  edge [style=bold];
+  levelAdapter -> adapLevel [label="(setLevel)"];
+  dimmer -> on [label="(starthold)"];
+  dimmer -> iutLevel [label="(-,starthold)"];
+  dimmer -> OL [label="(starthold)"];
+  switch -> on [label="(touch)"];
+  switch -> iutLevel [label="(touch)"];
+  switch -> OL [label="(touch)"];
+// edges for read of variable:
+  edge [style=solid];
+  iutLevel -> levelAdapter [label="(setLevel)"];
+  iutLevel -> dimmer [label="(-,starthold)"];
+  OL -> dimmer [label="(starthold)"];
+  adapLevel -> user [label="(level)"];
+  on -> switch [label="(-)"];
+  iutLevel -> switch [label="(touch)"];
+  OL -> switch [label="(touch)"];
+// channel transmit edges:
+  edge [style=bold];
+  levelAdapter -> level;
+  dimmer -> setLevel;
+  user -> grasp;
+  user -> release;
+  graspAdapter -> setGrasp;
+  interface -> endhold;
+  interface -> starthold;
+  interface -> touch;
+  switch -> setLevel;
+  releaseAdapter -> setRelease;
+// channel receive edges:
+  edge [style=solid];
+  setLevel -> levelAdapter;
+  endhold -> dimmer;
+  starthold -> dimmer;
+  level -> user;
+  grasp -> graspAdapter;
+  setGrasp -> interface;
+  setRelease -> interface;
+  touch -> switch;
+  release -> releaseAdapter;
+}
