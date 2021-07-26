@@ -1,20 +1,486 @@
-<!doctype html><html lang=en class="js csstransforms3d"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.84.0"><meta name=description content><link rel=icon href=/images/favicon.png type=image/png><title>External Functions :: UPPAAL Documentation</title><link href=/css/nucleus.css?1624541055 rel=stylesheet><link href=/css/fontawesome-all.min.css?1624541055 rel=stylesheet><link href=/css/hybrid.css?1624541055 rel=stylesheet><link href=/css/featherlight.min.css?1624541055 rel=stylesheet><link href=/css/perfect-scrollbar.min.css?1624541055 rel=stylesheet><link href=/css/auto-complete.css?1624541055 rel=stylesheet><link href=/css/atom-one-dark-reasonable.css?1624541055 rel=stylesheet><link href=/css/theme.css?1624541055 rel=stylesheet><link href=/css/hugo-theme.css?1624541055 rel=stylesheet><script src=/js/jquery-3.3.1.min.js?1624541055></script><style>:root #header+#content>#left>#rlblock_left{display:none!important}</style></head><body data-url=/language-reference/system-description/declarations/external-functions/><nav id=sidebar><div id=header-wrapper><div id=header><a id=logo href><h1 style=font-weight:700;color:#fff>UPPAAL</h1></a></div><div class=searchbox><label for=search-by><i class="fas fa-search"></i></label>
+<!doctype html><html lang=en class="js csstransforms3d">
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=generator content="Hugo 0.86.0">
+<meta name=description content>
+<link rel=icon href=/images/favicon.png type=image/png>
+<title>External Functions :: UPPAAL Documentation</title>
+<link href=/css/nucleus.css?1627288714 rel=stylesheet>
+<link href=/css/fontawesome-all.min.css?1627288714 rel=stylesheet>
+<link href=/css/hybrid.css?1627288714 rel=stylesheet>
+<link href=/css/featherlight.min.css?1627288714 rel=stylesheet>
+<link href=/css/perfect-scrollbar.min.css?1627288714 rel=stylesheet>
+<link href=/css/auto-complete.css?1627288714 rel=stylesheet>
+<link href=/css/atom-one-dark-reasonable.css?1627288714 rel=stylesheet>
+<link href=/css/theme.css?1627288714 rel=stylesheet>
+<link href=/css/hugo-theme.css?1627288714 rel=stylesheet>
+<script src=/js/jquery-3.3.1.min.js?1627288714></script>
+<style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
+</head>
+<body data-url=/language-reference/system-description/declarations/external-functions/>
+<nav id=sidebar>
+<div id=header-wrapper>
+<div id=header>
+<a id=logo href>
+<h1 style=font-weight:700;color:#fff>UPPAAL</h1>
+</a>
+</div>
+<div class=searchbox>
+<label for=search-by><i class="fas fa-search"></i></label>
 <input data-search-input id=search-by type=search placeholder=Search...>
-<span data-search-clear><i class="fas fa-times"></i></span></div><script type=text/javascript src=/js/lunr.min.js?1624541055></script><script type=text/javascript src=/js/auto-complete.js?1624541055></script><script type=text/javascript>var baseurl=""</script><script type=text/javascript src=/js/search.js?1624541055></script></div><div class=highlightable><ul class=topics><li data-nav-id=/gui-reference/ title="GUI Reference" class=dd-item><a href=/gui-reference/><b>1. </b>GUI Reference</a><ul><li data-nav-id=/gui-reference/menu-bar/ title="Menu Bar" class=dd-item><a href=/gui-reference/menu-bar/>Menu Bar</a><ul><li data-nav-id=/gui-reference/menu-bar/file/ title="File Menu" class=dd-item><a href=/gui-reference/menu-bar/file/>File Menu</a></li><li data-nav-id=/gui-reference/menu-bar/edit/ title="Edit Menu" class=dd-item><a href=/gui-reference/menu-bar/edit/>Edit Menu</a></li><li data-nav-id=/gui-reference/menu-bar/view/ title="View Menu" class=dd-item><a href=/gui-reference/menu-bar/view/>View Menu</a></li><li data-nav-id=/gui-reference/menu-bar/tools/ title="Tools Menu" class=dd-item><a href=/gui-reference/menu-bar/tools/>Tools Menu</a></li><li data-nav-id=/gui-reference/menu-bar/options/ title="Options Menu" class=dd-item><a href=/gui-reference/menu-bar/options/>Options Menu</a></li><li data-nav-id=/gui-reference/menu-bar/help/ title="Help Menu" class=dd-item><a href=/gui-reference/menu-bar/help/>Help Menu</a></li></ul></li><li data-nav-id=/gui-reference/toolbar/ title="Tool Bar" class=dd-item><a href=/gui-reference/toolbar/>Tool Bar</a></li><li data-nav-id=/gui-reference/system-editor/ title="System Editor" class=dd-item><a href=/gui-reference/system-editor/>System Editor</a><ul><li data-nav-id=/gui-reference/system-editor/navigation-tree/ title="Navigation Tree" class=dd-item><a href=/gui-reference/system-editor/navigation-tree/>Navigation Tree</a></li><li data-nav-id=/gui-reference/system-editor/drawing/ title=Drawing class=dd-item><a href=/gui-reference/system-editor/drawing/>Drawing</a></li><li data-nav-id=/gui-reference/system-editor/declarations/ title=Declarations class=dd-item><a href=/gui-reference/system-editor/declarations/>Declarations</a></li></ul></li><li data-nav-id=/gui-reference/symbolic-simulator/ title="Symbolic Simulator" class=dd-item><a href=/gui-reference/symbolic-simulator/>Symbolic Simulator</a><ul><li data-nav-id=/gui-reference/symbolic-simulator/simulation-control/ title="Simulation Control" class=dd-item><a href=/gui-reference/symbolic-simulator/simulation-control/>Simulation Control</a></li><li data-nav-id=/gui-reference/symbolic-simulator/variables/ title="Variables Panel" class=dd-item><a href=/gui-reference/symbolic-simulator/variables/>Variables Panel</a></li><li data-nav-id=/gui-reference/symbolic-simulator/process/ title="Process Panel" class=dd-item><a href=/gui-reference/symbolic-simulator/process/>Process Panel</a></li><li data-nav-id=/gui-reference/symbolic-simulator/sequence-charts/ title="Message Sequence Chart" class=dd-item><a href=/gui-reference/symbolic-simulator/sequence-charts/>Message Sequence Chart</a></li><li data-nav-id=/gui-reference/symbolic-simulator/symbolic-traces/ title="Symbolic Traces" class=dd-item><a href=/gui-reference/symbolic-simulator/symbolic-traces/>Symbolic Traces</a></li></ul></li><li data-nav-id=/gui-reference/concrete-simulator/ title="Concrete Simulator" class=dd-item><a href=/gui-reference/concrete-simulator/>Concrete Simulator</a><ul><li data-nav-id=/gui-reference/concrete-simulator/simulation-control/ title="Simulation Control" class=dd-item><a href=/gui-reference/concrete-simulator/simulation-control/>Simulation Control</a></li><li data-nav-id=/gui-reference/concrete-simulator/variables/ title="Variables Panel" class=dd-item><a href=/gui-reference/concrete-simulator/variables/>Variables Panel</a></li><li data-nav-id=/gui-reference/concrete-simulator/process/ title="Process Panel" class=dd-item><a href=/gui-reference/concrete-simulator/process/>Process Panel</a></li><li data-nav-id=/gui-reference/concrete-simulator/sequence-chart/ title="Message Sequence Chart" class=dd-item><a href=/gui-reference/concrete-simulator/sequence-chart/>Message Sequence Chart</a></li><li data-nav-id=/gui-reference/concrete-simulator/gantt-chart/ title="Gantt Chart Panel" class=dd-item><a href=/gui-reference/concrete-simulator/gantt-chart/>Gantt Chart Panel</a></li></ul></li><li data-nav-id=/gui-reference/verifier/ title=Verifier class=dd-item><a href=/gui-reference/verifier/>Verifier</a><ul><li data-nav-id=/gui-reference/verifier/specifying/ title="Specifying Requirements" class=dd-item><a href=/gui-reference/verifier/specifying/>Specifying Requirements</a></li><li data-nav-id=/gui-reference/verifier/verifying/ title="Verifying Requirements" class=dd-item><a href=/gui-reference/verifier/verifying/>Verifying Requirements</a></li></ul></li><li data-nav-id=/gui-reference/yggdrasil/ title="Test Cases (Yggdrasil)" class=dd-item><a href=/gui-reference/yggdrasil/>Test Cases (Yggdrasil)</a><ul><li data-nav-id=/gui-reference/yggdrasil/traces/ title="Generating Traces" class=dd-item><a href=/gui-reference/yggdrasil/traces/>Generating Traces</a></li><li data-nav-id=/gui-reference/yggdrasil/test-code/ title="Specifying Test Code" class=dd-item><a href=/gui-reference/yggdrasil/test-code/>Specifying Test Code</a></li><li data-nav-id=/gui-reference/yggdrasil/tutorial/ title=Tutorial class=dd-item><a href=/gui-reference/yggdrasil/tutorial/>Tutorial</a><ul><li data-nav-id=/gui-reference/yggdrasil/tutorial/basic-test-generation/ title="Basic Test Generation" class=dd-item><a href=/gui-reference/yggdrasil/tutorial/basic-test-generation/>Basic Test Generation</a></li><li data-nav-id=/gui-reference/yggdrasil/tutorial/using-variables/ title="Using Model Variables" class=dd-item><a href=/gui-reference/yggdrasil/tutorial/using-variables/>Using Model Variables</a></li><li data-nav-id=/gui-reference/yggdrasil/tutorial/using-queries/ title="Using Queries" class=dd-item><a href=/gui-reference/yggdrasil/tutorial/using-queries/>Using Queries</a></li></ul></li></ul></li></ul></li><li data-nav-id=/language-reference/ title="Language Reference" class="dd-item
-parent"><a href=/language-reference/><b>2. </b>Language Reference</a><ul><li data-nav-id=/language-reference/system-description/ title="System Description" class="dd-item
-parent"><a href=/language-reference/system-description/>System Description</a><ul><li data-nav-id=/language-reference/system-description/declarations/ title=Declarations class="dd-item
-parent"><a href=/language-reference/system-description/declarations/>Declarations</a><ul><li data-nav-id=/language-reference/system-description/declarations/types/ title=Types class=dd-item><a href=/language-reference/system-description/declarations/types/>Types</a></li><li data-nav-id=/language-reference/system-description/declarations/functions/ title=Functions class=dd-item><a href=/language-reference/system-description/declarations/functions/>Functions</a></li><li data-nav-id=/language-reference/system-description/declarations/external-functions/ title="External Functions" class="dd-item active"><a href=/language-reference/system-description/declarations/external-functions/>External Functions</a></li></ul></li><li data-nav-id=/language-reference/system-description/templates/ title=Templates class=dd-item><a href=/language-reference/system-description/templates/>Templates</a><ul><li data-nav-id=/language-reference/system-description/templates/locations/ title=Locations class=dd-item><a href=/language-reference/system-description/templates/locations/>Locations</a></li><li data-nav-id=/language-reference/system-description/templates/edges/ title=Edges class=dd-item><a href=/language-reference/system-description/templates/edges/>Edges</a></li></ul></li><li data-nav-id=/language-reference/system-description/parameters/ title=Parameters class=dd-item><a href=/language-reference/system-description/parameters/>Parameters</a></li><li data-nav-id=/language-reference/system-description/system-definition/ title="System Definition" class=dd-item><a href=/language-reference/system-description/system-definition/>System Definition</a><ul><li data-nav-id=/language-reference/system-description/system-definition/template-instantiation/ title="Template Instantiation" class=dd-item><a href=/language-reference/system-description/system-definition/template-instantiation/>Template Instantiation</a></li><li data-nav-id=/language-reference/system-description/system-definition/progress-measures/ title="Progress Measures" class=dd-item><a href=/language-reference/system-description/system-definition/progress-measures/>Progress Measures</a></li><li data-nav-id=/language-reference/system-description/system-definition/gantt-chart/ title="Gantt Chart" class=dd-item><a href=/language-reference/system-description/system-definition/gantt-chart/>Gantt Chart</a></li></ul></li><li data-nav-id=/language-reference/system-description/priorities/ title=Priorities class=dd-item><a href=/language-reference/system-description/priorities/>Priorities</a></li><li data-nav-id=/language-reference/system-description/scope-rules/ title="Scope Rules" class=dd-item><a href=/language-reference/system-description/scope-rules/>Scope Rules</a></li><li data-nav-id=/language-reference/system-description/semantics/ title=Semantics class=dd-item><a href=/language-reference/system-description/semantics/>Semantics</a></li></ul></li><li data-nav-id=/language-reference/requirements-specification/ title="Requirements Specification" class=dd-item><a href=/language-reference/requirements-specification/>Requirements Specification</a><ul><li data-nav-id=/language-reference/requirements-specification/semantics/ title="Semantics of the Requirement Specification Language" class=dd-item><a href=/language-reference/requirements-specification/semantics/>Semantics</a></li><li data-nav-id=/language-reference/requirements-specification/statistical_estimation/ title class=dd-item><a href=/language-reference/requirements-specification/statistical_estimation/></a></li></ul></li><li data-nav-id=/language-reference/expressions/ title=Expressions class=dd-item><a href=/language-reference/expressions/>Expressions</a><ul><li data-nav-id=/language-reference/expressions/identifiers/ title=Identifiers class=dd-item><a href=/language-reference/expressions/identifiers/>Identifiers</a></li></ul></li><li data-nav-id=/language-reference/reserved-keywords/ title="Reserved Keywords" class=dd-item><a href=/language-reference/reserved-keywords/>Reserved Keywords</a></li></ul></li><li data-nav-id=/toolsandapi/ title="Tools & API" class=dd-item><a href=/toolsandapi/><b>3. </b>Tools & API</a><ul><li data-nav-id=/toolsandapi/uppaal/ title=UPPAAL class=dd-item><a href=/toolsandapi/uppaal/>UPPAAL</a></li><li data-nav-id=/toolsandapi/verifyta/ title=verifyta class=dd-item><a href=/toolsandapi/verifyta/>verifyta</a></li><li data-nav-id=/toolsandapi/javaapi/ title="Java API" class=dd-item><a href=/toolsandapi/javaapi/>Java API</a></li><li data-nav-id=/toolsandapi/socketserver/ title=Socketserver class=dd-item><a href=/toolsandapi/socketserver/>Socketserver</a></li><li data-nav-id=/toolsandapi/file-formats/ title="File Formats" class=dd-item><a href=/toolsandapi/file-formats/>File Formats</a></li><li data-nav-id=/toolsandapi/latex/ title=Latex class=dd-item><a href=/toolsandapi/latex/>Latex</a></li></ul></li><li data-nav-id=/extensions/ title=Extensions class=dd-item><a href=/extensions/><b>4. </b>Extensions</a><ul><li data-nav-id=/extensions/cora/ title=CORA class=dd-item><a href=/extensions/cora/>CORA</a></li><li data-nav-id=/extensions/ecdar/ title=ECDAR class=dd-item><a href=/extensions/ecdar/>ECDAR</a></li><li data-nav-id=/extensions/tiga/ title="UPPAAL Tiga" class=dd-item><a href=/extensions/tiga/>UPPAAL Tiga</a></li><li data-nav-id=/extensions/tron/ title="UPPAAL TRON" class=dd-item><a href=/extensions/tron/>UPPAAL TRON</a></li></ul></li></ul><section id=footer><p>(c) 1995-2021 <a href=https://www.uppaal.org>UPPAAL</a></p></section></div></nav><section id=body><div id=overlay></div><div class="padding highlightable"><div><div id=top-bar><div id=top-github-link><a class=github-link title="Edit this page" href=https://github.com/UPPAALModelChecker/docs.uppaal.org/blob/master/content/language-reference/system-description/declarations/external-functions.md target=blank><i class="fas fa-code-branch"></i>
-<span id=top-github-link-text>Edit this page</span></a></div><div id=breadcrumbs itemscope itemtype=http://data-vocabulary.org/Breadcrumb><span id=sidebar-toggle-span><a href=# id=sidebar-toggle data-sidebar-toggle><i class="fas fa-bars"></i></a></span>
+<span data-search-clear><i class="fas fa-times"></i></span>
+</div>
+<script type=text/javascript src=/js/lunr.min.js?1627288714></script>
+<script type=text/javascript src=/js/auto-complete.js?1627288714></script>
+<script type=text/javascript>var baseurl=""</script>
+<script type=text/javascript src=/js/search.js?1627288714></script>
+</div>
+<div class=highlightable>
+<ul class=topics>
+<li data-nav-id=/gui-reference/ title="GUI Reference" class=dd-item>
+<a href=/gui-reference/>
+<b>1. </b>GUI Reference
+</a>
+<ul>
+<li data-nav-id=/gui-reference/menu-bar/ title="Menu Bar" class=dd-item>
+<a href=/gui-reference/menu-bar/>
+Menu Bar
+</a>
+<ul>
+<li data-nav-id=/gui-reference/menu-bar/file/ title="File Menu" class=dd-item>
+<a href=/gui-reference/menu-bar/file/>
+File Menu
+</a>
+</li>
+<li data-nav-id=/gui-reference/menu-bar/edit/ title="Edit Menu" class=dd-item>
+<a href=/gui-reference/menu-bar/edit/>
+Edit Menu
+</a>
+</li>
+<li data-nav-id=/gui-reference/menu-bar/view/ title="View Menu" class=dd-item>
+<a href=/gui-reference/menu-bar/view/>
+View Menu
+</a>
+</li>
+<li data-nav-id=/gui-reference/menu-bar/tools/ title="Tools Menu" class=dd-item>
+<a href=/gui-reference/menu-bar/tools/>
+Tools Menu
+</a>
+</li>
+<li data-nav-id=/gui-reference/menu-bar/options/ title="Options Menu" class=dd-item>
+<a href=/gui-reference/menu-bar/options/>
+Options Menu
+</a>
+</li>
+<li data-nav-id=/gui-reference/menu-bar/help/ title="Help Menu" class=dd-item>
+<a href=/gui-reference/menu-bar/help/>
+Help Menu
+</a>
+</li>
+</ul>
+</li>
+<li data-nav-id=/gui-reference/toolbar/ title="Tool Bar" class=dd-item>
+<a href=/gui-reference/toolbar/>
+Tool Bar
+</a>
+</li>
+<li data-nav-id=/gui-reference/system-editor/ title="System Editor" class=dd-item>
+<a href=/gui-reference/system-editor/>
+System Editor
+</a>
+<ul>
+<li data-nav-id=/gui-reference/system-editor/navigation-tree/ title="Navigation Tree" class=dd-item>
+<a href=/gui-reference/system-editor/navigation-tree/>
+Navigation Tree
+</a>
+</li>
+<li data-nav-id=/gui-reference/system-editor/drawing/ title=Drawing class=dd-item>
+<a href=/gui-reference/system-editor/drawing/>
+Drawing
+</a>
+</li>
+<li data-nav-id=/gui-reference/system-editor/declarations/ title=Declarations class=dd-item>
+<a href=/gui-reference/system-editor/declarations/>
+Declarations
+</a>
+</li>
+</ul>
+</li>
+<li data-nav-id=/gui-reference/symbolic-simulator/ title="Symbolic Simulator" class=dd-item>
+<a href=/gui-reference/symbolic-simulator/>
+Symbolic Simulator
+</a>
+<ul>
+<li data-nav-id=/gui-reference/symbolic-simulator/simulation-control/ title="Simulation Control" class=dd-item>
+<a href=/gui-reference/symbolic-simulator/simulation-control/>
+Simulation Control
+</a>
+</li>
+<li data-nav-id=/gui-reference/symbolic-simulator/variables/ title="Variables Panel" class=dd-item>
+<a href=/gui-reference/symbolic-simulator/variables/>
+Variables Panel
+</a>
+</li>
+<li data-nav-id=/gui-reference/symbolic-simulator/process/ title="Process Panel" class=dd-item>
+<a href=/gui-reference/symbolic-simulator/process/>
+Process Panel
+</a>
+</li>
+<li data-nav-id=/gui-reference/symbolic-simulator/sequence-charts/ title="Message Sequence Chart" class=dd-item>
+<a href=/gui-reference/symbolic-simulator/sequence-charts/>
+Message Sequence Chart
+</a>
+</li>
+<li data-nav-id=/gui-reference/symbolic-simulator/symbolic-traces/ title="Symbolic Traces" class=dd-item>
+<a href=/gui-reference/symbolic-simulator/symbolic-traces/>
+Symbolic Traces
+</a>
+</li>
+</ul>
+</li>
+<li data-nav-id=/gui-reference/concrete-simulator/ title="Concrete Simulator" class=dd-item>
+<a href=/gui-reference/concrete-simulator/>
+Concrete Simulator
+</a>
+<ul>
+<li data-nav-id=/gui-reference/concrete-simulator/simulation-control/ title="Simulation Control" class=dd-item>
+<a href=/gui-reference/concrete-simulator/simulation-control/>
+Simulation Control
+</a>
+</li>
+<li data-nav-id=/gui-reference/concrete-simulator/variables/ title="Variables Panel" class=dd-item>
+<a href=/gui-reference/concrete-simulator/variables/>
+Variables Panel
+</a>
+</li>
+<li data-nav-id=/gui-reference/concrete-simulator/process/ title="Process Panel" class=dd-item>
+<a href=/gui-reference/concrete-simulator/process/>
+Process Panel
+</a>
+</li>
+<li data-nav-id=/gui-reference/concrete-simulator/sequence-chart/ title="Message Sequence Chart" class=dd-item>
+<a href=/gui-reference/concrete-simulator/sequence-chart/>
+Message Sequence Chart
+</a>
+</li>
+<li data-nav-id=/gui-reference/concrete-simulator/gantt-chart/ title="Gantt Chart Panel" class=dd-item>
+<a href=/gui-reference/concrete-simulator/gantt-chart/>
+Gantt Chart Panel
+</a>
+</li>
+</ul>
+</li>
+<li data-nav-id=/gui-reference/verifier/ title=Verifier class=dd-item>
+<a href=/gui-reference/verifier/>
+Verifier
+</a>
+<ul>
+<li data-nav-id=/gui-reference/verifier/specifying/ title="Specifying Requirements" class=dd-item>
+<a href=/gui-reference/verifier/specifying/>
+Specifying Requirements
+</a>
+</li>
+<li data-nav-id=/gui-reference/verifier/verifying/ title="Verifying Requirements" class=dd-item>
+<a href=/gui-reference/verifier/verifying/>
+Verifying Requirements
+</a>
+</li>
+</ul>
+</li>
+<li data-nav-id=/gui-reference/yggdrasil/ title="Test Cases (Yggdrasil)" class=dd-item>
+<a href=/gui-reference/yggdrasil/>
+Test Cases (Yggdrasil)
+</a>
+<ul>
+<li data-nav-id=/gui-reference/yggdrasil/traces/ title="Generating Traces" class=dd-item>
+<a href=/gui-reference/yggdrasil/traces/>
+Generating Traces
+</a>
+</li>
+<li data-nav-id=/gui-reference/yggdrasil/test-code/ title="Specifying Test Code" class=dd-item>
+<a href=/gui-reference/yggdrasil/test-code/>
+Specifying Test Code
+</a>
+</li>
+<li data-nav-id=/gui-reference/yggdrasil/tutorial/ title=Tutorial class=dd-item>
+<a href=/gui-reference/yggdrasil/tutorial/>
+Tutorial
+</a>
+<ul>
+<li data-nav-id=/gui-reference/yggdrasil/tutorial/basic-test-generation/ title="Basic Test Generation" class=dd-item>
+<a href=/gui-reference/yggdrasil/tutorial/basic-test-generation/>
+Basic Test Generation
+</a>
+</li>
+<li data-nav-id=/gui-reference/yggdrasil/tutorial/using-variables/ title="Using Model Variables" class=dd-item>
+<a href=/gui-reference/yggdrasil/tutorial/using-variables/>
+Using Model Variables
+</a>
+</li>
+<li data-nav-id=/gui-reference/yggdrasil/tutorial/using-queries/ title="Using Queries" class=dd-item>
+<a href=/gui-reference/yggdrasil/tutorial/using-queries/>
+Using Queries
+</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-nav-id=/language-reference/ title="Language Reference" class="dd-item
+parent">
+<a href=/language-reference/>
+<b>2. </b>Language Reference
+</a>
+<ul>
+<li data-nav-id=/language-reference/system-description/ title="System Description" class="dd-item
+parent">
+<a href=/language-reference/system-description/>
+System Description
+</a>
+<ul>
+<li data-nav-id=/language-reference/system-description/declarations/ title=Declarations class="dd-item
+parent">
+<a href=/language-reference/system-description/declarations/>
+Declarations
+</a>
+<ul>
+<li data-nav-id=/language-reference/system-description/declarations/types/ title=Types class=dd-item>
+<a href=/language-reference/system-description/declarations/types/>
+Types
+</a>
+</li>
+<li data-nav-id=/language-reference/system-description/declarations/functions/ title=Functions class=dd-item>
+<a href=/language-reference/system-description/declarations/functions/>
+Functions
+</a>
+</li>
+<li data-nav-id=/language-reference/system-description/declarations/external-functions/ title="External Functions" class="dd-item active">
+<a href=/language-reference/system-description/declarations/external-functions/>
+External Functions
+</a>
+</li>
+</ul>
+</li>
+<li data-nav-id=/language-reference/system-description/templates/ title=Templates class=dd-item>
+<a href=/language-reference/system-description/templates/>
+Templates
+</a>
+<ul>
+<li data-nav-id=/language-reference/system-description/templates/locations/ title=Locations class=dd-item>
+<a href=/language-reference/system-description/templates/locations/>
+Locations
+</a>
+</li>
+<li data-nav-id=/language-reference/system-description/templates/edges/ title=Edges class=dd-item>
+<a href=/language-reference/system-description/templates/edges/>
+Edges
+</a>
+</li>
+</ul>
+</li>
+<li data-nav-id=/language-reference/system-description/parameters/ title=Parameters class=dd-item>
+<a href=/language-reference/system-description/parameters/>
+Parameters
+</a>
+</li>
+<li data-nav-id=/language-reference/system-description/system-definition/ title="System Definition" class=dd-item>
+<a href=/language-reference/system-description/system-definition/>
+System Definition
+</a>
+<ul>
+<li data-nav-id=/language-reference/system-description/system-definition/template-instantiation/ title="Template Instantiation" class=dd-item>
+<a href=/language-reference/system-description/system-definition/template-instantiation/>
+Template Instantiation
+</a>
+</li>
+<li data-nav-id=/language-reference/system-description/system-definition/progress-measures/ title="Progress Measures" class=dd-item>
+<a href=/language-reference/system-description/system-definition/progress-measures/>
+Progress Measures
+</a>
+</li>
+<li data-nav-id=/language-reference/system-description/system-definition/gantt-chart/ title="Gantt Chart" class=dd-item>
+<a href=/language-reference/system-description/system-definition/gantt-chart/>
+Gantt Chart
+</a>
+</li>
+</ul>
+</li>
+<li data-nav-id=/language-reference/system-description/priorities/ title=Priorities class=dd-item>
+<a href=/language-reference/system-description/priorities/>
+Priorities
+</a>
+</li>
+<li data-nav-id=/language-reference/system-description/scope-rules/ title="Scope Rules" class=dd-item>
+<a href=/language-reference/system-description/scope-rules/>
+Scope Rules
+</a>
+</li>
+<li data-nav-id=/language-reference/system-description/semantics/ title=Semantics class=dd-item>
+<a href=/language-reference/system-description/semantics/>
+Semantics
+</a>
+</li>
+</ul>
+</li>
+<li data-nav-id=/language-reference/requirements-specification/ title="Requirements Specification" class=dd-item>
+<a href=/language-reference/requirements-specification/>
+Requirements Specification
+</a>
+<ul>
+<li data-nav-id=/language-reference/requirements-specification/semantics/ title="Semantics of the Requirement Specification Language" class=dd-item>
+<a href=/language-reference/requirements-specification/semantics/>
+Semantics
+</a>
+</li>
+<li data-nav-id=/language-reference/requirements-specification/statistical_estimation/ title class=dd-item>
+<a href=/language-reference/requirements-specification/statistical_estimation/>
+</a>
+</li>
+</ul>
+</li>
+<li data-nav-id=/language-reference/expressions/ title=Expressions class=dd-item>
+<a href=/language-reference/expressions/>
+Expressions
+</a>
+<ul>
+<li data-nav-id=/language-reference/expressions/identifiers/ title=Identifiers class=dd-item>
+<a href=/language-reference/expressions/identifiers/>
+Identifiers
+</a>
+</li>
+</ul>
+</li>
+<li data-nav-id=/language-reference/reserved-keywords/ title="Reserved Keywords" class=dd-item>
+<a href=/language-reference/reserved-keywords/>
+Reserved Keywords
+</a>
+</li>
+</ul>
+</li>
+<li data-nav-id=/toolsandapi/ title="Tools & API" class=dd-item>
+<a href=/toolsandapi/>
+<b>3. </b>Tools & API
+</a>
+<ul>
+<li data-nav-id=/toolsandapi/uppaal/ title=UPPAAL class=dd-item>
+<a href=/toolsandapi/uppaal/>
+UPPAAL
+</a>
+</li>
+<li data-nav-id=/toolsandapi/verifyta/ title=verifyta class=dd-item>
+<a href=/toolsandapi/verifyta/>
+verifyta
+</a>
+</li>
+<li data-nav-id=/toolsandapi/javaapi/ title="Java API" class=dd-item>
+<a href=/toolsandapi/javaapi/>
+Java API
+</a>
+</li>
+<li data-nav-id=/toolsandapi/socketserver/ title=Socketserver class=dd-item>
+<a href=/toolsandapi/socketserver/>
+Socketserver
+</a>
+</li>
+<li data-nav-id=/toolsandapi/file-formats/ title="File Formats" class=dd-item>
+<a href=/toolsandapi/file-formats/>
+File Formats
+</a>
+</li>
+<li data-nav-id=/toolsandapi/latex/ title=Latex class=dd-item>
+<a href=/toolsandapi/latex/>
+Latex
+</a>
+</li>
+</ul>
+</li>
+<li data-nav-id=/extensions/ title=Extensions class=dd-item>
+<a href=/extensions/>
+<b>4. </b>Extensions
+</a>
+<ul>
+<li data-nav-id=/extensions/cora/ title=CORA class=dd-item>
+<a href=/extensions/cora/>
+CORA
+</a>
+</li>
+<li data-nav-id=/extensions/ecdar/ title=ECDAR class=dd-item>
+<a href=/extensions/ecdar/>
+ECDAR
+</a>
+</li>
+<li data-nav-id=/extensions/tiga/ title="UPPAAL Tiga" class=dd-item>
+<a href=/extensions/tiga/>
+UPPAAL Tiga
+</a>
+</li>
+<li data-nav-id=/extensions/tron/ title="UPPAAL TRON" class=dd-item>
+<a href=/extensions/tron/>
+UPPAAL TRON
+</a>
+</li>
+</ul>
+</li>
+</ul>
+<section id=footer>
+<p>(c) 1995-2021 <a href=https://www.uppaal.org>UPPAAL</a></p>
+</section>
+</div>
+</nav>
+<section id=body>
+<div id=overlay></div>
+<div class="padding highlightable">
+<div>
+<div id=top-bar>
+<div id=top-github-link>
+<a class=github-link title="Edit this page" href=https://github.com/UPPAALModelChecker/docs.uppaal.org/blob/master/content/language-reference/system-description/declarations/external-functions.md target=blank>
+<i class="fas fa-code-branch"></i>
+<span id=top-github-link-text>Edit this page</span>
+</a>
+</div>
+<div id=breadcrumbs itemscope itemtype=http://data-vocabulary.org/Breadcrumb>
+<span id=sidebar-toggle-span>
+<a href=# id=sidebar-toggle data-sidebar-toggle>
+<i class="fas fa-bars"></i>
+</a>
+</span>
 <span id=toc-menu><i class="fas fa-list-alt"></i></span>
-<span class=links><a href=/></a>> <a href=/language-reference/>Language Reference</a> > <a href=/language-reference/system-description/>System Description</a> > <a href=/language-reference/system-description/declarations/>Declarations</a> > External Functions</span></div><div class=progress><div class=wrapper><nav id=TableOfContents><ul><li><a href=#type-conversion-and-restrictions>Type Conversion and Restrictions</a></li><li><a href=#defining-external-library>Defining External Library</a></li></ul></nav></div></div></div></div><div id=head-tags></div><div id=body-inner><h1>External Functions</h1><div class="notices info"><p>External Functions is an expert user feature and requires a high-level understanding of dynamic library loading and linking.
-The feature is only officially supported on Linux.</p></div><p>External Functions can be decreated alongside other declaratios. External functions are local to the current scope, defined by the grammar:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-EBNF data-lang=EBNF>
+<span class=links>
+<a href=/></a> > <a href=/language-reference/>Language Reference</a> > <a href=/language-reference/system-description/>System Description</a> > <a href=/language-reference/system-description/declarations/>Declarations</a> > External Functions
+</span>
+</div>
+<div class=progress>
+<div class=wrapper>
+<nav id=TableOfContents></nav>
+</div>
+</div>
+</div>
+</div>
+<div id=head-tags>
+</div>
+<div id=body-inner>
+<h1>
+External Functions
+</h1>
+<div class="notices info"><p>External Functions is an expert user feature and requires a high-level understanding of dynamic library loading and linking.
+The feature is only officially supported on Linux.</p>
+</div>
+<div class="notices info"><p>This feature is currently only supported in the Stratego version of Uppaal, version 4.1.20-7 or later.
+{{ /notice %}}</p>
+<p>External Functions can be decreated alongside other declaratios. External functions are local to the current scope, defined by the grammar:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-EBNF data-lang=EBNF>
 <span style=color:#66d9ef>ExternDecl   </span><span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;import&#39;</span>  <span style=color:#66d9ef>String </span><span style=color:#e6db74>&#39;{&#39;</span> [<span style=color:#66d9ef>FwdDeclList</span>] <span style=color:#e6db74>&#39;}&#39;</span>
 <span style=color:#66d9ef>FwdDeclList  </span><span style=color:#960050;background-color:#1e0010>=</span> <span style=color:#66d9ef>FwdDecl </span><span style=color:#e6db74>&#39;;&#39;</span> | 
                <span style=color:#66d9ef>FwdDeclList FwdDecl </span><span style=color:#e6db74>&#39;;&#39;</span> 
 <span style=color:#66d9ef>FwdDecl      </span><span style=color:#960050;background-color:#1e0010>=</span> [<span style=color:#66d9ef>ID </span><span style=color:#e6db74>&#39;=&#39;</span>] <span style=color:#66d9ef>Type ID </span><span style=color:#e6db74>&#39;(&#39;</span> [<span style=color:#66d9ef>Parameters</span>] <span style=color:#e6db74>&#39;)&#39;</span>
 
-</code></pre></div><p>The following code will load the external libary <code>externallib.so</code> from the path <code>/home/user/lib</code> and import the functions <code>get_a_number</code>, <code>set_a_number</code> and <code>is_the_wold_safe</code>. The functions <code>is_the_wold_safe</code> will be imported with the name <code>importWithNewName</code>.</p><p>We always recommend using a fully qualified path to the library file.
-If you are using integers in external function, we recommend to defined a full integer range, to avoid problems with UPPAAL bounded integers.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> INT32_MAX <span style=color:#f92672>=</span> <span style=color:#ae81ff>2147483647</span>;
+</code></pre></div><p>The following code will load the external libary <code>externallib.so</code> from the path <code>/home/user/lib</code> and import the functions <code>get_a_number</code>, <code>set_a_number</code> and <code>is_the_wold_safe</code>. The functions <code>is_the_wold_safe</code> will be imported with the name <code>importWithNewName</code>.</p>
+<p>We always recommend using a fully qualified path to the library file.
+If you are using integers in external function, we recommend to defined a full integer range, to avoid problems with UPPAAL bounded integers.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C data-lang=C><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> INT32_MAX <span style=color:#f92672>=</span> <span style=color:#ae81ff>2147483647</span>;
 <span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>int</span>[INT32_MIN,INT32_MAX] <span style=color:#66d9ef>int32_t</span>;
 
 import <span style=color:#e6db74>&#34;/home/user/lib/externallib.so&#34;</span> {
@@ -24,7 +490,82 @@ import <span style=color:#e6db74>&#34;/home/user/lib/externallib.so&#34;</span> 
   importWithNewName <span style=color:#f92672>=</span> <span style=color:#66d9ef>bool</span> is_the_wold_safe();
 }
 
-</code></pre></div><h2 id=type-conversion-and-restrictions>Type Conversion and Restrictions</h2><p>The types being transfarable between UPPAAL and external functions are curretly limited to <code>bool</code>, <code>chan</code>, <code>click</code>, <code>double</code>, <code>ptr_t</code> and <code>string</code>. Omitting complex types such as structs and nexted data structures. Only single-dimenstions arrays are supported on only of mutable types; arrays of chan and strings are not currently supported. See the following table for details:</p><table><thead><tr><th>UPPAAL Type</th><th>C Type</th><th>By Value</th><th>Return</th><th>Array</th></tr></thead><tbody><tr><td>bool</td><td>bool</td><td>x</td><td>x</td><td>x</td></tr><tr><td>chan</td><td>const char</td><td></td><td></td><td></td></tr><tr><td>clock</td><td>double</td><td></td><td></td><td>x</td></tr><tr><td>double</td><td>double</td><td>x</td><td>x</td><td>x</td></tr><tr><td>ptr_t</td><td>size_t</td><td>x</td><td>x</td><td>x</td></tr><tr><td>int</td><td>int32_t</td><td>x</td><td>x</td><td>x</td></tr><tr><td>string</td><td>const char</td><td></td><td></td><td></td></tr><tr><td>&lt;type>[]</td><td>&lt;type></td><td></td><td></td><td></td></tr></tbody></table><p>If a bounded integer ranges is violated, either when values are sent by reference or returned it will cause a runtime error.</p><h2 id=defining-external-library>Defining External Library</h2><p>You can create a external library using either C or C++, by compiling it to a shared library.</p><p>The following C++ code defines a library with the same methods as used in the example above.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++>
+</code></pre></div><h2 id=type-conversion-and-restrictions>Type Conversion and Restrictions</h2>
+<p>The types being transfarable between UPPAAL and external functions are curretly limited to <code>bool</code>, <code>chan</code>, <code>click</code>, <code>double</code>, <code>ptr_t</code> and <code>string</code>. Omitting complex types such as structs and nexted data structures. Only single-dimenstions arrays are supported on only of mutable types; arrays of chan and strings are not currently supported. See the following table for details:</p>
+<table>
+<thead>
+<tr>
+<th>UPPAAL Type</th>
+<th>C Type</th>
+<th>By Value</th>
+<th>Return</th>
+<th>Array</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bool</td>
+<td>bool</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td>chan</td>
+<td>const char</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>clock</td>
+<td>double</td>
+<td></td>
+<td></td>
+<td>x</td>
+</tr>
+<tr>
+<td>double</td>
+<td>double</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td>ptr_t</td>
+<td>size_t</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td>int</td>
+<td>int32_t</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr>
+<td>string</td>
+<td>const char</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&lt;type>[]</td>
+<td>&lt;type></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>If a bounded integer ranges is violated, either when values are sent by reference or returned it will cause a runtime error.</p>
+<h2 id=defining-external-library>Defining External Library</h2>
+<p>You can create a external library using either C or C++, by compiling it to a shared library.</p>
+<p>The following C++ code defines a library with the same methods as used in the example above.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-C++ data-lang=C++>
 <span style=color:#66d9ef>int</span> number <span style=color:#f92672>=</span> <span style=color:#ae81ff>42</span>;
 
 <span style=color:#66d9ef>extern</span> <span style=color:#e6db74>&#34;C&#34;</span> <span style=color:#66d9ef>int</span> get_a_number() 
@@ -41,7 +582,34 @@ import <span style=color:#e6db74>&#34;/home/user/lib/externallib.so&#34;</span> 
 {
     <span style=color:#66d9ef>return</span> true;
 }
-</code></pre></div><p>To compile a create a shared object file:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>g++ -std<span style=color:#f92672>=</span>c++17 -fPIC -c -o externallib.o externallib.cpp
+</code></pre></div><p>To compile a create a shared object file:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>g++ -std<span style=color:#f92672>=</span>c++17 -fPIC -c -o externallib.o externallib.cpp
 gcc -shared -o externallib.so externallib.o 
-</code></pre></div><p>For an advanced example see <a href=https://github.com/UPPAALModelChecker/uppaal-libs>https://github.com/UPPAALModelChecker/uppaal-libs</a> .</p><footer class=footline></footer></div></div><div id=navigation><a class="nav nav-prev" href=/language-reference/system-description/declarations/functions/ title=Functions><i class="fa fa-chevron-left"></i></a>
-<a class="nav nav-next" href=/language-reference/system-description/templates/ title=Templates style=margin-right:0><i class="fa fa-chevron-right"></i></a></div></section><div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px><div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div></div><script src=/js/clipboard.min.js?1624541055></script><script src=/js/perfect-scrollbar.min.js?1624541055></script><script src=/js/perfect-scrollbar.jquery.min.js?1624541055></script><script src=/js/jquery.sticky.js?1624541055></script><script src=/js/featherlight.min.js?1624541055></script><script src=/js/highlight.pack.js?1624541055></script><script>hljs.initHighlightingOnLoad()</script><script src=/js/modernizr.custom-3.6.0.js?1624541055></script><script src=/js/learn.js?1624541055></script><script src=/js/hugo-learn.js?1624541055></script><script src=/mermaid/mermaid.js?1624541055></script><script>mermaid.initialize({startOnLoad:!0})</script></body></html>
+</code></pre></div><p>For an advanced example see <a href=https://github.com/UPPAALModelChecker/uppaal-libs>https://github.com/UPPAALModelChecker/uppaal-libs</a> .</p>
+</div>
+<footer class=footline>
+</footer>
+</div>
+</div>
+<div id=navigation>
+<a class="nav nav-prev" href=/language-reference/system-description/declarations/functions/ title=Functions> <i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/language-reference/system-description/templates/ title=Templates style=margin-right:0><i class="fa fa-chevron-right"></i></a>
+</div>
+</section>
+<div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
+<div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div>
+</div>
+<script src=/js/clipboard.min.js?1627288714></script>
+<script src=/js/perfect-scrollbar.min.js?1627288714></script>
+<script src=/js/perfect-scrollbar.jquery.min.js?1627288714></script>
+<script src=/js/jquery.sticky.js?1627288714></script>
+<script src=/js/featherlight.min.js?1627288714></script>
+<script src=/js/highlight.pack.js?1627288714></script>
+<script>hljs.initHighlightingOnLoad()</script>
+<script src=/js/modernizr.custom-3.6.0.js?1627288714></script>
+<script src=/js/learn.js?1627288714></script>
+<script src=/js/hugo-learn.js?1627288714></script>
+<script src=/mermaid/mermaid.js?1627288714></script>
+<script>mermaid.initialize({startOnLoad:!0})</script>
+</body>
+</html>
