@@ -6,16 +6,16 @@
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
 <title>External Functions :: UPPAAL Documentation</title>
-<link href=/css/nucleus.css?1627288714 rel=stylesheet>
-<link href=/css/fontawesome-all.min.css?1627288714 rel=stylesheet>
-<link href=/css/hybrid.css?1627288714 rel=stylesheet>
-<link href=/css/featherlight.min.css?1627288714 rel=stylesheet>
-<link href=/css/perfect-scrollbar.min.css?1627288714 rel=stylesheet>
-<link href=/css/auto-complete.css?1627288714 rel=stylesheet>
-<link href=/css/atom-one-dark-reasonable.css?1627288714 rel=stylesheet>
-<link href=/css/theme.css?1627288714 rel=stylesheet>
-<link href=/css/hugo-theme.css?1627288714 rel=stylesheet>
-<script src=/js/jquery-3.3.1.min.js?1627288714></script>
+<link href=/css/nucleus.css?1627295357 rel=stylesheet>
+<link href=/css/fontawesome-all.min.css?1627295357 rel=stylesheet>
+<link href=/css/hybrid.css?1627295357 rel=stylesheet>
+<link href=/css/featherlight.min.css?1627295357 rel=stylesheet>
+<link href=/css/perfect-scrollbar.min.css?1627295357 rel=stylesheet>
+<link href=/css/auto-complete.css?1627295357 rel=stylesheet>
+<link href=/css/atom-one-dark-reasonable.css?1627295357 rel=stylesheet>
+<link href=/css/theme.css?1627295357 rel=stylesheet>
+<link href=/css/hugo-theme.css?1627295357 rel=stylesheet>
+<script src=/js/jquery-3.3.1.min.js?1627295357></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
 <body data-url=/language-reference/system-description/declarations/external-functions/>
@@ -31,10 +31,10 @@
 <input data-search-input id=search-by type=search placeholder=Search...>
 <span data-search-clear><i class="fas fa-times"></i></span>
 </div>
-<script type=text/javascript src=/js/lunr.min.js?1627288714></script>
-<script type=text/javascript src=/js/auto-complete.js?1627288714></script>
+<script type=text/javascript src=/js/lunr.min.js?1627295357></script>
+<script type=text/javascript src=/js/auto-complete.js?1627295357></script>
 <script type=text/javascript>var baseurl=""</script>
-<script type=text/javascript src=/js/search.js?1627288714></script>
+<script type=text/javascript src=/js/search.js?1627295357></script>
 </div>
 <div class=highlightable>
 <ul class=topics>
@@ -454,7 +454,12 @@ UPPAAL TRON
 </div>
 <div class=progress>
 <div class=wrapper>
-<nav id=TableOfContents></nav>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#type-conversion-and-restrictions>Type Conversion and Restrictions</a></li>
+<li><a href=#defining-external-library>Defining External Library</a></li>
+</ul>
+</nav>
 </div>
 </div>
 </div>
@@ -468,8 +473,8 @@ External Functions
 <div class="notices info"><p>External Functions is an expert user feature and requires a high-level understanding of dynamic library loading and linking.
 The feature is only officially supported on Linux.</p>
 </div>
-<div class="notices info"><p>This feature is currently only supported in the Stratego version of Uppaal, version 4.1.20-7 or later.
-{{ /notice %}}</p>
+<div class="notices info"><p>This feature is currently only supported in the Stratego version of Uppaal, version 4.1.20-7 or later.</p>
+</div>
 <p>External Functions can be decreated alongside other declaratios. External functions are local to the current scope, defined by the grammar:</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-EBNF data-lang=EBNF>
 <span style=color:#66d9ef>ExternDecl   </span><span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;import&#39;</span>  <span style=color:#66d9ef>String </span><span style=color:#e6db74>&#39;{&#39;</span> [<span style=color:#66d9ef>FwdDeclList</span>] <span style=color:#e6db74>&#39;}&#39;</span>
@@ -586,7 +591,6 @@ import <span style=color:#e6db74>&#34;/home/user/lib/externallib.so&#34;</span> 
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>g++ -std<span style=color:#f92672>=</span>c++17 -fPIC -c -o externallib.o externallib.cpp
 gcc -shared -o externallib.so externallib.o 
 </code></pre></div><p>For an advanced example see <a href=https://github.com/UPPAALModelChecker/uppaal-libs>https://github.com/UPPAALModelChecker/uppaal-libs</a> .</p>
-</div>
 <footer class=footline>
 </footer>
 </div>
@@ -599,17 +603,17 @@ gcc -shared -o externallib.so externallib.o
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
 <div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div>
 </div>
-<script src=/js/clipboard.min.js?1627288714></script>
-<script src=/js/perfect-scrollbar.min.js?1627288714></script>
-<script src=/js/perfect-scrollbar.jquery.min.js?1627288714></script>
-<script src=/js/jquery.sticky.js?1627288714></script>
-<script src=/js/featherlight.min.js?1627288714></script>
-<script src=/js/highlight.pack.js?1627288714></script>
+<script src=/js/clipboard.min.js?1627295357></script>
+<script src=/js/perfect-scrollbar.min.js?1627295357></script>
+<script src=/js/perfect-scrollbar.jquery.min.js?1627295357></script>
+<script src=/js/jquery.sticky.js?1627295357></script>
+<script src=/js/featherlight.min.js?1627295357></script>
+<script src=/js/highlight.pack.js?1627295357></script>
 <script>hljs.initHighlightingOnLoad()</script>
-<script src=/js/modernizr.custom-3.6.0.js?1627288714></script>
-<script src=/js/learn.js?1627288714></script>
-<script src=/js/hugo-learn.js?1627288714></script>
-<script src=/mermaid/mermaid.js?1627288714></script>
+<script src=/js/modernizr.custom-3.6.0.js?1627295357></script>
+<script src=/js/learn.js?1627295357></script>
+<script src=/js/hugo-learn.js?1627295357></script>
+<script src=/mermaid/mermaid.js?1627295357></script>
 <script>mermaid.initialize({startOnLoad:!0})</script>
 </body>
 </html>
