@@ -10,7 +10,7 @@ weight: 30
 
 {{% notice info %}}
 This feature is currently only supported in the Stratego version of Uppaal, version 4.1.20-7 or later.
-{{ /notice %}}
+{{% /notice %}}
 
 External Functions can be decreated alongside other declaratios. External functions are local to the current scope, defined by the grammar: 
 
