@@ -33,7 +33,7 @@ Now Uppaal TRON version 1.4 Beta 1 is available. The tool is still in early deve
 
 ## User Manual 
 
-You may want to read an early draft of [user-manual]() (still under development, comments are welcome).
+You may want to read an early draft of [user-manual](manual.pdf) (still under development, comments are welcome).
 
 ## Testing Runtime
 
