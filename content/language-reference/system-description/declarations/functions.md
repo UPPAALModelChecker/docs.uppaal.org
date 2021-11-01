@@ -31,11 +31,11 @@ ReturnStatement ::= 'return' [ [Expression] ] ';'
 
 The declarations inside functions include only variable and type declarations. Nested function declarations and recursion are not supported.
 
-## Iterators
+## Iteration
 
-The keyword <tt>for</tt> has two uses: One is a C/C++/Java like for-loop, and the other is a Java like iterator. The latter is primarily used to iterate over arrays indexed by scalars.
+The keyword `for` has two uses: the first is a C/C++/Java like for-loop, and the second is a Java like iterator or ranged-loop in C++. The second is primarily used to iterate over arrays indexed by scalars.
 
-A statement <tt>for (ID : Type) Statement</tt> will execute <tt>Statement</tt> once for each value <tt>ID</tt> of the type <tt>Type</tt>. The scope of <tt>ID</tt> is the inner expression <tt>Expr</tt>, and <tt>Type</tt> must be a bounded integer or a scalar set.
+A statement `for (ID : Type) Statement` will execute `Statement` once for each value `ID` of the domain of type `Type`. The scope of `ID` is bound to the `Statement`, and `Type` must be a bounded integer or a scalar set.
 
 ## Examples
 
@@ -43,12 +43,12 @@ A statement <tt>for (ID : Type) Statement</tt> will execute <tt>Statement</tt> o
 
 The following function returns the sum of two integers. The arguments are call by value.
 
-<pre> 
+```
 int add(int a, int b)
 {
     return a + b; 
 }
-</pre>
+```
 
 ### swap
 
