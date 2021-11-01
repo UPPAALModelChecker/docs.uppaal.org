@@ -7,7 +7,8 @@ Functions can be declared alongside other declarations. The syntax for functions
 
 ``` EBNF
 Function        ::= [Type] [ID] '(' [Parameters] ')' Block 
-Block	        ::= '{' [Declarations] Statement* '}'
+Block           ::= '{' LocalDeclaration* Statement* '}'
+LocalDeclation  ::= TypeDeclaration | VariableDeclaration
 Statement       ::= Block
                  | ';'
                  |  [Expression] ';'
@@ -19,7 +20,7 @@ Statement       ::= Block
                  |  ReturnStatement
 
 ForLoop	        ::= 'for' '(' [Expression] ';' [Expression] ';' [Expression] ')' Statement 
-Iteration	    ::= 'for' '(' [ID] ':' [Type] ')' Statement
+Iteration       ::= 'for' '(' [ID] ':' [Type] ')' Statement
 WhileLoop       ::= 'while' '(' [Expression] ')' Statement
 DoWhile         ::= 'do' Statement 'while' '(' [Expression] ')' ';'
 IfStatment      ::= 'if' '(' [Expression] ')' Statement [ 'else' Statement ]
@@ -28,7 +29,7 @@ ReturnStatement ::= 'return' [ [Expression] ] ';'
 
 ## Functions
 
-The `Declarations` inside functions include only variable and type declarations. Nested function declarations and recursion are not supported.
+The declarations inside functions include only variable and type declarations. Nested function declarations and recursion are not supported.
 
 ## Iterators
 
