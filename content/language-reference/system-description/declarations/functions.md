@@ -26,6 +26,10 @@ IfStatment      ::= 'if' '(' [Expression] ')' Statement [ 'else' Statement ]
 ReturnStatement ::= 'return' [ [Expression] ] ';'
 ```
 
+## Functions
+
+The `Declarations` inside functions include only variable and type declarations. Nested function declarations and recursion are not supported.
+
 ## Iterators
 
 The keyword <tt>for</tt> has two uses: One is a C/C++/Java like for-loop, and the other is a Java like iterator. The latter is primarily used to iterate over arrays indexed by scalars.
