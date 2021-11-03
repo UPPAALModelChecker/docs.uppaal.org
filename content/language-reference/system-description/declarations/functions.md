@@ -7,7 +7,8 @@ Functions can be declared alongside other declarations. The syntax for functions
 
 ``` EBNF
 Function        ::= [Type] [ID] '(' [Parameters] ')' Block 
-Block	        ::= '{' [Declarations] Statement* '}'
+Block           ::= '{' LocalDeclaration* Statement* '}'
+LocalDeclation  ::= TypeDeclaration | VariableDeclaration
 Statement       ::= Block
                  | ';'
                  |  [Expression] ';'
@@ -19,18 +20,22 @@ Statement       ::= Block
                  |  ReturnStatement
 
 ForLoop	        ::= 'for' '(' [Expression] ';' [Expression] ';' [Expression] ')' Statement 
-Iteration	    ::= 'for' '(' [ID] ':' [Type] ')' Statement
+Iteration       ::= 'for' '(' [ID] ':' [Type] ')' Statement
 WhileLoop       ::= 'while' '(' [Expression] ')' Statement
 DoWhile         ::= 'do' Statement 'while' '(' [Expression] ')' ';'
 IfStatment      ::= 'if' '(' [Expression] ')' Statement [ 'else' Statement ]
 ReturnStatement ::= 'return' [ [Expression] ] ';'
 ```
 
-## Iterators
+## Functions
 
-The keyword <tt>for</tt> has two uses: One is a C/C++/Java like for-loop, and the other is a Java like iterator. The latter is primarily used to iterate over arrays indexed by scalars.
+The declarations inside functions include only variable and type declarations. Nested function declarations and recursion are not supported.
 
-A statement <tt>for (ID : Type) Statement</tt> will execute <tt>Statement</tt> once for each value <tt>ID</tt> of the type <tt>Type</tt>. The scope of <tt>ID</tt> is the inner expression <tt>Expr</tt>, and <tt>Type</tt> must be a bounded integer or a scalar set.
+## Iteration
+
+The keyword `for` has two uses: the first is a C/C++/Java like for-loop, and the second is a Java like iterator or ranged-loop in C++. The second is primarily used to iterate over arrays indexed by scalars.
+
+A statement `for (ID : Type) Statement` will execute `Statement` once for each value `ID` of the domain of type `Type`. The scope of `ID` is bound to the `Statement`, and `Type` must be a bounded integer or a scalar set.
 
 ## Examples
 
@@ -38,12 +43,12 @@ A statement <tt>for (ID : Type) Statement</tt> will execute <tt>Statement</tt> o
 
 The following function returns the sum of two integers. The arguments are call by value.
 
-<pre> 
+```
 int add(int a, int b)
 {
     return a + b; 
 }
-</pre>
+```
 
 ### swap
 
