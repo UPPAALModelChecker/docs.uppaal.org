@@ -2,20 +2,20 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=generator content="Hugo 0.88.1">
+<meta name=generator content="Hugo 0.89.0">
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
 <title>Functions :: UPPAAL Documentation</title>
-<link href=/css/nucleus.css?1631625859 rel=stylesheet>
-<link href=/css/fontawesome-all.min.css?1631625859 rel=stylesheet>
-<link href=/css/hybrid.css?1631625859 rel=stylesheet>
-<link href=/css/featherlight.min.css?1631625859 rel=stylesheet>
-<link href=/css/perfect-scrollbar.min.css?1631625859 rel=stylesheet>
-<link href=/css/auto-complete.css?1631625859 rel=stylesheet>
-<link href=/css/atom-one-dark-reasonable.css?1631625859 rel=stylesheet>
-<link href=/css/theme.css?1631625859 rel=stylesheet>
-<link href=/css/hugo-theme.css?1631625859 rel=stylesheet>
-<script src=/js/jquery-3.3.1.min.js?1631625859></script>
+<link href=/css/nucleus.css?1635945174 rel=stylesheet>
+<link href=/css/fontawesome-all.min.css?1635945174 rel=stylesheet>
+<link href=/css/hybrid.css?1635945174 rel=stylesheet>
+<link href=/css/featherlight.min.css?1635945174 rel=stylesheet>
+<link href=/css/perfect-scrollbar.min.css?1635945174 rel=stylesheet>
+<link href=/css/auto-complete.css?1635945174 rel=stylesheet>
+<link href=/css/atom-one-dark-reasonable.css?1635945174 rel=stylesheet>
+<link href=/css/theme.css?1635945174 rel=stylesheet>
+<link href=/css/hugo-theme.css?1635945174 rel=stylesheet>
+<script src=/js/jquery-3.3.1.min.js?1635945174></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
 <body data-url=/language-reference/system-description/declarations/functions/>
@@ -31,10 +31,10 @@
 <input data-search-input id=search-by type=search placeholder=Search...>
 <span data-search-clear><i class="fas fa-times"></i></span>
 </div>
-<script type=text/javascript src=/js/lunr.min.js?1631625859></script>
-<script type=text/javascript src=/js/auto-complete.js?1631625859></script>
+<script type=text/javascript src=/js/lunr.min.js?1635945174></script>
+<script type=text/javascript src=/js/auto-complete.js?1635945174></script>
 <script type=text/javascript>var baseurl=""</script>
-<script type=text/javascript src=/js/search.js?1631625859></script>
+<script type=text/javascript src=/js/search.js?1635945174></script>
 </div>
 <div class=highlightable>
 <ul class=topics>
@@ -460,7 +460,8 @@ UPPAAL TRON
 <div class=wrapper>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#iterators>Iterators</a></li>
+<li><a href=#functions>Functions</a></li>
+<li><a href=#iteration>Iteration</a></li>
 <li><a href=#examples>Examples</a>
 <ul>
 <li><a href=#add>add</a></li>
@@ -482,7 +483,8 @@ Functions
 </h1>
 <p>Functions can be declared alongside other declarations. The syntax for functions is defined by the grammar for <tt>Function</tt>:</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-EBNF data-lang=EBNF><span style=color:#66d9ef>Function        </span><span style=color:#960050;background-color:#1e0010>::</span><span style=color:#f92672>=</span> [<span style=color:#66d9ef>Type</span>] [<span style=color:#66d9ef>ID</span>] <span style=color:#e6db74>&#39;(&#39;</span> [<span style=color:#66d9ef>Parameters</span>] <span style=color:#e6db74>&#39;)&#39;</span> <span style=color:#66d9ef>Block </span>
-<span style=color:#66d9ef>Block</span>	        <span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#e6db74>&#39;{&#39;</span> [<span style=color:#66d9ef>Declarations</span>] <span style=color:#66d9ef>Statement</span><span style=color:#960050;background-color:#1e0010>*</span> <span style=color:#e6db74>&#39;}&#39;</span>
+<span style=color:#66d9ef>Block           </span><span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#e6db74>&#39;{&#39;</span> <span style=color:#66d9ef>LocalDeclaration</span><span style=color:#960050;background-color:#1e0010>*</span> <span style=color:#66d9ef>Statement</span><span style=color:#960050;background-color:#1e0010>*</span> <span style=color:#e6db74>&#39;}&#39;</span>
+<span style=color:#66d9ef>LocalDeclation  </span><span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#66d9ef>TypeDeclaration </span>| <span style=color:#66d9ef>VariableDeclaration</span>
 <span style=color:#66d9ef>Statement       </span><span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#66d9ef>Block</span>
                  | <span style=color:#e6db74>&#39;;&#39;</span>
                  |  [<span style=color:#66d9ef>Expression</span>] <span style=color:#e6db74>&#39;;&#39;</span>
@@ -494,24 +496,24 @@ Functions
                  |  <span style=color:#66d9ef>ReturnStatement</span>
 
 <span style=color:#66d9ef>ForLoop</span>	        <span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#e6db74>&#39;for&#39;</span> <span style=color:#e6db74>&#39;(&#39;</span> [<span style=color:#66d9ef>Expression</span>] <span style=color:#e6db74>&#39;;&#39;</span> [<span style=color:#66d9ef>Expression</span>] <span style=color:#e6db74>&#39;;&#39;</span> [<span style=color:#66d9ef>Expression</span>] <span style=color:#e6db74>&#39;)&#39;</span> <span style=color:#66d9ef>Statement </span>
-<span style=color:#66d9ef>Iteration</span>	    <span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#e6db74>&#39;for&#39;</span> <span style=color:#e6db74>&#39;(&#39;</span> [<span style=color:#66d9ef>ID</span>] <span style=color:#e6db74>&#39;:&#39;</span> [<span style=color:#66d9ef>Type</span>] <span style=color:#e6db74>&#39;)&#39;</span> <span style=color:#66d9ef>Statement</span>
+<span style=color:#66d9ef>Iteration       </span><span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#e6db74>&#39;for&#39;</span> <span style=color:#e6db74>&#39;(&#39;</span> [<span style=color:#66d9ef>ID</span>] <span style=color:#e6db74>&#39;:&#39;</span> [<span style=color:#66d9ef>Type</span>] <span style=color:#e6db74>&#39;)&#39;</span> <span style=color:#66d9ef>Statement</span>
 <span style=color:#66d9ef>WhileLoop       </span><span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#e6db74>&#39;while&#39;</span> <span style=color:#e6db74>&#39;(&#39;</span> [<span style=color:#66d9ef>Expression</span>] <span style=color:#e6db74>&#39;)&#39;</span> <span style=color:#66d9ef>Statement</span>
 <span style=color:#66d9ef>DoWhile         </span><span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#e6db74>&#39;do&#39;</span> <span style=color:#66d9ef>Statement </span><span style=color:#e6db74>&#39;while&#39;</span> <span style=color:#e6db74>&#39;(&#39;</span> [<span style=color:#66d9ef>Expression</span>] <span style=color:#e6db74>&#39;)&#39;</span> <span style=color:#e6db74>&#39;;&#39;</span>
 <span style=color:#66d9ef>IfStatment      </span><span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#e6db74>&#39;if&#39;</span> <span style=color:#e6db74>&#39;(&#39;</span> [<span style=color:#66d9ef>Expression</span>] <span style=color:#e6db74>&#39;)&#39;</span> <span style=color:#66d9ef>Statement </span>[ <span style=color:#e6db74>&#39;else&#39;</span> <span style=color:#66d9ef>Statement </span>]
 <span style=color:#66d9ef>ReturnStatement </span><span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#e6db74>&#39;return&#39;</span> [ [<span style=color:#66d9ef>Expression</span>] ] <span style=color:#e6db74>&#39;;&#39;</span>
-</code></pre></div><h2 id=iterators>Iterators</h2>
-<p>The keyword <tt>for</tt> has two uses: One is a C/C++/Java like for-loop, and the other is a Java like iterator. The latter is primarily used to iterate over arrays indexed by scalars.</p>
-<p>A statement <tt>for (ID : Type) Statement</tt> will execute <tt>Statement</tt> once for each value <tt>ID</tt> of the type <tt>Type</tt>. The scope of <tt>ID</tt> is the inner expression <tt>Expr</tt>, and <tt>Type</tt> must be a bounded integer or a scalar set.</p>
+</code></pre></div><h2 id=functions>Functions</h2>
+<p>The declarations inside functions include only variable and type declarations. Nested function declarations and recursion are not supported.</p>
+<h2 id=iteration>Iteration</h2>
+<p>The keyword <code>for</code> has two uses: the first is a C/C++/Java like for-loop, and the second is a Java like iterator or ranged-loop in C++. The second is primarily used to iterate over arrays indexed by scalars.</p>
+<p>A statement <code>for (ID : Type) Statement</code> will execute <code>Statement</code> once for each value <code>ID</code> of the domain of type <code>Type</code>. The scope of <code>ID</code> is bound to the <code>Statement</code>, and <code>Type</code> must be a bounded integer or a scalar set.</p>
 <h2 id=examples>Examples</h2>
 <h3 id=add>add</h3>
 <p>The following function returns the sum of two integers. The arguments are call by value.</p>
-<pre> 
-int add(int a, int b)
+<pre tabindex=0><code>int add(int a, int b)
 {
     return a + b; 
 }
-</pre>
-<h3 id=swap>swap</h3>
+</code></pre><h3 id=swap>swap</h3>
 <p>The following procedure swaps the values of two call-by-reference integer parameters.</p>
 <pre tabindex=0><code>void swap(int &amp;a, int &amp;b) 
 {
@@ -541,17 +543,17 @@ int add(int a, int b)
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
 <div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div>
 </div>
-<script src=/js/clipboard.min.js?1631625859></script>
-<script src=/js/perfect-scrollbar.min.js?1631625859></script>
-<script src=/js/perfect-scrollbar.jquery.min.js?1631625859></script>
-<script src=/js/jquery.sticky.js?1631625859></script>
-<script src=/js/featherlight.min.js?1631625859></script>
-<script src=/js/highlight.pack.js?1631625859></script>
+<script src=/js/clipboard.min.js?1635945174></script>
+<script src=/js/perfect-scrollbar.min.js?1635945174></script>
+<script src=/js/perfect-scrollbar.jquery.min.js?1635945174></script>
+<script src=/js/jquery.sticky.js?1635945174></script>
+<script src=/js/featherlight.min.js?1635945174></script>
+<script src=/js/highlight.pack.js?1635945174></script>
 <script>hljs.initHighlightingOnLoad()</script>
-<script src=/js/modernizr.custom-3.6.0.js?1631625859></script>
-<script src=/js/learn.js?1631625859></script>
-<script src=/js/hugo-learn.js?1631625859></script>
-<script src=/mermaid/mermaid.js?1631625859></script>
+<script src=/js/modernizr.custom-3.6.0.js?1635945174></script>
+<script src=/js/learn.js?1635945174></script>
+<script src=/js/hugo-learn.js?1635945174></script>
+<script src=/mermaid/mermaid.js?1635945174></script>
 <script>mermaid.initialize({startOnLoad:!0})</script>
 </body>
 </html>
