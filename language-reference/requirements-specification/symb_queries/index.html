@@ -5,7 +5,7 @@
 <meta name=generator content="Hugo 0.92.1">
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
-<title>Basic Test Generation :: UPPAAL Documentation</title>
+<title>Semantics of the Symbolic Queries :: UPPAAL Documentation</title>
 <link href=/css/nucleus.css?1644227910 rel=stylesheet>
 <link href=/css/fontawesome-all.min.css?1644227910 rel=stylesheet>
 <link href=/css/hybrid.css?1644227910 rel=stylesheet>
@@ -18,7 +18,7 @@
 <script src=/js/jquery-3.3.1.min.js?1644227910></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
-<body data-url=/gui-reference/yggdrasil/tutorial/basic-test-generation/>
+<body data-url=/language-reference/requirements-specification/symb_queries/>
 <nav id=sidebar>
 <div id=header-wrapper>
 <div id=header>
@@ -38,8 +38,7 @@
 </div>
 <div class=highlightable>
 <ul class=topics>
-<li data-nav-id=/gui-reference/ title="GUI Reference" class="dd-item
-parent">
+<li data-nav-id=/gui-reference/ title="GUI Reference" class=dd-item>
 <a href=/gui-reference/>
 <b>1. </b>GUI Reference
 </a>
@@ -189,8 +188,7 @@ Verifying Requirements
 </li>
 </ul>
 </li>
-<li data-nav-id=/gui-reference/yggdrasil/ title="Test Cases (Yggdrasil)" class="dd-item
-parent">
+<li data-nav-id=/gui-reference/yggdrasil/ title="Test Cases (Yggdrasil)" class=dd-item>
 <a href=/gui-reference/yggdrasil/>
 Test Cases (Yggdrasil)
 </a>
@@ -205,13 +203,12 @@ Generating Traces
 Specifying Test Code
 </a>
 </li>
-<li data-nav-id=/gui-reference/yggdrasil/tutorial/ title=Tutorial class="dd-item
-parent">
+<li data-nav-id=/gui-reference/yggdrasil/tutorial/ title=Tutorial class=dd-item>
 <a href=/gui-reference/yggdrasil/tutorial/>
 Tutorial
 </a>
 <ul>
-<li data-nav-id=/gui-reference/yggdrasil/tutorial/basic-test-generation/ title="Basic Test Generation" class="dd-item active">
+<li data-nav-id=/gui-reference/yggdrasil/tutorial/basic-test-generation/ title="Basic Test Generation" class=dd-item>
 <a href=/gui-reference/yggdrasil/tutorial/basic-test-generation/>
 Basic Test Generation
 </a>
@@ -232,7 +229,8 @@ Using Queries
 </li>
 </ul>
 </li>
-<li data-nav-id=/language-reference/ title="Language Reference" class=dd-item>
+<li data-nav-id=/language-reference/ title="Language Reference" class="dd-item
+parent">
 <a href=/language-reference/>
 <b>2. </b>Language Reference
 </a>
@@ -325,12 +323,13 @@ Semantics
 </li>
 </ul>
 </li>
-<li data-nav-id=/language-reference/requirements-specification/ title="Requirements Specification" class=dd-item>
+<li data-nav-id=/language-reference/requirements-specification/ title="Requirements Specification" class="dd-item
+parent">
 <a href=/language-reference/requirements-specification/>
 Requirements Specification
 </a>
 <ul>
-<li data-nav-id=/language-reference/requirements-specification/symb_queries/ title="Semantics of the Symbolic Queries" class=dd-item>
+<li data-nav-id=/language-reference/requirements-specification/symb_queries/ title="Semantics of the Symbolic Queries" class="dd-item active">
 <a href=/language-reference/requirements-specification/symb_queries/>
 Symbolic Queries
 </a>
@@ -446,7 +445,7 @@ UPPAAL TRON
 <div>
 <div id=top-bar>
 <div id=top-github-link>
-<a class=github-link title="Edit this page" href=https://github.com/UPPAALModelChecker/docs.uppaal.org/blob/master/content/gui-reference/yggdrasil/tutorial/basic-test-generation.md target=blank>
+<a class=github-link title="Edit this page" href=https://github.com/UPPAALModelChecker/docs.uppaal.org/blob/master/content/language-reference/requirements-specification/symb_queries.md target=blank>
 <i class="fas fa-code-branch"></i>
 <span id=top-github-link-text>Edit this page</span>
 </a>
@@ -459,7 +458,7 @@ UPPAAL TRON
 </span>
 <span id=toc-menu><i class="fas fa-list-alt"></i></span>
 <span class=links>
-<a href=/></a> > <a href=/gui-reference/>GUI Reference</a> > <a href=/gui-reference/yggdrasil/>Test Cases (Yggdrasil)</a> > <a href=/gui-reference/yggdrasil/tutorial/>Tutorial</a> > Basic Test Generation
+<a href=/></a> > <a href=/language-reference/>Language Reference</a> > <a href=/language-reference/requirements-specification/>Requirements Specification</a> > Semantics of the Symbolic Queries
 </span>
 </div>
 <div class=progress>
@@ -468,15 +467,20 @@ UPPAAL TRON
 <ul>
 <li>
 <ul>
-<li><a href=#create-the-models>Create the models</a></li>
-<li><a href=#add-test-cases-specific-model-annotations>Add Test Cases specific model annotations</a></li>
-<li><a href=#add-test-pre-fix-and-post-fix-code>Add test pre-fix and post-fix code</a></li>
-<li><a href=#add-test-step-code-annotations>Add test step code annotations</a></li>
-<li><a href=#generating-the-test-cases>Generating the test cases</a></li>
-<li><a href=#inspecting-the-test-case-code>Inspecting the test case code</a></li>
-<li><a href=#exectuting-the-test-cases>Exectuting the test cases</a></li>
+<li><a href=#possibly>Possibly</a></li>
+<li><a href=#invariantly>Invariantly</a></li>
+<li><a href=#potentially-always>Potentially always</a></li>
+<li><a href=#eventually>Eventually</a></li>
+<li><a href=#leads-to>Leads To</a></li>
 </ul>
 </li>
+<li><a href=#state-properties>State Properties</a>
+<ul>
+<li><a href=#locations>Locations</a></li>
+<li><a href=#deadlocks>Deadlocks</a></li>
+</ul>
+</li>
+<li><a href=#property-equivalences>Property Equivalences</a></li>
 </ul>
 </nav>
 </div>
@@ -487,149 +491,83 @@ UPPAAL TRON
 </div>
 <div id=body-inner>
 <h1>
-Basic Test Generation
+Semantics of the Symbolic Queries
 </h1>
-<h3 id=create-the-models>Create the models</h3>
-<p>Open the On/Off System model <tt> &ldquo;onoff/onoff.xml&rdquo; </tt> file in Uppaal. The system contains two templates entitled <em>System</em> and <em>User</em>. The <em>System</em> represents the system or device (e.g. lamp) under test. The <em>User</em> models the possible user interactions with the system.</p>
-<p>The system can be either <em>On</em> or <em>Off</em>, with channels <em>on</em> and <em>off</em> changing between them. The user can non-deterministically press <em>on</em> or <em>off</em>.</p>
-<table>
-<thead>
-<tr>
-<th style=text-align:left><em>System</em> template</th>
-<th style=text-align:center><em>User</em> template</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style=text-align:left><img src=../img/System.jpg alt="System template"></td>
-<td style=text-align:center><img src=../img/User.jpg alt="User template"></td>
-</tr>
-</tbody>
-</table>
-<h3 id=add-test-cases-specific-model-annotations>Add Test Cases specific model annotations</h3>
-<p>First, some <em><em>Test Cases</em></em> specific declarations muse be made; these are required for the generator to use depth-first reachability and single step techniques for test-case generation. These variables must not be altered in the model. Hence, these two variables must be declared in the global <em><em>Declarations</em></em> section:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>int</span> __reach__ <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
-<span style=color:#66d9ef>int</span> __single__ <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
-</code></pre></div><h3 id=add-test-pre-fix-and-post-fix-code>Add test pre-fix and post-fix code</h3>
-<p>Second, there are two blocks of comments in the <em><em>System declarations</em></em> section of the model. The contents of a multi-line comment starting with <tt>TEST_PREFIX</tt> or <tt>TEST_POSTFIX</tt> are ejected as prefix code (before the actual test case behavior) or postfix code (after actual test case behavior) for each test case.</p>
-<p>In this example each test case is a Java class with a main method; executing this Java class constitutes running the test case. Therefore the prefix and postfix code is the wrapper code to setup this Java class.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>/** TEST_PREFIX
-</span><span style=color:#75715e>  package app;
-</span><span style=color:#75715e>  import app.App;
-</span><span style=color:#75715e>
-</span><span style=color:#75715e>  class Test extends App {
-</span><span style=color:#75715e>
-</span><span style=color:#75715e>  public static void main(String[] args) {
-</span><span style=color:#75715e>
-</span><span style=color:#75715e>*/</span>
-
-<span style=color:#75715e>/** TEST_POSTFIX
-</span><span style=color:#75715e>  }
-</span><span style=color:#75715e>}
-</span><span style=color:#75715e>*/</span>
-</code></pre></div><p>The test case <tt>class extends</tt> the <tt>App</tt> class we are testing. If you use a specific unit test framework, these lines should be changed to match its requiements. Each step in the test case will execute some methods on this class.</p>
-<p>By default, test cases will be named and sequentially numbered like <tt>testcase0.code</tt>.
-If desired, the filename and file extension can be changed by the following special comments in the <em><em>System declarations</em></em> section. For now, stay with the defaults.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>/** TEST_FILENAME test- */</span>
-<span style=color:#75715e>/** TEST_FILEEXT .txt */</span>
-</code></pre></div><h3 id=add-test-step-code-annotations>Add test step code annotations</h3>
-<p>The system model must be decorated with test code. Double clicking the edge labeled <tt>on?</tt> and selecting the <em><em>Test Code</em></em> tab reveals an area for entering test code. In this model the test code should be <tt>set_on();</tt>. This will execute the method <tt>set_on()</tt> on the application whenever this edge is taken in a test case. Similarly, <tt>set_off();</tt> is added to the edge labeled <tt>off?</tt>.</p>
-<p>For locations, test code can be entered in two areas, <em><em>Enter</em></em> and <em><em>Exit</em></em>. This test code is added to the test case when the trace reaches the location or leaves it, respectively.</p>
-<table>
-<thead>
-<tr>
-<th style=text-align:center>Adding <em>edge</em> test code</th>
-<th style=text-align:center>Adding <em>location</em> test code</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style=text-align:center><img src=../img/test-cases-edge-code-1.png alt="Adding test code to edges"></td>
-<td style=text-align:center><img src=../img/test-cases-location-code-1.png alt="Adding test code to locations"></td>
-</tr>
-</tbody>
-</table>
-<h3 id=generating-the-test-cases>Generating the test cases</h3>
-<p>To generate test cases go to the <em><em>Test Cases</em></em> tab. You may need to enable the tab in the GUI first.</p>
-<table>
-<thead>
-<tr>
-<th style=text-align:left>Enable Test Cases Tab</th>
-<th style=text-align:center>Test Cases Tab</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style=text-align:left><img src=../img/enable-test-cases-tab.png alt="Enable Test Cases Generation tab"></td>
-<td style=text-align:center><img src=../img/enabled-test-cases-tool-tab.png alt="Test Cases tab"></td>
-</tr>
-</tbody>
-</table>
-<p>Select which techniques for test case generation to use. For now only select the auto-<em><em>depth</em></em> search mode with a depth of 20, and click <em><em>add</em></em>.</p>
-<p><img src=../img/test-cases-generate-1-1.png alt="Generating tests with auto-depth mode"></p>
-<p>Clicking <em><em>add</em></em> should generate a single trace. Each trace generated will have a line in the list similar to <tt>Trace coverage: 4/4</tt>. This shows that the trace covered four out of four edges. Further information about which locations and edges are/are not covered are shown in the <em><em>Statistics</em></em> panel to the right. Here, all of the 3 locations and 4 edges are trivially covered.</p>
-<p><img src=../img/test-cases-coverage-1.png alt=Generation></p>
-<p>By double clicking the trace and selecting the <em><em>Simulator</em></em> tab, the trace can be examined. Unsurprisingly, the trace simply runs in circles with alternating on/off presses.</p>
-<p><img src=../img/test-cases-simulator-1.png alt="Simulating a test case"></p>
-<p>Next output the test cases to the file by clicking <em><em>Save Test Cases</em></em>. Select the output folder for test cases. Make this point to the <tt>onoff</tt> folder in this tutorial.
-<img src=../img/test-cases-save-1.png alt="Test Cases Output"></p>
-<h3 id=inspecting-the-test-case-code>Inspecting the test case code</h3>
-<p>Pressing the <em><em>Save Test Cases</em></em> button in the <em><em>Test Cases</em></em> tab will generate a file called <tt>testcase0.code</tt> in the selected output folder. If several traces have been generated, several files will be generated with sequential numbering.</p>
-<p>Each of these will be a Java class with the sequence of method invocations induce by the generated trace. A snippet is shown below.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java> 1<span style=color:#f92672>:</span> <span style=color:#f92672>package</span> app<span style=color:#f92672>;</span>
- 2<span style=color:#f92672>:</span> <span style=color:#f92672>import</span> app.App<span style=color:#f92672>;</span>
- 3<span style=color:#f92672>:</span>
- 4<span style=color:#f92672>:</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Test</span> <span style=color:#66d9ef>extends</span> App <span style=color:#f92672>{</span>
- 5<span style=color:#f92672>:</span>
- 6<span style=color:#f92672>:</span>     <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span><span style=color:#f92672>(</span>String<span style=color:#f92672>[]</span> args<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
- 7<span style=color:#f92672>:</span>
- 8<span style=color:#f92672>:</span> expect_off<span style=color:#f92672>();</span>
- 9<span style=color:#f92672>:</span>
-10: set_on<span style=color:#f92672>();</span>
-11:
-12: expect_on<span style=color:#f92672>();</span>
-13:
-14: set_off<span style=color:#f92672>();</span>
-15:
-   <span style=color:#f92672>&lt;...</span> snip <span style=color:#f92672>...</span> <span style=color:#f92672>&gt;</span>
-93:
-94:     <span style=color:#f92672>}</span>
-95: <span style=color:#f92672>}</span>
-</code></pre></div><ul>
-<li>The test case starts with the prefix code on lines 1-6.</li>
-<li>Line 8 is the first step of the trace. This is <tt>expect_off();</tt> since the initial location is <tt>Off</tt>.</li>
-<li>The first transition is the one labeled <em>on?</em>, the test code for this transition is <tt>set_on();</tt>. This is entered in the trace at line 10.</li>
-<li>The trace then enters location <em>On</em> and <tt>expect_on();</tt> is in the test case at line 12. The test case continues in this fashion.</li>
-<li>The trace ends with the postfix code on lines 94-95.</li>
+<p>In the following we give a pseudo-formal semantics for the requirement specification language of UPPAAL. We assume the existence of a timed transition system (<em>S, s<sub>0</sub>,</em> →) as defined in the <a href=/language-reference/system-description/semantics/l>semantics of UPPAAL</a>. In the following, <tt>p</tt> and <tt>q</tt> are <a href=#state-properties>state properties</a> for which we define the following temporal properties:</p>
+<h3 id=possibly>Possibly</h3>
+<p>The property <tt>E&lt;> p</tt> evaluates to true for a timed transition system if and only if there is a sequence of alternating delay transitions and action transitions <em>s</em><sub><em>0</em></sub> → <em>s</em><sub><em>1</em></sub> → &mldr; → <em>s</em><sub><em>n</em></sub>, where <em>s</em><sub><em>0</em></sub> is the initial state and <em>s</em><sub><em>n</em></sub> satisfies <em>p</em>.</p>
+<h3 id=invariantly>Invariantly</h3>
+<p>The property <tt>A[] p</tt> evaluates to true if (and only if) every reachable state satisfy <tt>p</tt>.</p>
+<p>An <em>invariantly</em> property <tt>A[] p</tt> can be expressed as the <em>possibly</em> property <tt>not E&lt;> not p</tt>.</p>
+<h3 id=potentially-always>Potentially always</h3>
+<p>The property <tt>E[] p</tt> evaluates to true for a timed transition system if and only if there is a sequence of alternating delay or action transitions <em>s</em><sub><em>0</em></sub> → <em>s</em><sub><em>1</em></sub> → &mldr; → <em>s</em><sub><em>i</em></sub> → &mldr; for which <em>p</em> holds in all states <em>s</em><sub><em>i</em></sub> and which either:</p>
+<ul>
+<li>is infinite, or</li>
+<li>ends in a state (<em>L</em><sub><em>n</em></sub>, <em>v</em><sub><em>n</em></sub>) such that either
+<ul>
+<li>for all <em>d</em>: (<em>L</em><sub><em>n</em></sub>, <em>v</em><sub><em>n</em></sub><em>+d</em>) satisfies <em>p</em> and <em>Inv</em>(<em>L</em><sub><em>n</em></sub>), or</li>
+<li>there is no outgoing transition from (<em>L</em><sub><em>n</em></sub>, <em>v</em><sub><em>n</em></sub>_)</li>
 </ul>
-<h3 id=exectuting-the-test-cases>Exectuting the test cases</h3>
-<p>Running the <tt>test.sh</tt> (or <tt>test.bat</tt> on Windows) will compile and run the test cases one at a time.
-It will output the name of each file as it executes them.
-No output from the test case signifies successful execution.</p>
-<pre>
-onoff$ ./test.sh
-testcase0.code
-onoff$
-</pre>
-<p>Running the <tt>testMutant.sh</tt> (or <tt>testMutant.bat</tt> on Windows) will compile and run the test cases on the mutant (intentionally wrong) implementation.
-This should result in an exception being thrown, signifying a test error.</p>
-<pre>
-onoff$ ./testMutant.sh
-testcase0.code
-Exception in thread "main" java.lang.AssertionError
-  at app.App.expect_on(App.java:17)
-  at app.Test.main(Test.java:15)
-onoff$
-</pre>
-<p>The implementation code can be examined in the <tt>onoff/app</tt> folder. See file <tt> onoff/app/AppC.java</tt> for the correct implementation and <tt> onoff/app/AppM.java</tt> for the mutant.</p>
-<p>In order to transfer this to you own applications, you will have to decorate the model with test code such that the output from the generator constitutes an executable test case in whatever test execution framework you use.</p>
+</li>
+</ul>
+<h3 id=eventually>Eventually</h3>
+<p>The property <tt>A&lt;> p</tt> evaluates to true if (and only if) all possible transition sequences eventually reaches a state satisfying <tt>p</tt>.</p>
+<p>An <em>eventually</em> property <tt>A&lt;> p</tt> can be expressed as the <em>potentially</em> property <tt>not E[] not p</tt>.</p>
+<h3 id=leads-to>Leads To</h3>
+<p>The syntax <tt>p &ndash;> q</tt> denotes a leads to property meaning that whenever <tt>p</tt> holds eventually <tt>q</tt> will hold as well. Since UPPAAL uses timed automata as the input model, this has to be interpreted not only over action transitions but also over delay transitions.</p>
+<p>A <em>leads to</em> property <tt>p &ndash;> q</tt> can be expressed as the property <tt>A[] (p imply A&lt;> q)</tt>.</p>
+<h2 id=state-properties>State Properties</h2>
+<p>Any side-effect free <a href=/language-reference/expressions/>expression</a> is a valid state property. In addition it is possible to test whether a process is in a particular location and whether a state is a deadlock. State proprerties are evaluated for the initial state and after each transition. This means for example that a property <tt>A[] i != 1</tt> might be satisfied even if the value of <tt>i</tt> becomes 1 momentarily during the evaluation of initializers or update-expressions on edges.</p>
+<h3 id=locations>Locations</h3>
+<p>Expressions on the form <tt>P.ℓ</tt>, where <tt>P</tt> is a process and <tt>ℓ</tt> is a location, evaluate to true in a state (<em>L, v</em>) if and only if <em>P.ℓ</em> is in <em>L</em>.</p>
+<h3 id=deadlocks>Deadlocks</h3>
+<p>The state property <tt>deadlock</tt> evaluates to true for a state (<em>L, v</em>) if and only if for all <em>d ≥ 0</em> there is no action successor of (<em>L, v + d</em>).</p>
+<h2 id=property-equivalences>Property Equivalences</h2>
+<p>The UPPAAL requirement specification language supports five types of properties, which can be reduced to two types as illustrated by the following table.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Property</th>
+<th>Equivalent to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Posibly</td>
+<td>E&lt;> p</td>
+<td></td>
+</tr>
+<tr>
+<td>Invariantly</td>
+<td>A[] p</td>
+<td>not E&lt;> not p</td>
+</tr>
+<tr>
+<td>Potentially always</td>
+<td>E[] p</td>
+<td></td>
+</tr>
+<tr>
+<td>Eventually</td>
+<td>A&lt;> p</td>
+<td>not E[] not p</td>
+</tr>
+<tr>
+<td>Leads to</td>
+<td>p &ndash;> q</td>
+<td>A[] (p imply A&lt;> q)</td>
+</tr>
+</tbody>
+</table>
+</center>
 <footer class=footline>
 </footer>
 </div>
 </div>
 <div id=navigation>
-<a class="nav nav-prev" href=/gui-reference/yggdrasil/tutorial/ title=Tutorial> <i class="fa fa-chevron-left"></i></a>
-<a class="nav nav-next" href=/gui-reference/yggdrasil/tutorial/using-variables/ title="Using Model Variables" style=margin-right:0><i class="fa fa-chevron-right"></i></a>
+<a class="nav nav-prev" href=/language-reference/requirements-specification/ title="Requirements Specification"> <i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/language-reference/requirements-specification/smc_queries/ title="Semantics of the Statistical Queries" style=margin-right:0><i class="fa fa-chevron-right"></i></a>
 </div>
 </section>
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>

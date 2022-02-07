@@ -2,20 +2,20 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=generator content="Hugo 0.89.0">
+<meta name=generator content="Hugo 0.92.1">
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
 <title>Requirements Specification :: UPPAAL Documentation</title>
-<link href=/css/nucleus.css?1635945174 rel=stylesheet>
-<link href=/css/fontawesome-all.min.css?1635945174 rel=stylesheet>
-<link href=/css/hybrid.css?1635945174 rel=stylesheet>
-<link href=/css/featherlight.min.css?1635945174 rel=stylesheet>
-<link href=/css/perfect-scrollbar.min.css?1635945174 rel=stylesheet>
-<link href=/css/auto-complete.css?1635945174 rel=stylesheet>
-<link href=/css/atom-one-dark-reasonable.css?1635945174 rel=stylesheet>
-<link href=/css/theme.css?1635945174 rel=stylesheet>
-<link href=/css/hugo-theme.css?1635945174 rel=stylesheet>
-<script src=/js/jquery-3.3.1.min.js?1635945174></script>
+<link href=/css/nucleus.css?1644227910 rel=stylesheet>
+<link href=/css/fontawesome-all.min.css?1644227910 rel=stylesheet>
+<link href=/css/hybrid.css?1644227910 rel=stylesheet>
+<link href=/css/featherlight.min.css?1644227910 rel=stylesheet>
+<link href=/css/perfect-scrollbar.min.css?1644227910 rel=stylesheet>
+<link href=/css/auto-complete.css?1644227910 rel=stylesheet>
+<link href=/css/atom-one-dark-reasonable.css?1644227910 rel=stylesheet>
+<link href=/css/theme.css?1644227910 rel=stylesheet>
+<link href=/css/hugo-theme.css?1644227910 rel=stylesheet>
+<script src=/js/jquery-3.3.1.min.js?1644227910></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
 <body data-url=/language-reference/requirements-specification/>
@@ -31,10 +31,10 @@
 <input data-search-input id=search-by type=search placeholder=Search...>
 <span data-search-clear><i class="fas fa-times"></i></span>
 </div>
-<script type=text/javascript src=/js/lunr.min.js?1635945174></script>
-<script type=text/javascript src=/js/auto-complete.js?1635945174></script>
+<script type=text/javascript src=/js/lunr.min.js?1644227910></script>
+<script type=text/javascript src=/js/auto-complete.js?1644227910></script>
 <script type=text/javascript>var baseurl=""</script>
-<script type=text/javascript src=/js/search.js?1635945174></script>
+<script type=text/javascript src=/js/search.js?1644227910></script>
 </div>
 <div class=highlightable>
 <ul class=topics>
@@ -330,13 +330,19 @@ active">
 Requirements Specification
 </a>
 <ul>
-<li data-nav-id=/language-reference/requirements-specification/semantics/ title="Semantics of the Requirement Specification Language" class=dd-item>
-<a href=/language-reference/requirements-specification/semantics/>
-Semantics
+<li data-nav-id=/language-reference/requirements-specification/symb_queries/ title="Semantics of the Symbolic Queries" class=dd-item>
+<a href=/language-reference/requirements-specification/symb_queries/>
+Symbolic Queries
 </a>
 </li>
-<li data-nav-id=/language-reference/requirements-specification/statistical_estimation/ title class=dd-item>
-<a href=/language-reference/requirements-specification/statistical_estimation/>
+<li data-nav-id=/language-reference/requirements-specification/smc_queries/ title="Semantics of the Statistical Queries" class=dd-item>
+<a href=/language-reference/requirements-specification/smc_queries/>
+Statistical Queries
+</a>
+</li>
+<li data-nav-id=/language-reference/requirements-specification/ci_estimation/ title="CI Estimation" class=dd-item>
+<a href=/language-reference/requirements-specification/ci_estimation/>
+CI Estimation
 </a>
 </li>
 </ul>
@@ -460,7 +466,15 @@ UPPAAL TRON
 <div class=wrapper>
 <nav id=TableOfContents>
 <ul>
+<li><a href=#symbolic-queries>Symbolic Queries</a>
+<ul>
 <li><a href=#examples>Examples</a></li>
+</ul>
+</li>
+<li><a href=#controller-synthesis-queries>Controller Synthesis Queries</a></li>
+<li><a href=#statistical-queries>Statistical Queries</a></li>
+<li><a href=#learning-queries>Learning Queries</a></li>
+<li><a href=#strategy-queries>Strategy Queries</a></li>
 </ul>
 </nav>
 </div>
@@ -473,86 +487,144 @@ UPPAAL TRON
 <h1>
 Requirements Specification
 </h1>
-<p>In this help section we give a BNF-grammar for the requirement specification language used in the verifier of UPPAAL.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-EBNF data-lang=EBNF><span style=color:#66d9ef>Prop </span><span style=color:#960050;background-color:#1e0010>::</span><span style=color:#f92672>=</span> 
-        <span style=color:#e6db74>&#39;A[]&#39;</span> <span style=color:#66d9ef>Expression </span>
-      | <span style=color:#e6db74>&#39;E&lt;&gt;&#39;</span> <span style=color:#66d9ef>Expression </span>
-      | <span style=color:#e6db74>&#39;E[]&#39;</span> <span style=color:#66d9ef>Expression </span>
-      | <span style=color:#e6db74>&#39;A&lt;&gt;&#39;</span> <span style=color:#66d9ef>Expression </span>
-      | <span style=color:#66d9ef>Expression --</span><span style=color:#960050;background-color:#1e0010>&gt;</span> <span style=color:#66d9ef>Expression  </span>
+<p>This section describes a BNF-grammar for the requirement specification language used in the verifier of UPPAAL.</p>
+<h2 id=symbolic-queries>Symbolic Queries</h2>
+<p>Symbolic queries are performed using symbolic operations based on symbolic semantics of timed automata and correspond to a mathematically rigorous proof.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-EBNF data-lang=EBNF><span style=color:#66d9ef>SymbQuery </span><span style=color:#960050;background-color:#1e0010>::</span><span style=color:#f92672>=</span>
+        <span style=color:#e6db74>&#39;A[]&#39;</span> <span style=color:#66d9ef>Expression</span>
+      | <span style=color:#e6db74>&#39;E&lt;&gt;&#39;</span> <span style=color:#66d9ef>Expression</span>
+      | <span style=color:#e6db74>&#39;E[]&#39;</span> <span style=color:#66d9ef>Expression</span>
+      | <span style=color:#e6db74>&#39;A&lt;&gt;&#39;</span> <span style=color:#66d9ef>Expression</span>
+      | <span style=color:#66d9ef>Expression --</span><span style=color:#960050;background-color:#1e0010>&gt;</span> <span style=color:#66d9ef>Expression</span>
 
       | <span style=color:#e6db74>&#39;sup&#39;</span> <span style=color:#e6db74>&#39;:&#39;</span> <span style=color:#66d9ef>List</span>
-      | <span style=color:#e6db74>&#39;sup&#39;</span> <span style=color:#e6db74>&#39;{&#39;</span> <span style=color:#66d9ef>Expression </span><span style=color:#e6db74>&#39;}&#39;</span> <span style=color:#e6db74>&#39;:&#39;</span> <span style=color:#66d9ef>List  </span>
+      | <span style=color:#e6db74>&#39;sup&#39;</span> <span style=color:#e6db74>&#39;{&#39;</span> <span style=color:#66d9ef>Expression </span><span style=color:#e6db74>&#39;}&#39;</span> <span style=color:#e6db74>&#39;:&#39;</span> <span style=color:#66d9ef>List</span>
 
       | <span style=color:#e6db74>&#39;inf&#39;</span> <span style=color:#e6db74>&#39;:&#39;</span> <span style=color:#66d9ef>List</span>
-      | <span style=color:#e6db74>&#39;inf&#39;</span> <span style=color:#e6db74>&#39;{&#39;</span> <span style=color:#66d9ef>Expression </span><span style=color:#e6db74>&#39;}&#39;</span> <span style=color:#e6db74>&#39;:&#39;</span> <span style=color:#66d9ef>List  </span>
+      | <span style=color:#e6db74>&#39;inf&#39;</span> <span style=color:#e6db74>&#39;{&#39;</span> <span style=color:#66d9ef>Expression </span><span style=color:#e6db74>&#39;}&#39;</span> <span style=color:#e6db74>&#39;:&#39;</span> <span style=color:#66d9ef>List</span>
 
+<span style=color:#66d9ef>List </span><span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#66d9ef>Expression </span>| <span style=color:#66d9ef>Expression </span><span style=color:#e6db74>&#39;,&#39;</span> <span style=color:#66d9ef>List</span>
+</code></pre></div><p>For <tt>sup</tt> properties, expression may not contain clock constraints and must evaluate to either an integer or a clock.</p>
+<p><strong>See also:</strong> <a href=symb_queries/>Semantics of the Symbolic Queries</a></p>
+<h3 id=examples>Examples</h3>
+<ul>
+<li><tt>A[] 1&lt;2</tt>
+invariantly 1&lt;2.</li>
+<li><tt>E&lt;> p1.cs and p2.cs</tt>
+true if the system can reach a state where both process <tt>p1</tt> and p2 are in their locations <tt>cs</tt>.</li>
+<li><tt>A[] p1.cs imply not p2.cs</tt>
+invariantly process <tt>p1</tt> in location <tt>cs</tt> implies that process <tt>p2</tt> is <strong>not</strong> in location <tt>cs</tt>.</li>
+<li><tt>A[] not deadlock</tt>
+invariantly the process is not deadlocked.</li>
+<li><tt>sup: list</tt>
+the property is always true and returns the suprema of the expressions (maximal values in case of integers, upper bounds, strict or not, for clocks).</li>
+<li><tt>sup{expression}: list</tt>
+The expressions in the list are evaluated only on the states that satisfy the the expression (a state predicate) that acts like an observation.</li>
+<li>The <tt>inf</tt> formula are similar to <tt>sup</tt> but for infima. A state predicate should be used when a clock infimum is asked otherwise the trivial result is >= 0.</li>
+</ul>
+<h2 id=controller-synthesis-queries>Controller Synthesis Queries</h2>
+<p>Controller synthesis queries are decided using symbolic techniques over Timed Game (TIGA) automata, where the discrete actions are either controllable (controller&rsquo;s actions, solid edges) or uncontrollable (environment actions, dashed edges). The result is either a strategy solving the game objective or that the strategy does not exist.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-EBNF data-lang=EBNF><span style=color:#66d9ef>TIGAQuery </span><span style=color:#960050;background-color:#1e0010>::</span><span style=color:#f92672>=</span>
+        <span style=color:#e6db74>&#39;control:&#39;</span> <span style=color:#e6db74>&#39;A&lt;&gt;&#39;</span> <span style=color:#66d9ef>WinExpression</span>
+      | <span style=color:#e6db74>&#39;control:&#39;</span> <span style=color:#e6db74>&#39;A[&#39;</span> <span style=color:#66d9ef>NotLooseExpression </span><span style=color:#e6db74>&#39;U&#39;</span> <span style=color:#66d9ef>WinExpression </span><span style=color:#e6db74>&#39;]&#39;</span>
+	  | <span style=color:#e6db74>&#39;control:&#39;</span> <span style=color:#e6db74>&#39;A[&#39;</span> <span style=color:#66d9ef>NotLooseExpression </span><span style=color:#e6db74>&#39;W&#39;</span> <span style=color:#66d9ef>WinExpression </span><span style=color:#e6db74>&#39;]&#39;</span>
+      | <span style=color:#e6db74>&#39;control:&#39;</span> <span style=color:#e6db74>&#39;A[&#39;</span> <span style=color:#66d9ef>NotLooseExpression </span><span style=color:#e6db74>&#39;]&#39;</span>
+
+<span style=color:#66d9ef>WinExpression </span><span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#66d9ef>Expression</span>
+
+<span style=color:#66d9ef>NotLooseExpression </span><span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#66d9ef>Expression</span>
+</code></pre></div><h2 id=statistical-queries>Statistical Queries</h2>
+<p>Statistical queries are decided using concrete semantics of stochastic hybrid automata over a number of bounded concrete simulation runs and correspond to empirical measurements of the system performance. The results are of statistical estimate nature and may vary across different executions based on uncertainties specified in the statistical parameters.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-EBNF data-lang=EBNF><span style=color:#66d9ef>SMCQuery </span><span style=color:#960050;background-color:#1e0010>::</span><span style=color:#f92672>=</span>
+	  | <span style=color:#66d9ef>Simulate</span>
       | <span style=color:#66d9ef>Probability</span>
       | <span style=color:#66d9ef>ProbUntil</span>
       | <span style=color:#66d9ef>Probability </span>( <span style=color:#e6db74>&#39;&lt;=&#39;</span> | <span style=color:#e6db74>&#39;&gt;=&#39;</span> ) <span style=color:#66d9ef>PROB</span>
       | <span style=color:#66d9ef>Probability </span>( <span style=color:#e6db74>&#39;&lt;=&#39;</span> | <span style=color:#e6db74>&#39;&gt;=&#39;</span> ) <span style=color:#66d9ef>Probability</span>
-      | <span style=color:#66d9ef>Estimate  </span>
+      | <span style=color:#66d9ef>Estimate</span>
 
-<span style=color:#66d9ef>List </span><span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#66d9ef>Expression </span>| <span style=color:#66d9ef>Expression </span><span style=color:#e6db74>&#39;,&#39;</span> <span style=color:#66d9ef>List  </span>
+<span style=color:#66d9ef>Simulate </span><span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#e6db74>&#39;simulate&#39;</span> <span style=color:#e6db74>&#39;[&#39;</span> <span style=color:#66d9ef>SMCBounds </span><span style=color:#e6db74>&#39;]&#39;</span> <span style=color:#e6db74>&#39;{&#39;</span> <span style=color:#66d9ef>List </span><span style=color:#e6db74>&#39;}&#39;</span> [ <span style=color:#960050;background-color:#1e0010>:</span> <span style=color:#66d9ef>Expression </span>[ <span style=color:#e6db74>&#39;:&#39;</span> <span style=color:#66d9ef>SATRUNS </span>]]
 
-<span style=color:#66d9ef>Probability </span><span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#e6db74>&#39;Pr[&#39;</span> ( <span style=color:#66d9ef>Clock </span>| <span style=color:#e6db74>&#39;#&#39;</span> ) <span style=color:#e6db74>&#39;&lt;=&#39;</span> <span style=color:#66d9ef>CONST </span><span style=color:#e6db74>&#39;]&#39;</span> <span style=color:#e6db74>&#39;(&#39;</span> (<span style=color:#e6db74>&#39;&lt;&gt;&#39;</span>|<span style=color:#e6db74>&#39;[]&#39;</span>) <span style=color:#66d9ef>Expression </span><span style=color:#e6db74>&#39;)&#39;</span>  
+<span style=color:#66d9ef>Probability </span><span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#e6db74>&#39;Pr[&#39;</span> <span style=color:#66d9ef>SMCBounds </span><span style=color:#e6db74>&#39;]&#39;</span> <span style=color:#e6db74>&#39;(&#39;</span> <span style=color:#66d9ef>PathType Expression </span><span style=color:#e6db74>&#39;)&#39;</span>
 
-<span style=color:#66d9ef>ProbUntil   </span><span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#e6db74>&#39;Pr[&#39;</span> ( <span style=color:#66d9ef>Clock </span>| <span style=color:#e6db74>&#39;#&#39;</span> ) <span style=color:#e6db74>&#39;&lt;=&#39;</span> <span style=color:#66d9ef>CONST </span><span style=color:#e6db74>&#39;]&#39;</span> <span style=color:#e6db74>&#39;(&#39;</span> <span style=color:#66d9ef>Expression </span><span style=color:#e6db74>&#39;U&#39;</span> <span style=color:#66d9ef>Expression </span><span style=color:#e6db74>&#39;)&#39;</span>  
+<span style=color:#66d9ef>ProbUntil   </span><span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#e6db74>&#39;Pr[&#39;</span> <span style=color:#66d9ef>SMCBounds </span><span style=color:#e6db74>&#39;]&#39;</span> <span style=color:#e6db74>&#39;(&#39;</span> <span style=color:#66d9ef>Expression </span><span style=color:#e6db74>&#39;U&#39;</span> <span style=color:#66d9ef>Expression </span><span style=color:#e6db74>&#39;)&#39;</span>
 
-<span style=color:#66d9ef>Estimate </span><span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#e6db74>&#39;E[&#39;</span> ( <span style=color:#66d9ef>Clock </span>| <span style=color:#e6db74>&#39;#&#39;</span> ) <span style=color:#e6db74>&#39;&lt;=&#39;</span> <span style=color:#66d9ef>CONST </span><span style=color:#e6db74>&#39;;&#39;</span> <span style=color:#66d9ef>CONST </span><span style=color:#e6db74>&#39;]&#39;</span> <span style=color:#e6db74>&#39;(&#39;</span> (<span style=color:#e6db74>&#39;min:&#39;</span> | <span style=color:#e6db74>&#39;max:&#39;</span>) <span style=color:#66d9ef>Expression </span><span style=color:#e6db74>&#39;)&#39;</span>
+<span style=color:#66d9ef>Estimate </span><span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#e6db74>&#39;E[&#39;</span> <span style=color:#66d9ef>SMCBounds </span><span style=color:#e6db74>&#39;]&#39;</span> <span style=color:#e6db74>&#39;(&#39;</span> (<span style=color:#e6db74>&#39;min:&#39;</span> | <span style=color:#e6db74>&#39;max:&#39;</span>) <span style=color:#66d9ef>Expression </span><span style=color:#e6db74>&#39;)&#39;</span>
+
+<span style=color:#66d9ef>SMCBounds </span><span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#66d9ef>BoundType </span>[ ; <span style=color:#66d9ef>RUNS </span><span style=color:#960050;background-color:#1e0010>]</span>
+
+<span style=color:#66d9ef>BoundType </span><span style=color:#960050;background-color:#1e0010>::</span><span style=color:#f92672>=</span> (  | <span style=color:#66d9ef>Clock </span>| <span style=color:#e6db74>&#39;#&#39;</span> ) <span style=color:#e6db74>&#39;&lt;=&#39;</span> <span style=color:#66d9ef>BOUND</span>
+
+<span style=color:#66d9ef>PathType </span><span style=color:#960050;background-color:#1e0010>::=</span> ( <span style=color:#e6db74>&#39;&lt;&gt;&#39;</span> | <span style=color:#e6db74>&#39;[]&#39;</span> )
 </code></pre></div><dl>
-<dt><tt>CONST</tt></dt>
-<dd>is a non-negative integer constant.</dd>
+<dt><tt>BOUND</tt></dt>
+<dd>is a non-negative integer constant denoting an upper bound over the absolute global time (when a variable is not specified), specific <tt>Clock</tt> (cost) variable or a number of action-transitions (<tt>#</tt>).</dd>
+<dt><tt>RUNS</tt></dt>
+<dd>is an optional positive integer constant denoting the maximum number of runs. If the number of runs is not specified, then it is decided based on statistical parameters and the particular estimation algorithm.</dd>
+<dt><tt>SATRUNS</tt></dt>
+<dd>is an optional positive integer constant denoting the maximum number of runs that satisfy the state expression.</dd>
 <dt><tt>PROB</tt></dt>
-<dd>is a floating point number from an interval [0;1] denoting probability.</dd>
+<dd>is a floating point number from an interval [0;1] denoting a probability bound.</dd>
 <dt><tt>'#'</tt></dt>
-<dd>means a number of simulation steps -- discrete transitions -- in the run.</dd>
+<dd>means a number of simulation steps -- discrete action-transitions -- in the run.</dd>
 <dt><tt>'min:'</tt></dt>
 <dd>means the minimum value over a run of the proceeding expression.</dd>
 <dt><tt>'max:'</tt></dt>
 <dd>means the maximum value over a run of the proceeding expression.</dd>
 </dl>
-<p>All expressions are state predicates and must be side effect free. It is possible to test whether a certain process is in a given location using expressions on the form <tt>process.location</tt>. For <tt>sup</tt> properties, expression may not contain clock constraints and must evaluate to either an integer or a clock.</p>
-<p><strong>See also:</strong> <a href=semantics/>Semantics of the Requirement Specification Language</a></p>
-<h2 id=examples>Examples</h2>
-<ul>
-<li><tt>A[] 1&lt;2</tt><br>
-invariantly 1&lt;2.</li>
-<li><tt>E&lt;> p1.cs and p2.cs</tt><br>
-true if the system can reach a state where both process <tt>p1</tt> and p2 are in their locations <tt>cs</tt>.</li>
-<li><tt>A[] p1.cs imply not p2.cs</tt><br>
-invariantly process <tt>p1</tt> in location <tt>cs</tt> implies that process <tt>p2</tt> is <strong>not</strong> in location <tt>cs</tt>.</li>
-<li><tt>A[] not deadlock</tt><br>
-invariantly the process is not deadlocked.</li>
-<li><tt>sup: list</tt><br>
-the property is always true and returns the suprema of the expressions (maximal values in case of integers, upper bounds, strict or not, for clocks).</li>
-<li><tt>sup{expression}: list</tt><br>
-The expressions in the list are evaluated only on the states that satisfy the the expression (a state predicate) that acts like an observation.</li>
-<li>The <tt>inf</tt> formula are similar to <tt>sup</tt> but for infima. A state predicate should be used when a clock infimum is asked otherwise the trivial result is >= 0.</li>
-</ul>
+<p>All expressions are state predicates and must be side effect free. It is possible to test whether a certain process is in a given location using expressions on the form <tt>process.location</tt>.</p>
+<p><strong>See also:</strong> <a href=smc_queries/>Semantics of the SMC Queries</a></p>
+<h2 id=learning-queries>Learning Queries</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-EBNF data-lang=EBNF><span style=color:#66d9ef>LearningQuery </span><span style=color:#960050;background-color:#1e0010>::</span><span style=color:#f92672>=</span>
+     <span style=color:#66d9ef>ExpQuantifier </span><span style=color:#e6db74>&#39;(&#39;</span> <span style=color:#66d9ef>Expression </span><span style=color:#e6db74>&#39;)&#39;</span> <span style=color:#e6db74>&#39;[&#39;</span> <span style=color:#66d9ef>BoundType </span><span style=color:#e6db74>&#39;]&#39;</span> <span style=color:#66d9ef>Features </span><span style=color:#e6db74>&#39;:&#39;</span> <span style=color:#66d9ef>PathType Expression</span>
+
+<span style=color:#66d9ef>ExpQuantifier </span><span style=color:#960050;background-color:#1e0010>::=</span> ( <span style=color:#66d9ef>min </span>| <span style=color:#66d9ef>max </span>)
+
+<span style=color:#66d9ef>Features </span><span style=color:#960050;background-color:#1e0010>::=</span> <span style=color:#e6db74>&#39;{&#39;</span> <span style=color:#66d9ef>List </span><span style=color:#e6db74>&#39;}&#39;</span> <span style=color:#e6db74>&#39;-&gt;&#39;</span> <span style=color:#e6db74>&#39;{&#39;</span> <span style=color:#66d9ef>List </span><span style=color:#e6db74>&#39;}&#39;</span>
+</code></pre></div><dl>
+<dt><tt>Features</tt></dt>
+<dd>describes a mapping from partial state to .</dd>
+</dl>
+<h2 id=strategy-queries>Strategy Queries</h2>
+<p>Strategy queries allow store, load, reuse and refine the strategies by assigning names to them.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-EBNF data-lang=EBNF><span style=color:#66d9ef>StrategyQuery </span><span style=color:#960050;background-color:#1e0010>::</span><span style=color:#f92672>=</span>
+	    <span style=color:#e6db74>&#39;strategy&#39;</span> <span style=color:#66d9ef>Name </span><span style=color:#e6db74>&#39;=&#39;</span> <span style=color:#66d9ef>Query </span>[ <span style=color:#e6db74>&#39;under&#39;</span> <span style=color:#66d9ef>Name </span>]
+	  | <span style=color:#e6db74>&#39;saveStrategy&#39;</span> <span style=color:#e6db74>&#39;(&#39;</span> <span style=color:#66d9ef>Path </span><span style=color:#e6db74>&#39;,&#39;</span> <span style=color:#66d9ef>Name </span><span style=color:#e6db74>&#39;)&#39;</span>
+	  | <span style=color:#e6db74>&#39;loadStrategy&#39;</span> <span style=color:#66d9ef>Features </span><span style=color:#e6db74>&#39;(&#39;</span> <span style=color:#66d9ef>Path </span><span style=color:#e6db74>&#39;)&#39;</span>
+
+<span style=color:#66d9ef>Query </span><span style=color:#960050;background-color:#1e0010>::=</span>
+        <span style=color:#66d9ef>SymbQuery</span>
+	  | <span style=color:#66d9ef>TIGAQuery</span>
+	  | <span style=color:#66d9ef>SMCQuery</span>
+	  | <span style=color:#66d9ef>LearningQuery</span>
+
+</code></pre></div><dl>
+<dt><tt>Path</tt></dt>
+<dd>is a double-quoted character sequence (string) denoting a file system path.</dd>
+</dl>
 <footer class=footline>
 </footer>
 </div>
 </div>
 <div id=navigation>
 <a class="nav nav-prev" href=/language-reference/system-description/semantics/ title=Semantics> <i class="fa fa-chevron-left"></i></a>
-<a class="nav nav-next" href=/language-reference/requirements-specification/semantics/ title="Semantics of the Requirement Specification Language" style=margin-right:0><i class="fa fa-chevron-right"></i></a>
+<a class="nav nav-next" href=/language-reference/requirements-specification/symb_queries/ title="Semantics of the Symbolic Queries" style=margin-right:0><i class="fa fa-chevron-right"></i></a>
 </div>
 </section>
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
 <div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div>
 </div>
-<script src=/js/clipboard.min.js?1635945174></script>
-<script src=/js/perfect-scrollbar.min.js?1635945174></script>
-<script src=/js/perfect-scrollbar.jquery.min.js?1635945174></script>
-<script src=/js/jquery.sticky.js?1635945174></script>
-<script src=/js/featherlight.min.js?1635945174></script>
-<script src=/js/highlight.pack.js?1635945174></script>
+<script src=/js/clipboard.min.js?1644227910></script>
+<script src=/js/perfect-scrollbar.min.js?1644227910></script>
+<script src=/js/perfect-scrollbar.jquery.min.js?1644227910></script>
+<script src=/js/jquery.sticky.js?1644227910></script>
+<script src=/js/featherlight.min.js?1644227910></script>
+<script src=/js/highlight.pack.js?1644227910></script>
 <script>hljs.initHighlightingOnLoad()</script>
-<script src=/js/modernizr.custom-3.6.0.js?1635945174></script>
-<script src=/js/learn.js?1635945174></script>
-<script src=/js/hugo-learn.js?1635945174></script>
-<script src=/mermaid/mermaid.js?1635945174></script>
+<script src=/js/modernizr.custom-3.6.0.js?1644227910></script>
+<script src=/js/learn.js?1644227910></script>
+<script src=/js/hugo-learn.js?1644227910></script>
+<script src=/mermaid/mermaid.js?1644227910></script>
 <script>mermaid.initialize({startOnLoad:!0})</script>
 </body>
 </html>

@@ -2,23 +2,23 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=generator content="Hugo 0.89.0">
+<meta name=generator content="Hugo 0.92.1">
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
-<title> :: UPPAAL Documentation</title>
-<link href=/css/nucleus.css?1635945174 rel=stylesheet>
-<link href=/css/fontawesome-all.min.css?1635945174 rel=stylesheet>
-<link href=/css/hybrid.css?1635945174 rel=stylesheet>
-<link href=/css/featherlight.min.css?1635945174 rel=stylesheet>
-<link href=/css/perfect-scrollbar.min.css?1635945174 rel=stylesheet>
-<link href=/css/auto-complete.css?1635945174 rel=stylesheet>
-<link href=/css/atom-one-dark-reasonable.css?1635945174 rel=stylesheet>
-<link href=/css/theme.css?1635945174 rel=stylesheet>
-<link href=/css/hugo-theme.css?1635945174 rel=stylesheet>
-<script src=/js/jquery-3.3.1.min.js?1635945174></script>
+<title>CI Estimation :: UPPAAL Documentation</title>
+<link href=/css/nucleus.css?1644227910 rel=stylesheet>
+<link href=/css/fontawesome-all.min.css?1644227910 rel=stylesheet>
+<link href=/css/hybrid.css?1644227910 rel=stylesheet>
+<link href=/css/featherlight.min.css?1644227910 rel=stylesheet>
+<link href=/css/perfect-scrollbar.min.css?1644227910 rel=stylesheet>
+<link href=/css/auto-complete.css?1644227910 rel=stylesheet>
+<link href=/css/atom-one-dark-reasonable.css?1644227910 rel=stylesheet>
+<link href=/css/theme.css?1644227910 rel=stylesheet>
+<link href=/css/hugo-theme.css?1644227910 rel=stylesheet>
+<script src=/js/jquery-3.3.1.min.js?1644227910></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
-<body data-url=/language-reference/requirements-specification/statistical_estimation/>
+<body data-url=/language-reference/requirements-specification/ci_estimation/>
 <nav id=sidebar>
 <div id=header-wrapper>
 <div id=header>
@@ -31,10 +31,10 @@
 <input data-search-input id=search-by type=search placeholder=Search...>
 <span data-search-clear><i class="fas fa-times"></i></span>
 </div>
-<script type=text/javascript src=/js/lunr.min.js?1635945174></script>
-<script type=text/javascript src=/js/auto-complete.js?1635945174></script>
+<script type=text/javascript src=/js/lunr.min.js?1644227910></script>
+<script type=text/javascript src=/js/auto-complete.js?1644227910></script>
 <script type=text/javascript>var baseurl=""</script>
-<script type=text/javascript src=/js/search.js?1635945174></script>
+<script type=text/javascript src=/js/search.js?1644227910></script>
 </div>
 <div class=highlightable>
 <ul class=topics>
@@ -329,13 +329,19 @@ parent">
 Requirements Specification
 </a>
 <ul>
-<li data-nav-id=/language-reference/requirements-specification/semantics/ title="Semantics of the Requirement Specification Language" class=dd-item>
-<a href=/language-reference/requirements-specification/semantics/>
-Semantics
+<li data-nav-id=/language-reference/requirements-specification/symb_queries/ title="Semantics of the Symbolic Queries" class=dd-item>
+<a href=/language-reference/requirements-specification/symb_queries/>
+Symbolic Queries
 </a>
 </li>
-<li data-nav-id=/language-reference/requirements-specification/statistical_estimation/ title class="dd-item active">
-<a href=/language-reference/requirements-specification/statistical_estimation/>
+<li data-nav-id=/language-reference/requirements-specification/smc_queries/ title="Semantics of the Statistical Queries" class=dd-item>
+<a href=/language-reference/requirements-specification/smc_queries/>
+Statistical Queries
+</a>
+</li>
+<li data-nav-id=/language-reference/requirements-specification/ci_estimation/ title="CI Estimation" class="dd-item active">
+<a href=/language-reference/requirements-specification/ci_estimation/>
+CI Estimation
 </a>
 </li>
 </ul>
@@ -439,7 +445,7 @@ UPPAAL TRON
 <div>
 <div id=top-bar>
 <div id=top-github-link>
-<a class=github-link title="Edit this page" href=https://github.com/UPPAALModelChecker/docs.uppaal.org/blob/master/content/language-reference/requirements-specification/statistical_estimation.md target=blank>
+<a class=github-link title="Edit this page" href=https://github.com/UPPAALModelChecker/docs.uppaal.org/blob/master/content/language-reference/requirements-specification/ci_estimation.md target=blank>
 <i class="fas fa-code-branch"></i>
 <span id=top-github-link-text>Edit this page</span>
 </a>
@@ -452,7 +458,7 @@ UPPAAL TRON
 </span>
 <span id=toc-menu><i class="fas fa-list-alt"></i></span>
 <span class=links>
-<a href=/></a> > <a href=/language-reference/>Language Reference</a> > <a href=/language-reference/requirements-specification/>Requirements Specification</a> >
+<a href=/></a> > <a href=/language-reference/>Language Reference</a> > <a href=/language-reference/requirements-specification/>Requirements Specification</a> > CI Estimation
 </span>
 </div>
 <div class=progress>
@@ -466,38 +472,58 @@ UPPAAL TRON
 </div>
 <div id=body-inner>
 <h1>
+CI Estimation
 </h1>
-<h1 id=confidence-interval-estimation>Confidence Interval Estimation</h1>
-<p>Statistical queries without the number of runs specified, the estimation is performed adaptively: simulate, collect the statistics and repeat if more data is needed.</p>
-<p>The confidence intervals converge to the true probability (P) value as more samples are produced:</p>
-<p><img src=ci_0.5.png alt="CIs for P=0.5"> <img src=ci_0.2.png alt="CIs for P=0.2"> <img src=ci_0.1.png alt="CIs for P=0.1"> <img src=ci_0.05.png alt="CIs for P=0.05"> <img src=ci_0.01.png alt="CIs for P=0.01"> <img src=ci_0.png alt="CIs for P=0"></p>
-<p>Note that occasionally the confidence intervals may overstep and thus exclude the true probability value, which should not happen more often than the specified level of significance (α).</p>
-<p>The width of the confidence intervals converges to zero as more samples are produced:</p>
-<p><img src=ciw_0.5.png alt="P=0.5"> <img src=ciw_0.2.png alt="P=0.2"> <img src=ciw_0.1.png alt="P=0.1"> <img src=ciw_0.05.png alt="P=0.05"> <img src=ciw_0.01.png alt="P=0.01"> <img src=ciw_0.png alt="P=0"></p>
-<p>Note that in case of extreme probability value (close to 0 or 1, e.g. P=0.01), repeated observations are more likely and thus they may create false confidence that the probability is extreme (i.e. 0 or 1), but then a single differing observation may disturb the interval size and therefore more samples are required than just single sided interval. Therefore newer Uppaal versions use double-sided confidence interval estimation.</p>
+<p>Chernoff-Hoffding bound provides an intuition that the number of required samples (runs) is inversely proportional to <tt>ε<sup>2</sup></tt> and proportional to the <tt>ln(1/α)</tt>:
+<tt>N = ln(2/α) / (2ε<sup>2</sup>)</tt>. This result assumes that our measurements are sampled from a continuous interval <tt>[0,1]</tt> which makes it overly conservative. For example, for <tt>α=0.05</tt> and <tt>ε=0.05</tt> it requires <tt>738</tt> runs and it does not depend on the probability itself.</p>
+<p>Instead, UPPAAL uses Clopper-Pearson exact method for binomial (<tt>{0,1}</tt>) distribution which provides much more precise bounds with fewer runs, especially when the probability is close to <tt>0</tt> or <tt>1</tt>.</p>
+<p>If the number of runs is not specified in the query, then the probability estimation uses Clopper-Pearson algorithm sequentially to determine when to stop generating the simulation runs thus allowing earlier termination. Therefore the number of runs is sensitive to <tt>α</tt>, <tt>ε</tt> and also the estimated probability itself.</p>
+<p>The following plots show the number of samples (runs) required to estimate the confidence interval using the exact method sequentially for a given <tt>α</tt>, <tt>ε</tt> and the true probability (estimating <tt>P>0.5</tt> is symmetric to estimating <tt>1-P</tt>):
+<img src=../ci_run_0.05.png alt="CIs for &#949;=0.05">
+For example, for the default parameter values <tt>ε=0.05</tt> and <tt>α=0.05</tt> the sequential algorithm required <tt>411</tt> — the highest number of samples (runs) when the probability close to <tt>0.5</tt> where the degree of uncertainty is the highest. Whereas the algorithm cannot distinguish the true probabilities <tt>≤ ε</tt> (<tt>0.05</tt>) and thus could terminate much earlier: after <tt>72</tt> runs. Note that the uncertainty of the required runs is the largest when the true probability is close to either <tt>0</tt> or <tt>1</tt>.</p>
+<p>The following plot shows the number of samples (runs) required when the width of the interval is halved to <tt>ε=0.025</tt>:
+<img src=../ci_run_0.025.png alt="CIs for &#949;=0.025">
+The following plot shows the number of samples (runs) required when the width of the interval is even more narrow <tt>ε=0.01</tt>:
+<img src=../ci_run_0.01.png alt="CIs for &#949;=0.01"></p>
+<p>The following series of plots demonstrates how the estimated confidence interval converges to the true probability <tt>P</tt> value as more samples are produced:</p>
+<p><img src=../ci_0.5.png alt="CIs for P=0.5">
+<img src=../ci_0.2.png alt="CIs for P=0.2">
+<img src=../ci_0.1.png alt="CIs for P=0.1">
+<img src=../ci_0.05.png alt="CIs for P=0.05">
+<img src=../ci_0.01.png alt="CIs for P=0.01">
+<img src=../ci_0.png alt="CIs for P=0"></p>
+<p>Note that occasionally the confidence intervals may overstep and thus exclude the true probability value, which should not happen more often than the specified level of significance <tt>α</tt>.</p>
+<p>The following sequence of plots show how the width of the confidence intervals converges as more samples are produced:</p>
+<p><img src=../ciw_0.5.png alt="P=0.5">
+<img src=../ciw_0.2.png alt="P=0.2">
+<img src=../ciw_0.1.png alt="P=0.1">
+<img src=../ciw_0.05.png alt="P=0.05">
+<img src=../ciw_0.01.png alt="P=0.01">
+<img src=../ciw_0.png alt="P=0"></p>
+<p>Note that in case of extreme probability value (close to <tt>0</tt> or <tt>1</tt>, e.g. <tt>P=0.01</tt>), repeated observations are more likely and thus they may create false confidence that the probability is extreme (i.e. <tt>0</tt> or <tt>1</tt>), but then a single differing observation may disturb the interval size greately and therefore more samples are required than just single sided interval.</p>
 <footer class=footline>
 </footer>
 </div>
 </div>
 <div id=navigation>
-<a class="nav nav-prev" href=/language-reference/requirements-specification/semantics/ title="Semantics of the Requirement Specification Language"> <i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-prev" href=/language-reference/requirements-specification/smc_queries/ title="Semantics of the Statistical Queries"> <i class="fa fa-chevron-left"></i></a>
 <a class="nav nav-next" href=/language-reference/expressions/ title=Expressions style=margin-right:0><i class="fa fa-chevron-right"></i></a>
 </div>
 </section>
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
 <div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div>
 </div>
-<script src=/js/clipboard.min.js?1635945174></script>
-<script src=/js/perfect-scrollbar.min.js?1635945174></script>
-<script src=/js/perfect-scrollbar.jquery.min.js?1635945174></script>
-<script src=/js/jquery.sticky.js?1635945174></script>
-<script src=/js/featherlight.min.js?1635945174></script>
-<script src=/js/highlight.pack.js?1635945174></script>
+<script src=/js/clipboard.min.js?1644227910></script>
+<script src=/js/perfect-scrollbar.min.js?1644227910></script>
+<script src=/js/perfect-scrollbar.jquery.min.js?1644227910></script>
+<script src=/js/jquery.sticky.js?1644227910></script>
+<script src=/js/featherlight.min.js?1644227910></script>
+<script src=/js/highlight.pack.js?1644227910></script>
 <script>hljs.initHighlightingOnLoad()</script>
-<script src=/js/modernizr.custom-3.6.0.js?1635945174></script>
-<script src=/js/learn.js?1635945174></script>
-<script src=/js/hugo-learn.js?1635945174></script>
-<script src=/mermaid/mermaid.js?1635945174></script>
+<script src=/js/modernizr.custom-3.6.0.js?1644227910></script>
+<script src=/js/learn.js?1644227910></script>
+<script src=/js/hugo-learn.js?1644227910></script>
+<script src=/mermaid/mermaid.js?1644227910></script>
 <script>mermaid.initialize({startOnLoad:!0})</script>
 </body>
 </html>
