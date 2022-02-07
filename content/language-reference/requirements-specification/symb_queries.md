@@ -4,7 +4,7 @@ weight: 10
 menuTitle: "Symbolic Queries"
 ---
 
-In the following we give a pseudo-formal semantics for the requirement specification language of UPPAAL. We assume the existence of a timed transition system (_S, s<sub>0</sub>,_ →) as defined in the [semantics of UPPAAL](/language-reference/system-description/semantics/l). In the following, <tt>p</tt> and <tt>q</tt> are [state properties](#state-properties) for which we define the following temporal properties:
+In the following we give a pseudo-formal semantics for the requirement specification language of UPPAAL. We assume the existence of a timed transition system (_S, s<sub>0</sub>,_ →) as defined in the [semantics of UPPAAL timed automata](/language-reference/system-description/semantics/). In the following, <tt>p</tt> and <tt>q</tt> are [state properties](#state-properties) for which we define the following temporal properties:
 
 ### Possibly
 

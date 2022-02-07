@@ -22,11 +22,11 @@ The simulation query collects the valuation of the specified list of expressions
 
 Quantitative query estimates the probability of a path expression being true given that the predicate in probability brackets is true. Intuitively the model exploration is bounded by an expression in the brackets: it can be limited by setting the bound on absolute model time, a clock value, or the number of steps (discrete transitions).
 
-The result is an estimated probability confidence interval (CI), where the level of significance (probability that CI does not include the actual probability) is controlled by &alpha; and the width is controlled by &epsilon; in the [statistical parameters](Menu_Bar/Options.html#statparam). In addition the  and a number of histograms over the values of the variable specified in the probability brackets. Note that histograms omit runs that do not satisfy the property.
+The result is an estimated probability confidence interval (CI), where the level of significance (probability that CI does not include the actual probability) is controlled by &alpha; and the width is controlled by &epsilon; in the [statistical parameters](/gui-reference/menu-bar/options/#statparam). In addition the  and a number of histograms over the values of the variable specified in the probability brackets. Note that histograms omit runs that do not satisfy the property.
 
 The number of runs can be specified by the optional <tt>RUNS</tt> argument in the <tt>SMCBounds</tt>. If the argument is absent, then the number of runs is determined by a sequential CI estimation algorithm.
 
-**See also:** [CI Estimation](ci_estimation/)
+**See also:** [CI Estimation](../ci_estimation/)
 
 ## Hypothesis Testing (Qualitative Model Checking)
 

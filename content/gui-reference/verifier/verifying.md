@@ -49,6 +49,6 @@ Further, the plot labels and titles can be edited and several data sets can be s
 
 An extensive overview and comparison of methods for computing confidence intervals for binomial distribution can be found in the following publications:
 
-> _Interval Estimators for a Binomial Proportion: Comparison of Twenty Methods_, Ana M. Pires and Conceicao Amado. REVSTAT -- Statistical Journal, Vol.6, No.2, June 2008, pages 165-197.
+> _Interval Estimators for a Binomial Proportion: Comparison of Twenty Methods_, **Ana M. Pires** and **Conceicao Amado**. REVSTAT -- Statistical Journal, Vol.6, No.2, June 2008, pages 165-197.
 
-> _Interval Estimation for a Binomial Proportion_, Lawrence D. Brown, T. Tony Cai and Anirban DasGupta. Statistical Science, 2001, Vol.16, No.2, pages 101-133.
+> _Interval Estimation for a Binomial Proportion_, **Lawrence D. Brown**, **T. Tony Cai** and **Anirban DasGupta**. Statistical Science, 2001, Vol.16, No.2, pages 101-133.
