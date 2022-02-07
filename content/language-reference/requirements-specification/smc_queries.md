@@ -26,7 +26,7 @@ The result is an estimated probability confidence interval (CI), where the level
 
 The number of runs can be specified by the optional <tt>RUNS</tt> argument in the <tt>SMCBounds</tt>. If the argument is absent, then the number of runs is determined by a sequential CI estimation algorithm.
 
-**See also:** [CI Estimation](ci_estimation/)
+**See also:** [CI Estimation](../ci_estimation/)
 
 ## Hypothesis Testing (Qualitative Model Checking)
 
