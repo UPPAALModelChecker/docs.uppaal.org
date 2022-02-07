@@ -25,7 +25,6 @@ SymbQuery ::=
       | 'inf' '{' Expression '}' ':' List
 
 List ::= Expression | Expression ',' List
-
 ```
 
 For <tt>sup</tt> properties, expression may not contain clock constraints and must evaluate to either an integer or a clock.
@@ -52,7 +51,7 @@ For <tt>sup</tt> properties, expression may not contain clock constraints and mu
 
 Controller synthesis queries are decided using symbolic techniques over Timed Game (TIGA) automata, where the discrete actions are either controllable (controller's actions, solid edges) or uncontrollable (environment actions, dashed edges). The result is either a strategy solving the game objective or that the strategy does not exist.
 
-```
+``` EBNF
 TIGAQuery ::=
         'control:' 'A<>' WinExpression
       | 'control:' 'A[' NotLooseExpression 'U' WinExpression ']'
@@ -69,7 +68,7 @@ NotLooseExpression ::= Expression
 
 Statistical queries are decided using concrete semantics of stochastic hybrid automata over a number of bounded concrete simulation runs and correspond to empirical measurements of the system performance. The results are of statistical estimate nature and may vary across different executions based on uncertainties specified in the statistical parameters.
 
-```bnf
+``` EBNF
 SMCQuery ::=
 	  | Simulate
       | Probability
@@ -123,7 +122,7 @@ All expressions are state predicates and must be side effect free. It is possibl
 
 ## Learning Queries
 
-```bnf
+``` EBNF
 LearningQuery ::=
      ExpQuantifier '(' Expression ')' '[' BoundType ']' Features ':' PathType Expression
 
@@ -142,7 +141,7 @@ Features ::= '{' List '}' '->' '{' List '}'
 
 Strategy queries allow store, load, reuse and refine the strategies by assigning names to them.
 
-```bnf
+``` EBNF
 StrategyQuery ::=
 	    'strategy' Name '=' Query [ 'under' Name ]
 	  | 'saveStrategy' '(' Path ',' Name ')'
