@@ -1,6 +1,6 @@
 ---
 title: Semantics of the Statistical Queries
-weight: 10
+weight: 30
 menuTitle: "Statistical Queries"
 ---
 
