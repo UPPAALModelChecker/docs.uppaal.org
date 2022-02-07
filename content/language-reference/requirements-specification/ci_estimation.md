@@ -3,7 +3,7 @@ title: CI Estimation
 weight: 35
 ---
 
-Probability estimation query <tt>Pr[...](<> q)</tt> yields a confidence interval (CI) for the probability of the sstate expression <tt>q</tt> being true with the confidence level of <tt>1-&alpha;</tt>. For example, it could be <tt>[0.45, 0.55]</tt> (<tt>95%</tt> CI), or could be written as <tt>0.5 &plusmn; 0.05</tt> (<tt>95%</tt> CI), where <tt>&epsilon;=0.05</tt> and <tt>&alpha;=0.05</tt>.
+Probability estimation query <tt>Pr[...](<> q)</tt> yields a confidence interval (CI) for the probability of the state expression <tt>q</tt> being true with the confidence level of <tt>1-&alpha;</tt>. For example, it could be <tt>[0.45, 0.55]</tt> (<tt>95%</tt> CI), or could be written as <tt>0.5 &plusmn; 0.05</tt> (<tt>95%</tt> CI), where <tt>&epsilon;=0.05</tt> and <tt>&alpha;=0.05</tt>.
 
 The frequentist interpretation of CI is that there exists a true probability that the state expression <tt>q</tt> is true and it is included in that confidence interval, but there is a risk &alpha; of making an error (the true probability being outside the confidence interval).
 
