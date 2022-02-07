@@ -3,10 +3,14 @@ title: CI Estimation
 weight: 35
 ---
 
-Chernoff-Hoffding bound provides an intuition that the number of required samples (runs) is inversely proportional to <tt>&epsilon;<sup>2</sup></tt> and proportional to the <tt>ln(1/&alpha;)</tt>:
+Probability estimation query <tt>Pr[...](<> q)</tt> yields a confidence interval (CI) for the probability of the sstate expression <tt>q</tt> being true with the confidence level of <tt>1-&alpha;</tt>. For example, it could be <tt>[0.45, 0.55]</tt> (<tt>95%</tt> CI), or could be written as <tt>0.5 &plusmn; 0.05</tt> (<tt>95%</tt> CI), where <tt>&epsilon;=0.05</tt> and <tt>&alpha;=0.05</tt>.
+
+The frequentist interpretation of CI is that there exists a true probability that the state expression <tt>q</tt> is true and it is included in that confidence interval, but there is a risk &alpha; of making an error (the true probability being outside the confidence interval).
+
+Chernoff-Hoeffding bound provides an intuition that the number of required samples (runs) is inversely proportional to <tt>&epsilon;<sup>2</sup></tt> and proportional to the <tt>ln(1/&alpha;)</tt>:
 <tt>N = ln(2/&alpha;) / (2&epsilon;<sup>2</sup>)</tt>. This result assumes that our measurements are sampled from a continuous interval <tt>[0,1]</tt> which makes it overly conservative. For example, for <tt>&alpha;=0.05</tt> and <tt>&epsilon;=0.05</tt> it requires <tt>738</tt> runs and it does not depend on the probability itself.
 
-Instead, UPPAAL uses Clopper-Pearson exact method for binomial (<tt>{0,1}</tt>) distribution which provides much more precise bounds with fewer runs, especially when the probability is close to <tt>0</tt> or <tt>1</tt>.
+Instead, UPPAAL uses Clopper-Pearson exact method for binomial distribution which samples from <tt>{0,1}</tt> and provides more precise bounds with fewer runs, especially when the probability is close to <tt>0</tt> or <tt>1</tt>.
 
 If the number of runs is not specified in the query, then the probability estimation uses Clopper-Pearson algorithm sequentially to determine when to stop generating the simulation runs thus allowing earlier termination. Therefore the number of runs is sensitive to <tt>&alpha;</tt>, <tt>&epsilon;</tt> and also the estimated probability itself.
 
