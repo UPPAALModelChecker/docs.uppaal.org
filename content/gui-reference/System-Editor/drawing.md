@@ -21,6 +21,8 @@ The display color of individual locations and edges can be changed from the pop-
 
 Comments can be added to locations and edges. Double click the location or edge to bring up the editor for that element. The editor has a _Comments_ tab for adding comments. UPPAAL does not assign any semantic meaning to the comments.
 
+Comments are shown as document elements on the canvas. These elements can be resized by distributing the content of the comments over multiple lines.
+
 When shown in the tooltip of an element, comments are interpreted as HTML, i.e. tags like &lt;p> and &lt;b> may be used for formating.
 
 ## Tooltips
