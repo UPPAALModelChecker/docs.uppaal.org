@@ -12,19 +12,23 @@ Symbolic queries are performed using symbolic operations based on symbolic seman
 
 ``` EBNF
 SymbQuery ::=
-        'A[]' Expression
-      | 'E<>' Expression
-      | 'E[]' Expression
-      | 'A<>' Expression
-      | Expression --> Expression
+        'A[]' Expression Subjection
+      | 'E<>' Expression Subjection
+      | 'E[]' Expression Subjection
+      | 'A<>' Expression Subjection
+      | Expression --> Expression Subjection
 
-      | 'sup' ':' List
-      | 'sup' '{' Expression '}' ':' List
+      | 'sup' ':' List Subjection
+      | 'sup' '{' Expression '}' ':' List Subjection
 
-      | 'inf' ':' List
-      | 'inf' '{' Expression '}' ':' List
+      | 'inf' ':' List Subjection
+      | 'inf' '{' Expression '}' ':' List Subjection
 
 List ::= Expression | Expression ',' List
+
+Subjection ::= 
+	    // empty for no subjection
+	  | under Name   
 ```
 
 For <tt>sup</tt> properties, expression may not contain clock constraints and must evaluate to either an integer or a clock.
@@ -46,6 +50,11 @@ For <tt>sup</tt> properties, expression may not contain clock constraints and mu
 *   <tt>sup{expression}: list</tt>
     The expressions in the list are evaluated only on the states that satisfy the the expression (a state predicate) that acts like an observation.
 *   The <tt>inf</tt> formula are similar to <tt>sup</tt> but for infima. A state predicate should be used when a clock infimum is asked otherwise the trivial result is >= 0.
+
+<dl>
+<dt><tt>Subjection</tt></dt>
+<dd>indicates whether the query should be subjected to a strategy.</dd>
+</dl>
 
 ## Controller Synthesis Queries
 
@@ -100,16 +109,18 @@ Statistical queries are decided using concrete semantics of stochastic hybrid au
 
 ``` EBNF
 SMCQuery ::=
-	    Simulate
-      | Probability
-      | ProbUntil
-      | Probability ( '<=' | '>=' ) PROB
-      | Probability ( '<=' | '>=' ) Probability
-      | Estimate
+	    Simulate Subjection
+      | Probability Subjection
+      | ProbUntil Subjection
+      | Probability ( '<=' | '>=' ) PROB Subjection
+      | Probability ( '<=' | '>=' ) Probability Subjection
+      | Estimate Subjection
 
-Simulate ::= 'simulate' '[' SMCBounds ']' '{' List '}' [ : Expression [ ':' SATRUNS ]]
+Simulate ::= 'simulate' SIMRUNS '[' SMCBounds ']' '{' List '}' [ : Expression [ ':' SATRUNS ]]
 
-Probability ::= 'Pr[' SMCBounds ']' '(' PathType Expression ')'
+Probability ::= 
+        'Pr' Expression
+      | 'Pr[' SMCBounds ']' '(' PathType Expression ')'
 
 ProbUntil   ::= 'Pr[' SMCBounds ']' '(' Expression 'U' Expression ')'
 
@@ -120,6 +131,10 @@ SMCBounds ::= BoundType [ ; RUNS ]
 BoundType ::= (  | Clock | '#' ) '<=' BOUND
 
 PathType ::= ( '<>' | '[]' )
+
+Subjection ::= 
+	    // empty for no subjection
+	  | under Name   
 ```
 
 <dl>
@@ -132,6 +147,9 @@ PathType ::= ( '<>' | '[]' )
 <dt><tt>SATRUNS</tt></dt>
 <dd>is an optional positive integer constant denoting the maximum number of runs that satisfy the state expression.</dd>
 
+<dt><tt>SATRUNS</tt></dt>
+<dd>is a positive integer constant denoting the number of simulated runs.</dd>
+
 <dt><tt>PROB</tt></dt>
 <dd>is a floating point number from an interval [0;1] denoting a probability bound.</dd>
 
@@ -143,6 +161,9 @@ PathType ::= ( '<>' | '[]' )
 
 <dt><tt>'max:'</tt></dt>
 <dd>means the maximum value over a run of the proceeding expression.</dd>
+
+<dt><tt>Subjection</tt></dt>
+<dd>indicates whether the query should be subjected to a strategy.</dd>
 </dl>
 
 All expressions are state predicates and must be side effect free. It is possible to test whether a certain process is in a given location using expressions on the form <tt>process.location</tt>.
