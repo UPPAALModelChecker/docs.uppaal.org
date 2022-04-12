@@ -113,14 +113,14 @@ SMCQuery ::=
       | Probability Subjection
       | ProbUntil Subjection
       | Probability ( '<=' | '>=' ) PROB Subjection
-      | Probability ( '<=' | '>=' ) Probability Subjection
+      | Probability '>=' Probability Subjection
       | Estimate Subjection
 
-Simulate ::= 'simulate' SIMRUNS '[' SMCBounds ']' '{' List '}' [ : Expression [ ':' SATRUNS ]]
+Simulate ::= 'simulate' SIMRUNS '[' BoundType ']' '{' List '}' [ : Expression [ ':' SATRUNS ]]
 
 Probability ::= 
         'Pr' Expression
-      | 'Pr[' SMCBounds ']' '(' PathType Expression ')'
+      | 'Pr[' BoundType ']' '(' PathType Expression ')'
 
 ProbUntil   ::= 'Pr[' SMCBounds ']' '(' Expression 'U' Expression ')'
 

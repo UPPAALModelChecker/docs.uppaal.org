@@ -8,17 +8,15 @@ UPPAAL can estimate the probability of expression values statistically. There ar
 
 ## Simulation
 
-<tt>'simulate' '[' SMCBounds ']' '{' List '}' [ : Expression [ ':' SATRUNS ]]</tt>
-
-<tt>SMCBounds ::= BoundType [ ; RUNS ]</tt>
+<tt>'simulate' SIMRUNS '[' BoundType ']' '{' List '}' [ : Expression [ ':' SATRUNS ]]</tt>
 
 <tt>BoundType ::= (  | Clock | '#' ) '<=' BOUND</tt>
 
-The simulation query collects the valuation of the specified list of expressions over the time, cost or action-transitions of the simulated run. The simulation runs can be filtered by a state expression after the colon (<tt>':'</tt>) and the number of satisfying runs can be limited by positive integer <tt>SATRUNS</tt>. If the filtering expression is provided then the result also includes a probability confidence interval similar to Probability Estimation below.
+The simulation query collects the valuation of the specified list of expressions over the time, cost or action-transitions of the simulated run. The simulation runs can be filtered by a state expression after the colon (<tt>':'</tt>) and the number of satisfying runs can be limited by positive integer <tt> SIMRUNS </tt>. If the filtering expression is provided then the result also includes a probability confidence interval similar to Probability Estimation below.
 
 ## Probability Estimation (Quantitative Model Checking)
 
-<tt>'Pr[' SMCBounds '](' ('<>' | '[]') Expression ')'</tt>
+<tt>'Pr[' BoundType '](' ('<>' | '[]') Expression ')'</tt>
 
 Quantitative query estimates the probability of a path expression being true given that the predicate in probability brackets is true. Intuitively the model exploration is bounded by an expression in the brackets: it can be limited by setting the bound on absolute model time, a clock value, or the number of steps (discrete transitions).
 
@@ -36,7 +34,7 @@ Hypothesis testing checks whether the probability of a property is less or great
 
 ## Probability Comparison
 
-<tt>'Pr[' SMCBounds '](' ('<>' | '[]') Expression ')' **('<='|'>=')** 'Pr[' ( Variable | '#' ) '<=' CONST '](' ('<>' | '[]') Expression ')'</tt>
+<tt>'Pr[' SMCBounds '](' ('<>' | '[]') Expression ')' **'>='** 'Pr[' ( Variable | '#' ) '<=' CONST '](' ('<>' | '[]') Expression ')'</tt>
 
 Compares two probabilities indirectly without estimating them.
 
