@@ -53,9 +53,9 @@ Controller synthesis queries are decided using symbolic techniques over Timed Ga
 
 ``` EBNF
 TIGAQuery ::=
-        'control:' Goal
-      | 'E<>' 'control:' Goal
-      | '{' someting '}' 'control:' Goal
+        'control:' Goal Subjection
+      | 'E<>' 'control:' Goal Subjection
+      | '{' someting '}' 'control:' Goal Subjection
       | TimeEfficientGameQuery Goal
 
 TimeEfficientGameQuery ::=
@@ -76,6 +76,10 @@ NotLooseExpression ::= Expression
 u ::= Expression
 
 g ::= Expression
+
+Subjection ::= 
+	    // empty for no subjection
+	  | under Name   
 ```
 
 <dl>
@@ -84,6 +88,9 @@ g ::= Expression
 
 <dt><tt>g</tt></dt>
 <dd>describes an additional time limit such that the game can be won within <tt>u</tt> - <tt>g</tt> time units.</dd>
+
+<dt><tt>Subjection</tt></dt>
+<dd>indicates whether the query should be subjected to a strategy.</dd>
 </dl>
 
 
@@ -147,15 +154,19 @@ All expressions are state predicates and must be side effect free. It is possibl
 
 ``` EBNF
 LearningQuery ::=
-        ExpQuantifier '(' Expression ')' '[' BoundType ']' Features ':' PathType Expression
-	  | ExpQuantifier '[' BoundType ']' Features ':' PathType Expression
-	  | ExpPrQuantifier '[' BoundType ']' Features ':' PathType Expression
+        ExpQuantifier '(' Expression ')' '[' BoundType ']' Features ':' PathType Expression Subjection
+	  | ExpQuantifier '[' BoundType ']' Features ':' PathType Expression Subjection
+	  | ExpPrQuantifier '[' BoundType ']' Features ':' PathType Expression Subjection
 
 ExpQuantifier ::= ( minE | maxE )
 
 ExpPrQuantifier ::= ( minPr | maxPr )
 
-Features ::= '{' List '}' '->' '{' List '}'   
+Features ::= '{' List '}' '->' '{' List '}' 
+
+Subjection ::= 
+	    // empty for no subjection
+	  | under Name   
 ```
 
 <dl>
@@ -164,6 +175,9 @@ Features ::= '{' List '}' '->' '{' List '}'
 
 <dt><tt>Name</tt></dt>
 <dd>indicates the name of a strategy, see also next section.</dd>
+
+<dt><tt>Subjection</tt></dt>
+<dd>indicates whether the query should be subjected to a strategy.</dd>
 </dl>
 
 
@@ -183,17 +197,10 @@ AssignableQuery ::=
 NonAssignableQuery ::=
         SymbQuery
 	  | SMCQuery
-	  | 'saveStrategy' '(' Path ',' Name ')'
-
-Subjection ::= 
-	    // empty for no subjection
-	  | under Name  
+	  | 'saveStrategy' '(' Path ',' Name ')' 
 ```
 
 <dl>
-<dt><tt>Subjections</tt></dt>
-<dd>indicates whether the query should be subjected to a strategy.</dd>
-
 <dt><tt>Name</tt></dt>
 <dd>indicates the name of a strategy.</dd>
 
