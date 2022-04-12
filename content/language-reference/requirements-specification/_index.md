@@ -212,7 +212,7 @@ AssignQuery ::=
 
 AssignableQuery ::=
         TIGAQuery
-	  | LearningQuery Subjection
+	  | LearningQuery
 	  | 'loadStrategy' Features '(' Path ')'
 
 NonAssignableQuery ::=
