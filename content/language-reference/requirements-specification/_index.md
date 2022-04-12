@@ -124,16 +124,30 @@ All expressions are state predicates and must be side effect free. It is possibl
 
 ``` EBNF
 LearningQuery ::=
-     ExpQuantifier '(' Expression ')' '[' BoundType ']' Features ':' PathType Expression
+        ExpQuantifier '(' Expression ')' '[' BoundType ']' Features ':' PathType Expression Subjection
+	  | ExpQuantifier '[' BoundType ']' Features ':' PathType Expression Subjection
+	  | ExpPrQuantifier '[' BoundType ']' Features ':' PathType Expression Subjection
 
-ExpQuantifier ::= ( min | max )
+ExpQuantifier ::= ( minE | maxE )
+
+ExpPrQuantifier ::= ( minPr | maxPr )
 
 Features ::= '{' List '}' '->' '{' List '}'
+
+Subjection ::= 
+	    // empty for no subjection
+	  | under Name     
 ```
 
 <dl>
 <dt><tt>Features</tt></dt>
 <dd>describes a mapping from partial state to .</dd>
+
+<dt><tt>Subjections</tt></dt>
+<dd>indicates whether the query should be subjected to a strategy.</dd>
+
+<dt><tt>Name</tt></dt>
+<dd>indicates the name of a strategy, see also next section.</dd>
 </dl>
 
 
