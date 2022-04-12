@@ -53,15 +53,38 @@ Controller synthesis queries are decided using symbolic techniques over Timed Ga
 
 ``` EBNF
 TIGAQuery ::=
-        'control:' 'A<>' WinExpression
-      | 'control:' 'A[' NotLooseExpression 'U' WinExpression ']'
-	  | 'control:' 'A[' NotLooseExpression 'W' WinExpression ']'
-      | 'control:' 'A[' NotLooseExpression ']'
+        'control:' Goal
+      | 'E<>' 'control:' Goal
+      | '{' someting '}' 'control:' Goal
+      | TimeEfficientGameQuery Goal
+
+TimeEfficientGameQuery ::=
+        'control_t*' '(' u ',' g '):'
+      | 'control_t*' '(' u '):'
+      | 'control_t*:'
+      
+Goal ::=  
+         'A<>' WinExpression
+      | 'A[' NotLooseExpression 'U' WinExpression ']'
+      | 'A[' NotLooseExpression 'W' WinExpression ']'
+      | 'A[' NotLooseExpression ']'
 
 WinExpression ::= Expression
 
 NotLooseExpression ::= Expression
+
+u ::= Expression
+
+g ::= Expression
 ```
+
+<dl>
+<dt><tt>u</tt></dt>
+<dd>describes a time limit within the game must be won.</dd>
+
+<dt><tt>g</tt></dt>
+<dd>describes an additional time limit such that the game can be won within <tt>u</tt> - <tt>g</tt> time units.</dd>
+</dl>
 
 
 ## Statistical Queries
@@ -70,7 +93,7 @@ Statistical queries are decided using concrete semantics of stochastic hybrid au
 
 ``` EBNF
 SMCQuery ::=
-	  | Simulate
+	    Simulate
       | Probability
       | ProbUntil
       | Probability ( '<=' | '>=' ) PROB
@@ -124,27 +147,20 @@ All expressions are state predicates and must be side effect free. It is possibl
 
 ``` EBNF
 LearningQuery ::=
-        ExpQuantifier '(' Expression ')' '[' BoundType ']' Features ':' PathType Expression Subjection
-	  | ExpQuantifier '[' BoundType ']' Features ':' PathType Expression Subjection
-	  | ExpPrQuantifier '[' BoundType ']' Features ':' PathType Expression Subjection
+        ExpQuantifier '(' Expression ')' '[' BoundType ']' Features ':' PathType Expression
+	  | ExpQuantifier '[' BoundType ']' Features ':' PathType Expression
+	  | ExpPrQuantifier '[' BoundType ']' Features ':' PathType Expression
 
 ExpQuantifier ::= ( minE | maxE )
 
 ExpPrQuantifier ::= ( minPr | maxPr )
 
-Features ::= '{' List '}' '->' '{' List '}'
-
-Subjection ::= 
-	    // empty for no subjection
-	  | under Name     
+Features ::= '{' List '}' '->' '{' List '}'   
 ```
 
 <dl>
 <dt><tt>Features</tt></dt>
 <dd>describes a mapping from partial state to .</dd>
-
-<dt><tt>Subjections</tt></dt>
-<dd>indicates whether the query should be subjected to a strategy.</dd>
 
 <dt><tt>Name</tt></dt>
 <dd>indicates the name of a strategy, see also next section.</dd>
@@ -156,20 +172,31 @@ Subjection ::=
 Strategy queries allow store, load, reuse and refine the strategies by assigning names to them.
 
 ``` EBNF
-StrategyQuery ::=
-	    'strategy' Name '=' Query [ 'under' Name ]
-	  | 'saveStrategy' '(' Path ',' Name ')'
-	  | 'strategy' Name '=' 'loadStrategy' Features '(' Path ')'
+AssignQuery ::=
+	    'strategy' Name '=' AssignableQuery
 
-Query ::=
+AssignableQuery ::=
+        TIGAQuery
+	  | LearningQuery Subjection
+	  | 'loadStrategy' Features '(' Path ')'
+
+NonAssignableQuery ::=
         SymbQuery
-	  | TIGAQuery
 	  | SMCQuery
-	  | LearningQuery
+	  | 'saveStrategy' '(' Path ',' Name ')'
 
+Subjection ::= 
+	    // empty for no subjection
+	  | under Name  
 ```
 
 <dl>
+<dt><tt>Subjections</tt></dt>
+<dd>indicates whether the query should be subjected to a strategy.</dd>
+
+<dt><tt>Name</tt></dt>
+<dd>indicates the name of a strategy.</dd>
+
 <dt><tt>Path</tt></dt>
 <dd>is a double-quoted character sequence (string) denoting a file system path.</dd>
 </dl>
