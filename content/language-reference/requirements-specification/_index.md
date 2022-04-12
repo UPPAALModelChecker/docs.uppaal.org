@@ -145,7 +145,7 @@ Strategy queries allow store, load, reuse and refine the strategies by assigning
 StrategyQuery ::=
 	    'strategy' Name '=' Query [ 'under' Name ]
 	  | 'saveStrategy' '(' Path ',' Name ')'
-	  | 'loadStrategy' Features '(' Path ')'
+	  | 'strategy' Name '=' 'loadStrategy' Features '(' Path ')'
 
 Query ::=
         SymbQuery
