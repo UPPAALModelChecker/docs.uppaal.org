@@ -226,29 +226,47 @@ The following is the list of builtin floating point functions (mostly imported f
 *   `double nextafter(double from, double to)` — a next representable floating point value of _from_ in the direction of _to_.
 *   `double copysign(double x, double y)` — floating point value with magnitude of _x_ and sign of _y_.
 *   `bool signbit(double x)` — true if the argument _x_ is negative.<
-*   `double random(double max)` — pseudo random number distributed uniformly over the interval _[0,max)_.
-*   `double normal(double mean, double stddev)` — pseudo random number distributed according to normal (Gaussian) distribution for a given _mean_ and standard deviation _stddev_.
+*   `double random(double max)` — pseudo random number distributed uniformly over the range `[0, max)`.
+*   `double normal(double mean, double sd)` — pseudo random number according to [Normal (Gaussian) distribution](https://en.wikipedia.org/wiki/Normal_distribution) for a given _mean_ and standard deviation _sd_ (until Stratego-10).
+*   `double random_normal(double mean, double sd)` — pseudo random number distributed according to [Normal (Gaussian) distribution](https://en.wikipedia.org/wiki/Normal_distribution) for a given _mean_ and standard deviation _sd_ (since Stratego-10).
+*   `double random_poisson(double lambda)` — pseudo random number according to [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution) for a given _lambda_ expected number of occurances (since Stratego-10).
+*   `double random_arcsine(double from, double till)` — pseudo random number according to [Arcsine distribution](https://en.wikipedia.org/wiki/Arcsine_distribution) over the range `[from, till]` (since Stratego-10).
+*   `double random_beta(double alpha, double beta)` — pseudo random number distributed according to [Beta distribution](https://en.wikipedia.org/wiki/Beta_distribution) for _alpha_ and _beta_ shape parameters (since Stratego-10).
+*   `double random_gamma(double shape, double scale)` — pseudo random number distributed according to [Gamma distribution](https://en.wikipedia.org/wiki/Gamma_distribution) for the given _shape_ and _scale_ parameters (since Stratego-10).
+*   `double random_tri(double from, double mode, double till)` — pseudo random number according to [Triangular distribution](https://en.wikipedia.org/wiki/Triangular_distribution) over the range `[from, till]` with the given _mode_ (since Stratego-10).
+*   `double random_weibull(double shape, double scale)` — pseudo random number according to [Weibull distribution](https://en.wikipedia.org/wiki/Weibull_distribution) for the given _shape_ and _scale_ parameters (since Stratego-10).
 
-A few common constants and types can be declared as follows:
+A few common constants and types can be declared as follows (built-in since Stratego-10):
 
 ``` c
+const int INT8_MIN      =   -128;
+const int INT8_MAX      =    127;
+const int UINT8_MAX     =    256;
 const int INT16_MIN     = -32768;
 const int INT16_MAX     =  32767;
 const int UINT16_MAX    =  65535;
 const int INT32_MIN     = -2147483648;
 const int INT32_MAX     =  2147483647;
+typedef int[INT8_MIN, INT8_MAX] int8_t;
+typedef int[0, UINT8_MAX] uint8_t;
+typedef int[INT16_MIN, INT16_MAX] int16_t;
+typedef int[0, UINT16_MAX] uint16_t;
 typedef int[INT32_MIN, INT32_MAX] int32_t;
-const double M_PI       = 3.14159265358979312;  // Pi
-const double M_PI_2     = 1.57079632679489656;  // Pi/2
-const double M_PI_4     = 0.785398163397448279; // Pi/4
-const double M_E        = 2.71828182845904509;  // Euler's number e
-const double M_LOG2E    = 1.44269504088896339;  // log_2(e)
-const double M_LOG10E   = 0.434294481903251817; // log_10(e)
-const double M_LN2      = 0.693147180559945286; // log_e(2)
-const double M_LN10     = 2.3025850929940459;   // log_e(10)
-const double M_1_PI     = 0.318309886183790691; // 1/Pi
-const double M_2_PI     = 0.636619772367581382; // 2/Pi
-const double M_2_SQRTPI = 1.12837916709551256;  // 2/sqrt(Pi)
-const double M_SQRT2    = 1.41421356237309515;  // sqrt(2)
-const double M_SQRT1_2  = 0.707106781186547573; // 1/sqrt(2)
+const double FLT_MIN    = 1.1754943508222875079687365372222456778186655567720875e-38;
+const double FLT_MAX    = 340282346638528859811704183484516925440.0;
+const double DBL_MIN    = 2.2250738585072013830902327173324040642192159804623318e-308;
+const double DBL_MAX    = 1.79769313486231570814527423731704356798070567525845e+308;
+const double M_PI       = 3.141592653589793115997963468544185161590576171875;      // pi
+const double M_PI_2     = 1.5707963267948965579989817342720925807952880859375;     // pi/2
+const double M_PI_4     = 0.78539816339744827899949086713604629039764404296875;    // pi/4
+const double M_E        = 2.718281828459045090795598298427648842334747314453125;   // e
+const double M_LOG2E    = 1.442695040888963387004650940070860087871551513671875;   // log_2(e)
+const double M_LOG10E   = 0.43429448190325181666793241674895398318767547607421875; // log_10(e)
+const double M_LN2      = 0.69314718055994528622676398299518041312694549560546875; // log_e(2)
+const double M_LN10     = 2.30258509299404590109361379290930926799774169921875;    // log_e(10)
+const double M_1_PI     = 0.31830988618379069121644420192751567810773849487304688; // 1/pi
+const double M_2_PI     = 0.63661977236758138243288840385503135621547698974609375; // 2/pi
+const double M_2_SQRTPI = 1.1283791670955125585606992899556644260883331298828125;  // 2/sqrt(pi)
+const double M_SQRT2    = 1.4142135623730951454746218587388284504413604736328125;  // sqrt(2)
+const double M_SQRT1_2  = 0.70710678118654757273731092936941422522068023681640625; // sqrt(1/2)
 ```
