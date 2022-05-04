@@ -1,651 +1,75 @@
-<!doctype html><html lang=en class="js csstransforms3d">
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=generator content="Hugo 0.92.1">
-<meta name=description content>
-<link rel=icon href=/images/favicon.png type=image/png>
-<title>Basic Test Generation :: UPPAAL Documentation</title>
-<link href=/css/nucleus.css?1644239688 rel=stylesheet>
-<link href=/css/fontawesome-all.min.css?1644239688 rel=stylesheet>
-<link href=/css/hybrid.css?1644239688 rel=stylesheet>
-<link href=/css/featherlight.min.css?1644239688 rel=stylesheet>
-<link href=/css/perfect-scrollbar.min.css?1644239688 rel=stylesheet>
-<link href=/css/auto-complete.css?1644239688 rel=stylesheet>
-<link href=/css/atom-one-dark-reasonable.css?1644239688 rel=stylesheet>
-<link href=/css/theme.css?1644239688 rel=stylesheet>
-<link href=/css/hugo-theme.css?1644239688 rel=stylesheet>
-<script src=/js/jquery-3.3.1.min.js?1644239688></script>
-<style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
-</head>
-<body data-url=/gui-reference/yggdrasil/tutorial/basic-test-generation/>
-<nav id=sidebar>
-<div id=header-wrapper>
-<div id=header>
-<a id=logo href>
-<h1 style=font-weight:700;color:#fff>UPPAAL</h1>
-</a>
-</div>
-<div class=searchbox>
-<label for=search-by><i class="fas fa-search"></i></label>
+<!doctype html><html lang=en class="js csstransforms3d"><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.98.0"><meta name=description content><link rel=icon href=/images/favicon.png type=image/png><title>Basic Test Generation :: UPPAAL Documentation</title><link href=/css/nucleus.css?1651657417 rel=stylesheet><link href=/css/fontawesome-all.min.css?1651657417 rel=stylesheet><link href=/css/hybrid.css?1651657417 rel=stylesheet><link href=/css/featherlight.min.css?1651657417 rel=stylesheet><link href=/css/perfect-scrollbar.min.css?1651657417 rel=stylesheet><link href=/css/auto-complete.css?1651657417 rel=stylesheet><link href=/css/atom-one-dark-reasonable.css?1651657417 rel=stylesheet><link href=/css/theme.css?1651657417 rel=stylesheet><link href=/css/hugo-theme.css?1651657417 rel=stylesheet><script src=/js/jquery-3.3.1.min.js?1651657417></script><style>:root #header+#content>#left>#rlblock_left{display:none!important}</style></head><body data-url=/gui-reference/yggdrasil/tutorial/basic-test-generation/><nav id=sidebar><div id=header-wrapper><div id=header><a id=logo href><h1 style=font-weight:700;color:#fff>UPPAAL</h1></a></div><div class=searchbox><label for=search-by><i class="fas fa-search"></i></label>
 <input data-search-input id=search-by type=search placeholder=Search...>
-<span data-search-clear><i class="fas fa-times"></i></span>
-</div>
-<script type=text/javascript src=/js/lunr.min.js?1644239688></script>
-<script type=text/javascript src=/js/auto-complete.js?1644239688></script>
-<script type=text/javascript>var baseurl=""</script>
-<script type=text/javascript src=/js/search.js?1644239688></script>
-</div>
-<div class=highlightable>
-<ul class=topics>
-<li data-nav-id=/gui-reference/ title="GUI Reference" class="dd-item
-parent">
-<a href=/gui-reference/>
-<b>1. </b>GUI Reference
-</a>
-<ul>
-<li data-nav-id=/gui-reference/menu-bar/ title="Menu Bar" class=dd-item>
-<a href=/gui-reference/menu-bar/>
-Menu Bar
-</a>
-<ul>
-<li data-nav-id=/gui-reference/menu-bar/file/ title="File Menu" class=dd-item>
-<a href=/gui-reference/menu-bar/file/>
-File Menu
-</a>
-</li>
-<li data-nav-id=/gui-reference/menu-bar/edit/ title="Edit Menu" class=dd-item>
-<a href=/gui-reference/menu-bar/edit/>
-Edit Menu
-</a>
-</li>
-<li data-nav-id=/gui-reference/menu-bar/view/ title="View Menu" class=dd-item>
-<a href=/gui-reference/menu-bar/view/>
-View Menu
-</a>
-</li>
-<li data-nav-id=/gui-reference/menu-bar/tools/ title="Tools Menu" class=dd-item>
-<a href=/gui-reference/menu-bar/tools/>
-Tools Menu
-</a>
-</li>
-<li data-nav-id=/gui-reference/menu-bar/options/ title="Options Menu" class=dd-item>
-<a href=/gui-reference/menu-bar/options/>
-Options Menu
-</a>
-</li>
-<li data-nav-id=/gui-reference/menu-bar/help/ title="Help Menu" class=dd-item>
-<a href=/gui-reference/menu-bar/help/>
-Help Menu
-</a>
-</li>
-</ul>
-</li>
-<li data-nav-id=/gui-reference/toolbar/ title="Tool Bar" class=dd-item>
-<a href=/gui-reference/toolbar/>
-Tool Bar
-</a>
-</li>
-<li data-nav-id=/gui-reference/system-editor/ title="System Editor" class=dd-item>
-<a href=/gui-reference/system-editor/>
-System Editor
-</a>
-<ul>
-<li data-nav-id=/gui-reference/system-editor/navigation-tree/ title="Navigation Tree" class=dd-item>
-<a href=/gui-reference/system-editor/navigation-tree/>
-Navigation Tree
-</a>
-</li>
-<li data-nav-id=/gui-reference/system-editor/drawing/ title=Drawing class=dd-item>
-<a href=/gui-reference/system-editor/drawing/>
-Drawing
-</a>
-</li>
-<li data-nav-id=/gui-reference/system-editor/declarations/ title=Declarations class=dd-item>
-<a href=/gui-reference/system-editor/declarations/>
-Declarations
-</a>
-</li>
-</ul>
-</li>
-<li data-nav-id=/gui-reference/symbolic-simulator/ title="Symbolic Simulator" class=dd-item>
-<a href=/gui-reference/symbolic-simulator/>
-Symbolic Simulator
-</a>
-<ul>
-<li data-nav-id=/gui-reference/symbolic-simulator/simulation-control/ title="Simulation Control" class=dd-item>
-<a href=/gui-reference/symbolic-simulator/simulation-control/>
-Simulation Control
-</a>
-</li>
-<li data-nav-id=/gui-reference/symbolic-simulator/variables/ title="Variables Panel" class=dd-item>
-<a href=/gui-reference/symbolic-simulator/variables/>
-Variables Panel
-</a>
-</li>
-<li data-nav-id=/gui-reference/symbolic-simulator/process/ title="Process Panel" class=dd-item>
-<a href=/gui-reference/symbolic-simulator/process/>
-Process Panel
-</a>
-</li>
-<li data-nav-id=/gui-reference/symbolic-simulator/sequence-charts/ title="Message Sequence Chart" class=dd-item>
-<a href=/gui-reference/symbolic-simulator/sequence-charts/>
-Message Sequence Chart
-</a>
-</li>
-<li data-nav-id=/gui-reference/symbolic-simulator/symbolic-traces/ title="Symbolic Traces" class=dd-item>
-<a href=/gui-reference/symbolic-simulator/symbolic-traces/>
-Symbolic Traces
-</a>
-</li>
-</ul>
-</li>
-<li data-nav-id=/gui-reference/concrete-simulator/ title="Concrete Simulator" class=dd-item>
-<a href=/gui-reference/concrete-simulator/>
-Concrete Simulator
-</a>
-<ul>
-<li data-nav-id=/gui-reference/concrete-simulator/simulation-control/ title="Simulation Control" class=dd-item>
-<a href=/gui-reference/concrete-simulator/simulation-control/>
-Simulation Control
-</a>
-</li>
-<li data-nav-id=/gui-reference/concrete-simulator/variables/ title="Variables Panel" class=dd-item>
-<a href=/gui-reference/concrete-simulator/variables/>
-Variables Panel
-</a>
-</li>
-<li data-nav-id=/gui-reference/concrete-simulator/process/ title="Process Panel" class=dd-item>
-<a href=/gui-reference/concrete-simulator/process/>
-Process Panel
-</a>
-</li>
-<li data-nav-id=/gui-reference/concrete-simulator/sequence-chart/ title="Message Sequence Chart" class=dd-item>
-<a href=/gui-reference/concrete-simulator/sequence-chart/>
-Message Sequence Chart
-</a>
-</li>
-<li data-nav-id=/gui-reference/concrete-simulator/gantt-chart/ title="Gantt Chart Panel" class=dd-item>
-<a href=/gui-reference/concrete-simulator/gantt-chart/>
-Gantt Chart Panel
-</a>
-</li>
-</ul>
-</li>
-<li data-nav-id=/gui-reference/verifier/ title=Verifier class=dd-item>
-<a href=/gui-reference/verifier/>
-Verifier
-</a>
-<ul>
-<li data-nav-id=/gui-reference/verifier/specifying/ title="Specifying Requirements" class=dd-item>
-<a href=/gui-reference/verifier/specifying/>
-Specifying Requirements
-</a>
-</li>
-<li data-nav-id=/gui-reference/verifier/verifying/ title="Verifying Requirements" class=dd-item>
-<a href=/gui-reference/verifier/verifying/>
-Verifying Requirements
-</a>
-</li>
-</ul>
-</li>
-<li data-nav-id=/gui-reference/yggdrasil/ title="Test Cases (Yggdrasil)" class="dd-item
-parent">
-<a href=/gui-reference/yggdrasil/>
-Test Cases (Yggdrasil)
-</a>
-<ul>
-<li data-nav-id=/gui-reference/yggdrasil/traces/ title="Generating Traces" class=dd-item>
-<a href=/gui-reference/yggdrasil/traces/>
-Generating Traces
-</a>
-</li>
-<li data-nav-id=/gui-reference/yggdrasil/test-code/ title="Specifying Test Code" class=dd-item>
-<a href=/gui-reference/yggdrasil/test-code/>
-Specifying Test Code
-</a>
-</li>
-<li data-nav-id=/gui-reference/yggdrasil/tutorial/ title=Tutorial class="dd-item
-parent">
-<a href=/gui-reference/yggdrasil/tutorial/>
-Tutorial
-</a>
-<ul>
-<li data-nav-id=/gui-reference/yggdrasil/tutorial/basic-test-generation/ title="Basic Test Generation" class="dd-item active">
-<a href=/gui-reference/yggdrasil/tutorial/basic-test-generation/>
-Basic Test Generation
-</a>
-</li>
-<li data-nav-id=/gui-reference/yggdrasil/tutorial/using-variables/ title="Using Model Variables" class=dd-item>
-<a href=/gui-reference/yggdrasil/tutorial/using-variables/>
-Using Model Variables
-</a>
-</li>
-<li data-nav-id=/gui-reference/yggdrasil/tutorial/using-queries/ title="Using Queries" class=dd-item>
-<a href=/gui-reference/yggdrasil/tutorial/using-queries/>
-Using Queries
-</a>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li data-nav-id=/language-reference/ title="Language Reference" class=dd-item>
-<a href=/language-reference/>
-<b>2. </b>Language Reference
-</a>
-<ul>
-<li data-nav-id=/language-reference/system-description/ title="System Description" class=dd-item>
-<a href=/language-reference/system-description/>
-System Description
-</a>
-<ul>
-<li data-nav-id=/language-reference/system-description/declarations/ title=Declarations class=dd-item>
-<a href=/language-reference/system-description/declarations/>
-Declarations
-</a>
-<ul>
-<li data-nav-id=/language-reference/system-description/declarations/types/ title=Types class=dd-item>
-<a href=/language-reference/system-description/declarations/types/>
-Types
-</a>
-</li>
-<li data-nav-id=/language-reference/system-description/declarations/functions/ title=Functions class=dd-item>
-<a href=/language-reference/system-description/declarations/functions/>
-Functions
-</a>
-</li>
-<li data-nav-id=/language-reference/system-description/declarations/external-functions/ title="External Functions" class=dd-item>
-<a href=/language-reference/system-description/declarations/external-functions/>
-External Functions
-</a>
-</li>
-</ul>
-</li>
-<li data-nav-id=/language-reference/system-description/templates/ title=Templates class=dd-item>
-<a href=/language-reference/system-description/templates/>
-Templates
-</a>
-<ul>
-<li data-nav-id=/language-reference/system-description/templates/locations/ title=Locations class=dd-item>
-<a href=/language-reference/system-description/templates/locations/>
-Locations
-</a>
-</li>
-<li data-nav-id=/language-reference/system-description/templates/edges/ title=Edges class=dd-item>
-<a href=/language-reference/system-description/templates/edges/>
-Edges
-</a>
-</li>
-</ul>
-</li>
-<li data-nav-id=/language-reference/system-description/parameters/ title=Parameters class=dd-item>
-<a href=/language-reference/system-description/parameters/>
-Parameters
-</a>
-</li>
-<li data-nav-id=/language-reference/system-description/system-definition/ title="System Definition" class=dd-item>
-<a href=/language-reference/system-description/system-definition/>
-System Definition
-</a>
-<ul>
-<li data-nav-id=/language-reference/system-description/system-definition/template-instantiation/ title="Template Instantiation" class=dd-item>
-<a href=/language-reference/system-description/system-definition/template-instantiation/>
-Template Instantiation
-</a>
-</li>
-<li data-nav-id=/language-reference/system-description/system-definition/progress-measures/ title="Progress Measures" class=dd-item>
-<a href=/language-reference/system-description/system-definition/progress-measures/>
-Progress Measures
-</a>
-</li>
-<li data-nav-id=/language-reference/system-description/system-definition/gantt-chart/ title="Gantt Chart" class=dd-item>
-<a href=/language-reference/system-description/system-definition/gantt-chart/>
-Gantt Chart
-</a>
-</li>
-</ul>
-</li>
-<li data-nav-id=/language-reference/system-description/priorities/ title=Priorities class=dd-item>
-<a href=/language-reference/system-description/priorities/>
-Priorities
-</a>
-</li>
-<li data-nav-id=/language-reference/system-description/scope-rules/ title="Scope Rules" class=dd-item>
-<a href=/language-reference/system-description/scope-rules/>
-Scope Rules
-</a>
-</li>
-<li data-nav-id=/language-reference/system-description/semantics/ title=Semantics class=dd-item>
-<a href=/language-reference/system-description/semantics/>
-Semantics
-</a>
-</li>
-</ul>
-</li>
-<li data-nav-id=/language-reference/requirements-specification/ title="Requirements Specification" class=dd-item>
-<a href=/language-reference/requirements-specification/>
-Requirements Specification
-</a>
-<ul>
-<li data-nav-id=/language-reference/requirements-specification/symb_queries/ title="Semantics of the Symbolic Queries" class=dd-item>
-<a href=/language-reference/requirements-specification/symb_queries/>
-Symbolic Queries
-</a>
-</li>
-<li data-nav-id=/language-reference/requirements-specification/smc_queries/ title="Semantics of the Statistical Queries" class=dd-item>
-<a href=/language-reference/requirements-specification/smc_queries/>
-Statistical Queries
-</a>
-</li>
-<li data-nav-id=/language-reference/requirements-specification/ci_estimation/ title="CI Estimation" class=dd-item>
-<a href=/language-reference/requirements-specification/ci_estimation/>
-CI Estimation
-</a>
-</li>
-</ul>
-</li>
-<li data-nav-id=/language-reference/expressions/ title=Expressions class=dd-item>
-<a href=/language-reference/expressions/>
-Expressions
-</a>
-<ul>
-<li data-nav-id=/language-reference/expressions/identifiers/ title=Identifiers class=dd-item>
-<a href=/language-reference/expressions/identifiers/>
-Identifiers
-</a>
-</li>
-</ul>
-</li>
-<li data-nav-id=/language-reference/reserved-keywords/ title="Reserved Keywords" class=dd-item>
-<a href=/language-reference/reserved-keywords/>
-Reserved Keywords
-</a>
-</li>
-</ul>
-</li>
-<li data-nav-id=/toolsandapi/ title="Tools & API" class=dd-item>
-<a href=/toolsandapi/>
-<b>3. </b>Tools & API
-</a>
-<ul>
-<li data-nav-id=/toolsandapi/uppaal/ title=UPPAAL class=dd-item>
-<a href=/toolsandapi/uppaal/>
-UPPAAL
-</a>
-</li>
-<li data-nav-id=/toolsandapi/verifyta/ title=verifyta class=dd-item>
-<a href=/toolsandapi/verifyta/>
-verifyta
-</a>
-</li>
-<li data-nav-id=/toolsandapi/javaapi/ title="Java API" class=dd-item>
-<a href=/toolsandapi/javaapi/>
-Java API
-</a>
-</li>
-<li data-nav-id=/toolsandapi/socketserver/ title=Socketserver class=dd-item>
-<a href=/toolsandapi/socketserver/>
-Socketserver
-</a>
-</li>
-<li data-nav-id=/toolsandapi/file-formats/ title="File Formats" class=dd-item>
-<a href=/toolsandapi/file-formats/>
-File Formats
-</a>
-</li>
-<li data-nav-id=/toolsandapi/latex/ title=Latex class=dd-item>
-<a href=/toolsandapi/latex/>
-Latex
-</a>
-</li>
-</ul>
-</li>
-<li data-nav-id=/extensions/ title=Extensions class=dd-item>
-<a href=/extensions/>
-<b>4. </b>Extensions
-</a>
-<ul>
-<li data-nav-id=/extensions/cora/ title=CORA class=dd-item>
-<a href=/extensions/cora/>
-CORA
-</a>
-</li>
-<li data-nav-id=/extensions/ecdar/ title=ECDAR class=dd-item>
-<a href=/extensions/ecdar/>
-ECDAR
-</a>
-</li>
-<li data-nav-id=/extensions/tiga/ title="UPPAAL Tiga" class=dd-item>
-<a href=/extensions/tiga/>
-UPPAAL Tiga
-</a>
-</li>
-<li data-nav-id=/extensions/tron/ title="UPPAAL TRON" class=dd-item>
-<a href=/extensions/tron/>
-UPPAAL TRON
-</a>
-</li>
-</ul>
-</li>
-<li data-nav-id=/preview-build/ title class=dd-item>
-<a href=/preview-build/>
-</a>
-</li>
-</ul>
-<section id=footer>
-<p>(c) 1995-2021 <a href=https://www.uppaal.org>UPPAAL</a></p>
-</section>
-</div>
-</nav>
-<section id=body>
-<div id=overlay></div>
-<div class="padding highlightable">
-<div>
-<div id=top-bar>
-<div id=top-github-link>
-<a class=github-link title="Edit this page" href=https://github.com/UPPAALModelChecker/docs.uppaal.org/blob/master/content/gui-reference/yggdrasil/tutorial/basic-test-generation.md target=blank>
-<i class="fas fa-code-branch"></i>
-<span id=top-github-link-text>Edit this page</span>
-</a>
-</div>
-<div id=breadcrumbs itemscope itemtype=http://data-vocabulary.org/Breadcrumb>
-<span id=sidebar-toggle-span>
-<a href=# id=sidebar-toggle data-sidebar-toggle>
-<i class="fas fa-bars"></i>
-</a>
-</span>
+<span data-search-clear><i class="fas fa-times"></i></span></div><script type=text/javascript src=/js/lunr.min.js?1651657417></script>
+<script type=text/javascript src=/js/auto-complete.js?1651657417></script>
+<script type=text/javascript>var baseurl=""</script><script type=text/javascript src=/js/search.js?1651657417></script></div><div class=highlightable><ul class=topics><li data-nav-id=/gui-reference/ title="GUI Reference" class="dd-item
+parent"><a href=/gui-reference/><b>1. </b>GUI Reference</a><ul><li data-nav-id=/gui-reference/menu-bar/ title="Menu Bar" class=dd-item><a href=/gui-reference/menu-bar/>Menu Bar</a><ul><li data-nav-id=/gui-reference/menu-bar/file/ title="File Menu" class=dd-item><a href=/gui-reference/menu-bar/file/>File Menu</a></li><li data-nav-id=/gui-reference/menu-bar/edit/ title="Edit Menu" class=dd-item><a href=/gui-reference/menu-bar/edit/>Edit Menu</a></li><li data-nav-id=/gui-reference/menu-bar/view/ title="View Menu" class=dd-item><a href=/gui-reference/menu-bar/view/>View Menu</a></li><li data-nav-id=/gui-reference/menu-bar/tools/ title="Tools Menu" class=dd-item><a href=/gui-reference/menu-bar/tools/>Tools Menu</a></li><li data-nav-id=/gui-reference/menu-bar/options/ title="Options Menu" class=dd-item><a href=/gui-reference/menu-bar/options/>Options Menu</a></li><li data-nav-id=/gui-reference/menu-bar/help/ title="Help Menu" class=dd-item><a href=/gui-reference/menu-bar/help/>Help Menu</a></li></ul></li><li data-nav-id=/gui-reference/toolbar/ title="Tool Bar" class=dd-item><a href=/gui-reference/toolbar/>Tool Bar</a></li><li data-nav-id=/gui-reference/system-editor/ title="System Editor" class=dd-item><a href=/gui-reference/system-editor/>System Editor</a><ul><li data-nav-id=/gui-reference/system-editor/navigation-tree/ title="Navigation Tree" class=dd-item><a href=/gui-reference/system-editor/navigation-tree/>Navigation Tree</a></li><li data-nav-id=/gui-reference/system-editor/drawing/ title=Drawing class=dd-item><a href=/gui-reference/system-editor/drawing/>Drawing</a></li><li data-nav-id=/gui-reference/system-editor/declarations/ title=Declarations class=dd-item><a href=/gui-reference/system-editor/declarations/>Declarations</a></li></ul></li><li data-nav-id=/gui-reference/symbolic-simulator/ title="Symbolic Simulator" class=dd-item><a href=/gui-reference/symbolic-simulator/>Symbolic Simulator</a><ul><li data-nav-id=/gui-reference/symbolic-simulator/simulation-control/ title="Simulation Control" class=dd-item><a href=/gui-reference/symbolic-simulator/simulation-control/>Simulation Control</a></li><li data-nav-id=/gui-reference/symbolic-simulator/variables/ title="Variables Panel" class=dd-item><a href=/gui-reference/symbolic-simulator/variables/>Variables Panel</a></li><li data-nav-id=/gui-reference/symbolic-simulator/process/ title="Process Panel" class=dd-item><a href=/gui-reference/symbolic-simulator/process/>Process Panel</a></li><li data-nav-id=/gui-reference/symbolic-simulator/sequence-charts/ title="Message Sequence Chart" class=dd-item><a href=/gui-reference/symbolic-simulator/sequence-charts/>Message Sequence Chart</a></li><li data-nav-id=/gui-reference/symbolic-simulator/symbolic-traces/ title="Symbolic Traces" class=dd-item><a href=/gui-reference/symbolic-simulator/symbolic-traces/>Symbolic Traces</a></li></ul></li><li data-nav-id=/gui-reference/concrete-simulator/ title="Concrete Simulator" class=dd-item><a href=/gui-reference/concrete-simulator/>Concrete Simulator</a><ul><li data-nav-id=/gui-reference/concrete-simulator/simulation-control/ title="Simulation Control" class=dd-item><a href=/gui-reference/concrete-simulator/simulation-control/>Simulation Control</a></li><li data-nav-id=/gui-reference/concrete-simulator/variables/ title="Variables Panel" class=dd-item><a href=/gui-reference/concrete-simulator/variables/>Variables Panel</a></li><li data-nav-id=/gui-reference/concrete-simulator/process/ title="Process Panel" class=dd-item><a href=/gui-reference/concrete-simulator/process/>Process Panel</a></li><li data-nav-id=/gui-reference/concrete-simulator/sequence-chart/ title="Message Sequence Chart" class=dd-item><a href=/gui-reference/concrete-simulator/sequence-chart/>Message Sequence Chart</a></li><li data-nav-id=/gui-reference/concrete-simulator/gantt-chart/ title="Gantt Chart Panel" class=dd-item><a href=/gui-reference/concrete-simulator/gantt-chart/>Gantt Chart Panel</a></li></ul></li><li data-nav-id=/gui-reference/verifier/ title=Verifier class=dd-item><a href=/gui-reference/verifier/>Verifier</a><ul><li data-nav-id=/gui-reference/verifier/specifying/ title="Specifying Requirements" class=dd-item><a href=/gui-reference/verifier/specifying/>Specifying Requirements</a></li><li data-nav-id=/gui-reference/verifier/verifying/ title="Verifying Requirements" class=dd-item><a href=/gui-reference/verifier/verifying/>Verifying Requirements</a></li></ul></li><li data-nav-id=/gui-reference/yggdrasil/ title="Test Cases (Yggdrasil)" class="dd-item
+parent"><a href=/gui-reference/yggdrasil/>Test Cases (Yggdrasil)</a><ul><li data-nav-id=/gui-reference/yggdrasil/traces/ title="Generating Traces" class=dd-item><a href=/gui-reference/yggdrasil/traces/>Generating Traces</a></li><li data-nav-id=/gui-reference/yggdrasil/test-code/ title="Specifying Test Code" class=dd-item><a href=/gui-reference/yggdrasil/test-code/>Specifying Test Code</a></li><li data-nav-id=/gui-reference/yggdrasil/tutorial/ title=Tutorial class="dd-item
+parent"><a href=/gui-reference/yggdrasil/tutorial/>Tutorial</a><ul><li data-nav-id=/gui-reference/yggdrasil/tutorial/basic-test-generation/ title="Basic Test Generation" class="dd-item active"><a href=/gui-reference/yggdrasil/tutorial/basic-test-generation/>Basic Test Generation</a></li><li data-nav-id=/gui-reference/yggdrasil/tutorial/using-variables/ title="Using Model Variables" class=dd-item><a href=/gui-reference/yggdrasil/tutorial/using-variables/>Using Model Variables</a></li><li data-nav-id=/gui-reference/yggdrasil/tutorial/using-queries/ title="Using Queries" class=dd-item><a href=/gui-reference/yggdrasil/tutorial/using-queries/>Using Queries</a></li></ul></li></ul></li></ul></li><li data-nav-id=/language-reference/ title="Language Reference" class=dd-item><a href=/language-reference/><b>2. </b>Language Reference</a><ul><li data-nav-id=/language-reference/system-description/ title="System Description" class=dd-item><a href=/language-reference/system-description/>System Description</a><ul><li data-nav-id=/language-reference/system-description/declarations/ title=Declarations class=dd-item><a href=/language-reference/system-description/declarations/>Declarations</a><ul><li data-nav-id=/language-reference/system-description/declarations/types/ title=Types class=dd-item><a href=/language-reference/system-description/declarations/types/>Types</a></li><li data-nav-id=/language-reference/system-description/declarations/functions/ title=Functions class=dd-item><a href=/language-reference/system-description/declarations/functions/>Functions</a></li><li data-nav-id=/language-reference/system-description/declarations/external-functions/ title="External Functions" class=dd-item><a href=/language-reference/system-description/declarations/external-functions/>External Functions</a></li></ul></li><li data-nav-id=/language-reference/system-description/templates/ title=Templates class=dd-item><a href=/language-reference/system-description/templates/>Templates</a><ul><li data-nav-id=/language-reference/system-description/templates/locations/ title=Locations class=dd-item><a href=/language-reference/system-description/templates/locations/>Locations</a></li><li data-nav-id=/language-reference/system-description/templates/edges/ title=Edges class=dd-item><a href=/language-reference/system-description/templates/edges/>Edges</a></li></ul></li><li data-nav-id=/language-reference/system-description/parameters/ title=Parameters class=dd-item><a href=/language-reference/system-description/parameters/>Parameters</a></li><li data-nav-id=/language-reference/system-description/system-definition/ title="System Definition" class=dd-item><a href=/language-reference/system-description/system-definition/>System Definition</a><ul><li data-nav-id=/language-reference/system-description/system-definition/template-instantiation/ title="Template Instantiation" class=dd-item><a href=/language-reference/system-description/system-definition/template-instantiation/>Template Instantiation</a></li><li data-nav-id=/language-reference/system-description/system-definition/progress-measures/ title="Progress Measures" class=dd-item><a href=/language-reference/system-description/system-definition/progress-measures/>Progress Measures</a></li><li data-nav-id=/language-reference/system-description/system-definition/gantt-chart/ title="Gantt Chart" class=dd-item><a href=/language-reference/system-description/system-definition/gantt-chart/>Gantt Chart</a></li></ul></li><li data-nav-id=/language-reference/system-description/priorities/ title=Priorities class=dd-item><a href=/language-reference/system-description/priorities/>Priorities</a></li><li data-nav-id=/language-reference/system-description/scope-rules/ title="Scope Rules" class=dd-item><a href=/language-reference/system-description/scope-rules/>Scope Rules</a></li><li data-nav-id=/language-reference/system-description/semantics/ title=Semantics class=dd-item><a href=/language-reference/system-description/semantics/>Semantics</a></li></ul></li><li data-nav-id=/language-reference/requirements-specification/ title="Requirements Specification" class=dd-item><a href=/language-reference/requirements-specification/>Requirements Specification</a><ul><li data-nav-id=/language-reference/requirements-specification/symb_queries/ title="Semantics of the Symbolic Queries" class=dd-item><a href=/language-reference/requirements-specification/symb_queries/>Symbolic Queries</a></li><li data-nav-id=/language-reference/requirements-specification/smc_queries/ title="Semantics of the Statistical Queries" class=dd-item><a href=/language-reference/requirements-specification/smc_queries/>Statistical Queries</a></li><li data-nav-id=/language-reference/requirements-specification/ci_estimation/ title="CI Estimation" class=dd-item><a href=/language-reference/requirements-specification/ci_estimation/>CI Estimation</a></li></ul></li><li data-nav-id=/language-reference/expressions/ title=Expressions class=dd-item><a href=/language-reference/expressions/>Expressions</a><ul><li data-nav-id=/language-reference/expressions/identifiers/ title=Identifiers class=dd-item><a href=/language-reference/expressions/identifiers/>Identifiers</a></li></ul></li><li data-nav-id=/language-reference/reserved-keywords/ title="Reserved Keywords" class=dd-item><a href=/language-reference/reserved-keywords/>Reserved Keywords</a></li></ul></li><li data-nav-id=/toolsandapi/ title="Tools & API" class=dd-item><a href=/toolsandapi/><b>3. </b>Tools & API</a><ul><li data-nav-id=/toolsandapi/uppaal/ title=UPPAAL class=dd-item><a href=/toolsandapi/uppaal/>UPPAAL</a></li><li data-nav-id=/toolsandapi/verifyta/ title=verifyta class=dd-item><a href=/toolsandapi/verifyta/>verifyta</a></li><li data-nav-id=/toolsandapi/javaapi/ title="Java API" class=dd-item><a href=/toolsandapi/javaapi/>Java API</a></li><li data-nav-id=/toolsandapi/socketserver/ title=Socketserver class=dd-item><a href=/toolsandapi/socketserver/>Socketserver</a></li><li data-nav-id=/toolsandapi/file-formats/ title="File Formats" class=dd-item><a href=/toolsandapi/file-formats/>File Formats</a></li><li data-nav-id=/toolsandapi/latex/ title=Latex class=dd-item><a href=/toolsandapi/latex/>Latex</a></li></ul></li><li data-nav-id=/extensions/ title=Extensions class=dd-item><a href=/extensions/><b>4. </b>Extensions</a><ul><li data-nav-id=/extensions/cora/ title=CORA class=dd-item><a href=/extensions/cora/>CORA</a></li><li data-nav-id=/extensions/ecdar/ title=ECDAR class=dd-item><a href=/extensions/ecdar/>ECDAR</a></li><li data-nav-id=/extensions/tiga/ title="UPPAAL Tiga" class=dd-item><a href=/extensions/tiga/>UPPAAL Tiga</a></li><li data-nav-id=/extensions/tron/ title="UPPAAL TRON" class=dd-item><a href=/extensions/tron/>UPPAAL TRON</a></li></ul></li><li data-nav-id=/preview-build/ title class=dd-item><a href=/preview-build/></a></li></ul><section id=footer><p>(c) 1995-2021 <a href=https://www.uppaal.org>UPPAAL</a></p></section></div></nav><section id=body><div id=overlay></div><div class="padding highlightable"><div><div id=top-bar><div id=top-github-link><a class=github-link title="Edit this page" href=https://github.com/UPPAALModelChecker/docs.uppaal.org/blob/master/content/gui-reference/yggdrasil/tutorial/basic-test-generation.md target=blank><i class="fas fa-code-branch"></i>
+<span id=top-github-link-text>Edit this page</span></a></div><div id=breadcrumbs itemscope itemtype=http://data-vocabulary.org/Breadcrumb><span id=sidebar-toggle-span><a href=# id=sidebar-toggle data-sidebar-toggle><i class="fas fa-bars"></i></a></span>
 <span id=toc-menu><i class="fas fa-list-alt"></i></span>
-<span class=links>
-<a href=/></a> > <a href=/gui-reference/>GUI Reference</a> > <a href=/gui-reference/yggdrasil/>Test Cases (Yggdrasil)</a> > <a href=/gui-reference/yggdrasil/tutorial/>Tutorial</a> > Basic Test Generation
-</span>
-</div>
-<div class=progress>
-<div class=wrapper>
-<nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#create-the-models>Create the models</a></li>
-<li><a href=#add-test-cases-specific-model-annotations>Add Test Cases specific model annotations</a></li>
-<li><a href=#add-test-pre-fix-and-post-fix-code>Add test pre-fix and post-fix code</a></li>
-<li><a href=#add-test-step-code-annotations>Add test step code annotations</a></li>
-<li><a href=#generating-the-test-cases>Generating the test cases</a></li>
-<li><a href=#inspecting-the-test-case-code>Inspecting the test case code</a></li>
-<li><a href=#exectuting-the-test-cases>Exectuting the test cases</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-</div>
-</div>
-</div>
-<div id=head-tags>
-</div>
-<div id=body-inner>
-<h1>
-Basic Test Generation
-</h1>
-<h3 id=create-the-models>Create the models</h3>
-<p>Open the On/Off System model <tt> &ldquo;onoff/onoff.xml&rdquo; </tt> file in Uppaal. The system contains two templates entitled <em>System</em> and <em>User</em>. The <em>System</em> represents the system or device (e.g. lamp) under test. The <em>User</em> models the possible user interactions with the system.</p>
-<p>The system can be either <em>On</em> or <em>Off</em>, with channels <em>on</em> and <em>off</em> changing between them. The user can non-deterministically press <em>on</em> or <em>off</em>.</p>
-<table>
-<thead>
-<tr>
-<th style=text-align:left><em>System</em> template</th>
-<th style=text-align:center><em>User</em> template</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style=text-align:left><img src=../img/System.jpg alt="System template"></td>
-<td style=text-align:center><img src=../img/User.jpg alt="User template"></td>
-</tr>
-</tbody>
-</table>
-<h3 id=add-test-cases-specific-model-annotations>Add Test Cases specific model annotations</h3>
-<p>First, some <em><em>Test Cases</em></em> specific declarations muse be made; these are required for the generator to use depth-first reachability and single step techniques for test-case generation. These variables must not be altered in the model. Hence, these two variables must be declared in the global <em><em>Declarations</em></em> section:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#66d9ef>int</span> __reach__ <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
-<span style=color:#66d9ef>int</span> __single__ <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
-</code></pre></div><h3 id=add-test-pre-fix-and-post-fix-code>Add test pre-fix and post-fix code</h3>
-<p>Second, there are two blocks of comments in the <em><em>System declarations</em></em> section of the model. The contents of a multi-line comment starting with <tt>TEST_PREFIX</tt> or <tt>TEST_POSTFIX</tt> are ejected as prefix code (before the actual test case behavior) or postfix code (after actual test case behavior) for each test case.</p>
-<p>In this example each test case is a Java class with a main method; executing this Java class constitutes running the test case. Therefore the prefix and postfix code is the wrapper code to setup this Java class.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>/** TEST_PREFIX
-</span><span style=color:#75715e>  package app;
-</span><span style=color:#75715e>  import app.App;
-</span><span style=color:#75715e>
-</span><span style=color:#75715e>  class Test extends App {
-</span><span style=color:#75715e>
-</span><span style=color:#75715e>  public static void main(String[] args) {
-</span><span style=color:#75715e>
-</span><span style=color:#75715e>*/</span>
-
-<span style=color:#75715e>/** TEST_POSTFIX
-</span><span style=color:#75715e>  }
-</span><span style=color:#75715e>}
-</span><span style=color:#75715e>*/</span>
-</code></pre></div><p>The test case <tt>class extends</tt> the <tt>App</tt> class we are testing. If you use a specific unit test framework, these lines should be changed to match its requiements. Each step in the test case will execute some methods on this class.</p>
-<p>By default, test cases will be named and sequentially numbered like <tt>testcase0.code</tt>.
-If desired, the filename and file extension can be changed by the following special comments in the <em><em>System declarations</em></em> section. For now, stay with the defaults.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>/** TEST_FILENAME test- */</span>
-<span style=color:#75715e>/** TEST_FILEEXT .txt */</span>
-</code></pre></div><h3 id=add-test-step-code-annotations>Add test step code annotations</h3>
-<p>The system model must be decorated with test code. Double clicking the edge labeled <tt>on?</tt> and selecting the <em><em>Test Code</em></em> tab reveals an area for entering test code. In this model the test code should be <tt>set_on();</tt>. This will execute the method <tt>set_on()</tt> on the application whenever this edge is taken in a test case. Similarly, <tt>set_off();</tt> is added to the edge labeled <tt>off?</tt>.</p>
-<p>For locations, test code can be entered in two areas, <em><em>Enter</em></em> and <em><em>Exit</em></em>. This test code is added to the test case when the trace reaches the location or leaves it, respectively.</p>
-<table>
-<thead>
-<tr>
-<th style=text-align:center>Adding <em>edge</em> test code</th>
-<th style=text-align:center>Adding <em>location</em> test code</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style=text-align:center><img src=../img/test-cases-edge-code-1.png alt="Adding test code to edges"></td>
-<td style=text-align:center><img src=../img/test-cases-location-code-1.png alt="Adding test code to locations"></td>
-</tr>
-</tbody>
-</table>
-<h3 id=generating-the-test-cases>Generating the test cases</h3>
-<p>To generate test cases go to the <em><em>Test Cases</em></em> tab. You may need to enable the tab in the GUI first.</p>
-<table>
-<thead>
-<tr>
-<th style=text-align:left>Enable Test Cases Tab</th>
-<th style=text-align:center>Test Cases Tab</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style=text-align:left><img src=../img/enable-test-cases-tab.png alt="Enable Test Cases Generation tab"></td>
-<td style=text-align:center><img src=../img/enabled-test-cases-tool-tab.png alt="Test Cases tab"></td>
-</tr>
-</tbody>
-</table>
-<p>Select which techniques for test case generation to use. For now only select the auto-<em><em>depth</em></em> search mode with a depth of 20, and click <em><em>add</em></em>.</p>
-<p><img src=../img/test-cases-generate-1-1.png alt="Generating tests with auto-depth mode"></p>
-<p>Clicking <em><em>add</em></em> should generate a single trace. Each trace generated will have a line in the list similar to <tt>Trace coverage: 4/4</tt>. This shows that the trace covered four out of four edges. Further information about which locations and edges are/are not covered are shown in the <em><em>Statistics</em></em> panel to the right. Here, all of the 3 locations and 4 edges are trivially covered.</p>
-<p><img src=../img/test-cases-coverage-1.png alt=Generation></p>
-<p>By double clicking the trace and selecting the <em><em>Simulator</em></em> tab, the trace can be examined. Unsurprisingly, the trace simply runs in circles with alternating on/off presses.</p>
-<p><img src=../img/test-cases-simulator-1.png alt="Simulating a test case"></p>
-<p>Next output the test cases to the file by clicking <em><em>Save Test Cases</em></em>. Select the output folder for test cases. Make this point to the <tt>onoff</tt> folder in this tutorial.
-<img src=../img/test-cases-save-1.png alt="Test Cases Output"></p>
-<h3 id=inspecting-the-test-case-code>Inspecting the test case code</h3>
-<p>Pressing the <em><em>Save Test Cases</em></em> button in the <em><em>Test Cases</em></em> tab will generate a file called <tt>testcase0.code</tt> in the selected output folder. If several traces have been generated, several files will be generated with sequential numbering.</p>
-<p>Each of these will be a Java class with the sequence of method invocations induce by the generated trace. A snippet is shown below.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java> 1<span style=color:#f92672>:</span> <span style=color:#f92672>package</span> app<span style=color:#f92672>;</span>
- 2<span style=color:#f92672>:</span> <span style=color:#f92672>import</span> app.App<span style=color:#f92672>;</span>
- 3<span style=color:#f92672>:</span>
- 4<span style=color:#f92672>:</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Test</span> <span style=color:#66d9ef>extends</span> App <span style=color:#f92672>{</span>
- 5<span style=color:#f92672>:</span>
- 6<span style=color:#f92672>:</span>     <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span><span style=color:#f92672>(</span>String<span style=color:#f92672>[]</span> args<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
- 7<span style=color:#f92672>:</span>
- 8<span style=color:#f92672>:</span> expect_off<span style=color:#f92672>();</span>
- 9<span style=color:#f92672>:</span>
-10: set_on<span style=color:#f92672>();</span>
-11:
-12: expect_on<span style=color:#f92672>();</span>
-13:
-14: set_off<span style=color:#f92672>();</span>
-15:
-   <span style=color:#f92672>&lt;...</span> snip <span style=color:#f92672>...</span> <span style=color:#f92672>&gt;</span>
-93:
-94:     <span style=color:#f92672>}</span>
-95: <span style=color:#f92672>}</span>
-</code></pre></div><ul>
-<li>The test case starts with the prefix code on lines 1-6.</li>
-<li>Line 8 is the first step of the trace. This is <tt>expect_off();</tt> since the initial location is <tt>Off</tt>.</li>
-<li>The first transition is the one labeled <em>on?</em>, the test code for this transition is <tt>set_on();</tt>. This is entered in the trace at line 10.</li>
-<li>The trace then enters location <em>On</em> and <tt>expect_on();</tt> is in the test case at line 12. The test case continues in this fashion.</li>
-<li>The trace ends with the postfix code on lines 94-95.</li>
-</ul>
-<h3 id=exectuting-the-test-cases>Exectuting the test cases</h3>
-<p>Running the <tt>test.sh</tt> (or <tt>test.bat</tt> on Windows) will compile and run the test cases one at a time.
+<span class=links><a href=/></a> > <a href=/gui-reference/>GUI Reference</a> > <a href=/gui-reference/yggdrasil/>Test Cases (Yggdrasil)</a> > <a href=/gui-reference/yggdrasil/tutorial/>Tutorial</a> > Basic Test Generation</span></div><div class=progress><div class=wrapper><nav id=TableOfContents><ul><li><ul><li><a href=#create-the-models>Create the models</a></li><li><a href=#add-test-cases-specific-model-annotations>Add Test Cases specific model annotations</a></li><li><a href=#add-test-pre-fix-and-post-fix-code>Add test pre-fix and post-fix code</a></li><li><a href=#add-test-step-code-annotations>Add test step code annotations</a></li><li><a href=#generating-the-test-cases>Generating the test cases</a></li><li><a href=#inspecting-the-test-case-code>Inspecting the test case code</a></li><li><a href=#exectuting-the-test-cases>Exectuting the test cases</a></li></ul></li></ul></nav></div></div></div></div><div id=head-tags></div><div id=body-inner><h1>Basic Test Generation</h1><h3 id=create-the-models>Create the models</h3><p>Open the On/Off System model <tt>&ldquo;onoff/onoff.xml&rdquo;</tt> file in Uppaal. The system contains two templates entitled <em>System</em> and <em>User</em>. The <em>System</em> represents the system or device (e.g. lamp) under test. The <em>User</em> models the possible user interactions with the system.</p><p>The system can be either <em>On</em> or <em>Off</em>, with channels <em>on</em> and <em>off</em> changing between them. The user can non-deterministically press <em>on</em> or <em>off</em>.</p><table><thead><tr><th style=text-align:left><em>System</em> template</th><th style=text-align:center><em>User</em> template</th></tr></thead><tbody><tr><td style=text-align:left><img src=../img/System.jpg alt="System template"></td><td style=text-align:center><img src=../img/User.jpg alt="User template"></td></tr></tbody></table><h3 id=add-test-cases-specific-model-annotations>Add Test Cases specific model annotations</h3><p>First, some <em><em>Test Cases</em></em> specific declarations muse be made; these are required for the generator to use depth-first reachability and single step techniques for test-case generation. These variables must not be altered in the model. Hence, these two variables must be declared in the global <em><em>Declarations</em></em> section:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#66d9ef>int</span> __reach__ <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> __single__ <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+</span></span></code></pre></div><h3 id=add-test-pre-fix-and-post-fix-code>Add test pre-fix and post-fix code</h3><p>Second, there are two blocks of comments in the <em><em>System declarations</em></em> section of the model. The contents of a multi-line comment starting with <tt>TEST_PREFIX</tt> or <tt>TEST_POSTFIX</tt> are ejected as prefix code (before the actual test case behavior) or postfix code (after actual test case behavior) for each test case.</p><p>In this example each test case is a Java class with a main method; executing this Java class constitutes running the test case. Therefore the prefix and postfix code is the wrapper code to setup this Java class.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#75715e>/** TEST_PREFIX
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  package app;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  import app.App;
+</span></span></span><span style=display:flex><span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  class Test extends App {
+</span></span></span><span style=display:flex><span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  public static void main(String[] args) {
+</span></span></span><span style=display:flex><span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>*/</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/** TEST_POSTFIX
+</span></span></span><span style=display:flex><span><span style=color:#75715e>  }
+</span></span></span><span style=display:flex><span><span style=color:#75715e>}
+</span></span></span><span style=display:flex><span><span style=color:#75715e>*/</span>
+</span></span></code></pre></div><p>The test case <tt>class extends</tt> the <tt>App</tt> class we are testing. If you use a specific unit test framework, these lines should be changed to match its requiements. Each step in the test case will execute some methods on this class.</p><p>By default, test cases will be named and sequentially numbered like <tt>testcase0.code</tt>.
+If desired, the filename and file extension can be changed by the following special comments in the <em><em>System declarations</em></em> section. For now, stay with the defaults.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span><span style=color:#75715e>/** TEST_FILENAME test- */</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/** TEST_FILEEXT .txt */</span>
+</span></span></code></pre></div><h3 id=add-test-step-code-annotations>Add test step code annotations</h3><p>The system model must be decorated with test code. Double clicking the edge labeled <tt>on?</tt> and selecting the <em><em>Test Code</em></em> tab reveals an area for entering test code. In this model the test code should be <tt>set_on();</tt>. This will execute the method <tt>set_on()</tt> on the application whenever this edge is taken in a test case. Similarly, <tt>set_off();</tt> is added to the edge labeled <tt>off?</tt>.</p><p>For locations, test code can be entered in two areas, <em><em>Enter</em></em> and <em><em>Exit</em></em>. This test code is added to the test case when the trace reaches the location or leaves it, respectively.</p><table><thead><tr><th style=text-align:center>Adding <em>edge</em> test code</th><th style=text-align:center>Adding <em>location</em> test code</th></tr></thead><tbody><tr><td style=text-align:center><img src=../img/test-cases-edge-code-1.png alt="Adding test code to edges"></td><td style=text-align:center><img src=../img/test-cases-location-code-1.png alt="Adding test code to locations"></td></tr></tbody></table><h3 id=generating-the-test-cases>Generating the test cases</h3><p>To generate test cases go to the <em><em>Test Cases</em></em> tab. You may need to enable the tab in the GUI first.</p><table><thead><tr><th style=text-align:left>Enable Test Cases Tab</th><th style=text-align:center>Test Cases Tab</th></tr></thead><tbody><tr><td style=text-align:left><img src=../img/enable-test-cases-tab.png alt="Enable Test Cases Generation tab"></td><td style=text-align:center><img src=../img/enabled-test-cases-tool-tab.png alt="Test Cases tab"></td></tr></tbody></table><p>Select which techniques for test case generation to use. For now only select the auto-<em><em>depth</em></em> search mode with a depth of 20, and click <em><em>add</em></em>.</p><p><img src=../img/test-cases-generate-1-1.png alt="Generating tests with auto-depth mode"></p><p>Clicking <em><em>add</em></em> should generate a single trace. Each trace generated will have a line in the list similar to <tt>Trace coverage: 4/4</tt>. This shows that the trace covered four out of four edges. Further information about which locations and edges are/are not covered are shown in the <em><em>Statistics</em></em> panel to the right. Here, all of the 3 locations and 4 edges are trivially covered.</p><p><img src=../img/test-cases-coverage-1.png alt=Generation></p><p>By double clicking the trace and selecting the <em><em>Simulator</em></em> tab, the trace can be examined. Unsurprisingly, the trace simply runs in circles with alternating on/off presses.</p><p><img src=../img/test-cases-simulator-1.png alt="Simulating a test case"></p><p>Next output the test cases to the file by clicking <em><em>Save Test Cases</em></em>. Select the output folder for test cases. Make this point to the <tt>onoff</tt> folder in this tutorial.
+<img src=../img/test-cases-save-1.png alt="Test Cases Output"></p><h3 id=inspecting-the-test-case-code>Inspecting the test case code</h3><p>Pressing the <em><em>Save Test Cases</em></em> button in the <em><em>Test Cases</em></em> tab will generate a file called <tt>testcase0.code</tt> in the selected output folder. If several traces have been generated, several files will be generated with sequential numbering.</p><p>Each of these will be a Java class with the sequence of method invocations induce by the generated trace. A snippet is shown below.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=display:flex><span> 1<span style=color:#f92672>:</span> <span style=color:#f92672>package</span> app<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span> 2<span style=color:#f92672>:</span> <span style=color:#f92672>import</span> app.App<span style=color:#f92672>;</span>
+</span></span><span style=display:flex><span> 3<span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span> 4<span style=color:#f92672>:</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Test</span> <span style=color:#66d9ef>extends</span> App <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span> 5<span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span> 6<span style=color:#f92672>:</span>     <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span><span style=color:#f92672>(</span>String<span style=color:#f92672>[]</span> args<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span> 7<span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span> 8<span style=color:#f92672>:</span> expect_off<span style=color:#f92672>();</span>
+</span></span><span style=display:flex><span> 9<span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>10: set_on<span style=color:#f92672>();</span>
+</span></span><span style=display:flex><span>11:
+</span></span><span style=display:flex><span>12: expect_on<span style=color:#f92672>();</span>
+</span></span><span style=display:flex><span>13:
+</span></span><span style=display:flex><span>14: set_off<span style=color:#f92672>();</span>
+</span></span><span style=display:flex><span>15:
+</span></span><span style=display:flex><span>   <span style=color:#f92672>&lt;...</span> snip <span style=color:#f92672>...</span> <span style=color:#f92672>&gt;</span>
+</span></span><span style=display:flex><span>93:
+</span></span><span style=display:flex><span>94:     <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>95: <span style=color:#f92672>}</span>
+</span></span></code></pre></div><ul><li>The test case starts with the prefix code on lines 1-6.</li><li>Line 8 is the first step of the trace. This is <tt>expect_off();</tt> since the initial location is <tt>Off</tt>.</li><li>The first transition is the one labeled <em>on?</em>, the test code for this transition is <tt>set_on();</tt>. This is entered in the trace at line 10.</li><li>The trace then enters location <em>On</em> and <tt>expect_on();</tt> is in the test case at line 12. The test case continues in this fashion.</li><li>The trace ends with the postfix code on lines 94-95.</li></ul><h3 id=exectuting-the-test-cases>Exectuting the test cases</h3><p>Running the <tt>test.sh</tt> (or <tt>test.bat</tt> on Windows) will compile and run the test cases one at a time.
 It will output the name of each file as it executes them.
-No output from the test case signifies successful execution.</p>
-<pre>
+No output from the test case signifies successful execution.</p><pre>
 onoff$ ./test.sh
 testcase0.code
 onoff$
-</pre>
-<p>Running the <tt>testMutant.sh</tt> (or <tt>testMutant.bat</tt> on Windows) will compile and run the test cases on the mutant (intentionally wrong) implementation.
-This should result in an exception being thrown, signifying a test error.</p>
-<pre>
+</pre><p>Running the <tt>testMutant.sh</tt> (or <tt>testMutant.bat</tt> on Windows) will compile and run the test cases on the mutant (intentionally wrong) implementation.
+This should result in an exception being thrown, signifying a test error.</p><pre>
 onoff$ ./testMutant.sh
 testcase0.code
 Exception in thread "main" java.lang.AssertionError
   at app.App.expect_on(App.java:17)
   at app.Test.main(Test.java:15)
 onoff$
-</pre>
-<p>The implementation code can be examined in the <tt>onoff/app</tt> folder. See file <tt> onoff/app/AppC.java</tt> for the correct implementation and <tt> onoff/app/AppM.java</tt> for the mutant.</p>
-<p>In order to transfer this to you own applications, you will have to decorate the model with test code such that the output from the generator constitutes an executable test case in whatever test execution framework you use.</p>
-<footer class=footline>
-</footer>
-</div>
-</div>
-<div id=navigation>
-<a class="nav nav-prev" href=/gui-reference/yggdrasil/tutorial/ title=Tutorial> <i class="fa fa-chevron-left"></i></a>
-<a class="nav nav-next" href=/gui-reference/yggdrasil/tutorial/using-variables/ title="Using Model Variables" style=margin-right:0><i class="fa fa-chevron-right"></i></a>
-</div>
-</section>
-<div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
-<div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div>
-</div>
-<script src=/js/clipboard.min.js?1644239688></script>
-<script src=/js/perfect-scrollbar.min.js?1644239688></script>
-<script src=/js/perfect-scrollbar.jquery.min.js?1644239688></script>
-<script src=/js/jquery.sticky.js?1644239688></script>
-<script src=/js/featherlight.min.js?1644239688></script>
-<script src=/js/highlight.pack.js?1644239688></script>
-<script>hljs.initHighlightingOnLoad()</script>
-<script src=/js/modernizr.custom-3.6.0.js?1644239688></script>
-<script src=/js/learn.js?1644239688></script>
-<script src=/js/hugo-learn.js?1644239688></script>
-<script src=/mermaid/mermaid.js?1644239688></script>
-<script>mermaid.initialize({startOnLoad:!0})</script>
-</body>
-</html>
+</pre><p>The implementation code can be examined in the <tt>onoff/app</tt> folder. See file <tt>onoff/app/AppC.java</tt> for the correct implementation and <tt>onoff/app/AppM.java</tt> for the mutant.</p><p>In order to transfer this to you own applications, you will have to decorate the model with test code such that the output from the generator constitutes an executable test case in whatever test execution framework you use.</p><footer class=footline></footer></div></div><div id=navigation><a class="nav nav-prev" href=/gui-reference/yggdrasil/tutorial/ title=Tutorial><i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/gui-reference/yggdrasil/tutorial/using-variables/ title="Using Model Variables" style=margin-right:0><i class="fa fa-chevron-right"></i></a></div></section><div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px><div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div></div><script src=/js/clipboard.min.js?1651657417></script>
+<script src=/js/perfect-scrollbar.min.js?1651657417></script>
+<script src=/js/perfect-scrollbar.jquery.min.js?1651657417></script>
+<script src=/js/jquery.sticky.js?1651657417></script>
+<script src=/js/featherlight.min.js?1651657417></script>
+<script src=/js/highlight.pack.js?1651657417></script>
+<script>hljs.initHighlightingOnLoad()</script><script src=/js/modernizr.custom-3.6.0.js?1651657417></script>
+<script src=/js/learn.js?1651657417></script>
+<script src=/js/hugo-learn.js?1651657417></script>
+<script src=/mermaid/mermaid.js?1651657417></script>
+<script>mermaid.initialize({startOnLoad:!0})</script></body></html>
