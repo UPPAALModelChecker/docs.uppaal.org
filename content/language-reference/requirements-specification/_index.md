@@ -125,7 +125,7 @@ SMCQuery ::=
       | Probability Subjection '>=' Probability Subjection
       | Estimate Subjection
 
-Simulate ::= 'simulate' SIMRUNS '[' BoundType ']' '{' List '}' [ : Expression [ ':' SATRUNS ]]
+Simulate ::= 'simulate' '[' SMCBounds ']' '{' List '}' [ : Expression [ ':' SATRUNS ]]
 
 Probability ::= 
         'Pr' Expression
@@ -155,9 +155,6 @@ Subjection ::=
 
 <dt><tt>SATRUNS</tt></dt>
 <dd>is an optional positive integer constant denoting the maximum number of runs that satisfy the state expression.</dd>
-
-<dt><tt>SATRUNS</tt></dt>
-<dd>is a positive integer constant denoting the number of simulated runs.</dd>
 
 <dt><tt>PROB</tt></dt>
 <dd>is a floating point number from an interval [0;1] denoting a probability bound.</dd>
