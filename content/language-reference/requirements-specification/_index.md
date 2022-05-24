@@ -122,7 +122,7 @@ SMCQuery ::=
       | Probability Subjection '>=' Probability Subjection
       | Estimate Subjection
 
-Simulate ::= 'simulate' '[' SMCBounds ']' '{' List '}' [ : Expression [ ':' SATRUNS ]]
+Simulate ::= 'simulate'  '[' SMCBounds ']' '{' List '}' [ ':' [ SATRUNS ':' ] Expression ]
 
 Probability ::= 
         'Pr' Expression
