@@ -16,7 +16,7 @@ The simulation query collects the valuation of the specified list of expressions
 
 ## Probability Estimation (Quantitative Model Checking)
 
-<tt>'Pr[' BoundType '](' ('<>' | '[]') Expression ')'</tt>
+<tt>'Pr[' SMCBounds '](' ('<>' | '[]') Expression ')'</tt>
 
 Quantitative query estimates the probability of a path expression being true given that the predicate in probability brackets is true. Intuitively the model exploration is bounded by an expression in the brackets: it can be limited by setting the bound on absolute model time, a clock value, or the number of steps (discrete transitions).
 

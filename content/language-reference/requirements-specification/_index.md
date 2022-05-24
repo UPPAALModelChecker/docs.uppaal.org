@@ -126,7 +126,7 @@ Simulate ::= 'simulate'  '[' SMCBounds ']' '{' List '}' [ ':' [ SATRUNS ':' ] Ex
 
 Probability ::= 
         'Pr' Expression
-      | 'Pr[' BoundType ']' '(' PathType Expression ')'
+      | 'Pr[' SMCBounds ']' '(' PathType Expression ')'
 
 ProbUntil   ::= 'Pr[' SMCBounds ']' '(' Expression 'U' Expression ')'
 
