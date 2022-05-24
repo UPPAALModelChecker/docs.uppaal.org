@@ -106,9 +106,6 @@ Subjection ::=
 
 <dt><tt>LocalGameTimeLimitExpression </tt></dt>
 <dd>describes an additional time limit such that the game can be won within <tt>GameTimeLimitExpression</tt> - <tt>LocalGameTimeLimitExpression</tt> time units. This expression is evaluated in each state, and can therefore depend on state or clock constraints. Must be side-effect free.</dd>
-
-<dt><tt>Subjection</tt></dt>
-<dd>indicates whether the query should be subjected to a strategy.</dd>
 </dl>
 
 
@@ -167,9 +164,6 @@ Subjection ::=
 
 <dt><tt>'max:'</tt></dt>
 <dd>means the maximum value over a run of the proceeding expression.</dd>
-
-<dt><tt>Subjection</tt></dt>
-<dd>indicates whether the query should be subjected to a strategy.</dd>
 </dl>
 
 All expressions are state predicates and must be side effect free. It is possible to test whether a certain process is in a given location using expressions on the form <tt>process.location</tt>.
@@ -202,9 +196,6 @@ Subjection ::=
 
 <dt><tt>Name</tt></dt>
 <dd>indicates the name of a strategy, see also next section.</dd>
-
-<dt><tt>Subjection</tt></dt>
-<dd>indicates whether the query should be subjected to a strategy.</dd>
 </dl>
 
 
@@ -228,9 +219,6 @@ NonAssignableQuery ::=
 ```
 
 <dl>
-<dt><tt>Name</tt></dt>
-<dd>indicates the name of a strategy.</dd>
-
 <dt><tt>Path</tt></dt>
 <dd>is a double-quoted character sequence (string) denoting a file system path.</dd>
 </dl>
