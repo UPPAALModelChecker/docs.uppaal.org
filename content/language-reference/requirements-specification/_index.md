@@ -62,18 +62,27 @@ Controller synthesis queries are decided using symbolic techniques over Timed Ga
 
 ``` EBNF
 TIGAQuery ::=
-        'control:' Goal Subjection
-      | 'E<>' 'control:' Goal Subjection
-      | '{' someting '}' 'control:' Goal Subjection
-      | TimeEfficientGameQuery Goal
+        ControlSpecifier Goal Subjection
+      | CollaborativeControlSpecifier Goal Subjection
+      | PartialControlSpecifier Goal Subjection
+      | TimeEfficientGameSpecifier Goal
+
+ControlSpecifier ::=
+        'control:'
+
+CollaborativeControlSpecifier ::=
+        'E<>' 'control:'
+
+PartialControlSpecifier ::=
+        '{' List '}' 'control:'
 
 TimeEfficientGameQuery ::=
-        'control_t*' '(' u ',' g '):'
+        'control_t*' '(' GlameTimeLimitExpression ',' LocalGameTimeLimitExpression '):'
       | 'control_t*' '(' u '):'
       | 'control_t*:'
       
 Goal ::=  
-         'A<>' WinExpression
+        'A<>' WinExpression
       | 'A[' NotLooseExpression 'U' WinExpression ']'
       | 'A[' NotLooseExpression 'W' WinExpression ']'
       | 'A[' NotLooseExpression ']'
@@ -82,9 +91,9 @@ WinExpression ::= Expression
 
 NotLooseExpression ::= Expression
 
-u ::= Expression
+GameTimeLimitExpression ::= Expression
 
-g ::= Expression
+LocalGameTimeLimitExpression ::= Expression
 
 Subjection ::= 
 	    // empty for no subjection
@@ -92,11 +101,11 @@ Subjection ::=
 ```
 
 <dl>
-<dt><tt>u</tt></dt>
-<dd>describes a time limit within the game must be won.</dd>
+<dt><tt>GameTimeLimitExpression </tt></dt>
+<dd>describes a time limit within the game must be won. This expression is only evaluated once at the beginning, thus should not depend on the current state.</dd>
 
-<dt><tt>g</tt></dt>
-<dd>describes an additional time limit such that the game can be won within <tt>u</tt> - <tt>g</tt> time units.</dd>
+<dt><tt>LocalGameTimeLimitExpression </tt></dt>
+<dd>describes an additional time limit such that the game can be won within <tt>GameTimeLimitExpression</tt> - <tt>LocalGameTimeLimitExpression</tt> time units. This expression is evaluated in each state, and can therefore depend on state or clock constraints. Must be side-effect free.</dd>
 
 <dt><tt>Subjection</tt></dt>
 <dd>indicates whether the query should be subjected to a strategy.</dd>
