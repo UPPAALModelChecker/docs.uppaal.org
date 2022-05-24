@@ -28,7 +28,7 @@ List ::= Expression | Expression ',' List
 
 Subjection ::= 
 	    // empty for no subjection
-	  | under Name   
+	  | under StrategyName   
 ```
 
 For <tt>sup</tt> properties, expression may not contain clock constraints and must evaluate to either an integer or a clock.
@@ -97,7 +97,7 @@ LocalGameTimeLimitExpression ::= Expression
 
 Subjection ::= 
 	    // empty for no subjection
-	  | under Name   
+	  | under StrategyName   
 ```
 
 <dl>
@@ -140,7 +140,7 @@ PathType ::= ( '<>' | '[]' )
 
 Subjection ::= 
 	    // empty for no subjection
-	  | under Name   
+	  | under StrategyName   
 ```
 
 <dl>
@@ -187,15 +187,12 @@ Features ::= '{' List '}' '->' '{' List '}'
 
 Subjection ::= 
 	    // empty for no subjection
-	  | under Name   
+	  | under StrategyName   
 ```
 
 <dl>
 <dt><tt>Features</tt></dt>
 <dd>describes a mapping from partial state to .</dd>
-
-<dt><tt>Name</tt></dt>
-<dd>indicates the name of a strategy, see also next section.</dd>
 </dl>
 
 
@@ -205,7 +202,7 @@ Strategy queries allow store, load, reuse and refine the strategies by assigning
 
 ``` EBNF
 AssignQuery ::=
-	    'strategy' Name '=' AssignableQuery
+	    'strategy' StrategyName '=' AssignableQuery
 
 AssignableQuery ::=
         TIGAQuery
@@ -215,10 +212,13 @@ AssignableQuery ::=
 NonAssignableQuery ::=
         SymbQuery
 	  | SMCQuery
-	  | 'saveStrategy' '(' Path ',' Name ')' 
+	  | 'saveStrategy' '(' Path ',' StrategyName ')' 
 ```
 
 <dl>
+<dt><tt>StrategyName</tt></dt>
+<dd>indicates the name of a strategy.</dd>
+
 <dt><tt>Path</tt></dt>
 <dd>is a double-quoted character sequence (string) denoting a file system path.</dd>
 </dl>
