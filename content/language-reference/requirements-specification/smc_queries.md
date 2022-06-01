@@ -10,8 +10,6 @@ UPPAAL can estimate the probability of expression values statistically. There ar
 
 <tt>'simulate'  '[' SMCBounds ']' '{' List '}' [ ':' [ SATRUNS ':' ] Expression ]</tt>
 
-<tt>BoundType ::= (  | Clock | '#' ) '<=' BOUND</tt>
-
 The simulation query collects the valuation of the specified list of expressions over the time, cost or action-transitions of the simulated run. The simulation runs can be filtered by a state expression after the colon (<tt>':'</tt>) and the number of satisfying runs can be limited by positive integer using <tt>SMCBounds</tt> and <tt>SATRUNS</tt>. If the filtering expression is provided then the result also includes a probability confidence interval similar to Probability Estimation below.
 
 ## Probability Estimation (Quantitative Model Checking)
