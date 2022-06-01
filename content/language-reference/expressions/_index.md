@@ -173,6 +173,28 @@ bool alltrue(bool a[5])
 
 An expression `sum (ID : Type) Expr` evaluates to an integer and is equal to the sum of the expressions evaluated with `ID` ranging over the given type argument. Boolean or state predicates (in TCTL expressions only) are accepted but not clock constraints. The expressions must be side-effect free. The type must be a bounded integer or a scalar set.
 
+## MITL Expressions
+
+Statistical model checking (SMC) supports the full logic of weighted metric interval temporal logic (MITL). The syntax of MITL expressions is defined by the grammar for `MITLExpression`.
+
+``` EBNF
+MITLExpression = 
+               BExpr
+            |  (MITLExpression && MITLExpression)
+            |  (MITLExpression || MITLExpression)
+            |  (MITLExpression 'U' '[' NAT ',' NAT ']' MITLExpression)
+            |  (MITLExpression 'R' '[' NAT ',' NAT ']' MITLExpression)
+            |  ('X' MITLExpression)
+            |  ('<>' '[' NAT ',' NAT ']' MITLExpression)
+            |  ('[]' '[' NAT ',' NAT ']' MITLExpression);
+```
+
+<dl>
+<dt><tt>BExpr</tt></dt>
+<dd>describes a Boolean expression over clocks, variables, and locations.</dd>
+</dl>
+
+
 ## Floating Point Type Support
 
 Statistical model checking (SMC) supports double precision floating point type `double`. The clock variables also have floating point values in SMC. Symbolic and statistical model checking can be applied on the same model provided that `double` and `hybrid clock` type variables do not influencing the model logic, i.e. they cannot be used in guard and invariant constraints (but can be used in ODE expressions).

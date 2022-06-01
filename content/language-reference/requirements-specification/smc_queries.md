@@ -38,6 +38,12 @@ Hypothesis testing checks whether the probability of a property is less or great
 
 Compares two probabilities indirectly without estimating them.
 
+## Full Weighted MITL
+
+<tt>'Pr' MITLExpression</tt>
+
+The exact evaluation of the probability that a run satisfies a given weighted MITL formula. 
+
 ## Value Estimation
 
 <tt>'E[' SMCBounds ']' '(' ('min:'|'max:' Expression ')'</tt>

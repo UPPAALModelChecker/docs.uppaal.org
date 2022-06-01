@@ -125,7 +125,7 @@ SMCQuery ::=
 Simulate ::= 'simulate'  '[' SMCBounds ']' '{' List '}' [ ':' [ SATRUNS ':' ] Expression ]
 
 Probability ::= 
-        'Pr' Expression
+        'Pr' MITLExpression
       | 'Pr[' SMCBounds ']' '(' PathType Expression ')'
 
 ProbUntil   ::= 'Pr[' SMCBounds ']' '(' Expression 'U' Expression ')'
