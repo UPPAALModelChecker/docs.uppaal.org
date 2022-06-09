@@ -16,6 +16,8 @@ The _Simulation Trace_ area contains a combo box that displays the current time 
 *   **Prev:** highlights the element immediately preceding the current selection (if any) in the trace.
 *   **Next:** highlights the element immediately following the current selection (if any) in the trace.
 *   **Play:** replays the trace starting from the currently selected element.
+*   **Open:** opens a file dialog for loading a trace from file.
+*   **Save:** opens a file dialog for saving the current trace on file. The valid file extension is "uctr". When no file extension is provided, it will be automatically appended.
 *   **Random:** starts a random simulation where the simulator proceed automatically by randomly selecting enabled transitions at random time.
 
 The slider is used to control the speed used when traces are replayed and when random simulation is performed.
