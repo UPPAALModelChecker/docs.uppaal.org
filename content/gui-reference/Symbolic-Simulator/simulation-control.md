@@ -15,7 +15,7 @@ The six buttons below the trace view have the following semantics:
 *   **Next:** highlights the element immediately following the current selection (if any) in the trace.
 *   **Replay:** replays the trace starting from the currently selected element.
 *   **Open:** opens a file dialog for loading a trace from file.
-*   **Save:** opens a file dialog for saving the current trace on file.
+*   **Save:** opens a file dialog for saving the current trace on file. The valid file extension is "xtr". When no file extension is provided, it will be automatically appended.
 *   **Random:** starts a random simulation where the simulator proceed automatically by randomly selecting enabled transitions.
 
 The slider at the bottom of the control panel is used to control the speed used when traces are replayed and when random simulation is performed.
