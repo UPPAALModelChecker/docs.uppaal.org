@@ -77,7 +77,7 @@ PartialControlSpecifier ::=
         '{' List '}' 'control:'
 
 TimeEfficientGameQuery ::=
-        'control_t*' '(' GlameTimeLimitExpression ',' LocalGameTimeLimitExpression '):'
+        'control_t*' '(' GameTimeLimitExpression ',' LocalGameTimeLimitExpression '):'
       | 'control_t*' '(' u '):'
       | 'control_t*:'
       
@@ -85,7 +85,7 @@ Goal ::=
         'A<>' WinExpression
       | 'A[' NotLooseExpression 'U' WinExpression ']'
       | 'A[' NotLooseExpression 'W' WinExpression ']'
-      | 'A[' NotLooseExpression ']'
+      | 'A[]' NotLooseExpression
 
 WinExpression ::= Expression
 
