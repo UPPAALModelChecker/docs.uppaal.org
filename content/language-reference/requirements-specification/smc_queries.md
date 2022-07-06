@@ -8,13 +8,9 @@ UPPAAL can estimate the probability of expression values statistically. There ar
 
 ## Simulation
 
-<tt>'simulate' '[' SMCBounds ']' '{' List '}' [ : Expression [ ':' SATRUNS ]]</tt>
+<tt>'simulate'  '[' SMCBounds ']' '{' List '}' [ ':' [ SATRUNS ':' ] Expression ]</tt>
 
-<tt>SMCBounds ::= BoundType [ ; RUNS ]</tt>
-
-<tt>BoundType ::= (  | Clock | '#' ) '<=' BOUND</tt>
-
-The simulation query collects the valuation of the specified list of expressions over the time, cost or action-transitions of the simulated run. The simulation runs can be filtered by a state expression after the colon (<tt>':'</tt>) and the number of satisfying runs can be limited by positive integer <tt>SATRUNS</tt>. If the filtering expression is provided then the result also includes a probability confidence interval similar to Probability Estimation below.
+The simulation query collects the valuation of the specified list of expressions over the time, cost or action-transitions of the simulated run. The simulation runs can be filtered by a state expression after the colon (<tt>':'</tt>) and the number of satisfying runs can be limited by positive integer using <tt>SMCBounds</tt> and <tt>SATRUNS</tt>. If the filtering expression is provided then the result also includes a probability confidence interval similar to Probability Estimation below.
 
 ## Probability Estimation (Quantitative Model Checking)
 
@@ -36,9 +32,15 @@ Hypothesis testing checks whether the probability of a property is less or great
 
 ## Probability Comparison
 
-<tt>'Pr[' SMCBounds '](' ('<>' | '[]') Expression ')' **('<='|'>=')** 'Pr[' ( Variable | '#' ) '<=' CONST '](' ('<>' | '[]') Expression ')'</tt>
+<tt>'Pr[' SMCBounds '](' ('<>' | '[]') Expression ')' **'>='** 'Pr[' ( Variable | '#' ) '<=' CONST '](' ('<>' | '[]') Expression ')'</tt>
 
 Compares two probabilities indirectly without estimating them.
+
+## Full Weighted MITL
+
+<tt>'Pr' MITLExpression</tt>
+
+The exact evaluation of the probability that a run satisfies a given weighted MITL formula. 
 
 ## Value Estimation
 

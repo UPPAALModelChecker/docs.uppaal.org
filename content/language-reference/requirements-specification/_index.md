@@ -12,19 +12,23 @@ Symbolic queries are performed using symbolic operations based on symbolic seman
 
 ``` EBNF
 SymbQuery ::=
-        'A[]' Expression
-      | 'E<>' Expression
-      | 'E[]' Expression
-      | 'A<>' Expression
-      | Expression --> Expression
+        'A[]' Expression Subjection
+      | 'E<>' Expression Subjection
+      | 'E[]' Expression Subjection
+      | 'A<>' Expression Subjection
+      | Expression --> Expression Subjection
 
-      | 'sup' ':' List
-      | 'sup' '{' Expression '}' ':' List
+      | 'sup' ':' List Subjection
+      | 'sup' '{' Expression '}' ':' List Subjection
 
-      | 'inf' ':' List
-      | 'inf' '{' Expression '}' ':' List
+      | 'inf' ':' List Subjection
+      | 'inf' '{' Expression '}' ':' List Subjection
 
 List ::= Expression | Expression ',' List
+
+Subjection ::= 
+	    // empty for no subjection
+	  | under StrategyName   
 ```
 
 For <tt>sup</tt> properties, expression may not contain clock constraints and must evaluate to either an integer or a clock.
@@ -47,21 +51,62 @@ For <tt>sup</tt> properties, expression may not contain clock constraints and mu
     The expressions in the list are evaluated only on the states that satisfy the the expression (a state predicate) that acts like an observation.
 *   The <tt>inf</tt> formula are similar to <tt>sup</tt> but for infima. A state predicate should be used when a clock infimum is asked otherwise the trivial result is >= 0.
 
+<dl>
+<dt><tt>Subjection</tt></dt>
+<dd>indicates whether the query should be subjected to a strategy.</dd>
+</dl>
+
 ## Controller Synthesis Queries
 
 Controller synthesis queries are decided using symbolic techniques over Timed Game (TIGA) automata, where the discrete actions are either controllable (controller's actions, solid edges) or uncontrollable (environment actions, dashed edges). The result is either a strategy solving the game objective or that the strategy does not exist.
 
 ``` EBNF
 TIGAQuery ::=
-        'control:' 'A<>' WinExpression
-      | 'control:' 'A[' NotLooseExpression 'U' WinExpression ']'
-	  | 'control:' 'A[' NotLooseExpression 'W' WinExpression ']'
-      | 'control:' 'A[' NotLooseExpression ']'
+        ControlSpecifier Goal Subjection
+      | CollaborativeControlSpecifier Goal Subjection
+      | PartialControlSpecifier Goal Subjection
+      | TimeEfficientGameSpecifier Goal
+
+ControlSpecifier ::=
+        'control:'
+
+CollaborativeControlSpecifier ::=
+        'E<>' 'control:'
+
+PartialControlSpecifier ::=
+        '{' List '}' 'control:'
+
+TimeEfficientGameQuery ::=
+        'control_t*' '(' GameTimeLimitExpression ',' LocalGameTimeLimitExpression '):'
+      | 'control_t*' '(' u '):'
+      | 'control_t*:'
+      
+Goal ::=  
+        'A<>' WinExpression
+      | 'A[' NotLooseExpression 'U' WinExpression ']'
+      | 'A[' NotLooseExpression 'W' WinExpression ']'
+      | 'A[]' NotLooseExpression
 
 WinExpression ::= Expression
 
 NotLooseExpression ::= Expression
+
+GameTimeLimitExpression ::= Expression
+
+LocalGameTimeLimitExpression ::= Expression
+
+Subjection ::= 
+	    // empty for no subjection
+	  | under StrategyName   
 ```
+
+<dl>
+<dt><tt>GameTimeLimitExpression </tt></dt>
+<dd>describes a time limit within the game must be won. This expression is only evaluated once at the beginning, thus should not depend on the current state.</dd>
+
+<dt><tt>LocalGameTimeLimitExpression </tt></dt>
+<dd>describes an additional time limit such that the game can be won within <tt>GameTimeLimitExpression</tt> - <tt>LocalGameTimeLimitExpression</tt> time units. This expression is evaluated in each state, and can therefore depend on state or clock constraints. Must be side-effect free.</dd>
+</dl>
 
 
 ## Statistical Queries
@@ -70,16 +115,18 @@ Statistical queries are decided using concrete semantics of stochastic hybrid au
 
 ``` EBNF
 SMCQuery ::=
-	  | Simulate
-      | Probability
-      | ProbUntil
-      | Probability ( '<=' | '>=' ) PROB
-      | Probability ( '<=' | '>=' ) Probability
-      | Estimate
+	    Simulate Subjection
+      | Probability Subjection
+      | ProbUntil Subjection
+      | Probability ( '<=' | '>=' ) PROB Subjection
+      | Probability Subjection '>=' Probability Subjection
+      | Estimate Subjection
 
-Simulate ::= 'simulate' '[' SMCBounds ']' '{' List '}' [ : Expression [ ':' SATRUNS ]]
+Simulate ::= 'simulate'  '[' SMCBounds ']' '{' List '}' [ ':' [ SATRUNS ':' ] Expression ]
 
-Probability ::= 'Pr[' SMCBounds ']' '(' PathType Expression ')'
+Probability ::= 
+        'Pr' MITLExpression
+      | 'Pr[' SMCBounds ']' '(' PathType Expression ')'
 
 ProbUntil   ::= 'Pr[' SMCBounds ']' '(' Expression 'U' Expression ')'
 
@@ -90,6 +137,10 @@ SMCBounds ::= BoundType [ ; RUNS ]
 BoundType ::= (  | Clock | '#' ) '<=' BOUND
 
 PathType ::= ( '<>' | '[]' )
+
+Subjection ::= 
+	    // empty for no subjection
+	  | under StrategyName   
 ```
 
 <dl>
@@ -124,11 +175,19 @@ All expressions are state predicates and must be side effect free. It is possibl
 
 ``` EBNF
 LearningQuery ::=
-     ExpQuantifier '(' Expression ')' '[' BoundType ']' Features ':' PathType Expression
+        ExpQuantifier '(' Expression ')' '[' BoundType ']' Features ':' PathType Expression Subjection
+	  | ExpQuantifier '[' BoundType ']' Features ':' PathType Expression Subjection
+	  | ExpPrQuantifier '[' BoundType ']' Features ':' PathType Expression Subjection
 
-ExpQuantifier ::= ( min | max )
+ExpQuantifier ::= ( minE | maxE )
 
-Features ::= '{' List '}' '->' '{' List '}'
+ExpPrQuantifier ::= ( minPr | maxPr )
+
+Features ::= '{' List '}' '->' '{' List '}' 
+
+Subjection ::= 
+	    // empty for no subjection
+	  | under StrategyName   
 ```
 
 <dl>
@@ -142,20 +201,24 @@ Features ::= '{' List '}' '->' '{' List '}'
 Strategy queries allow store, load, reuse and refine the strategies by assigning names to them.
 
 ``` EBNF
-StrategyQuery ::=
-	    'strategy' Name '=' Query [ 'under' Name ]
-	  | 'saveStrategy' '(' Path ',' Name ')'
+AssignQuery ::=
+	    'strategy' StrategyName '=' AssignableQuery
+
+AssignableQuery ::=
+        TIGAQuery
+	  | LearningQuery
 	  | 'loadStrategy' Features '(' Path ')'
 
-Query ::=
+NonAssignableQuery ::=
         SymbQuery
-	  | TIGAQuery
 	  | SMCQuery
-	  | LearningQuery
-
+	  | 'saveStrategy' '(' Path ',' StrategyName ')' 
 ```
 
 <dl>
+<dt><tt>StrategyName</tt></dt>
+<dd>indicates the name of a strategy.</dd>
+
 <dt><tt>Path</tt></dt>
 <dd>is a double-quoted character sequence (string) denoting a file system path.</dd>
 </dl>
