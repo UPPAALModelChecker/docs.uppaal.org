@@ -3,7 +3,7 @@ title: Identifiers
 weight: 10
 ---
 
-The valid identifier names are described by the following regular expression: `[a-zA-Z_]\([a-zA-Z0-9_])*`
+The valid identifier names are described by the following regular expression: `[a-zA-Z_]([a-zA-Z0-9_])*`
 
 ## Examples
 
