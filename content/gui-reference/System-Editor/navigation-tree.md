@@ -3,9 +3,7 @@ title: Navigation Tree
 weight: 10
 ---
 
-The navigation tree is shown in the left panel of the system editor. It is used for accessing the various components of a system description. A node in the tree can be double clicked to view (or hide) the sub tree of the node.
-
-The root of the navigation tree is named _Project_ if the system is unnamed, otherwise the name of the system (i.e. the name of the XML-file).
+The navigation tree is shown in the left panel of the system editor. It is used for accessing the various components of a system description. A node in the tree can be double clicked to view (or hide) the sub tree of the node. The root of the navigation tree is named _Project_.
 
 The sub node _Declarations_ is used for [declarations](/language-reference/system-description/declarations/) of global scope. They can be referred to directly in template declarations.
 
@@ -13,4 +11,4 @@ Each process [template](/language-reference/system-description/templates/) of th
 
 The remaining sub node of the root, named _System declarations_ is used for further [declarations](/language-reference/system-description/declarations/), [process assignments](/language-reference/system-description/system-definition/template-instantiation/), and the [system declaration](/language-reference/system-description/system-definition/).
 
-**Note:** the navigation tree can be opened in a separate window using the "Drag out" button. The window returns to its original position when it is closed. The same effect can be obtained by clicking with the left mouse button while pressing the _Alt_ key.
+**Note:** the navigation tree can be opened in a separate window using the "Drag out" button. The window returns to its original position when it is closed.
