@@ -42,7 +42,7 @@ import "/home/user/lib/externallib.so" {
 ```
 
 ## Type Conversion and Restrictions
-The types being transfarable between UPPAAL and external functions are curretly limited to `bool`, `chan`, `click`, `double`, `ptr_t` and `string`. Omitting complex types such as structs and nexted data structures. Only single-dimenstions arrays are supported on only of mutable types; arrays of chan and strings are not currently supported. See the following table for details: 
+The types being transfarable between UPPAAL and external functions are curretly limited to `bool`, `chan`, `clock`, `double`, `ptr_t` and `string`. Omitting complex types such as structs and nexted data structures. Only single-dimenstions arrays are supported on only of mutable types; arrays of chan and strings are not currently supported. See the following table for details: 
 
 
 | UPPAAL Type  | C Type      | By Value | Return | Array |
