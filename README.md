@@ -3,7 +3,7 @@ The documentation is automatically build and published to https://docs.uppaal.or
 
 If you wish to contribute to the documentation please fork the repo and submit a pull-request. 
 Please notice, by creating a pull-request you give the UPPAAL development team permission to use and distribute you changes together with UPPAAL, this includes the commercial versions of UPPAAL.
-
+ 
 
 # Build pages locally
 
