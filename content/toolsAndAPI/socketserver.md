@@ -3,7 +3,7 @@ title: Socketserver
 weight: 40
 ---
 
-To start a remote server, use the `socketserver` binary (included for Linux, SunOS and MacOS). To use a remote server, see the section on [command line options](uppaal.md) for the GUI.
+To start a remote server, use the `socketserver` binary (included for Linux, SunOS and MacOS). To use a remote server, see the section on [command line options](/toolsandapi/uppaal/) for the GUI.
 
 The <tt>socketserver</tt> can be executed from the command line using one of the following commands:
 
