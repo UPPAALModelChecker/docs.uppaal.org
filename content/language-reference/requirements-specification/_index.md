@@ -183,13 +183,19 @@ All expressions are state predicates and must be side effect free. It is possibl
 
 * <tt>simulate [c&lt;=10] { x, y+z }</tt> create one simulation run of up to `10` cost units in terms of clock variable `c` and plot the values of `x` and `y+z` expressions over the cost `c`.
 
-* <tt>simulate [&lt;=10; 100] { x, y+z } : 2 : goal</tt> select up to `2` simulation runs from `100` simulations of up to `10` time units in length, which satisfy `goal` state predicate, and then plot the values of expressions `x` and `y+z` over time. The query will also estimate a probability confidense interval of the expression `goal` being true just like in `Pr` query. The confidence level is controlled by &alpha; level of significance in the <tt>Statistacal parameters</tt>.
+* <tt>simulate [#&lt;=10] { x, y+z }</tt> create one simulation run of up to `10` edge-transitions and plot the values of `x` and `y+z` expressions over the discrete simulation steps (edge-transitions).
+
+* <tt>simulate [&lt;=10; 100] { x, y+z } : 2 : goal</tt> select up to `2` simulation runs from `100` simulations of up to `10` time units in length, which satisfy `goal` state predicate, and then plot the values of expressions `x` and `y+z` over time. The query will also estimate a probability confidense interval of the expression `goal` being true just like in `Pr` query. The confidence level is controlled by &alpha; level of significance in the <tt>Statistical parameters</tt>.
 
 * <tt>Pr[&lt;=10](<> good)</tt> runs a number of stochastic simulations and estimates the probability of `good` eventually becoming true within `10` time units. The number of runs is decided based on the probability interval precision (&pm;&epsilon;) and confidence level (level of significance &alpha; in <tt>Statistical parameters</tt>), see [CI Estimation](ci_estimation) for details. The query also computes a probability distribution over time when the predicate `good` is satisfied (right-click the property and choose a plot).
 
 * <tt>Pr[c&lt;=10; 100]([] safe)</tt> runs `100` stochastic simulations and estimates the probability of `safe` remaining true within `10` cost units in terms of clock `c`.
 
-* <tt>Pr[&lt;=10](<> good) >= 0.5</tt> checks if the probability of reaching `good` within `10` time units is greater than `50%`. Uses algorithm
+* <tt>Pr[&lt;=10](<> good) >= 0.5</tt> checks if the probability of reaching `good` within `10` time units is greater than `50%`. Such query uses Wald's algorithm to decide the probability inequality and requires fewer runs than probability estimation and explicit comparison. Uses -&delta;, +&delta;, &alpha; and &beta; <tt>Statistical parameters</tt>.
+
+* <tt>Pr[&lt;=10](<> best) >= Pr[&lt;=10](<> good)</tt> checks if the probability of reaching `best` is greater than reaching `good` within `10` time units. Such query uses a sequential algorithm to decide the probability inequality and requires fewer runs than probability estimation and explicit comparison. Uses -&delta;, +&delta;, u0, u1, &alpha; and &beta; <tt>Statistical parameters</tt>. The query also provides a probability comparison plot over time/cost (right-click the query and choose plot).
+
+* <tt>E[&lt;=10; 100](max: cost)</tt> estimates the maximal value of `cost` expression over `10` time units of stochastic simulation. Uses `100` stochastic simulations and assumes that the value follows Student's t-distribution with <tt>1-&alpha;</tt> confidence level.
 
 The plots can be super-imposed using the <tt>Plot Composer</tt> from the <tt>Tools</tt> menu.
 
@@ -217,6 +223,10 @@ Subjection ::=
 <dd>describes a mapping from partial state to .</dd>
 </dl>
 
+### Examples
+* <tt>minE(cost) [&lt;=10] { i, j } -> { d, f } : <> goal</tt> learns a strategy by minimizing the expected `cost` value within `10` time units or when `goal` predicate becomes true given `i`, `j`, `d` and `f` observable state expressions. `i` and `j` are used for discrete partitioning and `d` and `f` are used in continuous partitioning. The `goal` predicate is deprecated, for best results use a predicate which stops together with the simulation bound, like `t>=10`, where `t` is a clock that is never reset.
+
+The learning queries are usually used together with strategy assignment and refinement explained below.
 
 ## Strategy Queries
 
@@ -253,6 +263,8 @@ NonAssignableQuery ::=
 
 * <tt>E<> goal under Safe</tt> checks that the `goal` state predicate is eventually satisfied when the player/controller uses `Safe` strategy.
 
+* <tt>strategy SafeCheap = minE(cost)[&lt;=10] { i, j } -> { d, f } : <> t>=10 under Safe</tt> refines `Safe` strategy into `SafeCheap` by minimizing estimated value of `cost` expression.
+
 * <tt>saveStrategy("folder/file.json", Safe)</tt> writes `Safe` strategy to the file with path `folder/file.json`.
 
-* <tt>Safe = loadStrategy("folder/file.json")</tt> reads the file with path `folder/file.json` and stores it under the name `Safe`.
+* <tt>Safe = loadStrategy("folder/file.json")</tt> reads the strategy from the file with path `folder/file.json` and stores it under the name `Safe`.
