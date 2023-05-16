@@ -262,7 +262,7 @@ The test above may produce the following output:
 external_test: external_test.cpp:9: int main(): Assertion `two == 2' failed.
 Aborted (core dumped)
 ```
-Which means that the assertion `two == 2` on line `8` of `external_test.cpp` is false.
+Which means that the assertion `two == 2` on line `9` of `external_test.cpp` is false.
 
 The test above can be (re-)run using `gdb` debugger:
 ``` shell
@@ -327,3 +327,5 @@ Then the debugger is instructed to go up in the call stack multiple times by iss
 Then at the `main` function call, the code line `assert(two == 2);` is highlighted.
 
 And finally the value of variable `two` is printed using command `p two`. The value is `-2147483648` which is not as expected, hence the assertion failed.
+
+It is also possible to attach `gdb` to an already running process (like `verifyta` or Uppaal engine `server`), set break points and watches.
