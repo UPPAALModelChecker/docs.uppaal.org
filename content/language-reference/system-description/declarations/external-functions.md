@@ -9,40 +9,40 @@ weight: 30
 {{% /notice %}}
 
 {{% notice info %}}
-This feature is supported since {{%uppaal%}} Stratego version 4.1.20-7, or {{%uppaal%}} version 5.0 or later.
+This feature is supported since Uppaal Stratego version 4.1.20-7, or Uppaal version 5.0 or later.
 {{% /notice %}}
 
-External Functions can be decreated alongside other declaratios. External functions are local to the current scope, defined by the grammar: 
+External Functions can be decreated alongside other declaratios. External functions are local to the current scope, defined by the grammar:
 
-``` EBNF 
+``` EBNF
 ExternDecl   = 'import'  String '{' [FwdDeclList] '}'
-FwdDeclList  = FwdDecl ';' | 
-               FwdDeclList FwdDecl ';' 
+FwdDeclList  = FwdDecl ';' |
+               FwdDeclList FwdDecl ';'
 FwdDecl      = [ID '='] Type ID '(' [Parameters] ')'
 ```
 
-The following code will load the external libary `libexternal.so` from the path `/home/user/lib` and import the functions `get_number`, `set_number` and `is_the_world_safe`. 
+The following code will load the external libary `libexternal.so` from the path `/home/user/lib` and import the functions `get_number`, `set_number` and `is_the_world_safe`.
 The function `is_the_world_safe` will be imported with the name `is_safe`.
 
-Even though {{%uppaal%}} will attempt to locate the library in several default paths, we recommend using a fully qualified path to the library file.
+Even though Uppaal will attempt to locate the library in several default paths, we recommend using a fully qualified path to the library file.
 
-If you are using integers in external function, we recommend defining a full integer range in order to avoid {{%uppaal%}} `int` range (`[-32768,32767]`) errors.
+If you are using integers in external function, we recommend defining a full integer range in order to avoid Uppaal `int` range (`[-32768,32767]`) errors.
 
-``` C 
+``` C
 const int INT32_MIN = -2147483648;        // not needed since Stratego 4.1.20-11
 const int INT32_MAX = 2147483647;         // not needed since Stratego 4.1.20-11
 typedef int[INT32_MIN,INT32_MAX] int32_t; // not needed since Stratego 4.1.20-11
 
 import "/home/user/lib/libexternal.so" {
-    int32_t get_number(); 
+    int32_t get_number();
     void set_number(int32_t n);
-    int32_t get_sqrt(int32_t n);    
+    int32_t get_sqrt(int32_t n);
     is_safe = bool is_the_world_safe();
 };
 ```
 
 ## Type Conversion and Restrictions
-The types transfarable between {{%uppaal%}} and external functions are curretly limited to `bool`, `int`, `double`, `clock`, `chan`, `ptr_t` and `string`. Omitting complex types such as structs and nexted data structures. Only single-dimentional arrays are supported on only mutable types; array of `chan` and strings are not currently supported. 
+The types transfarable between Uppaal and external functions are curretly limited to `bool`, `int`, `double`, `clock`, `chan`, `ptr_t` and `string`. Omitting complex types such as structs and nexted data structures. Only single-dimentional arrays are supported on only mutable types; array of `chan` and strings are not currently supported.
 
 The following table summarizes the current support:
 
@@ -50,9 +50,9 @@ The following table summarizes the current support:
 | ------------ | ------------ | -------- | ------ | ----- |
 | bool         | bool         | x        | x      | x     |
 | int          | int32_t      | x        | x      | x     |
-| double       | double       | x        | x      | x     | 
-| clock        | double       |          |        | x     | 
-| chan         | const char*  |          |        |       | 
+| double       | double       | x        | x      | x     |
+| clock        | double       |          |        | x     |
+| chan         | const char*  |          |        |       |
 | ptr_t        | size_t       | x        | x      | x     |
 | string       | const char*  |          |        |       |
 | \<type>[]    | \<type>      |          |        |       |
@@ -62,8 +62,8 @@ A violation of a range of a bounded integer (either pass-by-reference or return)
 
 ## Defining External Library
 
-An external library can be compiled from C or C++ code and linked into a shared library. 
-{{%uppaal%}} uses C symbol name mangling, so C++ compiler needs to be instructed to export `"C"` names, whereas C compiler does it by default.
+An external library can be compiled from C or C++ code and linked into a shared library.
+Uppaal uses C symbol name mangling, so C++ compiler needs to be instructed to export `"C"` names, whereas C compiler does it by default.
 
 The following C/C++ code implements the library functions used for the example above.
 
@@ -89,7 +89,7 @@ bool is_the_world_safe();
 ```
 
 `external.cpp`:
-``` C++ 
+``` C++
 #include "external.h"
 #include <cmath>
 
@@ -126,7 +126,7 @@ bool is_the_world_safe()
 
 Execute the following shell commands to compile the source `external.cpp` into object file `external.o` and then link `external.o` into a shared library `libexternal.so`:
 
-``` sh 
+``` sh
 g++ -std=c++17 -Wpedantic -Wall -Wextra -fPIC -g -Og -o external.o -c external.cpp
 gcc -shared -o libexternal.so external.o
 ```
@@ -231,7 +231,7 @@ write(2, "] ", 2] )                       = 2
 write(2, "/home/user/lib/libexternal.so: "..., 68/home/user/lib/libexternal.so: undefined symbol: is_the_word_safe.) = 68
 ```
 
-If the library implementation crashes, then create unit tests which call your library with problematic arguments, for example:
+If the library implementation crashes, then create unit tests which call your library with problematic arguments and inspect the behavior in the debugger or integrated developement environment, for example:
 
 `external_test.cpp`
 ``` C++
@@ -251,3 +251,69 @@ Compile `external_test.cpp` into `external_test` against `libexternal.so` in `/h
 g++ -std=c++17 -Wpedantic -Wall -Wextra -g external_test.cpp -L/home/user/lib -lexternal -o external_test
 LD_LIBRARY_PATH=/home/user/lib ./external_test
 ```
+
+Run in `gdb` debugger:
+``` shell
+LD_LIBRARY_PATH=/home/user/lib gdb ./external_test
+Reading symbols from ./external_test...
+(gdb) r
+Starting program: /tmp/uppaal-lib/external_test 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+external_test: external_test.cpp:8: int main(): Assertion `two == 2' failed.
+
+Program received signal SIGABRT, Aborted.
+__pthread_kill_implementation (threadid=<optimized out>, signo=signo@entry=6, no_tid=no_tid@entry=0)
+    at ./nptl/pthread_kill.c:44
+44      ./nptl/pthread_kill.c: No such file or directory.
+(gdb) bt
+#0  __pthread_kill_implementation (threadid=<optimized out>, signo=signo@entry=6, no_tid=no_tid@entry=0)
+    at ./nptl/pthread_kill.c:44
+#1  0x00007ffff7d61d2f in __pthread_kill_internal (signo=6, threadid=<optimized out>) at ./nptl/pthread_kill.c:78
+#2  0x00007ffff7d12ef2 in __GI_raise (sig=sig@entry=6) at ../sysdeps/posix/raise.c:26
+#3  0x00007ffff7cfd472 in __GI_abort () at ./stdlib/abort.c:79
+#4  0x00007ffff7cfd395 in __assert_fail_base (fmt=0x7ffff7e71a70 "%s%s%s:%u: %s%sAssertion `%s' failed.\n%n", 
+    assertion=assertion@entry=0x55555555602c "two == 2", file=file@entry=0x55555555600f "external_test.cpp", 
+    line=line@entry=8, function=function@entry=0x555555556004 "int main()") at ./assert/assert.c:92
+#5  0x00007ffff7d0bdf2 in __GI___assert_fail (assertion=0x55555555602c "two == 2", 
+    file=0x55555555600f "external_test.cpp", line=8, function=0x555555556004 "int main()") at ./assert/assert.c:101
+#6  0x00005555555551c7 in main () at external_test.cpp:8
+(gdb) up
+#1  0x00007ffff7d61d2f in __pthread_kill_internal (signo=6, threadid=<optimized out>) at ./nptl/pthread_kill.c:78
+78      in ./nptl/pthread_kill.c
+(gdb) 
+#2  0x00007ffff7d12ef2 in __GI_raise (sig=sig@entry=6) at ../sysdeps/posix/raise.c:26
+26      ../sysdeps/posix/raise.c: No such file or directory.
+(gdb) 
+#3  0x00007ffff7cfd472 in __GI_abort () at ./stdlib/abort.c:79
+79      ./stdlib/abort.c: No such file or directory.
+(gdb) 
+#4  0x00007ffff7cfd395 in __assert_fail_base (fmt=0x7ffff7e71a70 "%s%s%s:%u: %s%sAssertion `%s' failed.\n%n", 
+    assertion=assertion@entry=0x55555555602c "two == 2", file=file@entry=0x55555555600f "external_test.cpp", 
+    line=line@entry=8, function=function@entry=0x555555556004 "int main()") at ./assert/assert.c:92
+92      ./assert/assert.c: No such file or directory.
+(gdb) 
+#5  0x00007ffff7d0bdf2 in __GI___assert_fail (assertion=0x55555555602c "two == 2", 
+    file=0x55555555600f "external_test.cpp", line=8, function=0x555555556004 "int main()") at ./assert/assert.c:101
+101     in ./assert/assert.c
+(gdb) 
+#6  0x00005555555551c7 in main () at external_test.cpp:8
+8           assert(two == 2);
+(gdb) p two
+$1 = -2147483648
+(gdb)
+```
+
+Here the binary is loaded from `external_test`.
+
+The program is run by command `r`, then a crash is observed due to failed assertion `two == 2`.
+
+A call stack trace is printed using command `bt`.
+
+Then the debugger is instructed to go up in the call stack multiple times by issuing a command `up` and then blank command (simply enter, which repeats the last command).
+
+Then at the `main` function call, the code line `assert(two == 2);` is highlighted.
+
+And finally the value of variable `two` is printed using command `p two`. The value is `-2147483648` which is not as expected, hence the assertion failed.
+
+In order to step through the library calls, make sure that the library is compiled and linked with debug information (using `-g -Og` compiler arguments).
