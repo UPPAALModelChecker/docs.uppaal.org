@@ -9,88 +9,245 @@ weight: 30
 {{% /notice %}}
 
 {{% notice info %}}
-This feature is currently only supported in the Stratego version of Uppaal, version 4.1.20-7 or later.
+This feature is supported since {{%uppaal%}} Stratego version 4.1.20-7, or {{%uppaal%}} version 5.0 or later.
 {{% /notice %}}
 
 External Functions can be decreated alongside other declaratios. External functions are local to the current scope, defined by the grammar: 
 
 ``` EBNF 
-
 ExternDecl   = 'import'  String '{' [FwdDeclList] '}'
 FwdDeclList  = FwdDecl ';' | 
                FwdDeclList FwdDecl ';' 
 FwdDecl      = [ID '='] Type ID '(' [Parameters] ')'
-
 ```
 
-The following code will load the external libary `externallib.so` from the path `/home/user/lib` and import the functions `get_a_number`, `set_a_number` and `is_the_wold_safe`. The functions `is_the_wold_safe` will be imported with the name `importWithNewName`. 
+The following code will load the external libary `libexternal.so` from the path `/home/user/lib` and import the functions `get_number`, `set_number` and `is_the_world_safe`. 
+The function `is_the_world_safe` will be imported with the name `is_safe`.
 
-We always recommend using a fully qualified path to the library file.
-If you are using integers in external function, we recommend to defined a full integer range, to avoid problems with UPPAAL bounded integers.
+Even though {{%uppaal%}} will attempt to locate the library in several default paths, we recommend using a fully qualified path to the library file.
+
+If you are using integers in external function, we recommend defining a full integer range in order to avoid {{%uppaal%}} `int` range (`[-32768,32767]`) errors.
 
 ``` C 
-const int INT32_MAX = 2147483647;
-typedef int[INT32_MIN,INT32_MAX] int32_t;
+const int INT32_MIN = -2147483648;        // not needed since Stratego 4.1.20-11
+const int INT32_MAX = 2147483647;         // not needed since Stratego 4.1.20-11
+typedef int[INT32_MIN,INT32_MAX] int32_t; // not needed since Stratego 4.1.20-11
 
-import "/home/user/lib/externallib.so" {
-  int32_t get_a_number(); 
-  void set_a_number(int32_t n);
-  
-  importWithNewName = bool is_the_wold_safe();
-}
-
+import "/home/user/lib/libexternal.so" {
+    int32_t get_number(); 
+    void set_number(int32_t n);
+    int32_t get_sqrt(int32_t n);    
+    is_safe = bool is_the_world_safe();
+};
 ```
 
 ## Type Conversion and Restrictions
-The types being transfarable between UPPAAL and external functions are curretly limited to `bool`, `chan`, `clock`, `double`, `ptr_t` and `string`. Omitting complex types such as structs and nexted data structures. Only single-dimenstions arrays are supported on only of mutable types; arrays of chan and strings are not currently supported. See the following table for details: 
+The types transfarable between {{%uppaal%}} and external functions are curretly limited to `bool`, `int`, `double`, `clock`, `chan`, `ptr_t` and `string`. Omitting complex types such as structs and nexted data structures. Only single-dimentional arrays are supported on only mutable types; array of `chan` and strings are not currently supported. 
+
+The following table summarizes the current support:
+
+| UPPAAL Type  | C Type       | By Value | Return | Array |
+| ------------ | ------------ | -------- | ------ | ----- |
+| bool         | bool         | x        | x      | x     |
+| int          | int32_t      | x        | x      | x     |
+| double       | double       | x        | x      | x     | 
+| clock        | double       |          |        | x     | 
+| chan         | const char*  |          |        |       | 
+| ptr_t        | size_t       | x        | x      | x     |
+| string       | const char*  |          |        |       |
+| \<type>[]    | \<type>      |          |        |       |
 
 
-| UPPAAL Type  | C Type      | By Value | Return | Array |
-| ------------ | ----------- | -------- | ------ | ----- |
-| bool         | bool        | x        | x      | x     |
-| chan         | const char  |          |        |       | 
-| clock        | double      |          |        | x     | 
-| double       | double      | x        | x      | x     | 
-| ptr_t        | size_t      | x        | x      | x     |
-| int          | int32_t     | x        | x      | x     |
-| string       | const char  |          |        |       |
-| \<type>[]    | \<type>     |          |        |       |
-
-
-If a bounded integer ranges is violated, either when values are sent by reference or returned it will cause a runtime error.  
+A violation of a range of a bounded integer (either pass-by-reference or return) will cause a runtime error.
 
 ## Defining External Library
 
-You can create a external library using either C or C++, by compiling it to a shared library.
+An external library can be compiled from C or C++ code and linked into a shared library. 
+{{%uppaal%}} uses C symbol name mangling, so C++ compiler needs to be instructed to export `"C"` names, whereas C compiler does it by default.
 
-The following C++ code defines a library with the same methods as used in the example above.
+The following C/C++ code implements the library functions used for the example above.
 
+`external.h`:
+``` C++
+#ifndef LIBRARY_EXTERNAL_H
+#define LIBRARY_EXTERNAL_H
+
+#ifdef __cplusplus
+extern "C" { // tells C++ compiler to use C symbol name mangling (C compiler ignores)
+#endif // __cplusplus
+
+int get_number();
+void set_number(int n);
+int get_sqrt(int n);
+bool is_the_world_safe();
+
+#ifdef __cplusplus
+} // end of "C" symbol name mangling
+#endif // __cplusplus
+
+#endif // LIBRARY_EXTERNAL_H
+```
+
+`external.cpp`:
 ``` C++ 
+#include "external.h"
+#include <cmath>
 
-int number = 42;
+static int number = 42; // internal state, be careful
 
-extern "C" int get_a_number() 
-{
-  return number;
+#ifdef __cplusplus
+extern "C" { // tells C++ compiler to use C symbol name mangling (C compiler ignores)
+#endif // __cplusplus
+
+int get_number()
+{   // is not free from side-effects, when set_number is used
+    return number;
 }
 
-extern "C" set_a_number(int n)
-{
-  number = n
+void set_number(int n)
+{   // the state needs to be synchronized with the model state
+    number = n;
 }
 
-extern "C" bool is_the_wold_safe();
+int get_sqrt(int n)
+{
+    return std::sqrt(n);
+}
+
+bool is_the_world_safe()
 {
     return true;
 }
+
+#ifdef __cplusplus
+} // end of "C" symbol name mangling
+#endif // __cplusplus
 ```
 
-To compile a create a shared object file: 
+Execute the following shell commands to compile the source `external.cpp` into object file `external.o` and then link `external.o` into a shared library `libexternal.so`:
 
 ``` sh 
-g++ -std=c++17 -fPIC -c -o externallib.o externallib.cpp
-gcc -shared -o externallib.so externallib.o 
+g++ -std=c++17 -Wpedantic -Wall -Wextra -fPIC -g -Og -o external.o -c external.cpp
+gcc -shared -o libexternal.so external.o
+```
+For optimized builds replace `-g Og` with `-DNDEBUG -O3` in the above command and strip the details with `strip libexternal.so`.
+
+For more library examples please visit [uppaal-libs](https://github.com/UPPAALModelChecker/uppaal-libs) repository.
+
+## Debugging
+
+Inspect the library file using `file /home/user/lib/libexternal.so`:
+```
+libexternal.so: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, ...
 ```
 
-For an advanced example see https://github.com/UPPAALModelChecker/uppaal-libs . 
-  
+Inspect the dynamic library dependencies `ldd /home/user/lib/libexternal.so`:
+```
+       statically linked
+```
+This means that the library is linked with everything it needs and is self-contained, it does not require any additional libraries.
+Alternatively, one may see a list of required libraries and where the library loader (`ld-linux.so`) can (not) find them.
+
+Inspect the exported dynamic symbols of the library using `objdump -T /home/user/lib/libexternal.so`:
+```
+libexternal.so:     file format elf64-x86-64
+
+DYNAMIC SYMBOL TABLE:
+0000000000000000  w   D  *UND*  0000000000000000 __cxa_finalize
+0000000000000000  w   D  *UND*  0000000000000000 _ITM_registerTMCloneTable
+0000000000000000  w   D  *UND*  0000000000000000 _ITM_deregisterTMCloneTable
+0000000000000000  w   D  *UND*  0000000000000000 __gmon_start__
+0000000000001120 g    DF .text  0000000000000006 is_the_word_safe
+0000000000001100 g    DF .text  000000000000000a get_number
+0000000000004008 g    DO .data  0000000000000004 number
+0000000000001110 g    DF .text  000000000000000a set_number
+```
+
+Similarly using `nm -D /home/user/lib/libexternal.so`:
+```
+                 w __cxa_finalize
+0000000000001100 T get_number
+                 w __gmon_start__
+0000000000001120 T is_the_word_safe
+                 w _ITM_deregisterTMCloneTable
+                 w _ITM_registerTMCloneTable
+0000000000004008 D number
+0000000000001110 T set_number
+```
+(GNU compiler exports all symbols by default, hence `number` can be part of the exported symbol listing)
+
+One can also inspect the library loading among all OS kernel calls, for example `strace verifyta external.xml`:
+```
+...
+read(3, "<?xml version=\"1.0\" encoding=\"ut"..., 4096) = 1332
+getcwd("/tmp/uppaal-lib", 1024)         = 16
+read(3, "", 4096)                       = 0
+openat(AT_FDCWD, "/home/user/lib/libexternal.so", O_RDONLY|O_CLOEXEC) = 4
+read(4, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+newfstatat(4, "", {st_mode=S_IFREG|0750, st_size=13920, ...}, AT_EMPTY_PATH) = 0
+mmap(NULL, 16400, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 4, 0) = 0x7f30277e5000
+mmap(0x7f30277e6000, 4096, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x1000) = 0x7f30277e6000
+mmap(0x7f30277e7000, 4096, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x2000) = 0x7f30277e7000
+mmap(0x7f30277e8000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x2000) = 0x7f30277e8000
+close(4)                                = 0
+mprotect(0x7f30277e8000, 4096, PROT_READ) = 0
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+...
+```
+Here, one can see `verifyta` requesting for current directory (`getcwd`), and then opening `/tmp/uppaal-lib/libexternal.so` file (`openat`).
+
+Alternatively, one may find errors when some library is missing or a path is wrong:
+```
+getcwd("/tmp/uppaal-lib", 1024)         = 16
+read(3, "", 4096)                       = 0
+openat(AT_FDCWD, "/home/user/wrong/libexternal.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+```
+
+Errors when some symbol is not found (wrong function name):
+```
+getcwd("/tmp/uppaal-lib", 1024)         = 16
+read(3, "", 4096)                       = 0
+openat(AT_FDCWD, "/home/user/lib/libexternal.so", O_RDONLY|O_CLOEXEC) = 4
+read(4, "\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\0\0\0\0\0\0\0\0"..., 832) = 832
+newfstatat(4, "", {st_mode=S_IFREG|0750, st_size=15264, ...}, AT_EMPTY_PATH) = 0
+mmap(NULL, 16408, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 4, 0) = 0x7f988f7d5000
+mmap(0x7f988f7d6000, 4096, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x1000) = 0x7f988f7d6000
+mmap(0x7f988f7d7000, 4096, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x2000) = 0x7f988f7d7000
+mmap(0x7f988f7d8000, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 4, 0x2000) = 0x7f988f7d8000
+close(4)                                = 0
+mprotect(0x7f988f7d8000, 4096, PROT_READ) = 0
+futex(0x7f988f6791f0, FUTEX_WAKE_PRIVATE, 2147483647) = 0
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+write(2, "external.xml", 12external.xml)            = 12
+write(2, ":", 1:)                        = 1
+write(2, "/nta/declaration", 16/nta/declaration)        = 16
+write(2, ":", 1:)                        = 1
+write(2, "5", 15)                        = 1
+write(2, ": [", 3: [)                      = 3
+write(2, "error", 5error)                    = 5
+write(2, "] ", 2] )                       = 2
+write(2, "/home/user/lib/libexternal.so: "..., 68/home/user/lib/libexternal.so: undefined symbol: is_the_word_safe.) = 68
+```
+
+If the library implementation crashes, then create unit tests which call your library with problematic arguments, for example:
+
+`external_test.cpp`
+``` C++
+#include "external.h"
+#include <cassert>
+
+int main() {
+    int seven = get_sqrt(50);
+    assert(seven == 7);
+    int two = get_sqrt(-4);
+    assert(two == 2);
+}
+```
+
+Compile `external_test.cpp` into `external_test` against `libexternal.so` in `/home/user/lib` and run:
+``` shell
+g++ -std=c++17 -Wpedantic -Wall -Wextra -g external_test.cpp -L/home/user/lib -lexternal -o external_test
+LD_LIBRARY_PATH=/home/user/lib ./external_test
+```
