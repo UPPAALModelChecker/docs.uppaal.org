@@ -195,7 +195,7 @@ read(3, "", 4096)                       = 0
 close(3)                                = 0
 ...
 ```
-Here, one can see `verifyta` requesting for current directory (`getcwd`), and then opening `/tmp/uppaal-lib/libexternal.so` file (`openat`).
+Here, one can see `verifyta` requesting for current directory (`getcwd`), and then opening `/home/user/libexternal.so` file (`openat`).
 
 Alternatively, one may find errors when some library is missing or a path is wrong:
 ```
@@ -231,14 +231,19 @@ write(2, "] ", 2] )                       = 2
 write(2, "/home/user/lib/libexternal.so: "..., 68/home/user/lib/libexternal.so: undefined symbol: is_the_word_safe.) = 68
 ```
 
-If the library implementation crashes, then create unit tests which call your library with problematic arguments and inspect the behavior in the debugger or integrated developement environment, for example:
+If the library implementation crashes, then one may try and debug it by loading `verifyta` with the specified model into a debugger or Integrated Development Environmnet (IDE) like Netbeans or Clion.
+
+In order to step through the library calls, make sure that the library is compiled and linked with debug information (using `-g -Og` compiler arguments).
+
+Alternatively, we strongly suggest to use unit tests to call your library and inspect the behavior in the debugger or IDE, for example:
 
 `external_test.cpp`
 ``` C++
 #include "external.h"
 #include <cassert>
 
-int main() {
+int main()
+{
     int seven = get_sqrt(50);
     assert(seven == 7);
     int two = get_sqrt(-4);
@@ -252,7 +257,14 @@ g++ -std=c++17 -Wpedantic -Wall -Wextra -g external_test.cpp -L/home/user/lib -l
 LD_LIBRARY_PATH=/home/user/lib ./external_test
 ```
 
-Run in `gdb` debugger:
+The test above may produce the following output:
+```
+external_test: external_test.cpp:9: int main(): Assertion `two == 2' failed.
+Aborted (core dumped)
+```
+Which means that the assertion `two == 2` on line `8` of `external_test.cpp` is false.
+
+The test above can be (re-)run using `gdb` debugger:
 ``` shell
 LD_LIBRARY_PATH=/home/user/lib gdb ./external_test
 Reading symbols from ./external_test...
@@ -276,7 +288,7 @@ __pthread_kill_implementation (threadid=<optimized out>, signo=signo@entry=6, no
     assertion=assertion@entry=0x55555555602c "two == 2", file=file@entry=0x55555555600f "external_test.cpp", 
     line=line@entry=8, function=function@entry=0x555555556004 "int main()") at ./assert/assert.c:92
 #5  0x00007ffff7d0bdf2 in __GI___assert_fail (assertion=0x55555555602c "two == 2", 
-    file=0x55555555600f "external_test.cpp", line=8, function=0x555555556004 "int main()") at ./assert/assert.c:101
+    file=0x55555555600f "external_test.cpp", line=9, function=0x555555556004 "int main()") at ./assert/assert.c:101
 #6  0x00005555555551c7 in main () at external_test.cpp:8
 (gdb) up
 #1  0x00007ffff7d61d2f in __pthread_kill_internal (signo=6, threadid=<optimized out>) at ./nptl/pthread_kill.c:78
@@ -297,23 +309,21 @@ __pthread_kill_implementation (threadid=<optimized out>, signo=signo@entry=6, no
     file=0x55555555600f "external_test.cpp", line=8, function=0x555555556004 "int main()") at ./assert/assert.c:101
 101     in ./assert/assert.c
 (gdb) 
-#6  0x00005555555551c7 in main () at external_test.cpp:8
-8           assert(two == 2);
+#6  0x00005555555551c7 in main () at external_test.cpp:9
+9           assert(two == 2);
 (gdb) p two
 $1 = -2147483648
 (gdb)
 ```
 
-Here the binary is loaded from `external_test`.
+In the log above, one can see that the binary is loaded from `external_test`.
 
 The program is run by command `r`, then a crash is observed due to failed assertion `two == 2`.
 
-A call stack trace is printed using command `bt`.
+A call stack trace is printed using command `bt`, in particular it contains `main ()` from our source file `external_test.cpp`.
 
 Then the debugger is instructed to go up in the call stack multiple times by issuing a command `up` and then blank command (simply enter, which repeats the last command).
 
 Then at the `main` function call, the code line `assert(two == 2);` is highlighted.
 
 And finally the value of variable `two` is printed using command `p two`. The value is `-2147483648` which is not as expected, hence the assertion failed.
-
-In order to step through the library calls, make sure that the library is compiled and linked with debug information (using `-g -Og` compiler arguments).
