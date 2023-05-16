@@ -42,7 +42,7 @@ import "/home/user/lib/libexternal.so" {
 ```
 
 ## Type Conversion and Restrictions
-The types transfarable between Uppaal and external functions are curretly limited to `bool`, `int`, `double`, `clock`, `chan`, `ptr_t` and `string`. Omitting complex types such as structs and nexted data structures. Only single-dimentional arrays are supported on only mutable types; array of `chan` and strings are not currently supported.
+The types transfarable between Uppaal and external functions are curretly limited to `bool`, `int`, `double`, `clock`, `chan`, `ptr_t` and `string`. Omitting complex types such as structs and nested data structures. Only single-dimentional arrays are supported on only mutable types; arrays of `chan` and strings are not currently supported.
 
 The following table summarizes the current support:
 
