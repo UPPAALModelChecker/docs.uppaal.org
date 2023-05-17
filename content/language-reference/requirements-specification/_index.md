@@ -283,5 +283,5 @@ NonAssignableQuery ::=
 `saveStrategy("folder/file.json", Safe)`
 : writes `Safe` strategy to the file with path `folder/file.json`.
 
-`Safe = loadStrategy{i,j}->{d,f}("folder/file.json")`
+`strategy Safe = loadStrategy{i,j}->{d,f}("folder/file.json")`
 : reads the strategy from the file with path `folder/file.json` and stores it under the name `Safe`.
