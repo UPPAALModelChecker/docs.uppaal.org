@@ -277,7 +277,7 @@ NonAssignableQuery ::=
 `E<> goal under Safe`
 : checks that the `goal` state predicate is eventually satisfied when the player/controller uses `Safe` strategy.
 
-`strategy SafeCheap = minE(cost)[&lt;=10] { i, j } -> { d, f } : <> t>=10 under Safe`
+`strategy SafeCheap = minE(cost)[<=10] { i, j } -> { d, f } : <> t>=10 under Safe`
 : refines `Safe` strategy into `SafeCheap` by minimizing estimated value of `cost` expression.
 
 `saveStrategy("folder/file.json", Safe)`
