@@ -216,7 +216,7 @@ The plots can be super-imposed using the [Plot Composer](/gui-reference/menu-bar
 
 ```EBNF
 LearningQuery ::=
-        ExpQuantifier '(' Expression ')' '[' BoundType ']' Features ':' PathType Expression Subjection
+        ExpQuantifier '(' Expression ')' '[' BoundType ']' Features? ':' PathType Expression Subjection
 	  | ExpQuantifier '[' BoundType ']' Features ':' PathType Expression Subjection
 	  | ExpPrQuantifier '[' BoundType ']' Features ':' PathType Expression Subjection
 
@@ -236,8 +236,10 @@ Subjection ::=
 
 
 ### Examples
-`minE(cost) [&lt;=10] { i, j } -> { d, f } : <> goal`
+`minE(cost) [<=10] { i, j } -> { d, f } : <> goal`
 : learns a strategy by minimizing the expected `cost` value within `10` time units or when `goal` predicate becomes true given `i`, `j`, `d` and `f` observable state expressions. `i` and `j` are used for discrete partitioning and `d` and `f` are used in continuous partitioning. The `goal` predicate is deprecated, for best results use a predicate which stops together with the simulation bound, like `t>=10`, where `t` is a clock that is never reset.
+`minE(cost) [<=10] : <> goal`
+: learns a strategy by minimizing the expected `cost` value withing `10` time units or when `goal` predicate becomes true given that **entire** system state is observable.
 
 The learning queries are usually used together with strategy assignment and refinement explained below.
 
