@@ -238,8 +238,10 @@ Subjection ::=
 ### Examples
 `minE(cost) [<=10] { i, j } -> { d, f } : <> goal`
 : learns a strategy by minimizing the expected `cost` value within `10` time units or when `goal` predicate becomes true given `i`, `j`, `d` and `f` observable state expressions. `i` and `j` are used for discrete partitioning and `d` and `f` are used in continuous partitioning. The `goal` predicate is deprecated, for best results use a predicate which stops together with the simulation bound, like `t>=10`, where `t` is a clock that is never reset.
+
 `minE(cost) [<=10] : <> goal`
 : learns a strategy by minimizing the expected `cost` value withing `10` time units or when `goal` predicate becomes true given that the **entire** system state is observable.
+
 `maxE(gain) [<=10] : <> goal`
 : learns a strategy by minimizing the expected `gain` value withing `10` time units or when `goal` predicate becomes true given that the **entire** system state is observable.
 
