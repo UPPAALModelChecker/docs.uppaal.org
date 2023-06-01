@@ -16,16 +16,15 @@ ProgressDecl  ::= 'progress' '{' ( [Expression] ';' )* '}'
 
 ## Examples
 
-``` C
+```c
 int i, j, k;
-
 ...
 
-progress 
-{        
-  i;      
-  j + k;      
-}        
+progress
+{
+    i;
+    j + k;
+}
 ```
 
-For the above to be a useful progress measure, <tt>i</tt> and <tt>j + k</tt> should increase weakly monotonically.
+For the above to be a useful progress measure, `i` and `j + k` should increase weakly monotonically.

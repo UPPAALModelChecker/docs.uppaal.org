@@ -22,7 +22,8 @@ Clocks and channels must always be reference parameters.
 
 ## Examples
 
-*   <tt>P(clock &x, bool bit)</tt>  
-    process template <tt>P</tt> has two parameters: the clock <tt>x</tt> and the boolean variable <tt>bit</tt>.
-*   <tt>Q(clock &x, clock &y, int i1, int &i2, chan &a, chan &b)</tt>  
-    process template <tt>Q</tt> has six parameters: two clocks, two integer variables (with default range), and two channels. All parameters except <tt>i1</tt> are reference parameters.
+`P(clock &x, bool bit)`
+: process template `P` has two parameters: the clock `x` and the boolean variable `bit`.
+
+`Q(clock &x, clock &y, int i1, int &i2, chan &a, chan &b)`
+: process template `Q` has six parameters: two clocks, two integer variables (with default range), and two channels. All parameters except `i1` are reference parameters.

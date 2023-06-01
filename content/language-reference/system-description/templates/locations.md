@@ -36,15 +36,17 @@ The generation of exact delay relies on pseudo random number generator and on 32
 
 The following are valid invariants. Here <tt>x</tt> and <tt>y</tt> are clocks and <tt>i</tt> is an integer array.
 
-*   <tt>x <= 2</tt>  
-    <tt>x</tt> is less than or equal to 2.
-*   <tt>x < y</tt>  
-    <tt>x</tt> is (strictly) less than <tt>y</tt>.
-*   <tt>(i[0]+1) != (i[1]*10)</tt>
-*   <tt>forall(i:int[0,2]) x[i] <= 3</tt>  
-    The clocks <tt>x[0], x[1],</tt> and <tt>x[2]</tt> of the clock array are less or equal to 3.
-*   <tt>forall(i:int[0,2]) y[i]' == b[i]</tt>  
-    The clock rates <tt>y[0]', y[1]',</tt> and <tt>y[2]'</tt> are set to, respectively, <tt>b[0], b[1],</tt> and <tt>b[2]</tt>. Note that the only valid values are 0 and 1\. Setting the rate to 0 effectively stops a clock (makes it a stop-watch). In [statistical model checking](/gui-reference/verifier/verifying/) the rate is allowed to be any integer value (can be interpreted as continuous cost).
+`x <= 2`
+: `x` is less than or equal to `2`.
+
+`x < y`
+: `x` is (strictly) less than `y`.
+
+`forall(i:int[0,2]) x[i] <= 3`
+: The clocks `x[0]`, `x[1]` and `x[2]` of the clock array `x` are less or equal to `3`.
+
+`forall(i:int[0,2]) y[i]' == b[i]`
+: The clock rates `y[0]'`, `y[1]'`, and `y[2]'` are set to, respectively, `b[0]`, `b[1]` and `b[2]`. Note that for symbolic queries the only valid values are `0` and `1`. Setting the rate to `0` effectively stops a clock (makes it a stop-watch). In [statistical model checking](/gui-reference/verifier/verifying/) the rate is allowed to be any floating point value. `hybrid clock` can be interpreted as a continuous cost and abstracted away in symbolic queries while maintaining concrete values in statistical queries.
 
 ## Initial locations
 
@@ -56,11 +58,13 @@ Urgent locations freeze time; _i.e._ time is not allowed to pass when a process 
 
 Semantically, urgent locations are equivalent to:
 
-*   adding an extra clock, <tt>x</tt>, that is reset on every incomming edge, and
-*   adding an invariant <tt>x <= 0</tt> to the location.
+*   adding an extra clock, say `x`, that is reset on every incomming edge, and
+*   adding an invariant `x <= 0` to the location.
 
 ## Committed locations
 
-Like urgent locations, committed locations freeze time. Furthermore, if any process is in a committed location, the next transition must involve an edge from one of the committed locations.
+Like urgent locations, committed locations also freeze time.
+Furthermore, if any process is in a committed location, the next transition must involve an edge from one of the committed locations.
 
-Committed locations are useful for creating atomic sequences and for encoding synchronization between more than two components. Notice that if several processes are in a committed location at the same time, then they will interleave.
+Committed locations are useful for creating atomic sequences and for encoding synchronization between more than two components.
+Notice that if several processes are in a committed location at the same time, then they will interleave.

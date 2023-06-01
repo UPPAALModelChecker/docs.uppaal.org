@@ -41,6 +41,8 @@ Like in C++, assignment, preincrement and predecrement expressions evaluate to r
 
 The use of the `deadlock` keyword is restricted to the [requirement specification language](/language-reference/requirements-specification/).
 
+See [rail road diagram for the entire Expression syntax](/grammar/#Expression).
+
 ## Boolean Values
 
 Boolean values are type compatible with integers. An integer value of 0 (zero) is evaluated to false and any other integer value is evaluated to true. The boolean value `true` evaluates to the integer value 1 and the boolean value `false` evaluates to the integer value 0\. **Notice:** A comparison like `5 == true` evaluates to false, since `true` evaluates to the integer value 1\. This is consistent with C++.
@@ -165,7 +167,7 @@ The following function can be used to check if all elements of the boolean array
 ``` c
 bool alltrue(bool a[5])
 {
-  return forall (i : int[0,4]) a[i];
+    return forall (i : int[0,4]) a[i];
 }
 ```
 
@@ -178,7 +180,7 @@ An expression `sum (ID : Type) Expr` evaluates to an integer and is equal to the
 Statistical model checking (SMC) supports the full logic of weighted metric interval temporal logic (MITL). The syntax of MITL expressions is defined by the grammar for `MITLExpression`.
 
 ``` EBNF
-MITLExpression = 
+MITLExpression =
                BExpr
             |  (MITLExpression && MITLExpression)
             |  (MITLExpression || MITLExpression)
@@ -189,78 +191,190 @@ MITLExpression =
             |  ('[]' '[' NAT ',' NAT ']' MITLExpression);
 ```
 
-<dl>
-<dt><tt>BExpr</tt></dt>
-<dd>describes a Boolean expression over clocks, variables, and locations.</dd>
-</dl>
+`BExpr`
+: describes a Boolean expression over clocks, variables, and locations.
+
+See [rail road diagram of entire MITLExpression syntax](/grammar/#MITLExpression):
+![Rail road diagram of MITLExpression](/grammar/diagram/MITLExpression.svg)
 
 
 ## Floating Point Type Support
 
 Statistical model checking (SMC) supports double precision floating point type `double`. The clock variables also have floating point values in SMC. Symbolic and statistical model checking can be applied on the same model provided that `double` and `hybrid clock` type variables do not influencing the model logic, i.e. they cannot be used in guard and invariant constraints (but can be used in ODE expressions).
 
-The following is the list of builtin floating point functions (mostly imported from C math library, hence the C math manual can be consulted for more details):
+The following is the list of builtin floating point functions (mostly imported from <a target="_blank" href="https://en.wikipedia.org/wiki/C_mathematical_functions">C math library</a>, hence the <a target="_blank" href="//en.cppreference.com/w/c/numeric/math">C math manual</a> can be consulted for more details):
 
-*   `int abs(int)` — absolute value of integer argument.
-*   `double fabs(double)` — absolute value of double argument.
-*   `double fmod(double x, double y)` — remainder of the division opration _x/y_.
-*   `double fma(double x, double y, double z)` — computes _x*y+z_ as if to infinite precision.
-*   `double fmax(double x, double y)` — the larger of the two arguments.
-*   `double fmin(double x, double y)` — the smaller of the two arguments.
-*   `double exp(double x)` — Euler's number raised to the given power: _e<sup>x</sup>_.
-*   `double exp2(double x)` — 2 raised to the given power: _2<sup>x</sup>_.
-*   `double expm1(double x)` — Euler's number raised to the given power minus 1: _e<sup>x</sup>-1_.
-*   `double ln(double x)` — logarithm to the base of Euler's number: _log<sub>e</sub>(x)_.
-*   `double log(double x)` — logarithm to the base of 10 _log<sub>10</sub>(x)_ (this is different from C library, kept for backward compatibility reasons).
-*   `double log10(double x)` — logarithm to the base of 10: _log<sub>10</sub>(x)_.
-*   `double log2(double x)` — logarithm to the base of 2: _log<sub>2</sub>(x)_.
-*   `double log1p(double x)` — logarithm to the base of Euler's number with argument plus 1 _log<sub>e</sub>(1+x)_.
-*   `double pow(double x, int y)` — raises to the specified integer power _x<sup>y</sup>_.
-*   `double pow(double x, double y)` — raises to the specified floating point power _x<sup>y</sup>_.
-*   `double sqrt(double x)` — computes square root.
-*   `double cbrt(double x)` — computes cubic root.
-*   `double hypot(double x, double x)` — computes hypotenuse of a right triangle: _sqrt(x<sup>2</sup>+y<sup>2</sup>)_.
-*   `double sin(double x)` — sine of an angle in radians.
-*   `double cos(double x)` — cosine of an angle in radians.
-*   `double tan(double x)` — tangent of an angle in radians.
-*   `double asin(double x)` — arc sine in radians.
-*   `double acos(double x)` — arc cosine in radians.
-*   `double atan(double x)` — arc tangent in radians.
-*   `double atan2(double y, double x)` — arc tangent of the ratio _y/x_ in radians.
-*   `double sinh(double x)` — hyperbolic sine: _(exp(x)-exp(-x))/2_.
-*   `double cosh(double x)` — hyperbolic cosine: _(exp(x)+exp(-x))/2_.
-*   `double tanh(double x)` — hyperbolic tangent: _(exp(x)-exp(-x))/(exp(x)+exp(-x))_.
-*   `double asinh(double x)` — inverse hyperbolic sine.
-*   `double acosh(double x)` — inverse hyperbolic cosine.
-*   `double atanh(double x)` — inverse hyperbolic tangent.
-*   `double erf(double x)` — Gauss error function (special non-elementary function of sigmoid).
-*   `double erfc(double x)` — complement of a Gauss error function.
-*   `double tgamma(double x)` — absolute value of the Gamma function (an extension of a factorial function _Γ(n)=(n-1)!_).
-*   `double lgamma(double x)` — natural logarithm of the Gamma function.
-*   `double ceil(double x)` — the ceiling function, the smallest integer value not less than _x_.
-*   `double floor(double x)` — the floor function, the largest integer value not greater than _x_.
-*   `double trunc(double x)` — nearest integer not greater in magnitude than _x_.
-*   `double round(double x)` — nearest integer value to _x_ rounding halfway cases away from zero.
-*   `int fint(double x)` — converts floating point value into integer (works like _trunc()_).
-*   `double ldexp(double x, int y)` — multiplies by a specified power of two: _x*2<sup>y</sup>_.
-*   `int ilogb(double x)` — extracts unbiased exponent: _trunc(log2(x+1))_.
-*   `double logb(double x)` — extracts unbiased exponent: _trunc(log2(x+1))_.
-*   `double nextafter(double from, double to)` — a next representable floating point value of _from_ in the direction of _to_.
-*   `double copysign(double x, double y)` — floating point value with magnitude of _x_ and sign of _y_.
-*   `bool signbit(double x)` — true if the argument _x_ is negative.<
-*   `double random(double max)` — pseudo random number distributed uniformly over the range `[0, max)`.
-*   `double normal(double mean, double sd)` — pseudo random number according to [Normal (Gaussian) distribution](https://en.wikipedia.org/wiki/Normal_distribution) for a given _mean_ and standard deviation _sd_ (until Stratego-10).
-*   `double random_normal(double mean, double sd)` — pseudo random number distributed according to [Normal (Gaussian) distribution](https://en.wikipedia.org/wiki/Normal_distribution) for a given _mean_ and standard deviation _sd_ (since Stratego-10).
-*   `double random_poisson(double lambda)` — pseudo random number according to [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution) for a given _lambda_ expected number of occurances (since Stratego-10).
-*   `double random_arcsine(double from, double till)` — pseudo random number according to [Arcsine distribution](https://en.wikipedia.org/wiki/Arcsine_distribution) over the range `[from, till]` (since Stratego-10).
-*   `double random_beta(double alpha, double beta)` — pseudo random number distributed according to [Beta distribution](https://en.wikipedia.org/wiki/Beta_distribution) for _alpha_ and _beta_ shape parameters (since Stratego-10).
-*   `double random_gamma(double shape, double scale)` — pseudo random number distributed according to [Gamma distribution](https://en.wikipedia.org/wiki/Gamma_distribution) for the given _shape_ and _scale_ parameters (since Stratego-10).
-*   `double random_tri(double from, double mode, double till)` — pseudo random number according to [Triangular distribution](https://en.wikipedia.org/wiki/Triangular_distribution) over the range `[from, till]` with the given _mode_ (since Stratego-10).
-*   `double random_weibull(double shape, double scale)` — pseudo random number according to [Weibull distribution](https://en.wikipedia.org/wiki/Weibull_distribution) for the given _shape_ and _scale_ parameters (since Stratego-10).
+`int abs(int)`
+: absolute value of integer argument.
+
+`double fabs(double)`
+: absolute value of double argument.
+
+`double fmod(double x, double y)`
+: remainder of the division opration _x/y_.
+
+`double fma(double x, double y, double z)`
+: computes _x*y+z_ as if to infinite precision.
+
+`double fmax(double x, double y)`
+: the larger of the two arguments.
+
+`double fmin(double x, double y)`
+: the smaller of the two arguments.
+
+`double exp(double x)`
+: Euler's number raised to the given power: _e<sup>x</sup>_.
+
+`double exp2(double x)`
+: 2 raised to the given power: _2<sup>x</sup>_.
+
+`double expm1(double x)`
+: Euler's number raised to the given power minus 1: _e<sup>x</sup>-1_.
+
+`double ln(double x)`
+: logarithm to the base of Euler's number: _log<sub>e</sub>(x)_.
+
+`double log(double x)`
+: logarithm to the base of 10 _log<sub>10</sub>(x)_ (this is different from C library, kept for backward compatibility).
+
+`double log10(double x)`
+: logarithm to the base of 10: _log<sub>10</sub>(x)_.
+
+`double log2(double x)`
+: logarithm to the base of 2: _log<sub>2</sub>(x)_.
+
+`double log1p(double x)`
+: logarithm to the base of Euler's number with argument plus 1: _log<sub>e</sub>(1+x)_.
+
+`double pow(double x, int y)`
+: raises to the specified integer power _x<sup>y</sup>_.
+
+`double pow(double x, double y)`
+: raises to the specified floating point power _x<sup>y</sup>_.
+
+`double sqrt(double x)`
+: computes a square root of _x_.
+
+`double cbrt(double x)`
+: computes cubic root of _x_.
+
+`double hypot(double x, double y)`
+: computes a hypotenuse of the right triangle using Pythogoras theorem: _sqrt(x<sup>2</sup>+y<sup>2</sup>)_.
+
+`double sin(double x)`
+: sine of an angle _x_ in radians.
+
+`double cos(double x)`
+: cosine of an angle _x_ in radians.
+
+`double tan(double x)`
+: tangent of an angle _x_ in radians.
+
+`double asin(double x)`
+: arc sine in radians.
+
+`double acos(double x)`
+: arc cosine in radians.
+
+`double atan(double x)`
+: arc tangent in radians.
+
+`double atan2(double y, double x)`
+: arc tangent of the ratio _y/x_ in radians.
+
+`double sinh(double x)`
+: hyperbolic sine: _(exp(x)-exp(-x))/2_.
+
+`double cosh(double x)`
+: hyperbolic cosine: _(exp(x)+exp(-x))/2_.
+
+`double tanh(double x)`
+: hyperbolic tangent: _(exp(x)-exp(-x))/(exp(x)+exp(-x))_.
+
+`double asinh(double x)`
+: inverse hyperbolic sine.
+
+`double acosh(double x)`
+: inverse hyperbolic cosine.
+
+`double atanh(double x)`
+: inverse hyperbolic tangent.
+
+`double erf(double x)`
+: Gauss error function (special non-elementary function of sigmoid).
+
+`double erfc(double x)`
+: complement of a Gauss error function.
+
+`double tgamma(double x)`
+: absolute value of the Gamma function (an extension of a factorial function _Γ(n)=(n-1)!_).
+
+`double lgamma(double x)`
+: natural logarithm of the Gamma function.
+
+`double ceil(double x)`
+: the ceiling function, the smallest integer value not less than _x_.
+
+`double floor(double x)`
+: the floor function, the largest integer value not greater than _x_.
+
+`double trunc(double x)`
+: nearest integer not greater in magnitude than _x_.
+
+`double round(double x)`
+: nearest integer value to _x_ rounding halfway cases away from zero.
+
+`int fint(double x)`
+: converts floating point value into integer (like _trunc()_, except returns an integer).
+
+`double ldexp(double x, int y)`
+: multiplies by a specified power of two: _x*2<sup>y</sup>_.
+
+`int ilogb(double x)`
+: extracts unbiased exponent: _trunc(log2(x+1))_.
+
+`double logb(double x)`
+: extracts unbiased exponent: _trunc(log2(x+1))_.
+
+`double nextafter(double from, double to)`
+: a next representable floating point value of _from_ in the direction of _to_.
+
+`double copysign(double x, double y)`
+: floating point value with magnitude of _x_ and sign of _y_.
+
+`bool signbit(double x)`
+: true if the argument _x_ is negative.
+
+`double random(double max)`
+: pseudo random number distributed uniformly over the range `[0, max)`.
+
+`double normal(double mean, double sd)`
+: pseudo random number according to [Normal (Gaussian) distribution](https://en.wikipedia.org/wiki/Normal_distribution) for a given _mean_ and standard deviation _sd_ (until Stratego-10).
+
+`double random_normal(double mean, double sd)`
+: pseudo random number distributed according to [Normal (Gaussian) distribution](https://en.wikipedia.org/wiki/Normal_distribution) for a given _mean_ and standard deviation _sd_ (since Stratego-10).
+
+`double random_poisson(double lambda)`
+: pseudo random number according to [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution) for a given _lambda_ expected number of occurances (since Stratego-10).
+
+`double random_arcsine(double from, double till)`
+: pseudo random number according to [Arcsine distribution](https://en.wikipedia.org/wiki/Arcsine_distribution) over the range `[from, till]` (since Stratego-10).
+
+`double random_beta(double alpha, double beta)`
+: pseudo random number distributed according to [Beta distribution](https://en.wikipedia.org/wiki/Beta_distribution) for _alpha_ and _beta_ shape parameters (since Stratego-10).
+
+`double random_gamma(double shape, double scale)`
+: pseudo random number distributed according to [Gamma distribution](https://en.wikipedia.org/wiki/Gamma_distribution) for the given _shape_ and _scale_ parameters (since Stratego-10).
+
+`double random_tri(double from, double mode, double till)`
+: pseudo random number according to [Triangular distribution](https://en.wikipedia.org/wiki/Triangular_distribution) over the range `[from, till]` with the given _mode_ (since Stratego-10).
+
+`double random_weibull(double shape, double scale)`
+: pseudo random number according to [Weibull distribution](https://en.wikipedia.org/wiki/Weibull_distribution) for the given _shape_ and _scale_ parameters (since Stratego-10).
 
 A few common constants and types can be declared as follows (built-in since Stratego-10):
 
-``` c
+```c
 const int INT8_MIN      =   -128;
 const int INT8_MAX      =    127;
 const int UINT8_MAX     =    256;
