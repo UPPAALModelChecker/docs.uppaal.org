@@ -5,7 +5,7 @@ weight: 20
 
 This section describes a BNF-grammar for the requirement specification language used in the verifier of UPPAAL.
 
-![Overview of query syntax](/grammar/diagram/Query.svg)
+<!-- ![Overview of query syntax](/grammar/diagram/Query.svg) -->
 
 See also [rail road diagram for the entire Query syntax](/grammar/#Query).
 

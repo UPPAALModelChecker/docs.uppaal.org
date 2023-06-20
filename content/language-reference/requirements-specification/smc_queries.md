@@ -8,7 +8,7 @@ UPPAAL can estimate the probability of expression values statistically. There ar
 
 See [rail road diagram of the entire SMCQuery syntax](/grammar/#SMCQuery).
 
-![Rail road diagram of SMC query syntax](/grammar/diagram/SMCQuery.svg)
+<!-- ![Rail road diagram of SMC query syntax](/grammar/diagram/SMCQuery.svg) -->
 
 ## Simulation
 
@@ -75,7 +75,7 @@ MITLExpression =
 : describes a Boolean expression over clocks, variables, and locations.
 
 See [rail road diagram of entire MITLExpression syntax](/grammar/#MITLExpression):
-![Rail road diagram of MITLExpression](/grammar/diagram/MITLExpression.svg)
+<!-- ![Rail road diagram of MITLExpression](/grammar/diagram/MITLExpression.svg) -->
 
 The exact evaluation of the probability that a run satisfies a given weighted MITL formula.
 
