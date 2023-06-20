@@ -40,7 +40,7 @@ Integers, booleans, doubles strings, and arrays and records over integers and bo
 
 Integers, booleans, doubles, and arrays and records over integers and booleans can be marked as meta variables by prefixing the type with the keyword `meta`.
 
-Meta variables are stored outside of the state vector and are sematically not considered part of the state. I.e. two states that only differ in meta variables are considered to be equal.
+Meta variables are stored outside of the state vector and are semantically not considered part of the state. I.e. two states that only differ in meta variables are considered to be equal.
 
 ## Arrays
 

@@ -128,19 +128,19 @@ See [rail road diagram for the entire ControlQuery syntax](/grammar/#ControlQuer
 : compute a strategy where `goal` state predicate is eventually true no matter what the oponent/environment chooses to do. The resulting strategy is *deterministic* in a sense that for a given state the strategy proposes one action for the player/controller (while the oponent/environment may still choose from multiple actions).
 
 `control: A[] safe`
-: compute a strategy where `safe` state predicate is always true no matter what the oponent/environment chooses to do. The strategy is *permissive* in a sense that for a given state the strategy may propose multiple actions for the player/controller. Such permissive strategy can be thought of as a union of all strategies satisfying the predicate, therefore it does not have any notion of progress and may include infinite loops.
+: compute a strategy where `safe` state predicate is always true no matter what the opponent/environment chooses to do. The strategy is *permissive* in a sense that for a given state the strategy may propose multiple actions for the player/controller. Such permissive strategy can be thought of as a union of all strategies satisfying the predicate, therefore it does not have any notion of progress and may include infinite loops.
 
 `E<> control: A[] safe`
 : computes a collaborative strategy, i.e. finds a reachable state from where a safe strategy is found: `safe` state predicate is maintained to always remain true no matter what the oponent/environment chooses to do.
 
 `{ x<=5, Gate.Idle, Gate.Occ }: A[] safe`
-: computes a safe strategy by observing only the state of the specified predicate expressions.
+: computes a safety strategy where the player can only observe the state of the specified predicate expressions.
 
 `A[ safe U goal ]`
-: computes a safe strategy but only up until the `goal` is reached.
+: computes a safety strategy but only up until the `goal` is reached.
 
 `A[ safe W goal ]`
-: (weakly until the `goal`) either a safe strategy is found or a safe strategy holds until the goal is reached.
+: (weakly until the `goal`) either a safety strategy is found or a safety strategy holds until the goal is reached.
 
 See also [Strategy Queries](#strategy-queries) below on how to store and query the properties of the computed strategies.
 

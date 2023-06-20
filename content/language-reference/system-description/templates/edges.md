@@ -15,7 +15,7 @@ Synchronisation
 : Processes can synchronize over channels. Edges labelled with complementary actions over a common channel synchronise.
 
 Updates
-: When executed, the update expression of the edge is evaluated. The side effect of this expression changes the state of the system.
+: When an edge is traversed, the update expression of the edge is evaluated. The side effect of this expression changes the state of the system.
 
 Weights
 : Edges emanating from a branchpoint can be assigned a probabilistic weight. The probability such edge-transition is proportional to the edge weight and inversely proportional to the sum of weights over all edges leaving that branchpoint.</dd>
