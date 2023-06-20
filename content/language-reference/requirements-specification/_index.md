@@ -130,12 +130,6 @@ See [rail road diagram for the entire ControlQuery syntax](/grammar/#ControlQuer
 `control: A[] safe`
 : compute a strategy where `safe` state predicate is always true no matter what the opponent/environment chooses to do. The strategy is *permissive* in a sense that for a given state the strategy may propose multiple actions for the player/controller. Such permissive strategy can be thought of as a union of all strategies satisfying the predicate, therefore it does not have any notion of progress and may include infinite loops.
 
-`E<> control: A[] safe`
-: computes a collaborative strategy, i.e. finds a reachable state from where a safe strategy is found: `safe` state predicate is maintained to always remain true no matter what the oponent/environment chooses to do.
-
-`{ x<=5, Gate.Idle, Gate.Occ }: A[] safe`
-: computes a safety strategy where the player can only observe the state of the specified predicate expressions.
-
 `A[ safe U goal ]`
 : computes a safety strategy but only up until the `goal` is reached.
 
