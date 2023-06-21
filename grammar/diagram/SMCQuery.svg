@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1445" height="485">
+   <defs>
+      <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+   </defs>
+   <polygon points="9 17 1 13 1 21"/>
+   <polygon points="17 17 9 13 9 21"/>
+   <rect x="51" y="3" width="78" height="32" rx="10"/>
+   <rect x="49"
+          y="1"
+          width="78"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="59" y="21">simulate</text>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+       xlink:href="#SMCBounds"
+       xlink:title="SMCBounds">
+      <rect x="149" y="3" width="94" height="32"/>
+      <rect x="147" y="1" width="94" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="157" y="21">SMCBounds</text>
+   </a>
+   <rect x="263" y="3" width="28" height="32" rx="10"/>
+   <rect x="261"
+          y="1"
+          width="28"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="271" y="21">{</text>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+       xlink:href="#NonEmptyExpressionList"
+       xlink:title="NonEmptyExpressionList">
+      <rect x="311" y="3" width="176" height="32"/>
+      <rect x="309" y="1" width="176" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="319" y="21">NonEmptyExpressionList</text>
+   </a>
+   <rect x="507" y="3" width="28" height="32" rx="10"/>
+   <rect x="505"
+          y="1"
+          width="28"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="515" y="21">}</text>
+   <rect x="575" y="35" width="24" height="32" rx="10"/>
+   <rect x="573"
+          y="33"
+          width="24"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="583" y="53">:</text>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+       xlink:href="#NumberOfRuns"
+       xlink:title="NumberOfRuns">
+      <rect x="639" y="67" width="114" height="32"/>
+      <rect x="637" y="65" width="114" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="647" y="85">NumberOfRuns</text>
+   </a>
+   <rect x="773" y="67" width="24" height="32" rx="10"/>
+   <rect x="771"
+          y="65"
+          width="24"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="781" y="85">:</text>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+       xlink:href="#Expression"
+       xlink:title="Expression">
+      <rect x="837" y="35" width="90" height="32"/>
+      <rect x="835" y="33" width="90" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="845" y="53">Expression</text>
+   </a>
+   <rect x="51" y="111" width="34" height="32" rx="10"/>
+   <rect x="49"
+          y="109"
+          width="34"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="59" y="129">Pr</text>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+       xlink:href="#SMCBounds"
+       xlink:title="SMCBounds">
+      <rect x="125" y="111" width="94" height="32"/>
+      <rect x="123" y="109" width="94" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="133" y="129">SMCBounds</text>
+   </a>
+   <rect x="239" y="111" width="26" height="32" rx="10"/>
+   <rect x="237"
+          y="109"
+          width="26"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="247" y="129">(</text>
+   <rect x="325" y="111" width="40" height="32" rx="10"/>
+   <rect x="323"
+          y="109"
+          width="40"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="333" y="129">&lt;&gt;</text>
+   <rect x="325" y="155" width="32" height="32" rx="10"/>
+   <rect x="323"
+          y="153"
+          width="32"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="333" y="173">[]</text>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+       xlink:href="#Expression"
+       xlink:title="Expression">
+      <rect x="405" y="111" width="90" height="32"/>
+      <rect x="403" y="109" width="90" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="413" y="129">Expression</text>
+   </a>
+   <rect x="515" y="111" width="26" height="32" rx="10"/>
+   <rect x="513"
+          y="109"
+          width="26"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="523" y="129">)</text>
+   <rect x="601" y="143" width="40" height="32" rx="10"/>
+   <rect x="599"
+          y="141"
+          width="40"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="609" y="161">&gt;=</text>
+   <rect x="601" y="187" width="40" height="32" rx="10"/>
+   <rect x="599"
+          y="185"
+          width="40"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="609" y="205">&lt;=</text>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+       xlink:href="#ProbNumber"
+       xlink:title="ProbNumber">
+      <rect x="681" y="143" width="98" height="32"/>
+      <rect x="679" y="141" width="98" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="689" y="161">ProbNumber</text>
+   </a>
+   <rect x="601" y="263" width="58" height="32" rx="10"/>
+   <rect x="599"
+          y="261"
+          width="58"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="609" y="281">under</text>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+       xlink:href="#SubjectionList"
+       xlink:title="SubjectionList">
+      <rect x="679" y="263" width="108" height="32"/>
+      <rect x="677" y="261" width="108" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="687" y="281">SubjectionList</text>
+   </a>
+   <rect x="827" y="231" width="40" height="32" rx="10"/>
+   <rect x="825"
+          y="229"
+          width="40"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="835" y="249">&gt;=</text>
+   <rect x="887" y="231" width="34" height="32" rx="10"/>
+   <rect x="885"
+          y="229"
+          width="34"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="895" y="249">Pr</text>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+       xlink:href="#SMCBounds"
+       xlink:title="SMCBounds">
+      <rect x="941" y="231" width="94" height="32"/>
+      <rect x="939" y="229" width="94" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="949" y="249">SMCBounds</text>
+   </a>
+   <rect x="1055" y="231" width="26" height="32" rx="10"/>
+   <rect x="1053"
+          y="229"
+          width="26"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="1063" y="249">(</text>
+   <rect x="1121" y="231" width="40" height="32" rx="10"/>
+   <rect x="1119"
+          y="229"
+          width="40"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="1129" y="249">&lt;&gt;</text>
+   <rect x="1121" y="275" width="32" height="32" rx="10"/>
+   <rect x="1119"
+          y="273"
+          width="32"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="1129" y="293">[]</text>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+       xlink:href="#Expression"
+       xlink:title="Expression">
+      <rect x="1201" y="231" width="90" height="32"/>
+      <rect x="1199" y="229" width="90" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="1209" y="249">Expression</text>
+   </a>
+   <rect x="1311" y="231" width="26" height="32" rx="10"/>
+   <rect x="1309"
+          y="229"
+          width="26"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="1319" y="249">)</text>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+       xlink:href="#Expression"
+       xlink:title="Expression">
+      <rect x="305" y="319" width="90" height="32"/>
+      <rect x="303" y="317" width="90" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="313" y="337">Expression</text>
+   </a>
+   <rect x="415" y="319" width="30" height="32" rx="10"/>
+   <rect x="413"
+          y="317"
+          width="30"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="423" y="337">U</text>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+       xlink:href="#Expression"
+       xlink:title="Expression">
+      <rect x="465" y="319" width="90" height="32"/>
+      <rect x="463" y="317" width="90" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="473" y="337">Expression</text>
+   </a>
+   <rect x="575" y="319" width="26" height="32" rx="10"/>
+   <rect x="573"
+          y="317"
+          width="26"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="583" y="337">)</text>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+       xlink:href="#Expression"
+       xlink:title="Expression">
+      <rect x="125" y="363" width="90" height="32"/>
+      <rect x="123" y="361" width="90" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="133" y="381">Expression</text>
+   </a>
+   <rect x="51" y="407" width="28" height="32" rx="10"/>
+   <rect x="49"
+          y="405"
+          width="28"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="59" y="425">E</text>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+       xlink:href="#SMCBounds"
+       xlink:title="SMCBounds">
+      <rect x="99" y="407" width="94" height="32"/>
+      <rect x="97" y="405" width="94" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="107" y="425">SMCBounds</text>
+   </a>
+   <rect x="213" y="407" width="26" height="32" rx="10"/>
+   <rect x="211"
+          y="405"
+          width="26"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="221" y="425">(</text>
+   <rect x="279" y="407" width="48" height="32" rx="10"/>
+   <rect x="277"
+          y="405"
+          width="48"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="287" y="425">max</text>
+   <rect x="279" y="451" width="44" height="32" rx="10"/>
+   <rect x="277"
+          y="449"
+          width="44"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="287" y="469">min</text>
+   <rect x="367" y="407" width="24" height="32" rx="10"/>
+   <rect x="365"
+          y="405"
+          width="24"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="375" y="425">:</text>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+       xlink:href="#Expression"
+       xlink:title="Expression">
+      <rect x="411" y="407" width="90" height="32"/>
+      <rect x="409" y="405" width="90" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="419" y="425">Expression</text>
+   </a>
+   <rect x="521" y="407" width="26" height="32" rx="10"/>
+   <rect x="519"
+          y="405"
+          width="26"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="529" y="425">)</text>
+   <path class="line"
+          d="m17 17 h2 m20 0 h10 m78 0 h10 m0 0 h10 m94 0 h10 m0 0 h10 m28 0 h10 m0 0 h10 m176 0 h10 m0 0 h10 m28 0 h10 m20 0 h10 m0 0 h362 m-392 0 h20 m372 0 h20 m-412 0 q10 0 10 10 m392 0 q0 -10 10 -10 m-402 10 v12 m392 0 v-12 m-392 12 q0 10 10 10 m372 0 q10 0 10 -10 m-382 10 h10 m24 0 h10 m20 0 h10 m0 0 h168 m-198 0 h20 m178 0 h20 m-218 0 q10 0 10 10 m198 0 q0 -10 10 -10 m-208 10 v12 m198 0 v-12 m-198 12 q0 10 10 10 m178 0 q10 0 10 -10 m-188 10 h10 m114 0 h10 m0 0 h10 m24 0 h10 m20 -32 h10 m90 0 h10 m20 -32 h450 m-1386 0 h20 m1366 0 h20 m-1406 0 q10 0 10 10 m1386 0 q0 -10 10 -10 m-1396 10 v88 m1386 0 v-88 m-1386 88 q0 10 10 10 m1366 0 q10 0 10 -10 m-1376 10 h10 m34 0 h10 m20 0 h10 m94 0 h10 m0 0 h10 m26 0 h10 m40 0 h10 m40 0 h10 m-80 0 h20 m60 0 h20 m-100 0 q10 0 10 10 m80 0 q0 -10 10 -10 m-90 10 v24 m80 0 v-24 m-80 24 q0 10 10 10 m60 0 q10 0 10 -10 m-70 10 h10 m32 0 h10 m0 0 h8 m20 -44 h10 m90 0 h10 m0 0 h10 m26 0 h10 m20 0 h10 m0 0 h766 m-796 0 h20 m776 0 h20 m-816 0 q10 0 10 10 m796 0 q0 -10 10 -10 m-806 10 v12 m796 0 v-12 m-796 12 q0 10 10 10 m776 0 q10 0 10 -10 m-766 10 h10 m40 0 h10 m-80 0 h20 m60 0 h20 m-100 0 q10 0 10 10 m80 0 q0 -10 10 -10 m-90 10 v24 m80 0 v-24 m-80 24 q0 10 10 10 m60 0 q10 0 10 -10 m-70 10 h10 m40 0 h10 m20 -44 h10 m98 0 h10 m0 0 h558 m-786 -10 v20 m796 0 v-20 m-796 20 v68 m796 0 v-68 m-796 68 q0 10 10 10 m776 0 q10 0 10 -10 m-766 10 h10 m0 0 h196 m-226 0 h20 m206 0 h20 m-246 0 q10 0 10 10 m226 0 q0 -10 10 -10 m-236 10 v12 m226 0 v-12 m-226 12 q0 10 10 10 m206 0 q10 0 10 -10 m-216 10 h10 m58 0 h10 m0 0 h10 m108 0 h10 m20 -32 h10 m40 0 h10 m0 0 h10 m34 0 h10 m0 0 h10 m94 0 h10 m0 0 h10 m26 0 h10 m20 0 h10 m40 0 h10 m-80 0 h20 m60 0 h20 m-100 0 q10 0 10 10 m80 0 q0 -10 10 -10 m-90 10 v24 m80 0 v-24 m-80 24 q0 10 10 10 m60 0 q10 0 10 -10 m-70 10 h10 m32 0 h10 m0 0 h8 m20 -44 h10 m90 0 h10 m0 0 h10 m26 0 h10 m-1072 -120 h20 m1072 0 h20 m-1112 0 q10 0 10 10 m1092 0 q0 -10 10 -10 m-1102 10 v188 m1092 0 v-188 m-1092 188 q0 10 10 10 m1072 0 q10 0 10 -10 m-1082 10 h10 m90 0 h10 m0 0 h10 m30 0 h10 m0 0 h10 m90 0 h10 m0 0 h10 m26 0 h10 m0 0 h756 m-1272 -208 h20 m1272 0 h20 m-1312 0 q10 0 10 10 m1292 0 q0 -10 10 -10 m-1302 10 v232 m1292 0 v-232 m-1292 232 q0 10 10 10 m1272 0 q10 0 10 -10 m-1282 10 h10 m90 0 h10 m0 0 h1162 m-1356 -262 v20 m1386 0 v-20 m-1386 20 v276 m1386 0 v-276 m-1386 276 q0 10 10 10 m1366 0 q10 0 10 -10 m-1376 10 h10 m28 0 h10 m0 0 h10 m94 0 h10 m0 0 h10 m26 0 h10 m20 0 h10 m48 0 h10 m-88 0 h20 m68 0 h20 m-108 0 q10 0 10 10 m88 0 q0 -10 10 -10 m-98 10 v24 m88 0 v-24 m-88 24 q0 10 10 10 m68 0 q10 0 10 -10 m-78 10 h10 m44 0 h10 m0 0 h4 m20 -44 h10 m24 0 h10 m0 0 h10 m90 0 h10 m0 0 h10 m26 0 h10 m0 0 h850 m23 -404 h-3"/>
+   <polygon points="1435 17 1443 13 1443 21"/>
+   <polygon points="1435 17 1427 13 1427 21"/>
+</svg>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="733" height="89">
+   <defs>
+      <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+   </defs>
+   <polygon points="9 5 1 1 1 9"/>
+   <polygon points="17 5 9 1 9 9"/>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+       xlink:href="#ProcLocalDeclList"
+       xlink:title="ProcLocalDeclList">
+      <rect x="51" y="23" width="128" height="32"/>
+      <rect x="49" y="21" width="128" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="59" y="41">ProcLocalDeclList</text>
+   </a>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+       xlink:href="#States"
+       xlink:title="States">
+      <rect x="199" y="23" width="60" height="32"/>
+      <rect x="197" y="21" width="60" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="207" y="41">States</text>
+   </a>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+       xlink:href="#Branchpoints"
+       xlink:title="Branchpoints">
+      <rect x="299" y="55" width="102" height="32"/>
+      <rect x="297" y="53" width="102" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="307" y="73">Branchpoints</text>
+   </a>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+       xlink:href="#LocFlags"
+       xlink:title="LocFlags">
+      <rect x="441" y="23" width="74" height="32"/>
+      <rect x="439" y="21" width="74" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="449" y="41">LocFlags</text>
+   </a>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+       xlink:href="#Init"
+       xlink:title="Init">
+      <rect x="535" y="23" width="40" height="32"/>
+      <rect x="533" y="21" width="40" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="543" y="41">Init</text>
+   </a>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+       xlink:href="#Transitions"
+       xlink:title="Transitions">
+      <rect x="595" y="23" width="90" height="32"/>
+      <rect x="593" y="21" width="90" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="603" y="41">Transitions</text>
+   </a>
+   <path class="line"
+          d="m17 5 h2 m20 0 h10 m0 0 h644 m-674 0 h20 m654 0 h20 m-694 0 q10 0 10 10 m674 0 q0 -10 10 -10 m-684 10 v12 m674 0 v-12 m-674 12 q0 10 10 10 m654 0 q10 0 10 -10 m-664 10 h10 m128 0 h10 m0 0 h10 m60 0 h10 m20 0 h10 m0 0 h112 m-142 0 h20 m122 0 h20 m-162 0 q10 0 10 10 m142 0 q0 -10 10 -10 m-152 10 v12 m142 0 v-12 m-142 12 q0 10 10 10 m122 0 q10 0 10 -10 m-132 10 h10 m102 0 h10 m20 -32 h10 m74 0 h10 m0 0 h10 m40 0 h10 m0 0 h10 m90 0 h10 m23 -32 h-3"/>
+   <polygon points="723 5 731 1 731 9"/>
+   <polygon points="723 5 715 1 715 9"/>
+</svg>
