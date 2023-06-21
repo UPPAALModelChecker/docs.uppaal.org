@@ -1,0 +1,525 @@
+Uppaal   ::= ( T_NEW | T_NEW_SYSTEM ) XTA
+           | ( T_NEW_DECLARATION | T_NEW_INST ) Declarations
+           | T_NEW_LOCAL_DECL ProcLocalDeclList
+           | T_NEW_PARAMETERS ParameterList
+           | ( T_NEW_INVARIANT | T_NEW_GUARD | T_PROBABILITY | T_EXPRESSION | T_CONDITION ) Expression
+           | T_NEW_SELECT SelectList
+           | T_NEW_SYNC SyncExpr
+           | ( T_NEW_ASSIGN | T_EXPRESSION_LIST | T_UPDATE ) ExprList
+           | T_PROPERTY QueryList
+           | T_XTA_PROCESS ProcDecl
+           | T_EXPONENTIAL_RATE ExpRate
+           | T_MESSAGE MessExpr
+           | T_INSTANCE_LINE InstanceLineExpression
+XTA      ::= Declarations System XTAQueryList
+Instantiations
+         ::= Instantiation*
+Instantiation
+         ::= NonTypeId OptionalInstanceParameterList T_ASSIGNMENT NonTypeId '(' ArgList ')' ';'
+InstanceLineExpression
+         ::= NonTypeId ( '(' ArgList ')' )?
+OptionalInstanceParameterList
+         ::= ( '(' ParameterList? ')' )?
+System   ::= SysDecl Progress GanttDecl
+PriorityDecl
+         ::= T_CHAN T_PRIORITY ( ChanElement ( ( ',' | T_LT ) ChanElement )* ) ';'
+ChanElement
+         ::= NonTypeId ( '[' Expression ']' )*
+           | T_DEFAULT
+SysDecl  ::= T_SYSTEM ( NonTypeId ( ( ',' | ProcLessThan ) NonTypeId )* ) ';'
+ProcLessThan
+         ::= T_LT
+Progress ::= ( T_PROGRESS '{' ( Expression ( ':' Expression )? ';' )* '}' )?
+GanttDecl
+         ::= ( T_GANTT '{' ( NonTypeId GanttArgs ':' GanttExpr ( ',' GanttExpr )* ';' )* '}' )?
+GanttArgs
+         ::= ( '(' Id ':' Type ( ',' Id ':' Type )* ')' )?
+GanttExpr
+         ::= ( T_FOR '(' Id ':' Type ( ',' Id ':' Type )* ')' )? Expression T_ARROW Expression
+Declarations
+         ::= ( FunctionDecl | ExternDecl | VariableDecl | TypeDecl | ProcDecl | BeforeUpdateDecl | AfterUpdateDecl | Instantiation | PriorityDecl | DynamicDeclaration )*
+DynamicDeclaration
+         ::= T_DYNAMIC NonTypeId OptionalParameterList ';'
+BeforeUpdateDecl
+         ::= T_BEFORE '{' ExprList '}'
+AfterUpdateDecl
+         ::= T_AFTER '{' ExprList '}'
+FunctionDecl
+         ::= Type Id OptionalParameterList '{' BlockLocalDeclList StatementList EndBlock
+EndBlock ::= '}'
+ExternDecl
+         ::= T_IMPORT QuotedText FwdDeclBlock
+FwdDeclBlock
+         ::= ( '{' ( FwdDecl ';' )+ '}' | FwdDecl ) ';'
+FwdDecl  ::= ( Id T_ASSIGNMENT )? Type Id OptionalParameterList
+OptionalParameterList
+         ::= '(' ( ParameterList )? ')'
+ParameterList
+         ::= Parameter ( ',' Parameter )*
+Parameter
+         ::= Type '&'? NonTypeId ArrayDecl
+VariableDecl
+         ::= Type ( DeclId ( ',' DeclId )* ) ';'
+DeclId   ::= Id ArrayDecl VarInit
+VarInit  ::= ( T_ASSIGNMENT Initializer )?
+Initializer
+         ::= Expression
+           | '{' FieldInit ( ',' FieldInit )* '}'
+FieldInit
+         ::= ( Id ':' )? Initializer
+ArrayDecl
+         ::= ( '[' ( Expression | Type ) ']' )*
+TypeDecl ::= T_TYPEDEF ( Type TypeId ( ',' TypeId )* ) ';'
+TypeId   ::= Id ArrayDecl
+Type     ::= TypePrefix? ( TypeId | T_STRUCT '{' ( FieldDeclList ) '}' | T_BOOL | T_DOUBLE | T_STRING | T_INT ( '[' Expression ',' Expression ']' )? | T_CHAN | T_SCALAR '[' Expression ']' )
+           | T_HYBRID? T_CLOCK
+           | T_VOID
+Id       ::= NonTypeId
+           | TypeId
+NonTypeId
+         ::= Identifier
+           | 'A'
+           | 'U'
+           | 'W'
+           | 'R'
+           | 'E'
+           | 'M'
+           | T_SUP
+           | T_INF
+           | T_SIMULATION
+FieldDeclList
+         ::= FieldDecl+
+FieldDecl
+         ::= Type FieldDeclId ( ',' FieldDeclId )* ';'
+FieldDeclId
+         ::= Id ArrayDecl
+TypePrefix
+         ::= T_URGENT T_BROADCAST?
+           | T_BROADCAST
+           | T_CONST
+           | T_META
+ProcDecl ::= T_PROCESS Id OptionalParameterList '{' ProcBody '}'
+ProcBody ::= ( ProcLocalDeclList States Branchpoints? LocFlags Init Transitions )?
+ProcLocalDeclList
+         ::= ( FunctionDecl | VariableDecl | TypeDecl )*
+States   ::= T_STATE ( StateDecl ( ',' StateDecl )* ) ';'
+StateDecl
+         ::= NonTypeId ( '{' ( ';' ExpRate | Expression ( ';' ExpRate )? ) '}' )?
+Branchpoints
+         ::= T_BRANCHPOINT ( BranchpointDecl ( ',' BranchpointDecl )* ) ';'
+BranchpointDecl
+         ::= NonTypeId
+Init     ::= ( T_INIT NonTypeId ) ';'
+Transitions
+         ::= ( T_TRANS ( Transition ( ',' TransitionOpt )* ) ';' )?
+Transition
+         ::= NonTypeId ( T_ARROW | T_UNCONTROL_ARROW ) NonTypeId '{' Select Guard Sync Assign Probability '}'
+TransitionOpt
+         ::= ( T_ARROW | T_UNCONTROL_ARROW ) NonTypeId '{' Select Guard Sync Assign '}'
+           | Transition
+Select   ::= ( T_SELECT SelectList ';' )?
+SelectList
+         ::= Id ':' Type ( ',' Id ':' Type )*
+Guard    ::= ( T_GUARD Expression ';' )?
+Sync     ::= ( T_SYNC SyncExpr ';' )?
+SyncExpr ::= Expression ( '!' | '?' )
+MessExpr ::= Expression
+Assign   ::= ( T_ASSIGN ExprList ';' )?
+Probability
+         ::= ( T_PROBABILITY ( Expression ) ';' )?
+LocFlags ::= ( Commit | Urgent )*
+Commit   ::= T_COMMIT ( NonTypeId ( ',' NonTypeId )* ) ';'
+Urgent   ::= T_URGENT ( NonTypeId ( ',' NonTypeId )* ) ';'
+ExpRate  ::= Expression ( ':' Expression )?
+Block    ::= '{' BlockLocalDeclList StatementList '}'
+BlockLocalDeclList
+         ::= ( VariableDecl | TypeDecl )*
+StatementList
+         ::= ( Statement ';' )*
+Statement
+         ::= ( IfConditionThenMatched* IfCondition )* MatchedStatement
+IfCondition
+         ::= T_IF '(' ExprList ')'
+IfConditionThenMatched
+         ::= IfCondition MatchedStatement T_ELSE
+MatchedStatement
+         ::= IfConditionThenMatched* OtherStatement
+OtherStatement
+         ::= Block
+           | ( T_ASSERT? Expression | T_BREAK | T_CONTINUE | T_RETURN Expression? )? ';'
+           | ForStatement
+           | WhileStatement
+           | T_SWITCH '(' ExprList ')' '{' SwitchCase+ '}'
+ForStatement
+         ::= T_FOR '(' ( ExprList ';' ExprList ';' ExprList | Id ':' Type ) ')' Statement
+WhileStatement
+         ::= T_WHILE '(' ExprList ')' Statement
+           | T_DO Statement T_WHILE '(' ExprList ')' ';'
+SwitchCase
+         ::= ( T_CASE Expression | T_DEFAULT ) ':' StatementList
+ExprList ::= Expression ( ',' Expression )*
+Expression
+         ::= T_FALSE
+           | T_TRUE
+           | PosInteger
+           | DecimalNumber
+           | QuotedText
+           | ( ( BuiltinFunction1 '(' | ( BuiltinFunction2 '(' | BuiltinFunction3 '(' Expression ',' ) Expression ',' ) Expression | '(' Expression ) ')'
+           | NonTypeId
+           | Expression ( '(' ArgList ')' | '[' Expression ']' | T_INCREMENT | T_DECREMENT | ( T_LT | T_LEQ | T_EQ | T_NEQ | T_GT | T_GEQ | T_PLUS | T_MINUS | T_MULT | T_DIV | T_MOD | T_POWOP | '&' | T_OR | T_XOR | T_LSHIFT | T_RSHIFT | T_BOOL_AND | T_BOOL_OR | '?' Expression ':' | T_KW_IMPLY | T_KW_AND | T_KW_OR | T_KW_XOR | T_MIN | T_MAX ) Expression | '.' ( T_LOCATION | NonTypeId ) | "\'" )
+           | ( T_INCREMENT | T_DECREMENT | T_MINUS | T_PLUS | T_EXCLAM | T_KW_NOT | ( T_SUM | T_FORALL | T_EXISTS ) '(' Id ':' Type ')' ) Expression
+           | T_MINUS '2147483648'
+           | T_DEADLOCK
+           | DynamicExpression
+           | MITLExpression
+           | Assignment
+DynamicExpression
+         ::= ( T_SPAWN NonTypeId '(' ArgList | T_EXIT '(' | T_NUMOF '(' NonTypeId | ( T_FORALL | T_EXISTS ) '(' Id ':' NonTypeId ')' '(' Expression ) ')'
+           | ( T_SUM | T_FOREACH ) '(' Id ':' NonTypeId ')' Expression
+Assignment
+         ::= Expression AssignOp Expression
+AssignOp ::= T_ASSIGNMENT
+           | T_ASSPLUS
+           | T_ASSMINUS
+           | T_ASSDIV
+           | T_ASSMOD
+           | T_ASSMULT
+           | T_ASSAND
+           | T_ASSOR
+           | T_ASSXOR
+           | T_ASSLSHIFT
+           | T_ASSRSHIFT
+UnaryOp  ::= T_MINUS
+           | T_PLUS
+           | T_EXCLAM
+           | T_KW_NOT
+BuiltinFunction1
+         ::= T_ABS
+           | T_FABS
+           | T_EXP
+           | T_EXP2
+           | T_EXPM1
+           | T_LN
+           | T_LOG
+           | T_LOG10
+           | T_LOG2
+           | T_LOG1P
+           | T_SQRT
+           | T_CBRT
+           | T_SIN
+           | T_COS
+           | T_TAN
+           | T_ASIN
+           | T_ACOS
+           | T_ATAN
+           | T_SINH
+           | T_COSH
+           | T_TANH
+           | T_ASINH
+           | T_ACOSH
+           | T_ATANH
+           | T_ERF
+           | T_ERFC
+           | T_TGAMMA
+           | T_LGAMMA
+           | T_CEIL
+           | T_FLOOR
+           | T_TRUNC
+           | T_ROUND
+           | T_FINT
+           | T_ILOGB
+           | T_LOGB
+           | T_FPCLASSIFY
+           | T_ISFINITE
+           | T_ISINF
+           | T_ISNAN
+           | T_ISNORMAL
+           | T_SIGNBIT
+           | T_ISUNORDERED
+           | T_RANDOM
+           | T_RANDOM_POISSON
+BuiltinFunction2
+         ::= T_FMOD
+           | T_FMAX
+           | T_FMIN
+           | T_FDIM
+           | T_POW
+           | T_HYPOT
+           | T_ATAN2
+           | T_LDEXP
+           | T_NEXTAFTER
+           | T_COPYSIGN
+           | T_RANDOM_ARCSINE
+           | T_RANDOM_BETA
+           | T_RANDOM_GAMMA
+           | T_RANDOM_NORMAL
+           | T_RANDOM_WEIBULL
+BuiltinFunction3
+         ::= T_FMA
+           | T_RANDOM_TRI
+ArgList  ::= Expression? ( ',' Expression )*
+ExpQuantifier
+         ::= T_MINEXP
+           | T_MAXEXP
+SubjectionList
+         ::= Id
+Subjection
+         ::= ( T_SUBJECT SubjectionList )?
+Imitation
+         ::= ( T_IMITATE Id )?
+QueryList
+         ::= Query ( '\n' Query )*
+XTAQueryList
+         ::= ( T_QUERY '{' Query '}' )*
+SymbolicQuery
+         ::= ( T_AF | T_EF | T_EG | Expression T_LEADS_TO ) Expression
+           | T_AG ( Expression | ( '(' Expression ( T_KW_AND | T_BOOL_AND ) T_AF Expression ')' ) )
+           | 'A' '[' Expression ( 'U' | 'W' ) Expression ']'
+           | ( 'sup' | 'inf' ) ( '{' Expression '}' )? ':' NonEmptyExpressionList
+Features ::= ( BracketExprList T_ARROW BracketExprList )?
+AssignableQuery
+         ::= ControlQuery
+           | LearnQuery
+           | LoadQuery
+ControlQuery
+         ::= ( T_EF | ObservablePredicates )? T_CONTROL ':' SymbolicQuery Subjection
+           | T_CONTROL_T T_MULT ( '(' Expression ( ',' Expression )? ')' )? ':' SymbolicQuery
+ObservablePredicates ::= '{' ExpressionList '}'
+LearnQuery
+         ::= ( T_MINEXP | T_MAXEXP ) ( '(' Expression ')' )? '[' RunBound ']' Features Subjection Imitation
+LoadQuery
+         ::= T_LOAD_STRAT Features '(' Expression ')'
+Query
+         ::= ( SymbolicQuery | SMCQuery ) Subjection
+           | T_SAVE_STRAT '(' Expression ',' Id ')'
+           | AssignableQuery
+           | T_STRATEGY Id T_ASSIGNMENT AssignableQuery
+           | T_PMAX Expression
+           | T_SCENARIO ':' NonTypeId
+SMCQuery ::= T_SIMULATE SMCBounds '{' NonEmptyExpressionList '}' ( ':' ( NumberOfRuns ':' )? Expression )? | T_PROBA ( SMCBounds '(' ( ( "<>" | "[]" ) Expression ')' ( ( '>=' | '<=' ) ProbNumber | ( T_SUBJECT SubjectionList )? T_GEQ T_PROBA SMCBounds '(' ( '<>' | '[]' ) Expression ')' )? | Expression 'U' Expression ')' ) | Expression ) | 'E' SMCBounds '(' ( 'max' | 'min' ) ':' Expression ')'
+MITLExpression
+         ::= '(' ( ( Expression ( 'U' | 'R' ) | T_DIAMOND | T_BOX ) '[' PosInteger ',' PosInteger ']' | T_MITL_NEXT ) Expression ')'
+SMCBounds
+         ::= '[' RunBound ( ';' PosInteger )? ']'
+RunBound
+         ::= ( T_HASH | Expression )? T_LEQ Expression
+BracketExprList
+         ::= '{' ExpressionList '}'
+ExpressionList
+         ::= NonEmptyExpressionList?
+NonEmptyExpressionList
+         ::= Expression ( ',' Expression )*
+SupPrefix
+         ::= T_SUP ( '{' Expression '}' )? ':'
+InfPrefix
+         ::= T_INF ( '{' Expression '}' )? ':'
+
+//Tokens
+//\("[^"]+"\)\s+{ return \([^;]+\); }
+
+T_EXCLAM ::= "!"
+
+T_ARROW ::= "->"
+T_UNCONTROL_ARROW ::= "-u->"
+
+T_ASSIGNMENT ::= "="
+T_ASSPLUS ::= "+="
+T_ASSMINUS ::= "-="
+T_ASSMULT ::= "*="
+T_ASSDIV ::= "/="
+T_ASSMOD ::= "%="
+T_ASSOR ::= "|="
+T_ASSAND ::= "&="
+T_ASSXOR ::= "^="
+T_ASSLSHIFT ::= "<<="
+T_ASSRSHIFT ::= ">>="
+T_MIN ::= "<?"
+T_MAX ::= ">?"
+
+T_PLUS ::= "+"
+T_MINUS ::= "-"
+T_MULT ::= "*"
+T_DIV ::= "/"
+T_MOD ::= "%"
+T_POWOP ::= "**"
+T_OR ::= "|"
+
+T_XOR ::= "^"
+T_LSHIFT ::= "<<"
+T_RSHIFT ::= ">>"
+T_BOOL_OR ::= "||"
+T_BOOL_AND ::= "&&"
+T_MITL_AND ::= "/\\"
+T_MITL_OR ::= "\\/"
+
+T_LEQ ::= "<="
+T_GEQ ::= ">="
+//T_LEQ ::= "=<"
+//T_GEQ ::= "=>"
+T_LT ::= "<"
+T_GT ::= ">"
+T_EQ ::= "=="
+T_NEQ ::= "!="
+
+T_INCREMENT ::= "++"
+T_DECREMENT ::= "--"
+
+T_AF ::= "A<>"
+T_AG ::= "A[]"
+T_EF ::= "E<>"
+T_EG ::= "E[]"
+T_LEADSTO ::= "-->"
+T_AG_PLUS ::= "A[]+"
+T_EF_PLUS ::= "E<>+"
+T_AG_MULT ::= "A[]*"
+T_EF_MULT ::= "E<>*"
+T_BOX ::= "[]"
+T_DIAMOND ::= "<>"
+T_HASH ::= "#"
+
+//{\("[^"]+"\),\s*Keyword{\([^,]+\),.+
+T_CONST ::= "const"
+T_SELECT ::= "select"
+T_GUARD ::= "guard"
+T_SYNC ::= "sync"
+T_ASSIGN ::= "assign"
+T_PROBABILITY ::= "probability"
+T_PROCESS ::= "process"
+T_STATE ::= "state"
+T_BRANCHPOINT ::= "branchpoint"
+T_INIT ::= "init"
+T_TRANS ::= "trans"
+T_URGENT ::= "urgent"
+T_COMMIT ::= "commit"
+T_BROADCAST ::= "broadcast"
+T_SYSTEM ::= "system"
+T_TRUE ::= "true"
+T_FALSE ::= "false"
+T_KW_AND ::= "and"
+T_KW_OR ::= "or"
+T_KW_XOR ::= "xor"
+T_KW_NOT ::= "not"
+T_KW_IMPLY ::= "imply"
+T_FOR ::= "for"
+T_WHILE ::= "while"
+T_DO ::= "do"
+T_IF ::= "if"
+T_ELSE ::= "else"
+T_SWITCH ::= "switch"
+T_CASE ::= "case"
+T_DEFAULT ::= "default"
+T_BREAK ::= "break"
+T_CONTINUE ::= "continue"
+T_RETURN ::= "return"
+T_TYPEDEF ::= "typedef"
+T_STRUCT ::= "struct"
+T_IMPORT ::= "import"
+T_META ::= "meta"
+T_BEFORE ::= "before_update"
+T_AFTER ::= "after_update"
+T_PROGRESS ::= "progress"
+T_GANTT ::= "gantt"
+T_ASSERT ::= "assert"
+T_IO ::= "IO"
+T_FORALL ::= "forall"
+T_EXISTS ::= "exists"
+T_SUM ::= "sum"
+T_DEADLOCK ::= "deadlock"
+T_PRIORITY ::= "priority"
+T_BOOL ::= "bool"
+T_INT ::= "int"
+T_DOUBLE ::= "double"
+T_STRING ::= "string"
+T_CHAN ::= "chan"
+T_CLOCK ::= "clock"
+T_VOID ::= "void"
+T_SCALAR ::= "scalar"
+T_CONTROL ::= "control"
+T_CONTROL_T ::= "control_t"
+T_SIMULATION ::= "simulation"
+T_MINEXP ::= "minE"
+T_LOAD_STRAT ::= "loadStrategy"
+T_SAVE_STRAT ::= "saveStrategy"
+T_MAXEXP ::= "maxE"
+T_MINPR ::= "minPr"
+T_MAXPR ::= "maxPr"
+T_SUBJECT ::= "under"
+T_IMITATE ::= "imitate"
+T_STRATEGY ::= "strategy"
+T_SIMULATE ::= "simulate"
+T_SCENARIO ::= "sat"
+T_INF ::= "inf"
+T_SUP ::= "sup"
+T_PMAX ::= "Pmax"
+T_PROBA ::= "Pr"
+T_MITL_NEXT ::= "X"
+T_ABS ::= "abs"
+T_FABS ::= "fabs"
+T_FMOD ::= "fmod"
+T_FMA ::= "fma"
+T_FMAX ::= "fmax"
+T_FMIN ::= "fmin"
+T_FDIM ::= "fdim"
+T_EXP ::= "exp"
+T_EXP2 ::= "exp2"
+T_EXPM1 ::= "expm1"
+T_LN ::= "ln"
+T_LOG ::= "log"
+T_LOG10 ::= "log10"
+T_LOG2 ::= "log2"
+T_LOG1P ::= "log1p"
+T_POW ::= "pow"
+T_SQRT ::= "sqrt"
+T_CBRT ::= "cbrt"
+T_HYPOT ::= "hypot"
+T_SIN ::= "sin"
+T_COS ::= "cos"
+T_TAN ::= "tan"
+T_ASIN ::= "asin"
+T_ACOS ::= "acos"
+T_ATAN ::= "atan"
+T_ATAN2 ::= "atan2"
+T_SINH ::= "sinh"
+T_COSH ::= "cosh"
+T_TANH ::= "tanh"
+T_ASINH ::= "asinh"
+T_ACOSH ::= "acosh"
+T_ATANH ::= "atanh"
+T_ERF ::= "erf"
+T_ERFC ::= "erfc"
+T_TGAMMA ::= "tgamma"
+T_LGAMMA ::= "lgamma"
+T_CEIL ::= "ceil"
+T_FLOOR ::= "floor"
+T_TRUNC ::= "trunc"
+T_ROUND ::= "round"
+T_FINT ::= "fint"
+T_LDEXP ::= "ldexp"
+T_ILOGB ::= "ilogb"
+T_LOGB ::= "logb"
+T_NEXTAFTER ::= "nextafter"
+T_COPYSIGN ::= "copysign"
+T_FPCLASSIFY ::= "fpclassify"
+T_ISFINITE ::= "isfinite"
+T_ISINF ::= "isinf"
+T_ISNAN ::= "isnan"
+T_ISNORMAL ::= "isnormal"
+T_SIGNBIT ::= "signbit"
+T_ISUNORDERED ::= "isunordered"
+T_RANDOM ::= "random"
+T_RANDOM_ARCSINE ::= "random_arcsine"
+T_RANDOM_BETA ::= "random_beta"
+T_RANDOM_GAMMA ::= "random_gamma"
+T_RANDOM_NORMAL ::= "random_normal"
+T_RANDOM_POISSON ::= "random_poisson"
+T_RANDOM_TRI ::= "random_tri"
+T_RANDOM_WEIBULL ::= "random_weibull"
+T_HYBRID ::= "hybrid"
+T_DYNAMIC ::= "dynamic"
+T_SPAWN ::= "spawn"
+T_EXIT ::= "exit"
+T_NUMOF ::= "numOf"
+T_FOREACH ::= "foreach"
+T_QUERY ::= "query"
+T_LOCATION ::= "location"
+T_LEADS_TO ::= "-->"

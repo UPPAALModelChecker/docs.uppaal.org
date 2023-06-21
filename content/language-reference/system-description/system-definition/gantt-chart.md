@@ -4,7 +4,7 @@ weight: 30
 ---
 A Gantt chart, commonly used in project management, is a bar chart that shows activities displayed against time. On the left of the chart is a list of the activities and along the top is a suitable time scale. Each activity is represented by a bar; the position and length of the bar reflect the start date, duration and end date of the activity.
 
-In UPPAAL Gantt Charts are used to automatic visualize traces. One needs to specify the list of activities and for each activity, what the different colored parts of the bar should reflect.
+In UPPAAL Gantt Charts are used to automatic visualize traces in [Concrete Simulator](/gui-reference/concrete-simulator). One needs to specify the list of activities and for each activity, what the different colored parts of the bar should reflect.
 
 The Gantt Chart specification is placed after the [system definition](..). The syntax is defined by the following grammar:
 
@@ -24,11 +24,11 @@ GanttExpr ::= [Expression] '->' [Expression]
 
 GanttEntrySelect ::= Id ':' Type    | GanttEntrySelect ',' Id ':' Type
 
-``` 
+```
 
-The first part of <tt>GanttDef</tt> (the one before the colon) specifies the list of activities. The second part (the one after the colon) specifies for each activity, what the bar should reflect.  
-An instance of <tt>GanttExpr</tt> consists of two expressions. The one before <tt>-></tt> is evaluated to a boolean value. If it is evaluated to true, the expression after <tt>-></tt> will be evaluated to an integer. Note that this integer is not necessarily a constant. The integer will be map to a color (e.g. 0 will be map to red and 1 to green), which is the color of the bar when the expression is evaluated to true.  
-<tt>GanttDeclSelect</tt> and <tt>for (...)</tt> are to be considered as syntax shortcuts rather than constructs.
+The first part of <tt>GanttDef</tt> (the one before the colon) specifies the list of activities. The second part (the one after the colon) specifies for each activity, what the bar should reflect.
+An instance of <tt>GanttExpr</tt> consists of two expressions. The one before `->` is evaluated to a boolean value. If it is evaluated to true, the expression after `->` will be evaluated to an integer. Note that this integer is not necessarily a constant. The integer will be map to a color (e.g. 0 will be map to red and 1 to green), which is the color of the bar when the expression is evaluated to true.
+<tt>GanttDeclSelect</tt> and `for (...)` are to be considered as syntax shortcuts rather than constructs.
 
 ## Examples
 
@@ -72,3 +72,5 @@ gantt {
   Gate: true -> Gate.len;
 }
 ```
+
+Once declared, the Gantt chart is rendered in [Concrete Simulator](/gui-reference/concrete-simulator) when enabled in the menu <tt>View</tt> > <tt>Gantt Chart</tt>.

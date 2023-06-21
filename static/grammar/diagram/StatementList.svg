@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="269" height="69">
+   <defs>
+      <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900; stroke-width: 1;}
+    .bold-line            {stroke: #141000; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1800; shape-rendering: crispEdges}
+    .filled               {fill: #332900; stroke: none;}
+    text.terminal         {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #141000;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1A1400;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Verdana, Sans-serif;
+                            font-size: 12px;
+                            fill: #1F1800;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFDB4D; stroke: #332900; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFEC9E; stroke: #332900; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFF4C7; stroke: #332900; stroke-width: 1;}
+  </style>
+   </defs>
+   <polygon points="9 33 1 29 1 37"/>
+   <polygon points="17 33 9 29 9 37"/>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+       xlink:href="#Statement"
+       xlink:title="Statement">
+      <rect x="71" y="19" width="86" height="32"/>
+      <rect x="69" y="17" width="86" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="79" y="37">Statement</text>
+   </a>
+   <rect x="177" y="19" width="24" height="32" rx="10"/>
+   <rect x="175"
+          y="17"
+          width="24"
+          height="32"
+          class="terminal"
+          rx="10"/>
+   <text class="terminal" x="185" y="37">;</text>
+   <path class="line"
+          d="m17 33 h2 m40 0 h10 m86 0 h10 m0 0 h10 m24 0 h10 m-170 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -12 q0 -10 10 -10 m150 32 l20 0 m-20 0 q10 0 10 -10 l0 -12 q0 -10 -10 -10 m-150 0 h10 m0 0 h140 m-190 32 h20 m190 0 h20 m-230 0 q10 0 10 10 m210 0 q0 -10 10 -10 m-220 10 v14 m210 0 v-14 m-210 14 q0 10 10 10 m190 0 q10 0 10 -10 m-200 10 h10 m0 0 h180 m23 -34 h-3"/>
+   <polygon points="259 33 267 29 267 37"/>
+   <polygon points="259 33 251 29 251 37"/>
+</svg>

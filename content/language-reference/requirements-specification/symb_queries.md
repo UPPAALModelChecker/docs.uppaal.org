@@ -57,7 +57,7 @@ The UPPAAL requirement specification language supports five types of properties,
 
 | Name               | Property  | Equivalent to         |
 |--------------------|-----------|-----------------------|
-| Posibly            | `E<> p`   |                       |
+| Possibly           | `E<> p`   |                       |
 | Invariantly        | `A[] p`   | `not E<> not p`       |
 | Potentially always | `E[] p`   |                       |
 | Eventually         | `A<> p`   | `not E[] not p`       |

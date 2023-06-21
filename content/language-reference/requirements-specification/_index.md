@@ -5,13 +5,17 @@ weight: 20
 
 This section describes a BNF-grammar for the requirement specification language used in the verifier of UPPAAL.
 
+<!-- ![Overview of query syntax](/grammar/diagram/Query.svg) -->
+
+See also [rail road diagram for the entire Query syntax](/grammar/#Query).
+
 ## Symbolic Queries
 
 Symbolic queries are performed using symbolic operations based on symbolic semantics of timed automata and correspond to a mathematically rigorous proof.
 
 
-``` EBNF
-SymbQuery ::=
+```EBNF
+SymbolicQuery ::=
         'A[]' Expression Subjection
       | 'E<>' Expression Subjection
       | 'E[]' Expression Subjection
@@ -36,6 +40,10 @@ Subjection ::=
 
 For `sup` properties, expression may not contain clock constraints and must evaluate to either an integer or a clock.
 
+<!-- ![SymbolicQuery rail road diagram](/grammar/diagram/SymbolicQuery.svg) -->
+
+See [rail road diagram for the entire SymbolicQuery syntax](/grammar/#SymbolicQuery).
+
 **See also:** [Semantics of the Symbolic Queries](symb_queries/)
 
 ### Examples
@@ -52,14 +60,14 @@ For `sup` properties, expression may not contain clock constraints and must eval
 `A[] not deadlock`
 : invariantly the process is not deadlocked.
 
-`sup: list`
-: the property is always true and returns the suprema of the expressions (maximal values in case of integers, upper bounds, strict or not, for clocks).
+`sup: Train(1).x, Train(2).x`
+: computes the suprema of <tt>Train(1).x</tt> and <tt>Train(2).x</tt> expressions (maximal values in case of integers, upper bounds, strict or not, for clocks).
 
-`sup{expression}: list`
-: The expressions in the `list` are evaluated only on the states that satisfy the the expression (a state predicate) that acts like an observation.
+`sup{Train(1).Crossing}: Train(1).x`
+: computes the supremum of <tt>Train(1).x</tt> but only when <tt>Train(1)</tt> is in <tt>Crossing</tt>.
 
-The `inf` formula
-: is similar to `sup` but for infima. A state predicate should be used when a clock infimum is asked otherwise the trivial result is &ge;0.
+`inf{Gate.Occ}: Gate.len`
+: similarly to `sup`, `inf`query computes infimum of the given expression <tt>Gate.len</tt> while process <tt>Gate</tt> is in <tt>Occ</tt> location. When a clock infimum is needed, the state predicate should be used, otherwise the result is trivially `>=0`.
 
 
 ## Controller Synthesis Queries
@@ -67,7 +75,7 @@ The `inf` formula
 Controller synthesis queries are decided using symbolic techniques over Timed Game (TIGA) automata, where the discrete actions are either controllable (controller's actions, solid edges) or uncontrollable (environment actions, dashed edges). The result is either a strategy solving the game objective or that the strategy does not exist.
 
 ``` EBNF
-TIGAQuery ::=
+ControlQuery ::=
         ControlSpecifier Goal Subjection
       | CollaborativeControlSpecifier Goal Subjection
       | PartialControlSpecifier Goal Subjection
@@ -89,13 +97,13 @@ TimeEfficientGameQuery ::=
 
 Goal ::=
         'A<>' WinExpression
-      | 'A[' NotLooseExpression 'U' WinExpression ']'
-      | 'A[' NotLooseExpression 'W' WinExpression ']'
-      | 'A[]' NotLooseExpression
+      | 'A[' NotLoseExpression 'U' WinExpression ']'
+      | 'A[' NotLoseExpression 'W' WinExpression ']'
+      | 'A[]' NotLoseExpression
 
 WinExpression ::= Expression
 
-NotLooseExpression ::= Expression
+NotLoseExpression ::= Expression
 
 GameTimeLimitExpression ::= Expression
 
@@ -110,7 +118,9 @@ Subjection ::=
 : describes a time limit within the game must be won. This expression is only evaluated once at the beginning, thus should not depend on the current state.
 
 <tt>LocalGameTimeLimitExpression</tt>
-: describes an additional time limit such that the game can be won within <tt>GameTimeLimitExpression</tt> - <tt>LocalGameTimeLimitExpression</tt> time units. This expression is evaluated in each state, and can therefore depend on state or clock constraints. Must be side-effect free.
+: describes an additional time limit such that the game can be won within <tt>GameTimeLimitExpression - LocalGameTimeLimitExpression</tt> time units. This expression is evaluated in each state, and can therefore depend on state or clock constraints. Must be side-effect free.
+
+See [rail road diagram for the entire ControlQuery syntax](/grammar/#ControlQuery).
 
 ### Examples
 
@@ -118,7 +128,13 @@ Subjection ::=
 : compute a strategy where `goal` state predicate is eventually true no matter what the oponent/environment chooses to do. The resulting strategy is *deterministic* in a sense that for a given state the strategy proposes one action for the player/controller (while the oponent/environment may still choose from multiple actions).
 
 `control: A[] safe`
-: compute a strategy where `safe` state predicate is always true no matter what the oponent/environment chooses to do. The strategy is *permissive* in a sense that for a given state the strategy may propose multiple actions for the player/controller. Such permissive strategy can be thought of as a union of all strategies satisfying the predicate, therefore it does not have any notion of progress and may include infinite loops.
+: compute a strategy where `safe` state predicate is always true no matter what the opponent/environment chooses to do. The strategy is *permissive* in a sense that for a given state the strategy may propose multiple actions for the player/controller. Such permissive strategy can be thought of as a union of all strategies satisfying the predicate, therefore it does not have any notion of progress and may include infinite loops.
+
+`A[ safe U goal ]`
+: computes a safety strategy but only up until the `goal` is reached.
+
+`A[ safe W goal ]`
+: (weakly until the `goal`) either a safety strategy is found or a safety strategy holds until the goal is reached.
 
 See also [Strategy Queries](#strategy-queries) below on how to store and query the properties of the computed strategies.
 
@@ -157,7 +173,7 @@ Subjection ::=
 ```
 
 <tt>BOUND</tt>
-: is a non-negative integer constant denoting an upper bound over the absolute global time (when a variable is not specified), specific <tt>Clock</tt> (cost) variable or a number of action-transitions (`#`).
+: is a non-negative integer constant denoting an upper bound over the absolute global time (when a variable is not specified), specific <tt>Clock</tt> (cost) variable or a number of action-transitions (<tt>#</tt>).
 
 <tt>RUNS</tt>
 : is an optional positive integer constant denoting the maximum number of runs. If the number of runs is not specified, then it is decided based on [Statistical parameters](/gui-reference/menu-bar/options/#statparam) and the particular estimation algorithm.
@@ -166,7 +182,7 @@ Subjection ::=
 : is an optional positive integer constant denoting the maximum number of runs that satisfy the state expression.
 
 <tt>PROB</tt>
-: is a floating point number from interval <tt>[0; 1]</tt> denoting a probability bound.</dd>
+: is a floating point number from interval <tt>[0; 1]</tt> denoting a probability bound.
 
 <tt>'#'</tt>
 : means a number of simulation steps -- discrete edge-transitions -- in the run.
@@ -179,12 +195,14 @@ Subjection ::=
 
 All expressions are state predicates and must be side effect free. It is possible to test whether a certain process is in a given location using expressions on the form <tt>process.location</tt>.
 
+See [rail road diagram for the entire SMCQuery syntax](/grammar/#SMCQuery).
+
 **See also:** [Semantics of the SMC Queries](smc_queries/)
 
 ### Examples
 
 `simulate [<=10] { x }`
-: createss one stochastic simulation run of up to `10` time units in length and plot the values of `x` expression over time (after checking, right-click the query and choose a plot).
+: creates one stochastic simulation run of up to `10` time units in length and plot the values of `x` expression over time (after checking, right-click the query and choose a plot).
 
 `simulate [c<=10] { x, y+z }`
 : creates one simulation run of up to `10` cost units in terms of clock variable `c` and plot the values of `x` and `y+z` expressions over the cost `c`.
@@ -214,7 +232,7 @@ The plots can be super-imposed using the [Plot Composer](/gui-reference/menu-bar
 
 ## Learning Queries
 
-```EBNF
+``` EBNF
 LearningQuery ::=
         ExpQuantifier '(' Expression ')' '[' BoundType ']' Features? ':' PathType Expression Subjection
 	  | ExpQuantifier '[' BoundType ']' Features? ':' PathType Expression Subjection
@@ -234,17 +252,17 @@ Subjection ::=
 `Features`
 : describes a mapping (state space partition) from a partial state to a player action. The first list maps in the discrete space and trhen the second list maps in continuous space.
 
+See [rail road diagram for the entire LearningQuery syntax](/grammar/#LearnQuery).
 
 ### Examples
-`minE(cost) [<=10] { i, j } -> { d, f } : <> goal`
-: learns a strategy by minimizing the expected `cost` value within `10` time units or when `goal` predicate becomes true given `i`, `j`, `d` and `f` observable state expressions. `i` and `j` are used for discrete partitioning and `d` and `f` are used in continuous partitioning. The `goal` predicate is deprecated, for best results use a predicate which stops together with the simulation bound, like `t>=10`, where `t` is a clock that is never reset.
-
 `minE(cost) [<=10] : <> goal`
-: learns a strategy by minimizing the expected `cost` value withing `10` time units or when `goal` predicate becomes true given that the **entire** system state is observable.
+: learns a strategy by minimizing the expected `cost` value within `10` time units or when `goal` predicate becomes true given that the **entire** system state is observable.
 
 `maxE(gain) [<=10] : <> goal`
 : learns a strategy by minimizing the expected `gain` value withing `10` time units or when `goal` predicate becomes true given that the **entire** system state is observable.
 
+`minE(cost) [<=10] { i, j } -> { d, f } : <> goal`
+: learns a strategy by minimizing the expected `cost` value within `10` time units or when `goal` predicate becomes true given `i`, `j`, `d` and `f` observable state expressions. `i` and `j` are used for discrete state partitioning and `d` and `f` are used in continuous state partitioning. The `goal` predicate is deprecated, for best results use a predicate which stops together with the simulation bound, like `t>=10`, where `t` is a clock that is never reset.
 
 The learning queries are usually used together with strategy assignment and refinement explained below.
 
@@ -257,12 +275,12 @@ AssignQuery ::=
 	    'strategy' StrategyName '=' AssignableQuery
 
 AssignableQuery ::=
-        TIGAQuery
+        ControlQuery
 	  | LearningQuery
 	  | 'loadStrategy' Features '(' Path ')'
 
 NonAssignableQuery ::=
-        SymbQuery
+        SymbolicQuery
 	  | SMCQuery
 	  | 'saveStrategy' '(' Path ',' StrategyName ')'
 ```
@@ -272,6 +290,8 @@ NonAssignableQuery ::=
 
 <tt>Path</tt>
 : is a double-quoted character sequence (string) denoting a file system path.
+
+See [rail road diagram of AssignableQuery in Query overview](/grammar/#Query).
 
 ### Examples
 
@@ -284,8 +304,8 @@ NonAssignableQuery ::=
 `E<> goal under Safe`
 : checks that the `goal` state predicate is eventually satisfied when the player/controller uses `Safe` strategy.
 
-`strategy SafeCheap = minE(cost)[<=10] { i, j } -> { d, f } : <> t>=10 under Safe`
-: refines `Safe` strategy into `SafeCheap` by minimizing estimated value of `cost` expression.
+`strategy SafeCheap = minE(cost)[<=10] {i,j} -> {d,f} : <> t>=10 under Safe`
+: refines `Safe` strategy into `SafeCheap` by minimizing the expected value of `cost` expression.
 
 `saveStrategy("folder/file.json", Safe)`
 : writes `Safe` strategy to the file with path `folder/file.json`.

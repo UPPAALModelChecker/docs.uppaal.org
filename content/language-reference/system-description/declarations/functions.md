@@ -3,10 +3,10 @@ title: Functions
 weight: 20
 ---
 
-Functions can be declared alongside other declarations. The syntax for functions is defined by the grammar for <tt>Function</tt>:
+Functions can be declared alongside other declarations. The syntax for functions is defined by the grammar for `Function`:
 
-``` EBNF
-Function        ::= [Type] [ID] '(' [Parameters] ')' Block 
+```EBNF
+Function        ::= [Type] [ID] '(' [Parameters] ')' Block
 Block           ::= '{' LocalDeclaration* Statement* '}'
 LocalDeclation  ::= TypeDeclaration | VariableDeclaration
 Statement       ::= Block
@@ -14,18 +14,20 @@ Statement       ::= Block
                  |  [Expression] ';'
                  |  ForLoop
                  |  Iteration
-                 |  WhileLoop 
-                 |  DoWhileLoop 
-                 |  IfStatement 
+                 |  WhileLoop
+                 |  DoWhileLoop
+                 |  IfStatement
                  |  ReturnStatement
 
-ForLoop	        ::= 'for' '(' [Expression] ';' [Expression] ';' [Expression] ')' Statement 
+ForLoop	        ::= 'for' '(' [Expression] ';' [Expression] ';' [Expression] ')' Statement
 Iteration       ::= 'for' '(' [ID] ':' [Type] ')' Statement
 WhileLoop       ::= 'while' '(' [Expression] ')' Statement
 DoWhile         ::= 'do' Statement 'while' '(' [Expression] ')' ';'
 IfStatment      ::= 'if' '(' [Expression] ')' Statement [ 'else' Statement ]
 ReturnStatement ::= 'return' [ [Expression] ] ';'
 ```
+
+See [rail road diagram for the entire Function declaration](/grammar/#FunctionDecl).
 
 ## Functions
 
@@ -37,16 +39,19 @@ The keyword `for` has two uses: the first is a C/C++/Java like for-loop, and the
 
 A statement `for (ID : Type) Statement` will execute `Statement` once for each value `ID` of the domain of type `Type`. The scope of `ID` is bound to the `Statement`, and `Type` must be a bounded integer or a scalar set.
 
+See also rail road diagrams for the entire [ForStatement](/grammar/#ForStatementt) and [WhileStatement](/grammar/#WhileStatement).
+
+
 ## Examples
 
 ### add
 
 The following function returns the sum of two integers. The arguments are call by value.
 
-```
+```c
 int add(int a, int b)
 {
-    return a + b; 
+    return a + b;
 }
 ```
 
@@ -54,12 +59,12 @@ int add(int a, int b)
 
 The following procedure swaps the values of two call-by-reference integer parameters.
 
-```
-void swap(int &a, int &b) 
+```c
+void swap(int &a, int &b)
 {
-  int c = a;
-  a = b;
-  b = c;
+    int c = a;
+    a = b;
+    b = c;
 }
 ```
 
@@ -70,9 +75,9 @@ The following procedure initializes an array such that each element contains its
 ```
 void initialize(int& a[10])
 {
-  for (i : int[0,9]) 
-  {
-    a[i] = i;
-  }
+    for (i : int[0,9])
+    {
+        a[i] = i;
+    }
 }
 ```
