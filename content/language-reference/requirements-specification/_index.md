@@ -289,7 +289,8 @@ NonAssignableQuery ::=
 : indicates the name of a strategy.
 
 <tt>Path</tt>
-: is a double-quoted character sequence (string) denoting a file system path. Note that the backslash (`\`) characters in (Windows) paths need to be either escaped with another backslash or replaced with forwardslash (`/`), i.e. `\` should be replaced with either `\\` or `/`.
+: is a double-quoted (using `"`) character sequence (string) denoting a file path on the same computer as the used engine (`server` or `verifyta`).<br>
+Note that the backslash (`\`) character in (Windows) paths needs to be either escaped with another backslash or replaced with the forwardslash (`/`), i.e. `\` should be replaced with either `\\` or `/`.
 
 See [rail road diagram of AssignableQuery in Query overview](/grammar/#Query).
 
