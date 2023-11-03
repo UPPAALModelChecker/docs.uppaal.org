@@ -250,7 +250,7 @@ Subjection ::=
 ```
 
 `Features`
-: describes a mapping (state space partition) from a partial state to a player action. The first list maps in the discrete space and trhen the second list maps in continuous space.
+: describes a mapping (state space partition) from a partial state to a player action. The first list maps in the discrete space (values interpreted as distinct categories) and the second list maps in continuous space (assumes distance between values: similar values yield similar cost).
 
 See [rail road diagram for the entire LearningQuery syntax](/grammar/#LearnQuery).
 
@@ -262,7 +262,8 @@ See [rail road diagram for the entire LearningQuery syntax](/grammar/#LearnQuery
 : learns a strategy by minimizing the expected `gain` value withing `10` time units or when `goal` predicate becomes true given that the **entire** system state is observable.
 
 `minE(cost) [<=10] { i, j } -> { d, f } : <> goal`
-: learns a strategy by minimizing the expected `cost` value within `10` time units or when `goal` predicate becomes true given `i`, `j`, `d` and `f` observable state expressions (can be variables or arbitrary expressions). `i` and `j` are used for discrete state partitioning (values interpreted as distinct categories) and `d` and `f` are used in continuous state partitioning (assumes distance between values: similar values yield similar cost). The `goal` predicate is deprecated, for best results use a predicate which stops together with the simulation bound, like `t>=10`, where `t` is a clock that is never reset.
+: learns a strategy by minimizing the expected `cost` value within `10` time units or when `goal` predicate becomes true given `i`, `j`, `d` and `f` observable state expressions (can be variables or arbitrary expressions). Values of `i` and `j` are interpreted as distinct categories and values of `d` and `f` as continuous. Note that both integers and floating-point type expressions can be in either list (depends on their interpretation).<br>
+The `goal` predicate is deprecated, for best results use a predicate which stops together with the simulation bound, like `t>=10`, where `t` is a clock that is never reset.
 
 The learning queries are usually used together with strategy assignment and refinement explained below.
 
