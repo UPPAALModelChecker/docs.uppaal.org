@@ -286,10 +286,10 @@ NonAssignableQuery ::=
 ```
 
 <tt>StrategyName</tt>
-: indicates the name of a strategy.</dd>
+: indicates the name of a strategy.
 
 <tt>Path</tt>
-: is a double-quoted character sequence (string) denoting a file system path.
+: is a double-quoted character sequence (string) denoting a file system path. Note that the backslash (`\`) characters in (Windows) paths need to be either escaped with another backslash or replaced with forwardslash (`/`), i.e. `\` should be replaced with either `\\` or `/`.
 
 See [rail road diagram of AssignableQuery in Query overview](/grammar/#Query).
 
