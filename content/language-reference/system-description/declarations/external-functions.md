@@ -4,8 +4,8 @@ weight: 30
 ---
 
 {{% notice info %}}
-  External Functions is an expert user feature and requires a high-level understanding of dynamic library loading and linking.
-  The feature is only officially supported on Linux.
+  External Functions is an expert user feature and requires a high-level understanding of dynamic library loading and linking.<br>
+  The feature is supported on Linux and experimental on Windows and macOS.
 {{% /notice %}}
 
 {{% notice info %}}
@@ -15,11 +15,15 @@ This feature is supported since Uppaal Stratego version 4.1.20-7, or Uppaal vers
 External Functions can be decreated alongside other declaratios. External functions are local to the current scope, defined by the grammar:
 
 ``` EBNF
-ExternDecl   = 'import'  String '{' [FwdDeclList] '}'
+ExternDecl   = 'import'  Path '{' [FwdDeclList] '}'
 FwdDeclList  = FwdDecl ';' |
                FwdDeclList FwdDecl ';'
 FwdDecl      = [ID '='] Type ID '(' [Parameters] ')'
 ```
+
+<tt>Path</tt>
+: is a double-quoted (using `"`) character sequence (string) denoting a file path to the library placed on the same computer as the used engine (`server` or `verifyta`).<br>
+Note that the backslash (`\`) character in (Windows) paths needs to be either escaped with another backslash or replaced with the forwardslash (`/`), i.e. `\` should be replaced with either `\\` or `/`. For example, `"C:\libexternal.dll"` should be written as `"C:\\libexternal.dll"` or `"C:/libexternal.dll"`.
 
 The following code will load the external libary `libexternal.so` from the path `/home/user/lib` and import the functions `get_number`, `set_number` and `is_the_world_safe`.
 The function `is_the_world_safe` will be imported with the name `is_safe`.
