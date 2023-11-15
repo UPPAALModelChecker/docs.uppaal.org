@@ -64,6 +64,9 @@ The following table summarizes the current support:
 
 A violation of a range of a bounded integer (either pass-by-reference or return) will cause a runtime error.
 
+## Resource Initialization and Release
+The library is loaded during document parsing and the library can be instructed to initialize and release its resources using [Special Functions](../functions/#special-functions).
+
 ## Defining External Library
 
 An external library can be compiled from C or C++ code and linked into a shared library.
