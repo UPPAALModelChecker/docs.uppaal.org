@@ -89,8 +89,6 @@ void __ON_CONSTRUCT__();
 void __ON_DESTRUCT__();
 void __ON_BEGIN__();
 void __ON_END__();
-void before_update();
-void after_update();
 ```
 `__ON_CONSTRUCT__`
 : Called after the model is parsed and compiled. Useful to initialize `meta` variables and external libraries.
@@ -104,8 +102,8 @@ void after_update();
 `__ON_END__`
 : Called after a query is finished. Useful to release resources in external libraries.
 
-`before_update`
-: Called before a transition is fired.
-
-`after_update`
-: Called after a transition is fired.
+One can also declare a statement to be executed before a transition is taken and after:
+```c
+before_update { old_value = variable }
+after_update { new_value = variable }
+```
