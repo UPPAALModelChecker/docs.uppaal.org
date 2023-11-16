@@ -91,10 +91,10 @@ void __ON_BEGIN__();
 void __ON_END__();
 ```
 `__ON_CONSTRUCT__`
-: Called after the model is parsed and compiled. Useful to initialize `meta` variables and external libraries.
+: Called after the system (or a process) representation is constructed when specified in global declarations (or a template local declarations respectively). Useful to initialize `meta` variables and external libraries.
 
 `__ON_DESTRUCT__`
-: Called before the model is destroyed. Useful to release resources in external libraries.
+: Called before the system (or a process) representation is destroyed when specified in global declarations (or a template local declarations respectively). Useful to release resources in external libraries.
 
 `__ON_BEGIN__`
 : Called before a query is started. Useful to initialize variables and external libraries.
