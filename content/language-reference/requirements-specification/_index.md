@@ -256,16 +256,26 @@ See [rail road diagram for the entire LearningQuery syntax](/grammar/#LearnQuery
 
 ### Examples
 `minE(cost) [<=10] : <> goal`
-: learns a strategy by minimizing the expected `cost` value within `10` time units or when `goal` predicate becomes true given that the **entire** system state is observable.
+: learns a strategy that minimizes the expected `cost` value within `10` time units or when `goal` predicate becomes true given that the **entire** system state is observable.
 
 `maxE(gain) [<=10] : <> goal`
-: learns a strategy by minimizing the expected `gain` value withing `10` time units or when `goal` predicate becomes true given that the **entire** system state is observable.
+: learns a strategy that maximizes the expected `gain` value withing `10` time units or when `goal` predicate becomes true given that the **entire** system state is observable.
 
-`minE(cost) [<=10] { i, j } -> { d, f } : <> goal`
-: learns a strategy by minimizing the expected `cost` value within `10` time units or when `goal` predicate becomes true given `i`, `j`, `d` and `f` observable state expressions (can be variables or arbitrary expressions). Values of `i` and `j` are interpreted as distinct categories and values of `d` and `f` as continuous. Note that both integers and floating-point type expressions can be in either list (depends on their interpretation).<br>
 The `goal` predicate is deprecated, for best results use a predicate which stops together with the simulation bound, like `t>=10`, where `t` is a clock that is never reset.
 
-The learning queries are usually used together with strategy assignment and refinement explained below.
+`minE(cost) [<=10] { i, j } -> { d, f } : <> goal`
+: learns a strategy by minimizing the expected `cost` value within `10` time units or when `goal` predicate becomes true. Where only the expressions `i`, `j`, `d` and `f` are observable by the learning agent.  The `{..} -> {..}` syntax controls what is observable to the learning agent. Which can drastically reduce learning times by reducing the state space a learning agent has to consider. By default the learning agent will consider the entire state space.  
+<br>There are two types of observability, Discrete- and Continouos- observability. These are distinquished by what brackets expressions are put into i.e. `{discrete expressions} -> {continouos expressions}`.
+- Dicrete Observability  
+Any expressions here will be observable by the learning agent i.e given the learning query `minE(cost) [<=10] { i, j } -> { } : <> goal` the learning agent will only be able to create a strategy for all combinations of `i` and `j` values.
+- Continuous Observability  
+Continuous expressions must be discretized to create a strategy, Uppaal will discretize these expressions using online partial refinement, see [Teaching Stratego to Play Ball](https://vbn.aau.dk/ws/files/378436068/main.pdf) for more details. For the query `minE(cost) [<=10] { } -> { d, f } : <> goal` a learning agent will learn a strategy and a discretization of `d` and `f`.
+
+**Notes**:
+Integers, clocks, floating points or even arbitrary expressions can be used in either type of observabilty. However we suggest caution when using floating point numbers or clocks in discrete observability.  
+Process locations will be ignored by a learning agent when specifying observability unless explicitly specified using the expression `Cat.location` and `Mouse.location` where `Cat` and `Mouse` are processes
+
+Learning queries are usually used together with strategy assignment and refinement explained below.
 
 ## Strategy Queries
 
