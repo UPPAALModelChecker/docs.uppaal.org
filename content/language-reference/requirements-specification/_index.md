@@ -265,7 +265,7 @@ The `goal` predicate is deprecated, for best results use a predicate which stops
 
 `minE(cost) [<=10] { i, j } -> { d, f } : <> goal`
 : learns a strategy that minimizes the expected `cost` value within `10` time units or when `goal` predicate becomes true. Where only the expressions `i`, `j`, `d` and `f` are observable by the learning agent.  The `{..} -> {..}` syntax controls what is observable to the learning agent. Which can drastically reduce learning times by reducing the state space a learning agent has to consider. By default the learning agent will consider the entire state space.  
-<br>There are two types of observability, Discrete- and Continouos- observability. These are distinquished by what brackets expressions are put into i.e. `{discrete expressions} -> {continouos expressions}`.
+<br>There are two types of observable state expressions: discrete and continuous. Discrete are specified in the first bracket and the continuous in the second: `{discrete expressions} -> {continouos expressions}`.
 - Dicrete Observability  
 Any expressions here will be observable by the learning agent i.e given the learning query `minE(cost) [<=10] { i, j } -> { } : <> goal` the learning agent will only be able to create a strategy for all combinations of `i` and `j` values.
 - Continuous Observability  
