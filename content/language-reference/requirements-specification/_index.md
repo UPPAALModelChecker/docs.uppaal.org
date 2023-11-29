@@ -265,7 +265,8 @@ The `goal` predicate is deprecated, for best results use a predicate which stops
 
 `minE(cost) [<=10] { i, j } -> { d, f } : <> goal`
 : learns a strategy that minimizes the expected `cost` expression within `10` time units or when `goal` predicate becomes true. Where only the expressions `i`, `j`, `d` and `f` are observable.  The `{..} -> {..}` syntax controls what is observable. 
-On one hand, by observing only a partial state learning times can be significantly reduced and the strategy structure simplified. On the other hand, the expected value can be far from optimum if outcomes do not depend on the observed state.
+On one hand, by observing only a partial state learning times can be significantly reduced and the strategy structure simplified.
+On the other hand, the resulting strategy is not guaranteed to converge to a optimal solution under partial observability.
 There are two types of observable state expressions: *discrete* and *continuous*. 
 The *discrete* are specified in the first bracket and the *continuous* in the second: `{discrete expressions} -> {continuous expressions}`. 
 By default the entire state is considered during learning.
