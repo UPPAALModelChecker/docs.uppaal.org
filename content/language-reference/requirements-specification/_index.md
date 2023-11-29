@@ -268,7 +268,7 @@ The `goal` predicate is deprecated, for best results use a predicate which stops
   
 **Discrete** expressions will be observable as is i.e the query `minE(cost) [<=10] { i, j } -> { } : <> goal` the will create a strategy by only observing `i` and `j` values.
 
-**Continuous** expressions will be discretized during learning using online partial refinement (see [Teaching Stratego to Play Ball](https://vbn.aau.dk/ws/files/378436068/main.pdf)). The query `minE(cost) [<=10] { } -> { d, f } : <> goal` will discretizatize and learn a strategy based on the expressions `d` and `f`.
+**Continuous** expressions will be discretized during learning using online partition refinement (see [Teaching Stratego to Play Ball](https://vbn.aau.dk/ws/files/378436068/main.pdf)). The query `minE(cost) [<=10] { } -> { d, f } : <> goal` learns a strategy based on the discretized  expressions `d` and `f`.
 
 Integers, clocks, floating points or even arbitrary expressions can be used in either type of observabilty. However we suggest caution when using floating point numbers or clocks in discrete observability.  
 Process locations will be ignored when specifying observability unless explicitly specified using the expression `Cat.location` and `Mouse.location` where `Cat` and `Mouse` are processes
