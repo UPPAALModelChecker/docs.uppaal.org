@@ -264,14 +264,19 @@ See [rail road diagram for the entire LearningQuery syntax](/grammar/#LearnQuery
 The `goal` predicate is deprecated, for best results use a predicate which stops together with the simulation bound, like `t>=10`, where `t` is a clock that is never reset.
 
 `minE(cost) [<=10] { i, j } -> { d, f } : <> goal`
-: learns a strategy that minimizes the expected `cost` expression within `10` time units or when `goal` predicate becomes true. Where only the expressions `i`, `j`, `d` and `f` are observable.  The `{..} -> {..}` syntax controls what is observable. By only observing a subset of the system learning times can be significantly reduced. There are two types of observable state expressions: discrete and continuous. Discrete are specified in the first bracket and the continuous in the second: `{discrete expressions} -> {continouos expressions}`. By default the entire state is considered during learning.
+: learns a strategy that minimizes the expected `cost` expression within `10` time units or when `goal` predicate becomes true. Where only the expressions `i`, `j`, `d` and `f` are observable.  The `{..} -> {..}` syntax controls what is observable. 
+On one hand, by observing only a partial state learning times can be significantly reduced and the strategy structure simplified. On the other hand, the expected value can be far from optimum if outcomes do not depend on the observed state.
+There are two types of observable state expressions: *discrete* and *continuous*. 
+The *discrete* are specified in the first bracket and the *continuous* in the second: `{discrete expressions} -> {continuous expressions}`. 
+By default the entire state is considered during learning.
   
-**Discrete** expressions will be observable as is i.e the query `minE(cost) [<=10] { i, j } -> { } : <> goal` the will create a strategy by only observing `i` and `j` values.
+**Discrete** expressions are observed as they are, i.e the query `minE(cost) [<=10] { i, j } -> { } : <> goal` creates a strategy by only observing the values of `i` and `j`.
 
 **Continuous** expressions will be discretized during learning using online partition refinement (see [Teaching Stratego to Play Ball](https://vbn.aau.dk/ws/files/378436068/main.pdf)). The query `minE(cost) [<=10] { } -> { d, f } : <> goal` learns a strategy based on the discretized  expressions `d` and `f`.
 
 Integers, clocks, floating points or even arbitrary expressions can be used in either type of observabilty. However we suggest caution when using floating point numbers or clocks in discrete observability.  
-Process locations will be ignored when specifying observability unless explicitly specified using the expression `Cat.location` and `Mouse.location` where `Cat` and `Mouse` are processes
+Process locations are ignored when specifying observability unless explicitly specified using `location` keyword.
+For example `Cat.location` and `Mouse.location` refer to the locations of `Cat` and `Mouse` processes.
 
 Learning queries are usually used together with strategy assignment and refinement explained below.
 
