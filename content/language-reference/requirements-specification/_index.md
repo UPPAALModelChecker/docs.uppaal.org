@@ -272,7 +272,8 @@ By default the entire state is considered during learning.
   
 **Discrete** expressions are observed as they are, i.e the query `minE(cost) [<=10] { i, j } -> { } : <> goal` creates a strategy by only observing the values of `i` and `j`.
 
-**Continuous** expressions will be discretized during learning using online partition refinement (see [Teaching Stratego to Play Ball](https://vbn.aau.dk/ws/files/378436068/main.pdf)). The query `minE(cost) [<=10] { } -> { d, f } : <> goal` learns a strategy based on the discretized  expressions `d` and `f`.
+**Continuous** expressions are discretized using online partition refinement (see [Teaching Stratego to Play Ball](https://vbn.aau.dk/ws/files/378436068/main.pdf)).
+The query `minE(cost) [<=10] { } -> { d, f } : <> goal` learns a strategy based on the discretized  expressions `d` and `f`.
 
 Integers, clocks, floating points or even arbitrary expressions can be used in either type of observabilty. However we suggest caution when using floating point numbers or clocks in discrete observability.  
 Process locations are ignored when specifying observability unless explicitly specified using `location` keyword.
