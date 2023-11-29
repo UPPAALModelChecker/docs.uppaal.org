@@ -264,16 +264,16 @@ See [rail road diagram for the entire LearningQuery syntax](/grammar/#LearnQuery
 The `goal` predicate is deprecated, for best results use a predicate which stops together with the simulation bound, like `t>=10`, where `t` is a clock that is never reset.
 
 `minE(cost) [<=10] { i, j } -> { d, f } : <> goal`
-: learns a strategy that minimizes the expected `cost` value within `10` time units or when `goal` predicate becomes true. Where only the expressions `i`, `j`, `d` and `f` are observable by the learning agent.  The `{..} -> {..}` syntax controls what is observable to the learning agent. Which can drastically reduce learning times by reducing the state space a learning agent has to consider. By default the learning agent will consider the entire state space.  
+: learns a strategy that minimizes the expected `cost` value within `10` time units or when `goal` predicate becomes true. Where only the expressions `i`, `j`, `d` and `f` are observable.  The `{..} -> {..}` syntax controls what is observable. Which can significantly reduce learning times. By default the entire state is considered during learning.  
 <br>There are two types of observable state expressions: discrete and continuous. Discrete are specified in the first bracket and the continuous in the second: `{discrete expressions} -> {continouos expressions}`.
 - Dicrete Observability  
-Any expressions here will be observable by the learning agent i.e given the learning query `minE(cost) [<=10] { i, j } -> { } : <> goal` the learning agent will only be able to create a strategy for all combinations of `i` and `j` values.
+Any expressions here will be observable i.e given the learning query `minE(cost) [<=10] { i, j } -> { } : <> goal` the will create a strategy only by observing `i` and `j` values.
 - Continuous Observability  
-Continuous expressions must be discretized to create a strategy, Uppaal will discretize these expressions using online partial refinement, see [Teaching Stratego to Play Ball](https://vbn.aau.dk/ws/files/378436068/main.pdf) for more details. For the query `minE(cost) [<=10] { } -> { d, f } : <> goal` a learning agent will learn a strategy and a discretization of `d` and `f`.
+Continuous expressions must be discretized to create a strategy, Uppaal will discretize these expressions using online partial refinement, see [Teaching Stratego to Play Ball](https://vbn.aau.dk/ws/files/378436068/main.pdf) for more details. The query `minE(cost) [<=10] { } -> { d, f } : <> goal` will discretizatize and learn a strategy based on the expressions `d` and `f`.
 
 **Notes**:
 Integers, clocks, floating points or even arbitrary expressions can be used in either type of observabilty. However we suggest caution when using floating point numbers or clocks in discrete observability.  
-Process locations will be ignored by a learning agent when specifying observability unless explicitly specified using the expression `Cat.location` and `Mouse.location` where `Cat` and `Mouse` are processes
+Process locations will be ignored when specifying observability unless explicitly specified using the expression `Cat.location` and `Mouse.location` where `Cat` and `Mouse` are processes
 
 Learning queries are usually used together with strategy assignment and refinement explained below.
 
