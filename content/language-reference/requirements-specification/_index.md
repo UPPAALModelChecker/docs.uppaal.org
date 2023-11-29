@@ -256,22 +256,20 @@ See [rail road diagram for the entire LearningQuery syntax](/grammar/#LearnQuery
 
 ### Examples
 `minE(cost) [<=10] : <> goal`
-: learns a strategy that minimizes the expected `cost` value within `10` time units or when `goal` predicate becomes true given that the **entire** system state is observable.
+: learns a strategy that minimizes the expected `cost` expression within `10` time units or when `goal` predicate becomes true given that the **entire** system state is observable.
 
 `maxE(gain) [<=10] : <> goal`
-: learns a strategy that maximizes the expected `gain` value withing `10` time units or when `goal` predicate becomes true given that the **entire** system state is observable.
+: learns a strategy that maximizes the expected `gain` expression withing `10` time units or when `goal` predicate becomes true given that the **entire** system state is observable.
 
 The `goal` predicate is deprecated, for best results use a predicate which stops together with the simulation bound, like `t>=10`, where `t` is a clock that is never reset.
 
 `minE(cost) [<=10] { i, j } -> { d, f } : <> goal`
-: learns a strategy that minimizes the expected `cost` value within `10` time units or when `goal` predicate becomes true. Where only the expressions `i`, `j`, `d` and `f` are observable.  The `{..} -> {..}` syntax controls what is observable. Which can significantly reduce learning times. By default the entire state is considered during learning.  
-<br>There are two types of observable state expressions: discrete and continuous. Discrete are specified in the first bracket and the continuous in the second: `{discrete expressions} -> {continouos expressions}`.
-- Dicrete Observability  
-Any expressions here will be observable i.e given the learning query `minE(cost) [<=10] { i, j } -> { } : <> goal` the will create a strategy only by observing `i` and `j` values.
-- Continuous Observability  
-Continuous expressions must be discretized to create a strategy, Uppaal will discretize these expressions using online partial refinement, see [Teaching Stratego to Play Ball](https://vbn.aau.dk/ws/files/378436068/main.pdf) for more details. The query `minE(cost) [<=10] { } -> { d, f } : <> goal` will discretizatize and learn a strategy based on the expressions `d` and `f`.
+: learns a strategy that minimizes the expected `cost` expression within `10` time units or when `goal` predicate becomes true. Where only the expressions `i`, `j`, `d` and `f` are observable.  The `{..} -> {..}` syntax controls what is observable. By only observing a subset of the system learning times can be significantly reduced. There are two types of observable state expressions: discrete and continuous. Discrete are specified in the first bracket and the continuous in the second: `{discrete expressions} -> {continouos expressions}`. By default the entire state is considered during learning.
+  
+**Discrete** expressions will be observable as is i.e the query `minE(cost) [<=10] { i, j } -> { } : <> goal` the will create a strategy by only observing `i` and `j` values.
 
-**Notes**:
+**Continuous** expressions will be discretized during learning using online partial refinement (see [Teaching Stratego to Play Ball](https://vbn.aau.dk/ws/files/378436068/main.pdf)). The query `minE(cost) [<=10] { } -> { d, f } : <> goal` will discretizatize and learn a strategy based on the expressions `d` and `f`.
+
 Integers, clocks, floating points or even arbitrary expressions can be used in either type of observabilty. However we suggest caution when using floating point numbers or clocks in discrete observability.  
 Process locations will be ignored when specifying observability unless explicitly specified using the expression `Cat.location` and `Mouse.location` where `Cat` and `Mouse` are processes
 
