@@ -6,7 +6,7 @@ menuTitle: "Statistical Queries"
 
 UPPAAL can estimate the probability of expression values statistically. There are four types of statistical properties: quantitative, qualitative, comparison and probable value estimation.
 
-See [rail road diagram of the entire SMCQuery syntax](/grammar/#SMCQuery).
+**See also** [Syntax of Statistical Queries]({{<ref "language-reference/query-syntax/statistical_queries">}}).
 
 <!-- ![Rail road diagram of SMC query syntax](/grammar/diagram/SMCQuery.svg) -->
 
