@@ -1,5 +1,5 @@
 ---
-title: CI Estimation
+title: Confidence Intervals
 weight: 35
 ---
 
