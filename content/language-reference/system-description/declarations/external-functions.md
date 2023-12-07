@@ -12,7 +12,7 @@ weight: 30
 This feature is supported since Uppaal Stratego version 4.1.20-7, or Uppaal version 5.0 or later.
 {{% /notice %}}
 
-External Functions can be decreated alongside other declaratios. External functions are local to the current scope, defined by the grammar:
+External Functions can be declared alongside other declaratios. External functions are local to the current scope, defined by the grammar:
 
 ``` EBNF
 ExternDecl   = 'import'  Path '{' [FwdDeclList] '}'
