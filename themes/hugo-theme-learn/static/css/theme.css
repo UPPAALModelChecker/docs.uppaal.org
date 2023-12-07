@@ -38,6 +38,24 @@
     font-weight: 500;
     src: url("../fonts/Work_Sans_500.eot?#iefix") format("embedded-opentype"), url("../fonts/Work_Sans_500.woff") format("woff"), url("../fonts/Work_Sans_500.woff2") format("woff2"), url("../fonts/Work_Sans_500.svg#WorkSans") format("svg"), url("../fonts/Work_Sans_500.ttf") format("truetype");
 }
+@font-face {
+    font-family: 'JetBrainsMono';
+    font-style: normal;
+    font-weight: 200;
+    src: url("../fonts/JetBrainsMono-Medium.woff2") format("woff2");
+}
+@font-face {
+    font-family: 'JetBrainsMono';
+    font-style: italic;
+    font-weight: 200;
+    src: url("../fonts/JetBrainsMono-Italic.woff2") format("woff2");
+}
+@font-face {
+    font-family: 'JetBrainsMono';
+    font-style: bold;
+    font-weight: 200;
+    src: url("../fonts/JetBrainsMono-Bold.woff2") format("woff2");
+}
 body {
     background: #fff;
     color: #777;
@@ -464,7 +482,7 @@ h1 {
     font-family: "Work Sans", "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
     text-align: center;
 /*    text-transform: uppercase; */
-    color: #222;
+    color: #5e5e5e;
     font-weight: 600;
 }
 blockquote {
@@ -624,8 +642,8 @@ section.attachments.grey .attachments-files {
 }
 
 code, kbd, pre, samp {
-    font-family: "Consolas", menlo, monospace;
-    font-size: 92%;
+    font-family: "JetBrainsMono", "Consolas", menlo, monospace;
+    font-size: 95%;
 }
 code {
     border-radius: 2px;
