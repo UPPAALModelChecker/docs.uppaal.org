@@ -30,7 +30,7 @@ Doubles values are not supported in the _symbolic_ verification and simulation e
 
 
 
-Variables of `string` type must be declared constant. The primary use of `string` variables is in combination with [External Functions]({< relref path="external-functions.md" >})
+Variables of `string` type must be declared constant. The primary use of `string` variables is in combination with [External Functions]({{< relref path="external-functions.md" >}})
 
 ## Constants
 
@@ -82,7 +82,7 @@ Here `mySet` is a scalar set of size `3`, `s` is a variable whos value belongs t
 
 ## Character Strings or Textual Type
 
-UPPAAL supports text constants via `const string` type for calling [External Functions]({< relref path="external-functions.md" >}) and refering to file system paths.
+UPPAAL supports text constants via `const string` type for calling [External Functions]({{< relref path="external-functions.md" >}}) and refering to file system paths.
 
 For example:
 ```c
