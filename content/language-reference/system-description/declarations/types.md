@@ -21,7 +21,7 @@ The default range of an integer is `[-32768, 32767]`. Any assignment out of rang
 
 Variables of type `bool` can have the values `false` and `true`, which are equivalent to the the integer values `0` and `1`. Like in C, any non-zero integer value evalutes to `true` and `0` evaluates to `false`.
 
-Channels can be declared as urgent and/or broadcast channels. See the section on [synchronisations](/language-reference/system-description/templates/edges/#synchronisations) for information on urgent and broadcast channels.
+Channels can be declared as urgent and/or broadcast channels. See the section on [synchronisations]({{< ref "../templates/edges/#synchronisations" >}}) for information on urgent and broadcast channels.
 
 Floating-point variables of the `double`-type behave like C-`double`.
 {{% notice warning %}}
@@ -30,7 +30,7 @@ Doubles values are not supported in the _symbolic_ verification and simulation e
 
 
 
-Variables of `string` type must be declared constant. The primary use of `string` variables is in combination with [External Functions]({{< relref path="external-functions.md" >}})
+Variables of `string` type must be declared constant. The primary use of `string` variables is in combination with [External Functions]({{< ref "external-functions.md" >}})
 
 ## Constants
 
@@ -82,7 +82,7 @@ Here `mySet` is a scalar set of size `3`, `s` is a variable whos value belongs t
 
 ## Character Strings or Textual Type
 
-UPPAAL supports text constants via `const string` type for calling [External Functions]({{< relref path="external-functions.md" >}}) and refering to file system paths.
+UPPAAL supports text constants via `const string` type for calling [External Functions]({{< ref "external-functions.md" >}}) and refering to file system paths.
 
 For example:
 ```c
