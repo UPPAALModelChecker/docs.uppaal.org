@@ -79,3 +79,12 @@ int a[mySet];
 ```
 
 Here `mySet` is a scalar set of size `3`, `s` is a variable whos value belongs to the scalar set `mySet` and `a` is an array of integers indexed by the scalar set `mySet`. Thus `a[s] = 2` is a valid expression.
+
+## Character Strings or Textual Type
+
+UPPAAL supports text constants via `const string` type for calling [External Functions](ExternalFunctions.html) and refering to file system paths.
+
+For example:
+```c
+const string text = "message";
+```
