@@ -74,42 +74,42 @@ UPPAAL operators have the following associativity and precedence, listed from th
 
 Anybody familiar with the operators in C, C++, Java or Perl should immediately feel comfortable with the operators in UPPAAL. Here we summarise the meaning of each operator.
 
-| Operator     | Description                                                       |
-|--------------|-------------------------------------------------------------------|
-| ()           | Parenthesis alter the evaluation order                            |
-| []           | Array lookup                                                      |
-| .            | Infix lookup operator to access process or structure type scope   |
-| !            | Logical negation                                                  |
-| ++           | Increment (can be used as both prefix and postfix operator)       |
-| --           | Decrement (can be used as both prefix and --> --postfix operator) |
-| -            | Integer subtraction (can also be used as unary negation)          |
-| +            | Integer addition                                                  |
-| *            | Integer multiplication                                            |
-| /            | Integer division                                                  |
-| %            | Modulo                                                            |
-| &lt;&lt;     | Left bitshift                                                     |
-| &gt;&gt;     | Right bitshift                                                    |
-| <?           | Minimum                                                           |
-| >?           | Maximum                                                           |
-| <            | Less than                                                         |
-| <=           | Less than or equal to                                             |
-| ==           | Equality operator                                                 |
-| !=           | Inequality operator                                               |
-| >=           | Greater than or equal to                                          |
-| >            | Greater than                                                      |
-| &            | Bitwise and                                                       |
-| ^            | Bitwise xor                                                       |
-| &#124;       | Bitwise or                                                        |
-| &&           | Logical and                                                       |
-| &#124;&#124; | Logical or                                                        |
-| ?:           | If-then-else operator                                             |
-| not          | Logical negation                                                  |
-| and          | Logical and                                                       |
-| or           | Logical or                                                        |
-| imply        | Logical implication                                               |
-| forall       | Forall quantifier                                                 |
-| exists       | Exists quantifier                                                 |
-| sum          | Sum expression                                                    |
+| Operator     | Description                                                       | Example                            |
+|--------------|-------------------------------------------------------------------|------------------------------------|
+| ()           | Parenthesis alter the evaluation order                            |                                    |
+| []           | Array lookup                                                      | my_array[0]                        |
+| .            | Infix lookup operator to access process or structure type scope   | my_struct.field1                   |
+| !            | Logical negation                                                  |                                    |
+| ++           | Increment (can be used as both prefix and postfix operator)       | my_number++                        |
+| --           | Decrement (can be used as both prefix and --> --postfix operator) | my_number--                        |
+| -            | Integer subtraction (can also be used as unary negation)          |                                    |
+| +            | Integer addition                                                  |                                    |
+| *            | Integer multiplication                                            |                                    |
+| /            | Integer division                                                  |                                    |
+| %            | Modulo                                                            |                                    |
+| &lt;&lt;     | Left bitshift                                                     | 1 << 4 → 16                        |
+| &gt;&gt;     | Right bitshift                                                    | 16 >> 4 → 1                        |
+| <?           | Minimum                                                           | 8 <? 12 → 8                        |
+| >?           | Maximum                                                           | 8 >? 12 → 12                       |
+| <            | Less than                                                         |                                    |
+| <=           | Less than or equal to                                             |                                    |
+| ==           | Equality operator                                                 |                                    |
+| !=           | Inequality operator                                               |                                    |
+| >=           | Greater than or equal to                                          |                                    |
+| >            | Greater than                                                      |                                    |
+| &            | Bitwise and                                                       | 3&2 → 2                            |
+| ^            | Bitwise xor                                                       | 1^3 → 2                            |
+| &#124;       | Bitwise or                                                        | 1|3 → 3                            |
+| &&           | Logical and                                                       |                                    |
+| &#124;&#124; | Logical or                                                        |                                    |
+| ?:           | If-then-else operator                                             | true ? 8 : 12 → 8                  |
+| not          | Logical negation                                                  |                                    |
+| and          | Logical and                                                       |                                    |
+| or           | Logical or                                                        |                                    |
+| imply        | Logical implication                                               | true imply false → false           |
+| forall       | Forall quantifier                                                 | forall (i : int[2, 10]) i*10 > 10 → true |
+| exists       | Exists quantifier                                                 | exists (i : int[2, 10]) i*10 > 90 → true |                                   |
+| sum          | Sum expression                                                    | sum (i : int[2, 10]) i*10 → 540    |                                    |
 
 
 
