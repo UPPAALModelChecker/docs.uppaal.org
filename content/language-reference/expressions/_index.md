@@ -3,7 +3,7 @@ title: Expressions
 weight: 30
 ---
 
-Most of the expression syntax of UPPAAL coincides with that of C, C++ and Java. E.g. assignments are done using the '=' operator (the older ':=' still works, but '=' is preferred). Notice that assignments are them self expressions.
+Most of the expression syntax of UPPAAL coincides with that of C, C++ and Java. For example assignments are done using the `=` operator (the older `:=` still works, but `=` is preferred). Notice that assignments are expressions themselves, for example expression `b = (a = 1) + 2` assigns `1` to `a`, then adds `2` and assigns the result to `b`.
 
 The syntax of expressions is defined by the grammar for `Expression`.
 
@@ -53,22 +53,22 @@ UPPAAL operators have the following associativity and precedence, listed from th
 
 | Associativity | Operator                                  |
 |---------------|:------------------------------------------|
-| left          | () [] .                                   |
-| right         | ! not ++ -- unary -                       |
-| left          | * / %                                     |
-| left          | - +                                       |
-| left          | &lt;&lt; &gt;&gt;                         |
-| left          | <? >?                                     |
-| left          | < <= >= >                                 |
-| left          | == !=                                     |
-| left          | &                                         |
-| left          | ^                                         |
-| left          | &#124;                                    |
-| left          | && and                                    |
-| left          | &#124;&#124; or imply                     |
-| right         | ?:                                        |
-| right         | = := += -= *= /= %= &= &#124;= <<= >>= ^= |
-| left          | forall exists sum                         |
+| left          | `()` `[]` `.`                             |
+| right         | `!` `not` `++` `--` unary `-` unary `+`   |
+| left          | `*` `/` `%`                               |
+| left          | binary `-` binary `+`                     |
+| left          | `<<` `>>`                                 |
+| left          | `<?` `>?`                                 |
+| left          | `<` `<=` `>=` `>`                         |
+| left          | `==` `!=`                                 |
+| left          | `&`                                       |
+| left          | `^`                                       |
+| left          | `\|`                                      |
+| left          | `&&` `and`                                |
+| left          | `\|\|` `or` `imply`                       |
+| right         | `?:`                                      |
+| right         | `=` `:=` `+=` `-=` `*=` `/=` `%=` `&=` `\|=` `<<=` `>>=` `^=` |
+| left          | `forall` `exists` `sum`                   |
 
 ## Operators
 
@@ -76,59 +76,61 @@ Anybody familiar with the operators in C, C++, Java or Perl should immediately f
 
 | Operator     | Description                                                       | Example                            |
 |--------------|-------------------------------------------------------------------|------------------------------------|
-| ()           | Parenthesis alter the evaluation order                            |                                    |
-| []           | Array lookup                                                      | my_array[0]                        |
-| .            | Infix lookup operator to access process or structure type scope   | my_struct.field1                   |
-| !            | Logical negation                                                  |                                    |
-| ++           | Increment (can be used as both prefix and postfix operator)       | my_number++                        |
-| --           | Decrement (can be used as both prefix and --> --postfix operator) | my_number--                        |
-| -            | Integer subtraction (can also be used as unary negation)          |                                    |
-| +            | Integer addition                                                  |                                    |
-| *            | Integer multiplication                                            |                                    |
-| /            | Integer division                                                  |                                    |
-| %            | Modulo                                                            |                                    |
-| &lt;&lt;     | Left bitshift                                                     | 1 << 4 → 16                        |
-| &gt;&gt;     | Right bitshift                                                    | 16 >> 4 → 1                        |
-| <?           | Minimum                                                           | 8 <? 12 → 8                        |
-| >?           | Maximum                                                           | 8 >? 12 → 12                       |
-| <            | Less than                                                         |                                    |
-| <=           | Less than or equal to                                             |                                    |
-| ==           | Equality operator                                                 |                                    |
-| !=           | Inequality operator                                               |                                    |
-| >=           | Greater than or equal to                                          |                                    |
-| >            | Greater than                                                      |                                    |
-| &            | Bitwise and                                                       | 3&2 → 2                            |
-| ^            | Bitwise xor                                                       | 1^3 → 2                            |
-| &#124;       | Bitwise or                                                        | 1|3 → 3                            |
-| &&           | Logical and                                                       |                                    |
-| &#124;&#124; | Logical or                                                        |                                    |
-| ?:           | If-then-else operator                                             | true ? 8 : 12 → 8                  |
-| not          | Logical negation                                                  |                                    |
-| and          | Logical and                                                       |                                    |
-| or           | Logical or                                                        |                                    |
-| imply        | Logical implication                                               | true imply false → false           |
-| forall       | Forall quantifier                                                 | forall (i : int[2, 10]) i*10 > 10 → true |
-| exists       | Exists quantifier                                                 | exists (i : int[2, 10]) i*10 > 90 → true |                                   |
-| sum          | Sum expression                                                    | sum (i : int[2, 10]) i*10 → 540    |                                    |
+| `()`         | Parenthesis alter the evaluation order                            | `3 * (5 - 2)` → `9`                |
+| `[]`         | Array lookup                                                      | `my_array[0]`                      |
+| `.`          | Infix lookup operator to access process or structure type scope   | `my_struct.field1`                 |
+| `!`          | Logical negation                                                  | `! true` → `false`                 |
+| `not`        | Logical negation                                                  | `not true` → `false`               |
+| `++`         | Increment (can be used as both prefix and postfix operator)       | `++counter` `counter++`            |
+| `--`         | Decrement (can be used as both prefix and postfix operator)       | `--counter` `counter--`            |
+| `-`          | Integer subtraction (can also be used as unary negation:`-7`)     | `5 - 3` → `2`                      |
+| `+`          | Integer addition (can also be used as unary plus: `+7`)           | `5 + 3` → `8`                      |
+| `*`          | Integer multiplication                                            | `5 * 3` → `15`                     |
+| `/`          | Integer division                                                  | `5 / 3` → `1`                      |
+| `%`          | Modulo                                                            | `5 % 3` → `2`                      |
+| `<<`         | Left bitshift                                                     | `1 << 4` → `16`                    |
+| `>>`         | Right bitshift                                                    | `16 >> 4` → `1`                    |
+| `<?`         | Minimum                                                           | `8 <? 12` → `8`                    |
+| `>?`         | Maximum                                                           | `8 >? 12` → `12`                   |
+| `<`          | Less than                                                         | `5 < 3` → `true`                   |
+| `<=`         | Less than or equal to                                             | `5 <= 3` → `true`                  |
+| `==`         | Equality operator                                                 | `5 == 3` → `false`                 |
+| `!=`         | Inequality operator                                               | `5 != 3` → `true`                  |
+| `>=`         | Greater than or equal to                                          | `5 >= 3` → `true`                  |
+| `>`          | Greater than                                                      | `5 > 3` → `true`                   |
+| `&`          | Bitwise and                                                       | `3 & 2` → `2`                      |
+| `^`          | Bitwise xor                                                       | `1 ^ 3` → `2`                      |
+| `\|`         | Bitwise or                                                        | `1 \| 3` → `3`                     |
+| `&&`         | Logical and (conjunction)                                         | `true && false` → `false`          |
+| `and`        | Logical and (conjunction)                                         | `true and false` → `false`         |
+| `\|\|`       | Logical or (disjunction)                                          | `true \|\| false` → `true`         |
+| `or`         | Logical or (disjunction)                                          | `true or false` → `true`           |
+| `?:`         | Inline if-then-else (ternary) operator                            | `true ? 8 : 12` → `8`              |
+| `imply`      | Logical implication                                               | `true imply false` → false         |
+| `forall`     | Forall quantifier                                                 | `forall (i : int[2, 10]) i*10 > 10` → `true` |
+| `exists`     | Exists quantifier                                                 | `exists (i : int[2, 10]) i*10 > 90` → `true` |
+| `sum`        | Sum expression                                                    | `sum (i : int[2, 10]) i*10` → `540` |
 
 
 
-Notice that the keywords `not`, `and` and `or` behave the same as the `!`, `&&`, and `||` operators, except that the former have lower precedence.
+Notice that the keywords `not`, `and` and `or` behave the same as the `!`, `&&`, and `||` operators.
+
+An integer expression used in logical expression is converted into boolean value by comparing the integer expression with zero. For example, `x ? 1 : 2` is interpreted as `(x != 0) ? 1 : 2`.
 
 A few binary operators can be syntactically combined with assignment to produce a compact assignment expression:
 
 | Operator | Assignment | Example       | Meaning          |
 |----------|------------|---------------|------------------|
-| +        | +=         | x += y        | x = x + y        |
-| -        | -=         | x -= y        | x = x - y        |
-| *        | *=         | x *= y        | x = x * y        |
-| /        | /=         | x /= y        | x = x / y        |
-| %        | %=         | x %= y        | x = x % y        |
-| &        | &=         | x &= y        | x = x & y        |
-| ^        | ^=         | x ^= y        | x = x ^ y        |
-| &#124;   | &#124;=    | x &#124;= y   | x = x &#124; y   |
-| &lt;&lt; | &lt;&lt;=  | x &lt;&lt;= y | x = x &lt;&lt; y |
-| &gt;&gt; | &gt;&gt;=  | x &gt;&gt;= y | x = x &gt;&gt; y |
+| `+`      | `+=`       | `x += y`      | `x = x + y`      |
+| `-`      | `-=`       | `x -= y`      | `x = x - y`      |
+| `*`      | `*=`       | `x *= y`      | `x = x * y`      |
+| `/`      | `/=`       | `x /= y`      | `x = x / y`      |
+| `%`      | `%=`       | `x %= y`      | `x = x % y`      |
+| `&`      | `&=`       | `x &= y`      | `x = x & y`      |
+| `^`      | `^=`       | `x ^= y`      | `x = x ^ y`      |
+| `\|`     | `\|=`      | `x \|= y`     | `x = x \| y`     |
+| `<<`     | `<<=`      | `x <<= y`     | `x = x << y`     |
+| `>>`     | `>>=`      | `x >>= y`     | `x = x >> y`     |
 
 
 
