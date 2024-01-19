@@ -104,11 +104,7 @@ Adjusts the amount of memory used to represent the state space when using bit-st
 
 When selected, instructs the verifier to (whenever possible) reuse the generated portion of the state space when several properties of the same system are checked.
 
-<a name="statparam">
-
 ## Statistical Parameters
-
-</a>
 
 Lower probabilistic deviation (-δ)
 : Used in hypothesis testing (qualitative model-checking) to specify the lower bound of indifference region from the specified probability.
@@ -136,6 +132,84 @@ Histogram bucket width
 
 Histogram bucket count
 : Specifies the number of columns in the histogram. By default it is set to zero meaning that the count is determined by taking a square root of a total number of samples and dividing by four.
+
+
+## Learning Parameters
+
+Based on publication: [On Time with Minimal Expected Cost!](https://homes.cs.aau.dk/~kgl/SSFT2015/ATVA.pdf) (Fig.2).
+
+Discussion: [Way to set a fixed number of training runs for reinforcement learning](https://github.com/orgs/UPPAALModelChecker/discussions/232#discussioncomment-8153813)
+
+Learning filter:
+- `Global filter`
+- `Local filter`
+- `Sweep filter`
+
+Learning method
+- `External learning library`
+- `Co-variance`
+- `Splitting`
+- `Regression`
+- `Naive`
+- `Q-learning`
+- `M-learning`
+
+Number of successful runs
+:
+
+Maximum number of runs
+:
+
+Number of good runs
+:
+
+Number of runs to evaluate
+:
+
+Total maximal number of iterations
+:
+
+Imitation iterations
+:
+
+Iterations with no improvement before reset
+:
+
+Maximum number of resets
+:
+
+Learning rate for Q-Learning
+:
+
+Upper limit for T-Test
+:
+
+Lower limit for T-Test
+:
+
+Limit for KS-Split
+:
+
+Filter smoothing
+:
+
+Critical filter value
+:
+
+Learning discount
+:
+
+Stochastic runs (%)
+:
+
+Deterministic runs (%)
+:
+
+Critical difference (%)
+:
+
+Difference smoothing (runs)
+:
 
 
 ## More Information
