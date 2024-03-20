@@ -51,6 +51,7 @@ Under Approximation
 Over Approximation
 : Uses convex-hull approximation of zones. This results in an over approximation of the state space. For models without clocks, this setting has no effect.
 
+Note that if a model contains stopwatches (invariant expressions like `x'==0` where `x` is a clock), then the resulting analysis is overapproximate even if DBM or CDS options are selected (DBM cannot represent additional constraints required by stopwatches). In such case, UPPAAL may also report that a reachability propery is _maybe_ satisfied, meaning that the found counter-example trace may be spurious (i.e. not realizable).
 
 ## Diagnostic Trace
 
