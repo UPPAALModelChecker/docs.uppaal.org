@@ -9,7 +9,7 @@ The selected queries are verified when the button named _Check_ is pressed. The 
 
 The verification output is displayed in the _Status_ field at the bottom of the verifier panel. The result is also indicated by the circular markers in the rightmost column of the _Overview_ panel. A grey marker indicates that the truth value of the property is unknown, a green marker that the property is satisfied, and a red marker that the property is not satisfied.
 
-In case the _Over Approximation_ or the _Under Approximation_ options are enabled, the output of the verifier might be that property is "maybe satisfied". This happens when the verifier cannot determine the truth value of the property due to the approximations used.
+In case the _Over Approximation_ or the _Under Approximation_ options are selected for [State Space Representation](/gui-reference/menu-bar/options/#state-space-representation), the output of the verifier might be that property is _"maybe satisfied"_. This happens when the verifier cannot determine the truth value of the property due to the approximations used.
 
 ## Statistical Model Checking
 
