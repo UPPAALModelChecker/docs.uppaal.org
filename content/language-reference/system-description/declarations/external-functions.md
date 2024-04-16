@@ -12,15 +12,7 @@ The external functions are supported since Uppaal Stratego version 4.1.20-7, or 
   The feature is supported on Linux and experimental on Windows and macOS.
 {{% /notice %}}
 
-{{% notice warning %}}
-  The external function calls must be ***deterministic***: for any argument values, the function should produce the same result at any time when called with the same values.<br>
-  Uppaal does ***not*** check and *will not warn* if an external function is behaving *deterministically*.<br>
-  For example:
-  - *Side-effect-free* (or *free*) functions, which do not depend on [`static`](https://en.wikipedia.org/wiki/Static_variable) variables, are *deterministic*.
-  - [Memoization pattern](https://en.wikipedia.org/wiki/Memoization) is not *side-effect-free*, but results in *deterministic* behavior.
-{{% /notice %}}
-
-External Functions can be declared alongside other declaratios. External functions are local to the current scope, defined by the grammar:
+External Functions can be declared alongside other declarations. External functions are local to the current scope, defined by the grammar:
 
 ``` EBNF
 ExternDecl   = 'import'  Path '{' [FwdDeclList] '}'
@@ -33,28 +25,29 @@ FwdDecl      = [ID '='] Type ID '(' [Parameters] ')'
 : is a double-quoted (using `"`) character sequence (string) denoting a file path to the library placed on the same computer as the used engine (`server` or `verifyta`).<br>
 Note that the backslash (`\`) character in (Windows) paths needs to be either escaped with another backslash or replaced with the forwardslash (`/`), i.e. `\` should be replaced with either `\\` or `/`. For example, `"C:\libexternal.dll"` should be written as `"C:\\libexternal.dll"` or `"C:/libexternal.dll"`.
 
-The following code will load the external libary `libexternal.so` from the path `/home/user/lib` and import the functions `get_number`, `set_number` and `is_the_world_safe`.
-The function `is_the_world_safe` will be imported with the name `is_safe`.
+The following code will load the external libary `libexternal.so` from the path `/home/user/lib` and import the functions `get_sqrt`, `get_prime`, `fibonacci`, `is_the_world_safe` and `set_temperature`.
+The function `is_the_world_safe` will be accessible using the name `is_safe`.
 
-Even though Uppaal will attempt to locate the library in several default paths, we recommend using a fully qualified path to the library file.
+Even though UPPAAL attempts to locate the library at several default paths, we recommend using a fully qualified path to the library file.
 
-If you are using integers in external function, we recommend defining a full integer range in order to avoid Uppaal `int` range (`[-32768,32767]`) errors.
+If you are using integers in external function, we recommend defining a full integer range in order to avoid UPPAAL `int` range (`[-32768,32767]`) errors.
 
 ``` C
-const int INT32_MIN = -2147483648;        // not needed since Stratego 4.1.20-11
-const int INT32_MAX = 2147483647;         // not needed since Stratego 4.1.20-11
-typedef int[INT32_MIN,INT32_MAX] int32_t; // not needed since Stratego 4.1.20-11
+const int INT32_MIN = -2147483648;        // not needed since UPPAAL 5.0 (Stratego 4.1.20-11)
+const int INT32_MAX = 2147483647;         // not needed since UPPAAL 5.0 (Stratego 4.1.20-11)
+typedef int[INT32_MIN,INT32_MAX] int32_t; // not needed since UPPAAL 5.0 (Stratego 4.1.20-11)
 
 import "/home/user/lib/libexternal.so" {
-    int32_t get_number();
-    void set_number(int32_t n);
     int32_t get_sqrt(int32_t n);
+    int32_t get_prime(int index);
+    int32_t fibonacci(int32_t n);
     is_safe = bool is_the_world_safe();
+    void set_temperature(int degrees);
 };
 ```
 
 ## Type Conversion and Restrictions
-The types transfarable between Uppaal and external functions are curretly limited to `bool`, `int`, `double`, `clock`, `chan`, `ptr_t` and `string`. Omitting complex types such as structs and nested data structures. Only single-dimentional arrays are supported on only mutable types; arrays of `chan` and strings are not currently supported.
+The types transfarable between UPPAAL and external functions are curretly limited to `bool`, `int`, `double`, `clock`, `chan`, `ptr_t` and `string`. Omitting complex types such as structs and nested data structures. Only single-dimentional arrays are supported on only mutable types; arrays of `chan` and strings are not currently supported.
 
 The following table summarizes the current support:
 
@@ -78,11 +71,11 @@ The library is loaded during document parsing and the library can be instructed 
 ## Defining External Library
 
 An external library can be compiled from C or C++ code and linked into a shared library.
-Uppaal uses C symbol name mangling, so C++ compiler needs to be instructed to export `"C"` names, whereas C compiler does it by default.
+UPPAAL uses C symbol name mangling, so C++ compiler needs to be instructed to export `"C"` names, whereas C compiler does it by default.
 
 The following C/C++ code implements the library functions used for the example above.
 
-`external.h`:
+Declarations in `external.h` (useful for testing outside UPPAAL):
 ``` C++
 #ifndef LIBRARY_EXTERNAL_H
 #define LIBRARY_EXTERNAL_H
@@ -91,10 +84,16 @@ The following C/C++ code implements the library functions used for the example a
 extern "C" { // tells C++ compiler to use C symbol name mangling (C compiler ignores)
 #endif // __cplusplus
 
-int get_number();
-void set_number(int n);
+// Computes a square root and truncates to an integer
 int get_sqrt(int n);
+/// Retrieves a number from a table at specified index
+int get_prime(int index);
+/// Computes n-th number in Fibonacci series
+int fibonacci(int n);
+/// Consults with an external world
 bool is_the_world_safe();
+/// Sets the global temperature
+void set_temperature(int value);
 
 #ifdef __cplusplus
 } // end of "C" symbol name mangling
@@ -103,36 +102,46 @@ bool is_the_world_safe();
 #endif // LIBRARY_EXTERNAL_H
 ```
 
-`external.cpp`:
+Implementation (definition) in `external.cpp`:
 ``` C++
 #include "external.h"
+#include <vector>
 #include <cmath>
-
-static int number = 42; // internal state, be careful
 
 #ifdef __cplusplus
 extern "C" { // tells C++ compiler to use C symbol name mangling (C compiler ignores)
 #endif // __cplusplus
-
-int get_number()
-{   // is not free from side-effects, when set_number is used
-    return number;
-}
-
-void set_number(int n)
-{   // the state needs to be synchronized with the model state
-    number = n;
-}
 
 int get_sqrt(int n)
 {
     return std::sqrt(n);
 }
 
-bool is_the_world_safe()
+int get_prime(const int index)
 {
-    return true;
+    static const int primes[] = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41 };
+    if (index < 0 || sizeof(primes)/sizeof(primes[0]) < static_cast<size_t>(index))
+        return -1;
+    return primes[index];
 }
+
+int fibonacci(const int n)
+{
+    static auto series = std::vector<int>{0,1,1}; // memoize
+    if (n < 0)
+        return -1;
+    if (series.size() <= static_cast<size_t>(n)) { // need to extend the series
+       auto i = series.size();
+       series.resize(n+1);
+       for (; i < series.size(); ++i)
+           series[i] = series[i-1] + series[i-2];
+    }
+    return series[n];
+}
+
+static int temperature = 21; // external state
+bool is_the_world_safe() { return temperature < 37; }
+void set_temperature(const int value){ temperature = value; }
 
 #ifdef __cplusplus
 } // end of "C" symbol name mangling
@@ -148,6 +157,28 @@ gcc -shared -o libexternal.so external.o
 For optimized builds replace `-g Og` with `-DNDEBUG -O3` in the above command and strip the details with `strip libexternal.so`.
 
 For more library examples please visit [uppaal-libs](https://github.com/UPPAALModelChecker/uppaal-libs) repository.
+
+### Assumptions
+
+UPPAAL assumes that the external function calls produce ***deterministic*** outcomes: for any argument values, the function produces the same outcome when called with the same values at any time.
+
+{{% notice warning %}}
+  UPPAAL does ***not check*** and ***will not warn*** if an external function is behaving *non-deterministically*.<br>
+  It is user's responsibility to guarantee that the supplied external functions behave *deterministically*.
+{{% /notice %}}
+
+Examples:
+- [*Pure*](https://en.wikipedia.org/wiki/Pure_function) (*stateless* or *free*) functions do not depend on [*static*](https://en.wikipedia.org/wiki/Static_variable) variables and do not communicate with outside world, therefore are free from *side-effects* are therefore *deterministic*. For example, `get_sqrt` function above.
+- Lookup functions like `get_prime` depend on static but immutable data, therefore the fcuntion is *deterministic* too.
+- [*Memoized*](https://en.wikipedia.org/wiki/Memoization) functions like `fibonacci` modifies static variable data and therefore is not *side-effect-free*, but all the looked up values are computed only once, therefore calls produce *deterministic* results.
+- Functions consulting with an *external state* (like `is_the_world_safe`) produce *state-dependent* outcomes, therefore may produce different results at different call sites even if the same argument values are passed. Such functions are *non-deterministic* and are ***not supported***.
+
+The effects of *non-deterministic* functions are *undefined* due to undefined order of execution.
+Simulators and Verifier execute transitions in unspecified order, often repeatedly, thus may produce varying and even erronious outcomes.
+
+Some *state-dependent* functions can be forced to behave *determistically* if the model state is ***synchronized*** with the library state during *the same model transition*.
+For example, call to `is_the_world_safe()` is safe if `set_temperature(int)` is called before *on the same transition* (could be on the same edge or on different edges synchronized over a channel).
+
 
 ## Debugging
 
@@ -173,21 +204,21 @@ DYNAMIC SYMBOL TABLE:
 0000000000000000  w   D  *UND*  0000000000000000 _ITM_deregisterTMCloneTable
 0000000000000000  w   D  *UND*  0000000000000000 __gmon_start__
 0000000000001120 g    DF .text  0000000000000006 is_the_word_safe
-0000000000001100 g    DF .text  000000000000000a get_number
-0000000000004008 g    DO .data  0000000000000004 number
-0000000000001110 g    DF .text  000000000000000a set_number
+0000000000001100 g    DF .text  000000000000000a get_prime
+0000000000004008 g    DO .data  0000000000000004 temperature
+0000000000001110 g    DF .text  000000000000000a set_temperature
 ```
 
 Similarly using `nm -D /home/user/lib/libexternal.so`:
 ```
                  w __cxa_finalize
-0000000000001100 T get_number
+0000000000001100 T get_prime
                  w __gmon_start__
 0000000000001120 T is_the_word_safe
                  w _ITM_deregisterTMCloneTable
                  w _ITM_registerTMCloneTable
-0000000000004008 D number
-0000000000001110 T set_number
+0000000000004008 D temperature
+0000000000001110 T set_temperature
 ```
 (GNU compiler exports all symbols by default, hence `number` can be part of the exported symbol listing)
 
@@ -343,4 +374,4 @@ Then at the `main` function call, the code line `assert(two == 2);` is highlight
 
 And finally the value of variable `two` is printed using command `p two`. The value is `-2147483648` which is not as expected, hence the assertion failed.
 
-It is also possible to attach `gdb` to an already running process (like `verifyta` or Uppaal engine `server`), set break points and watches.
+It is also possible to attach `gdb` to an already running process (like `verifyta` or UPPAAL engine `server`), set break points and watches.
