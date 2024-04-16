@@ -168,13 +168,13 @@ UPPAAL assumes that the external function calls produce ***deterministic*** outc
 {{% /notice %}}
 
 Examples:
-- [*Pure*](https://en.wikipedia.org/wiki/Pure_function) (*stateless* or *free*) functions do not depend on [*static*](https://en.wikipedia.org/wiki/Static_variable) variables and do not communicate with outside world, therefore are free from *side-effects* are therefore *deterministic*. For example, `get_sqrt` function above.
-- Lookup functions like `get_prime` depend on static but immutable data, therefore the fcuntion is *deterministic* too.
-- [*Memoized*](https://en.wikipedia.org/wiki/Memoization) functions like `fibonacci` modifies static variable data and therefore is not *side-effect-free*, but all the looked up values are computed only once, therefore calls produce *deterministic* results.
-- Functions consulting with an *external state* (like `is_the_world_safe`) produce *state-dependent* outcomes, therefore may produce different results at different call sites even if the same argument values are passed. Such functions are *non-deterministic* and are ***not supported***.
+- [*Pure*](https://en.wikipedia.org/wiki/Pure_function) (*stateless* or *free*) functions do not depend on [*static*](https://en.wikipedia.org/wiki/Static_variable) variables and do not communicate with outside world, therefore behave *deterministically*. For example, `get_sqrt` function above.
+- Lookup functions like `get_prime` depend on static data, but it is immutable, therefore the function is *deterministic* too.
+- [*Memoized*](https://en.wikipedia.org/wiki/Memoization) functions like `fibonacci` modify static variable, but all the looked up values are computed only once, therefore calls produce *deterministic* results.
+- Functions consulting with an *external* or *shared* mutable state (like `is_the_world_safe`) produce *state-dependent* outcomes, therefore may produce different results at different call sites even if the same argument values are passed. Such functions are *non-deterministic* and are ***not supported***.
 
 The effects of *non-deterministic* functions are *undefined* due to undefined order of execution.
-Simulators and Verifier execute transitions in unspecified order, often repeatedly, thus may produce varying and even erronious outcomes.
+Simulators and Verifier execute transitions in unspecified order corresponding to very different parts of the state space, thus unrelated transitions may share the library data in unintended ways and thus produce bogus varying results.
 
 Some *state-dependent* functions can be forced to behave *determistically* if the model state is ***synchronized*** with the library state during *the same model transition*.
 For example, call to `is_the_world_safe()` is safe if `set_temperature(int)` is called before *on the same transition* (could be on the same edge or on different edges synchronized over a channel).
