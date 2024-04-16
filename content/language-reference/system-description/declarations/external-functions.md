@@ -4,12 +4,20 @@ weight: 30
 ---
 
 {{% notice info %}}
+The external functions are supported since Uppaal Stratego version 4.1.20-7, or Uppaal version 5.0 or later.
+{{% /notice %}}
+
+{{% notice info %}}
   External Functions is an expert user feature and requires a high-level understanding of dynamic library loading and linking.<br>
   The feature is supported on Linux and experimental on Windows and macOS.
 {{% /notice %}}
 
-{{% notice info %}}
-This feature is supported since Uppaal Stratego version 4.1.20-7, or Uppaal version 5.0 or later.
+{{% notice warning %}}
+  The external function calls must be ***deterministic***: for any argument values, the function should produce the same result at any time when called with the same values.
+
+  For example, *side-effect-free* (or *free*) functions, which do not depend on [`static`](https://en.wikipedia.org/wiki/Static_variable) variables, are ***deterministic***. 
+  
+  [Memoization](https://en.wikipedia.org/wiki/Memoization) is allowed.
 {{% /notice %}}
 
 External Functions can be declared alongside other declaratios. External functions are local to the current scope, defined by the grammar:
