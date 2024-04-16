@@ -14,8 +14,9 @@ The external functions are supported since Uppaal Stratego version 4.1.20-7, or 
 
 {{% notice warning %}}
   The external function calls must be ***deterministic***: for any argument values, the function should produce the same result at any time when called with the same values.<br>
-  For example, *side-effect-free* (or *free*) functions, which do not depend on [`static`](https://en.wikipedia.org/wiki/Static_variable) variables, are ***deterministic***.<br>
-  [Memoization](https://en.wikipedia.org/wiki/Memoization) is allowed.
+  For example:
+  - *Side-effect-free* (or *free*) functions, which do not depend on [`static`](https://en.wikipedia.org/wiki/Static_variable) variables, are *deterministic*.
+  - [Memoization](https://en.wikipedia.org/wiki/Memoization) pattern is not *side-effect-free* but results in a *deterministic* behavior, hence is also allowed.
 {{% /notice %}}
 
 External Functions can be declared alongside other declaratios. External functions are local to the current scope, defined by the grammar:
