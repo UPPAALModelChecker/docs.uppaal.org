@@ -41,6 +41,6 @@ Our parser library, libutap, contains a small utility called <tt>tracer</tt>, wh
 
 ### Concrete simulation traces
 
-Concrete simulation traces are stored in <tt>.uctr</tt> files, which are written in a JSON-like syntax, making them easy to parse with external editors.
+Concrete simulation traces are stored in <tt>.uctr</tt> files, which are written in a JSON-like syntax, such that external editors can parse them.
 
 A <tt>.uctr</tt> file contains all transitions made in the simulation along with their delay in the <tt>transitions</tt> array.
