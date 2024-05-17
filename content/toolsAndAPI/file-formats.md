@@ -36,3 +36,9 @@ Traces can be stored using the XTR format and files in this format have the file
 XTR files are intimately linked to the model from which they were generated. Any change (other than layout and white space changes) in the model may render the trace file unreadable. Even reordering some variable declarations will break the link.
 
 Our parser library, libutap, contains a small utility called <tt>tracer</tt>, which can read XTR files and translate them to a human readable format. The library and the utility are released under the LGPL license and may thus be used as a starting point for writing custom trace analysis tools. More information about the library can be found on the UPPAAL web page.
+
+## Simulation traces
+
+Simulation traces are stored in <tt>.uctr</tt> files, which are written in a JSON-like syntax, making them easy to parse with external editors.
+
+A <tt>.uctr</tt> file contains all transitions made in the simulation along with their delay in the <tt>transitions</tt> array.
