@@ -37,7 +37,7 @@ An _eventually_ property `A<> p` can be expressed as the _potentially_ property 
 
 The syntax `p --> q` denotes a leads to property meaning that whenever `p` holds eventually `q` will hold as well. Since UPPAAL uses timed automata as the input model, this has to be interpreted not only over action transitions but also over delay transitions.
 
-A _leads to_ property `p --> q` can be expressed as the property `A[] (p imply A<> q)`.
+A _leads to_ property `p --> q` can be expressed as the property `A[] (p imply A<> q)` (note that the leads-to property is a special case and in general nested quantifiers are not supported).
 
 
 
