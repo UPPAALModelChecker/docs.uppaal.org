@@ -31,8 +31,18 @@ Query files use a clear-text format listing all queries inleaved with comments. 
 
 ## Trace files
 
-Traces can be stored using the XTR format and files in this format have the file ending <tt>.xtr</tt>. The format was introduced in UPPAAL 3.0.
+### Symbolic simulation traces
+
+Symbolic simulation traces can be stored using the XTR format; files in this format have the extension <tt>.xtr</tt>. The format was introduced in UPPAAL 3.0.
 
 XTR files are intimately linked to the model from which they were generated. Any change (other than layout and white space changes) in the model may render the trace file unreadable. Even reordering some variable declarations will break the link.
 
 Our parser library, libutap, contains a small utility called <tt>tracer</tt>, which can read XTR files and translate them to a human readable format. The library and the utility are released under the LGPL license and may thus be used as a starting point for writing custom trace analysis tools. More information about the library can be found on the UPPAAL web page.
+
+### Concrete simulation traces
+
+Concrete simulation traces can be stored using the UCTR format; files in this format have the extension <tt>.uctr</tt>.
+
+<tt>.uctr</tt> files are written in a JSON-like syntax, such that external editors can parse them.
+
+A <tt>.uctr</tt> file contains all transitions made in the simulation along with their delay in the <tt>transitions</tt> array.
