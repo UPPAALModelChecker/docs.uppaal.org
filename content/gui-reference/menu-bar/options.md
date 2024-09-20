@@ -138,9 +138,71 @@ Histogram bucket width
 Histogram bucket count
 : Specifies the number of columns in the histogram. By default it is set to zero meaning that the count is determined by taking a square root of a total number of samples and dividing by four.
 
+<a name="learnparam">
+
+## Learning Parameters
+
+</a>
+
+Number of successful runs
+: the number of runs satisfying the learning goal property
+
+Maximum number of runs
+: the number of runs to generate at most
+
+Number of good runs
+: 
+
+Number of runs to evaluate
+:
+
+Total maximal number of iterations
+:
+
+Iterations with no improvement before reset
+:
+
+Maximum number of resets
+:
+
+Learning rate for Q-learning
+:
+
+Upper limit for T-Test
+:
+
+Lower limit for T-Test
+:
+
+Limit for KS-Split
+:
+
+Filter smoothing
+:
+
+Critical filter value
+:
+
+Learning discount
+:
+
+Stochastic runs
+:
+
+Deterministic runs (%)
+:
+
+Critical difference (%)
+:
+
+Difference smoothing (runs)
+:
 
 ## More Information
 
+Learning algorithm and parameters are described in the following paper:
+> _Teaching Stratego to Play Ball: Optimal Synthesis for Continuous Space MDPs_, Manfred Jaeger, Peter Gjøl Jensen, Kim Guldstrand Larsen, Axel Legay, Sean Sedwards & Jakob Haahr Taankvist. In: Chen, YF., Cheng, CH., Esparza, J. (eds) Automated Technology for Verification and Analysis. ATVA 2019. Lecture Notes in Computer Science(), vol 11781. Springer, Cham. [doi:10.1007/978-3-030-31784-3_5](https://doi.org/10.1007/978-3-030-31784-3_5)
+
 The compact data structure and the options for state space reduction are described in the following paper:
 
-> _Efficient Verification of Real-Time Systems: Compact Data Structure and State Space Reduction_, Kim G. Larsen, Fredrik Larsson, Paul Pettersson and Wang Yi. In Proceedings of the 18th IEEE Real-Time Systems Symposium, pages 14-24\. San Francisco, California, USA, 3-5 December 1997.
+> _Efficient Verification of Real-Time Systems: Compact Data Structure and State Space Reduction_, Kim G. Larsen, Fredrik Larsson, Paul Pettersson and Wang Yi. In Proceedings of the 18th IEEE Real-Time Systems Symposium, pages 14-24\. San Francisco, California, USA, 3-5 December 1997. [doi:10.1109/REAL.1997.641265](https://doi.org/10.1109/REAL.1997.641265)
