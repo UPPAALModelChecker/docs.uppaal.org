@@ -1,10 +1,35 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tutorial on UPPAAL Documentation</title><link>/gui-reference/yggdrasil/tutorial/</link><description>Recent content in Tutorial on UPPAAL Documentation</description><generator>Hugo</generator><language>en-us</language><atom:link href="/gui-reference/yggdrasil/tutorial/index.xml" rel="self" type="application/rss+xml"/><item><title>Basic Test Generation</title><link>/gui-reference/yggdrasil/tutorial/basic-test-generation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/gui-reference/yggdrasil/tutorial/basic-test-generation/</guid><description>Create the models Open the On/Off System model &amp;ldquo;onoff/onoff.xml&amp;rdquo; file in Uppaal. The system contains two templates entitled System and User. The System represents the system or device (e.g. lamp) under test. The User models the possible user interactions with the system.
-The system can be either On or Off, with channels on and off changing between them. The user can non-deterministically press on or off.
-System template User template Add Test Cases specific model annotations First, some Test Cases specific declarations muse be made; these are required for the generator to use depth-first reachability and single step techniques for test-case generation.</description></item><item><title>Using Model Variables</title><link>/gui-reference/yggdrasil/tutorial/using-variables/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/gui-reference/yggdrasil/tutorial/using-variables/</guid><description>This tutorial assumes you have understood basic test case generation.
-The model: Up/Down system Open the updown/updown.xml file in Uppaal.
-The system contains two templates: System and User.
-The system can be either On, Max, or Off, with channels up and down changing between them. The user can non-deterministically press up or down.
-System template User template Add model annotations and test pre- and post-fix code Global variable declarations and prefix/postfix code is the same as for the on/off model.</description></item><item><title>Using Queries</title><link>/gui-reference/yggdrasil/tutorial/using-queries/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/gui-reference/yggdrasil/tutorial/using-queries/</guid><description>This tutorial assumes you have understood using variables.
-The system model This tutorial uses the same Up/Down model as in the section using variables. Open the updown/updown.xml file in Uppaal.
-Editing the Queries Sometimes it is desirable to generate test cases for specific purposes. This can be done by creating a verification query for the purpose, and use that to generate a test trace.
-In the Verifier tab you can enter queries.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tutorial on UPPAAL Documentation</title><link>/gui-reference/yggdrasil/tutorial/</link><description>Recent content in Tutorial on UPPAAL Documentation</description><generator>Hugo</generator><language>en-us</language><atom:link href="/gui-reference/yggdrasil/tutorial/index.xml" rel="self" type="application/rss+xml"/><item><title>Basic Test Generation</title><link>/gui-reference/yggdrasil/tutorial/basic-test-generation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/gui-reference/yggdrasil/tutorial/basic-test-generation/</guid><description>&lt;!--
+_Locations/channels_
+_*TOOL MENU*_
+&lt;tt> code
+ -->
+&lt;!-- Open the &lt;a href="../onoff/onoff.xml">onoff.xml&lt;/a> file in Uppaal. -->
+&lt;h3 id="create-the-models">Create the models&lt;/h3>
+&lt;p>Open the On/Off System model &lt;tt> &amp;ldquo;onoff/onoff.xml&amp;rdquo; &lt;/tt> file in Uppaal. The system contains two templates entitled &lt;em>System&lt;/em> and &lt;em>User&lt;/em>. The &lt;em>System&lt;/em> represents the system or device (e.g. lamp) under test. The &lt;em>User&lt;/em> models the possible user interactions with the system.&lt;/p>
+&lt;p>The system can be either &lt;em>On&lt;/em> or &lt;em>Off&lt;/em>, with channels &lt;em>on&lt;/em> and &lt;em>off&lt;/em> changing between them. The user can non-deterministically press &lt;em>on&lt;/em> or &lt;em>off&lt;/em>.&lt;/p></description></item><item><title>Using Model Variables</title><link>/gui-reference/yggdrasil/tutorial/using-variables/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/gui-reference/yggdrasil/tutorial/using-variables/</guid><description>&lt;p>This tutorial assumes you have understood &lt;a href="../basic-test-generation">basic test case generation&lt;/a>.&lt;/p>
+&lt;h2 id="the-model-updown-system">The model: Up/Down system&lt;/h2>
+&lt;p>Open the &lt;tt> updown/updown.xml&lt;/tt> file in Uppaal.&lt;/p>
+&lt;p>The system contains two templates: &lt;em>System&lt;/em> and &lt;em>User&lt;/em>.&lt;/p>
+&lt;p>The system can be either &lt;em>On&lt;/em>, &lt;em>Max&lt;/em>, or &lt;em>Off&lt;/em>, with channels &lt;em>up&lt;/em> and &lt;em>down&lt;/em> changing between them. The user can non-deterministically press &lt;em>up&lt;/em> or &lt;em>down&lt;/em>.&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">&lt;em>System&lt;/em> template&lt;/th>
+ &lt;th style="text-align: center">&lt;em>User&lt;/em> template&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">&lt;img src="../img/System2.png" alt="System template">&lt;/td>
+ &lt;td style="text-align: center">&lt;img src="../img/User2.png" alt="User template">&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="add-model-annotations-and-test-pre--and-post-fix-code">Add model annotations and test pre- and post-fix code&lt;/h2>
+&lt;p>Global variable declarations and prefix/postfix code is &lt;a href="basic-test-generation#add-test-cases-specific-model-annotations">the same as for the on/off model&lt;/a>.&lt;/p></description></item><item><title>Using Queries</title><link>/gui-reference/yggdrasil/tutorial/using-queries/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/gui-reference/yggdrasil/tutorial/using-queries/</guid><description>&lt;p>This tutorial assumes you have understood &lt;a href="../using-variables">using variables&lt;/a>.&lt;/p>
+&lt;h3 id="the-system-model">The system model&lt;/h3>
+&lt;p>This tutorial uses the same Up/Down model as in the section &lt;a href="../using-variables/#the-model-updown-system">using variables&lt;/a>. Open the &lt;tt> updown/updown.xml&lt;/tt> file in Uppaal.&lt;/p>
+&lt;h3 id="editing-the-queries">Editing the Queries&lt;/h3>
+&lt;p>Sometimes it is desirable to generate test cases for specific purposes. This can be done by creating a verification query for the purpose, and use that to generate a test trace.&lt;/p>
+&lt;p>In the &lt;em>&lt;em>Verifier&lt;/em>&lt;/em> tab you can enter queries.
+The &lt;em>&lt;em>Test Cases&lt;/em>&lt;/em> generator is able to search for traces satisfying reachability queries (that is queries which start with &lt;code>E&amp;lt;&amp;gt;&lt;/code>. The query entered in this tutorial should be &lt;code>E&amp;lt;&amp;gt; System.Max&lt;/code>, which asks the verifier to find a trace where the &lt;em>System&lt;/em> process is in the location &lt;em>Max&lt;/em>.&lt;/p></description></item></channel></rss>
