@@ -36,15 +36,6 @@
 The feature is supported on Linux and experimental on Windows and macOS.&lt;/p>
 &lt;/div>
 
-&lt;p>External Functions can be declared alongside other declarations. External functions are local to the current scope, defined by the grammar:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-EBNF" data-lang="EBNF">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">ExternDecl &lt;/span>&lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;import&amp;#39;&lt;/span> &lt;span style="color:#66d9ef">Path &lt;/span>&lt;span style="color:#e6db74">&amp;#39;{&amp;#39;&lt;/span> [&lt;span style="color:#66d9ef">FwdDeclList&lt;/span>] &lt;span style="color:#e6db74">&amp;#39;}&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">FwdDeclList &lt;/span>&lt;span style="color:#960050;background-color:#1e0010">=&lt;/span> &lt;span style="color:#66d9ef">FwdDecl &lt;/span>&lt;span style="color:#e6db74">&amp;#39;;&amp;#39;&lt;/span> |
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">FwdDeclList FwdDecl &lt;/span>&lt;span style="color:#e6db74">&amp;#39;;&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">FwdDecl &lt;/span>&lt;span style="color:#960050;background-color:#1e0010">=&lt;/span> [&lt;span style="color:#66d9ef">ID &lt;/span>&lt;span style="color:#e6db74">&amp;#39;=&amp;#39;&lt;/span>] &lt;span style="color:#66d9ef">Type ID &lt;/span>&lt;span style="color:#e6db74">&amp;#39;(&amp;#39;&lt;/span> [&lt;span style="color:#66d9ef">Parameters&lt;/span>] &lt;span style="color:#e6db74">&amp;#39;)&amp;#39;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;dl>
-&lt;dt>&lt;tt>Path&lt;/tt>&lt;/dt>
-&lt;dd>is a double-quoted (using &lt;code>&amp;quot;&lt;/code>) character sequence (string) denoting a file path to the library placed on the same computer as the used engine (&lt;code>server&lt;/code> or &lt;code>verifyta&lt;/code>).&lt;br>
-Note that the backslash (&lt;code>\&lt;/code>) character in (Windows) paths needs to be either escaped with another backslash or replaced with the forwardslash (&lt;code>/&lt;/code>), i.e. &lt;code>\&lt;/code> should be replaced with either &lt;code>\\&lt;/code> or &lt;code>/&lt;/code>. For example, &lt;code>&amp;quot;C:\libexternal.dll&amp;quot;&lt;/code> should be written as &lt;code>&amp;quot;C:\\libexternal.dll&amp;quot;&lt;/code> or &lt;code>&amp;quot;C:/libexternal.dll&amp;quot;&lt;/code>.&lt;/dd>
-&lt;/dl>
-&lt;p>The following code will load the external libary &lt;code>libexternal.so&lt;/code> from the path &lt;code>/home/user/lib&lt;/code> and import the functions &lt;code>get_sqrt&lt;/code>, &lt;code>get_prime&lt;/code>, &lt;code>fibonacci&lt;/code>, &lt;code>is_the_world_safe&lt;/code> and &lt;code>set_temperature&lt;/code>.
-The function &lt;code>is_the_world_safe&lt;/code> will be accessible using the name &lt;code>is_safe&lt;/code>.&lt;/p></description></item></channel></rss>
+
+&lt;div class="notices warning" >&lt;p>The external function calls must be &lt;em>&lt;strong>deterministic&lt;/strong>&lt;/em>: for any argument values, the function should produce the same result at any time when called with the same values.&lt;br>
+For example:&lt;/p></description></item></channel></rss>
