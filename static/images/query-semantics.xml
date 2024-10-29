@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.6//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_6.dtd'>
+<nta>
+	<declaration>/// The model demonstrates quantifiers in symbolic property
+</declaration>
+	<template>
+		<name>Possibly</name>
+		<location id="id0" x="-76" y="204">
+			<name x="-110" y="221">Possible2</name>
+		</location>
+		<location id="id1" x="-161" y="204">
+			<name x="-195" y="221">Possible1</name>
+		</location>
+		<location id="id2" x="-119" y="102">
+			<name x="-102" y="93">Future1</name>
+		</location>
+		<location id="id3" x="-34" y="0">
+			<name x="-17" y="-9">Busy</name>
+			<label kind="comments" x="-93" y="-102">Possibly:
+E&lt;&gt; P.Possible3
+Unsatisfied:
+E&lt;&gt; P.Error</label>
+		</location>
+		<location id="id4" x="94" y="204">
+			<name x="60" y="221">Possible4</name>
+		</location>
+		<location id="id5" x="51" y="102">
+			<name x="68" y="93">Future2</name>
+		</location>
+		<location id="id6" x="8" y="204" color="#00ff00">
+			<name x="-25" y="221">Possible3</name>
+		</location>
+		<location id="id7" x="-119" y="0" color="#c0c0c0">
+			<name x="-136" y="8">Error</name>
+		</location>
+		<init ref="id3"/>
+		<transition id="id8" color="#00ff00">
+			<source ref="id3"/>
+			<target ref="id5"/>
+		</transition>
+		<transition id="id9">
+			<source ref="id2"/>
+			<target ref="id0"/>
+		</transition>
+		<transition id="id10">
+			<source ref="id2"/>
+			<target ref="id1"/>
+		</transition>
+		<transition id="id11">
+			<source ref="id3"/>
+			<target ref="id2"/>
+		</transition>
+		<transition id="id12">
+			<source ref="id5"/>
+			<target ref="id4"/>
+		</transition>
+		<transition id="id13" color="#00ff00">
+			<source ref="id5"/>
+			<target ref="id6"/>
+		</transition>
+		<transition id="id14" color="#c0c0c0">
+			<source ref="id7"/>
+			<target ref="id3"/>
+		</transition>
+	</template>
+	<template>
+		<name>PotentiallyAlways</name>
+		<location id="id15" x="-76" y="204">
+			<name x="-110" y="221">Possible2</name>
+		</location>
+		<location id="id16" x="-161" y="204">
+			<name x="-195" y="221">Possible1</name>
+		</location>
+		<location id="id17" x="-119" y="102">
+			<name x="-102" y="93">Future1</name>
+		</location>
+		<location id="id18" x="-34" y="0" color="#00ff00">
+			<name x="-17" y="-8">Busy</name>
+			<label kind="comments" x="-170" y="-102">Potentially Always:
+E[] P.Busy
+E[] P.Busy or P.Future2
+E[] P.Busy or P.Future2 or P.Possible3</label>
+		</location>
+		<location id="id19" x="94" y="204">
+			<name x="60" y="221">Possible4</name>
+		</location>
+		<location id="id20" x="51" y="102" color="#00ff00">
+			<name x="68" y="93">Future2</name>
+		</location>
+		<location id="id21" x="8" y="204" color="#00ff00">
+			<name x="-25" y="221">Possible3</name>
+		</location>
+		<location id="id22" x="-119" y="0" color="#c0c0c0">
+			<name x="-136" y="8">Error</name>
+		</location>
+		<init ref="id18"/>
+		<transition id="id23" color="#00ff00">
+			<source ref="id18"/>
+			<target ref="id20"/>
+		</transition>
+		<transition id="id24">
+			<source ref="id17"/>
+			<target ref="id15"/>
+		</transition>
+		<transition id="id25">
+			<source ref="id17"/>
+			<target ref="id16"/>
+		</transition>
+		<transition id="id26">
+			<source ref="id18"/>
+			<target ref="id17"/>
+		</transition>
+		<transition id="id27">
+			<source ref="id20"/>
+			<target ref="id19"/>
+		</transition>
+		<transition id="id28" color="#00ff00">
+			<source ref="id20"/>
+			<target ref="id21"/>
+		</transition>
+		<transition id="id29" color="#c0c0c0">
+			<source ref="id22"/>
+			<target ref="id18"/>
+		</transition>
+	</template>
+	<template>
+		<name>Eventually</name>
+		<declaration>clock x;
+bool good = false;</declaration>
+		<location id="id30" x="-76" y="204" color="#00ff00">
+			<name x="-110" y="221">Possible2</name>
+		</location>
+		<location id="id31" x="-161" y="204" color="#00ff00">
+			<name x="-195" y="221">Possible1</name>
+		</location>
+		<location id="id32" x="-119" y="102">
+			<name x="-102" y="93">Future1</name>
+			<label kind="invariant" x="-102" y="110">x&lt;=10</label>
+		</location>
+		<location id="id33" x="-34" y="0">
+			<name x="-17" y="-17">Busy</name>
+			<label kind="invariant" x="-17" y="0">x&lt;=10</label>
+			<label kind="comments" x="-85" y="-59">Eventually:
+A&lt;&gt; P.good==1</label>
+		</location>
+		<location id="id34" x="94" y="204" color="#00ff00">
+			<name x="60" y="221">Possible4</name>
+		</location>
+		<location id="id35" x="51" y="102">
+			<name x="68" y="93">Future2</name>
+			<label kind="invariant" x="68" y="110">x&lt;=10</label>
+		</location>
+		<location id="id36" x="8" y="204" color="#00ff00">
+			<name x="-25" y="221">Possible3</name>
+		</location>
+		<location id="id37" x="-119" y="0" color="#c0c0c0">
+			<name x="-136" y="8">Error</name>
+		</location>
+		<init ref="id33"/>
+		<transition id="id38" color="#00ff00">
+			<source ref="id33"/>
+			<target ref="id35"/>
+		</transition>
+		<transition id="id39" color="#00ff00">
+			<source ref="id32"/>
+			<target ref="id30"/>
+			<label kind="assignment" x="-93" y="144">good=1</label>
+		</transition>
+		<transition id="id40" color="#00ff00">
+			<source ref="id32"/>
+			<target ref="id31"/>
+			<label kind="assignment" x="-195" y="144">good=1</label>
+		</transition>
+		<transition id="id41" color="#00ff00">
+			<source ref="id33"/>
+			<target ref="id32"/>
+		</transition>
+		<transition id="id42" color="#00ff00">
+			<source ref="id35"/>
+			<target ref="id34"/>
+			<label kind="assignment" x="76" y="144">good=1</label>
+		</transition>
+		<transition id="id43" color="#00ff00">
+			<source ref="id35"/>
+			<target ref="id36"/>
+			<label kind="assignment" x="-25" y="144">good=1</label>
+		</transition>
+		<transition id="id44" color="#c0c0c0">
+			<source ref="id37"/>
+			<target ref="id33"/>
+		</transition>
+	</template>
+	<template>
+		<name>Invariantly</name>
+		<location id="id45" x="-76" y="204" color="#00ff00">
+			<name x="-110" y="221">Possible2</name>
+		</location>
+		<location id="id46" x="-161" y="204" color="#00ff00">
+			<name x="-195" y="221">Possible1</name>
+		</location>
+		<location id="id47" x="-119" y="102" color="#00ff00">
+			<name x="-102" y="93">Future1</name>
+		</location>
+		<location id="id48" x="-34" y="0" color="#00ff00">
+			<name x="-17" y="-9">Busy</name>
+			<label kind="comments" x="-85" y="-60">Invariantly:
+A[] not P.Error</label>
+		</location>
+		<location id="id49" x="94" y="204" color="#00ff00">
+			<name x="60" y="221">Possible4</name>
+		</location>
+		<location id="id50" x="51" y="102" color="#00ff00">
+			<name x="68" y="93">Future2</name>
+		</location>
+		<location id="id51" x="8" y="204" color="#00ff00">
+			<name x="-25" y="221">Possible3</name>
+		</location>
+		<location id="id52" x="-119" y="0" color="#c0c0c0">
+			<name x="-136" y="8">Error</name>
+		</location>
+		<init ref="id48"/>
+		<transition id="id53" color="#c0c0c0">
+			<source ref="id52"/>
+			<target ref="id48"/>
+		</transition>
+		<transition id="id54" color="#00ff00">
+			<source ref="id48"/>
+			<target ref="id50"/>
+		</transition>
+		<transition id="id55" color="#00ff00">
+			<source ref="id47"/>
+			<target ref="id45"/>
+		</transition>
+		<transition id="id56" color="#00ff00">
+			<source ref="id47"/>
+			<target ref="id46"/>
+		</transition>
+		<transition id="id57" color="#00ff00">
+			<source ref="id48"/>
+			<target ref="id47"/>
+		</transition>
+		<transition id="id58" color="#00ff00">
+			<source ref="id50"/>
+			<target ref="id49"/>
+		</transition>
+		<transition id="id59" color="#00ff00">
+			<source ref="id50"/>
+			<target ref="id51"/>
+		</transition>
+	</template>
+	<template>
+		<name x="5" y="5">LeadsTo</name>
+		<declaration>clock x;
+bool repaired = false;</declaration>
+		<location id="id60" x="-42" y="8" color="#00ff00">
+			<name x="-25" y="-8">Recover</name>
+		</location>
+		<location id="id61" x="-42" y="-102" color="#ff0000">
+			<name x="-102" y="-119">Fault</name>
+			<label kind="invariant" x="-102" y="-102">x&lt;=20</label>
+		</location>
+		<location id="id62" x="-42" y="-212">
+			<name x="-25" y="-221">Busy</name>
+			<label kind="comments" x="-153" y="-297">Leads-to:
+P.Fault --&gt; P.Recover
+A[] (P.Fault imply A&lt;&gt; P.Recover)</label>
+		</location>
+		<init ref="id62"/>
+		<transition id="id63">
+			<source ref="id60"/>
+			<target ref="id62"/>
+			<nail x="-153" y="8"/>
+			<nail x="-153" y="-212"/>
+		</transition>
+		<transition id="id64" color="#00ff00">
+			<source ref="id61"/>
+			<target ref="id60"/>
+			<label kind="guard" x="-34" y="-68">x&gt;=10</label>
+			<label kind="assignment" x="-34" y="-51">x=0</label>
+		</transition>
+		<transition id="id65">
+			<source ref="id62"/>
+			<target ref="id61"/>
+			<label kind="assignment" x="-34" y="-178">x=0</label>
+		</transition>
+	</template>
+	<template>
+		<name x="5" y="5">LeadsToBad</name>
+		<declaration>clock x;
+bool repaired = false;</declaration>
+		<location id="id66" x="-42" y="8" color="#00ff00">
+			<name x="-25" y="-8">Recover</name>
+			<label kind="invariant" x="-25" y="9">x&lt;=20</label>
+		</location>
+		<location id="id67" x="-42" y="-102" color="#ff0000">
+			<name x="-102" y="-119">Fault</name>
+			<label kind="invariant" x="-102" y="-102">x&lt;=20</label>
+		</location>
+		<location id="id68" x="-42" y="-212">
+			<name x="-25" y="-221">Busy</name>
+			<label kind="comments" x="-153" y="-297">Unsatisfied leads-to:
+P.Fault --&gt; P.Recover
+A[] (P.Fault imply A&lt;&gt; P.Recover)</label>
+		</location>
+		<location id="id69" x="85" y="-102" color="#c0c0c0">
+			<name x="102" y="-119">Workaround</name>
+			<label kind="invariant" x="102" y="-102">x&lt;=20</label>
+		</location>
+		<init ref="id68"/>
+		<transition id="id70" color="#c0c0c0">
+			<source ref="id69"/>
+			<target ref="id67"/>
+			<label kind="guard" x="0" y="-161">x&gt;=10</label>
+			<label kind="assignment" x="0" y="-144">x=0</label>
+			<nail x="59" y="-144"/>
+			<nail x="-17" y="-144"/>
+		</transition>
+		<transition id="id71" color="#c0c0c0">
+			<source ref="id67"/>
+			<target ref="id69"/>
+			<label kind="guard" x="-17" y="-119">repaired</label>
+			<label kind="assignment" x="-17" y="-102">x=0</label>
+		</transition>
+		<transition id="id72">
+			<source ref="id66"/>
+			<target ref="id68"/>
+			<label kind="guard" x="-145" y="-17">x&gt;=10</label>
+			<label kind="assignment" x="-145" y="8">repaired=1</label>
+			<nail x="-153" y="8"/>
+			<nail x="-153" y="-212"/>
+		</transition>
+		<transition id="id73" color="#00ff00">
+			<source ref="id67"/>
+			<target ref="id66"/>
+			<label kind="guard" x="-34" y="-68">x&gt;=10</label>
+			<label kind="assignment" x="-34" y="-51">x=0</label>
+		</transition>
+		<transition id="id74">
+			<source ref="id68"/>
+			<target ref="id67"/>
+			<label kind="assignment" x="-34" y="-178">x=0</label>
+		</transition>
+	</template>
+	<template>
+		<name x="5" y="5">LeadsToBadUnfolded</name>
+		<declaration>clock x;
+bool repaired = false;</declaration>
+		<location id="id75" x="-42" y="323" color="#0000ff">
+			<name x="-25" y="297">Recover2</name>
+			<label kind="comments" x="-25" y="323">reachable, but prevented
+by the infinite loop in red.</label>
+		</location>
+		<location id="id76" x="-42" y="8" color="#00ff00">
+			<name x="-25" y="-25">Recover1</name>
+			<label kind="invariant" x="-25" y="-8">x&lt;=20</label>
+			<label kind="comments" x="-25" y="17">repaired=0</label>
+		</location>
+		<location id="id77" x="-42" y="-102" color="#ff0000">
+			<name x="-110" y="-119">Fault1</name>
+			<label kind="invariant" x="-110" y="-102">x&lt;=20</label>
+			<label kind="comments" x="-136" y="-76">repaired=0</label>
+		</location>
+		<location id="id78" x="-42" y="-212">
+			<name x="-25" y="-229">Busy1</name>
+			<label kind="comments" x="-25" y="-204">repaired=0</label>
+		</location>
+		<location id="id79" x="93" y="221" color="#ff0000">
+			<name x="110" y="195">Workaround</name>
+			<label kind="invariant" x="110" y="212">x&lt;=20</label>
+			<label kind="comments" x="110" y="237">repaired=1</label>
+		</location>
+		<location id="id80" x="-42" y="221" color="#ff0000">
+			<name x="-111" y="187">Fault2</name>
+			<label kind="invariant" x="-102" y="204">x&lt;=20</label>
+			<label kind="comments" x="-144" y="229">repaired=1</label>
+		</location>
+		<location id="id81" x="-42" y="119">
+			<name x="-25" y="94">Busy2</name>
+			<label kind="comments" x="-25" y="119">repaired=1</label>
+		</location>
+		<location id="id82" x="102" y="-102" color="#c0c0c0">
+			<name x="119" y="-127">Workaround0</name>
+			<label kind="invariant" x="119" y="-110">x&lt;=20</label>
+			<label kind="comments" x="119" y="-84">unreachable</label>
+		</location>
+		<init ref="id78"/>
+		<transition id="id83">
+			<source ref="id80"/>
+			<target ref="id75"/>
+			<label kind="guard" x="-34" y="255">x&gt;=10</label>
+			<label kind="assignment" x="-34" y="272">x=0</label>
+		</transition>
+		<transition id="id84">
+			<source ref="id81"/>
+			<target ref="id80"/>
+			<label kind="assignment" x="-34" y="144">x=0</label>
+		</transition>
+		<transition id="id85">
+			<source ref="id76"/>
+			<target ref="id81"/>
+			<label kind="guard" x="-34" y="42">x&gt;=10</label>
+			<label kind="assignment" x="-34" y="59">repaired=1</label>
+		</transition>
+		<transition id="id86" color="#00ff00">
+			<source ref="id77"/>
+			<target ref="id76"/>
+			<label kind="guard" x="-34" y="-68">x&gt;=10</label>
+			<label kind="assignment" x="-34" y="-51">x=0</label>
+		</transition>
+		<transition id="id87">
+			<source ref="id78"/>
+			<target ref="id77"/>
+			<label kind="assignment" x="-34" y="-178">x=0</label>
+		</transition>
+		<transition id="id88" color="#ff0000">
+			<source ref="id79"/>
+			<target ref="id80"/>
+			<label kind="guard" x="0" y="161">x&gt;=10</label>
+			<label kind="assignment" x="0" y="178">x=0</label>
+			<nail x="59" y="179"/>
+			<nail x="-8" y="178"/>
+		</transition>
+		<transition id="id89" color="#ff0000">
+			<source ref="id80"/>
+			<target ref="id79"/>
+			<label kind="guard" x="-17" y="204">repaired</label>
+			<label kind="assignment" x="-17" y="221">x=0</label>
+		</transition>
+		<transition id="id90" color="#c0c0c0">
+			<source ref="id82"/>
+			<target ref="id77"/>
+			<label kind="guard" x="0" y="-161">x&gt;=10</label>
+			<label kind="assignment" x="1" y="-144">x=0</label>
+			<nail x="68" y="-144"/>
+			<nail x="-8" y="-144"/>
+		</transition>
+		<transition id="id91" color="#c0c0c0">
+			<source ref="id77"/>
+			<target ref="id82"/>
+			<label kind="guard" x="-16" y="-119">repaired</label>
+			<label kind="assignment" x="-15" y="-102">x=0</label>
+		</transition>
+	</template>
+	<system>system Possibly, PotentiallyAlways, Invariantly, Eventually, LeadsTo, LeadsToBad;</system>
+	<queries>
+		<option key="--diagnostic" value="0"/>
+		<query>
+			<formula>E&lt;&gt; Possibly.Possible3</formula>
+			<comment>Possibly</comment>
+			<result outcome="success" type="quality" timestamp="2024-10-29 15:33:32 +0100">
+				<option key="--diagnostic" value="0"/>
+			</result>
+		</query>
+		<query>
+			<formula>E&lt;&gt; Possibly.Error</formula>
+			<comment>Possibly</comment>
+			<result outcome="failure" type="quality" timestamp="2024-10-29 14:57:50 +0100">
+				<option key="--diagnostic" value="0"/>
+			</result>
+		</query>
+		<query>
+			<formula>E[] PotentiallyAlways.Busy</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-10-29 15:33:47 +0100">
+				<option key="--diagnostic" value="0"/>
+			</result>
+		</query>
+		<query>
+			<formula>E[] PotentiallyAlways.Busy or PotentiallyAlways.Future2 or PotentiallyAlways.Possible3</formula>
+			<comment>Potentially Always</comment>
+			<result outcome="success" type="quality" timestamp="2024-10-29 14:57:19 +0100">
+				<option key="--diagnostic" value="0"/>
+			</result>
+		</query>
+		<query>
+			<formula>E[] PotentiallyAlways.Future2</formula>
+			<comment/>
+			<result outcome="failure" type="quality" timestamp="2024-10-29 14:57:15 +0100">
+				<option key="--diagnostic" value="0"/>
+			</result>
+		</query>
+		<query>
+			<formula>A&lt;&gt; Eventually.good==1</formula>
+			<comment>Eventually</comment>
+			<result outcome="success" type="quality" timestamp="2024-10-29 15:00:49 +0100">
+				<option key="--diagnostic" value="0"/>
+			</result>
+		</query>
+		<query>
+			<formula>A&lt;&gt; Possibly.Possible3</formula>
+			<comment/>
+			<result outcome="failure" type="quality" timestamp="2024-10-29 15:02:00 +0100">
+				<option key="--diagnostic" value="0"/>
+			</result>
+		</query>
+		<query>
+			<formula>A[] not Invariantly.Error</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-10-29 15:19:23 +0100">
+				<option key="--diagnostic" value="0"/>
+			</result>
+		</query>
+		<query>
+			<formula>A[] not Invariantly.Busy</formula>
+			<comment/>
+			<result outcome="failure" type="quality" timestamp="2024-10-29 15:19:35 +0100">
+				<option key="--diagnostic" value="0"/>
+			</result>
+		</query>
+		<query>
+			<formula>LeadsTo.Fault --&gt; LeadsTo.Recover</formula>
+			<comment/>
+			<result outcome="success" type="quality" timestamp="2024-10-29 15:16:38 +0100">
+				<option key="--diagnostic" value="0"/>
+			</result>
+		</query>
+		<query>
+			<formula>LeadsToBad.Fault --&gt; LeadsToBad.Recover</formula>
+			<comment/>
+			<result outcome="failure" type="quality" timestamp="2024-10-29 15:31:34 +0100">
+				<option key="--diagnostic" value="0"/>
+			</result>
+		</query>
+	</queries>
+</nta>
