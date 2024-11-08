@@ -13,15 +13,14 @@
 &lt;li>&lt;strong>Exit:&lt;/strong> exits UPPAAL.&lt;/li>
 &lt;/ul></description></item><item><title>Edit Menu</title><link>/gui-reference/menu-bar/edit/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/gui-reference/menu-bar/edit/</guid><description>&lt;p>The Edit menu offers a set of commands supported in the system editor. The items are:&lt;/p>
 &lt;ul>
-&lt;li>&lt;strong>Undo:&lt;/strong> reverses the most recent editing action. This function is only available in the editor.&lt;/li>
-&lt;li>&lt;strong>Redo:&lt;/strong> re-applies the editing action that has most recently been reversed by the Undo action. This function is only available in the editor.&lt;/li>
-&lt;li>&lt;strong>Cut:&lt;/strong> removes the selected text and places it in the clipboard. There must be an active text selection.&lt;/li>
-&lt;li>&lt;strong>Copy:&lt;/strong> places a copy of the selected text in the clipboard. There must be an active text selection.&lt;/li>
-&lt;li>&lt;strong>Paste:&lt;/strong> places text in the clipboard at the cursor location in the currently active editor. There must be text in the clipboard, and an editor must be active.&lt;/li>
-&lt;li>&lt;strong>Delete:&lt;/strong> delete selected text. There must be an active text selection.&lt;/li>
-&lt;li>&lt;strong>Insert Template:&lt;/strong> adds a new empty template to the system description.&lt;/li>
-&lt;li>&lt;strong>Remove Template:&lt;/strong> removes the currently selected template from the system description. There must be a template selected.&lt;/li>
-&lt;/ul></description></item><item><title>View Menu</title><link>/gui-reference/menu-bar/view/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/gui-reference/menu-bar/view/</guid><description>&lt;p>The view menu is used to modify the appearance of the system currently shown in the &lt;a href="/gui-reference/system-editor/">system editor&lt;/a> and the &lt;a href="gui-reference/symbolic-simulator/">simulator&lt;/a>. The items are:&lt;/p>
+&lt;li>
+&lt;p>&lt;strong>Undo:&lt;/strong> reverses the most recent editing action. This function is only available in the editor.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Redo:&lt;/strong> re-applies the editing action that has most recently been reversed by the Undo action. This function is only available in the editor.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Cut:&lt;/strong> removes the selected text and places it in the clipboard. There must be an active text selection.&lt;/p></description></item><item><title>View Menu</title><link>/gui-reference/menu-bar/view/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/gui-reference/menu-bar/view/</guid><description>&lt;p>The view menu is used to modify the appearance of the system currently shown in the &lt;a href="/gui-reference/system-editor/">system editor&lt;/a> and the &lt;a href="gui-reference/symbolic-simulator/">simulator&lt;/a>. The items are:&lt;/p>
 &lt;ul>
 &lt;li>
 &lt;p>&lt;strong>Zoom:&lt;/strong> shows a sub menu with fixed zoom values, zoom to fit, and itemes for zooming in, out, or to normal size. A change in the zoom value affects the templates the editor or the processes in the simulator (if one of the tools is active).&lt;/p>
