@@ -13,5 +13,6 @@ chapter: true
 - Command line interface to verifier: [verifyta](verifyta)
 - Java model editor, simulator and verifier interface: [Java API](javaapi)
 - Connect GUI to a remote server via TCP/IP sockets: [socketserver](socketserver)
+- Running engine inside Docker: [docker](docker)
 - Document and trace file formats: [file formats](file-formats)
 - Including UPPAAL models into LaTeX publications: [LaTeX](latex)

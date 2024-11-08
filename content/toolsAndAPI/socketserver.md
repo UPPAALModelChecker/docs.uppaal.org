@@ -3,29 +3,35 @@ title: Socketserver
 weight: 40
 ---
 
-To start a remote server, use the `socketserver` binary (included for Linux, SunOS and MacOS). To use a remote server, see the section on [command line options](/toolsandapi/uppaal/) for the GUI.
+To start a remote server, use the `socketserver` binary (included for Linux, macOS, SunOS).
+To use the remote server, see the section on [Edit > Engine](/gui-reference/menu-bar/edit/) for the GUI.
 
-The <tt>socketserver</tt> can be executed from the command line using one of the following commands:
+The `socketserver` can be run from the command line on a remote machine using one of the following commands:
 
-> <tt>socketserver [-p<P1>] [-s<P2>]</tt>  
-> <tt>socketserver -h</tt>
+```
+Synopsis:
+  socketserver [-n] [-p<P1>] [command]...
+  socketserver -h
+  h : Print this help screen
+  n : Run in native mode
+  p : Set port in server mode (default is 2350)
+  d : Write communication to debug files in current directory
+  m : Write communication standard out
+  [commmand] : A series of argv to execute as the server command
+```
 
 The available command line options are:
 
-<dl>
+`-h`
+: Prints a brief description of the command line options.
 
-<dt><tt>-h</tt></dt>
+`-p`
+: Sets TCP/IP server port to listen to (default is 2350).
 
-<dd>Prints a brief description of the command line options.</dd>
+`-d`
+: write the engine communication to debug files in the current directory (useful in debugging).
 
-<dt><tt>-p</tt></dt>
+`-m`
+: write the engine communication to standard output (usefull in debugging).
 
-<dd>Set port in server mode (default is 2350).</dd>
-
-<dt><tt>-s</tt></dt>
-
-<dd>Set filename of server binary to P2.</dd>
-
-</dl>
-
-The <tt>socketserver</tt> will load the <tt>server</tt> from the directory where it was invoked, and act as a proxy.
+The `socketserver` runs the `server` from the directory where it was invoked, and acts as a proxy on TCP/IP port.
