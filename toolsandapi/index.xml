@@ -7,25 +7,7 @@
 &lt;p>&lt;tt>java -jar \path\uppaal.jar [OPTION] &amp;hellip; [FILENAME]&lt;/tt>&lt;/p>
 &lt;/blockquote>
 &lt;p>where &lt;tt>path&lt;/tt> is the complete path to the &lt;tt>uppaal.jar&lt;/tt> file (it might also be necessary to specify the complete path to the &lt;tt>java&lt;/tt> executable).&lt;/p>
-&lt;p>The optional filename refers to a model to be loaded at startup.&lt;/p></description></item><item><title>verifyta</title><link>/toolsandapi/verifyta/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/toolsandapi/verifyta/</guid><description>&lt;p>The verifier functionality is accessible through &lt;code>verifyta&lt;/code> command line utility in &lt;code>bin&lt;/code> directory of the UPPAAL distribution.&lt;/p>
-&lt;p>The supported options are displayed when running &lt;code>verifyta -h&lt;/code> or &lt;code>verifyta --help&lt;/code>.&lt;/p></description></item><item><title>Java API</title><link>/toolsandapi/javaapi/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/toolsandapi/javaapi/</guid><description>&lt;p>UPPAAL models can be created, loaded, saved, simulated and properties checked using &lt;code>libs/model.jar&lt;/code> library. There is also javadoc documentation included in &lt;code>libs/model-javadoc.jar&lt;/code>.&lt;/p>
-&lt;p>A demonstrating example is included in the &lt;code>demo/ModelDemo.java&lt;/code> file of UPPAAL distribution.&lt;/p></description></item><item><title>Socketserver</title><link>/toolsandapi/socketserver/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/toolsandapi/socketserver/</guid><description>&lt;p>To start a remote server, use the &lt;code>socketserver&lt;/code> binary (included for Linux, macOS, SunOS).
-To use the remote server, see the section on &lt;a href="/gui-reference/menu-bar/edit/">Edit &amp;gt; Engine&lt;/a> for the GUI.&lt;/p>
-&lt;p>The &lt;code>socketserver&lt;/code> can be run from the command line on a remote machine using one of the following commands:&lt;/p>
-&lt;pre tabindex="0">&lt;code>Synopsis:
- socketserver [-n] [-p&amp;lt;P1&amp;gt;] [command]...
- socketserver -h
- h : Print this help screen
- n : Run in native mode
- p : Set port in server mode (default is 2350)
- d : Write communication to debug files in current directory
- m : Write communication standard out
- [commmand] : A series of argv to execute as the server command
-&lt;/code>&lt;/pre>&lt;p>The available command line options are:&lt;/p></description></item><item><title>File Formats</title><link>/toolsandapi/file-formats/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/toolsandapi/file-formats/</guid><description>&lt;p>UPPAAL supports three file formats for models: XML, XTA and TA. XML and XTA files can be loaded and stored via the &lt;strong>Open Project&lt;/strong>, &lt;strong>Open System&lt;/strong>, &lt;strong>Save System&lt;/strong>, and &lt;strong>Save System As&lt;/strong> menus. When saving a file, the file type is determined by the file name extension used. Each format is explained in more details below.&lt;/p>
-&lt;p>Notice that the above mentioned file formats are mostly independent from the type of changes made to the syntax between UPPAAL 3.4 and UPPAAL 4.0.&lt;/p></description></item><item><title>Latex</title><link>/toolsandapi/latex/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/toolsandapi/latex/</guid><description>&lt;p>UPPAAL web site includes links to uppaal.sty file — style for typesetting documents in LaTeX.&lt;/p>
-&lt;ul>
-&lt;li>&lt;a href="https://github.com/DEIS-Tools/uppaal-latex">UPPAAL Latex&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title/><link>/toolsandapi/docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/toolsandapi/docker/</guid><description>&lt;h1 id="docker-containerization">Docker Containerization&lt;/h1>
+&lt;p>The optional filename refers to a model to be loaded at startup.&lt;/p></description></item><item><title>Docker</title><link>/toolsandapi/docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/toolsandapi/docker/</guid><description>&lt;h1 id="docker-containerization">Docker Containerization&lt;/h1>
 &lt;ol>
 &lt;li>
 &lt;p>Install Docker desktop from &lt;a href="//www.docker.com">docker.com&lt;/a>.&lt;/p>
@@ -58,4 +40,22 @@ To use the remote server, see the section on &lt;a href="/gui-reference/menu-bar
 &lt;/ol>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sh" data-lang="sh">&lt;span style="display:flex;">&lt;span>cd uppaal-X.Y.Z
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>docker image build --build-arg KEY&lt;span style="color:#f92672">=&lt;/span>$UPPAAL_LICENSE_KEY --tag uppaal-X.Y.Z -f res/Dockerfile .
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>where &lt;code>$UPPAAL_LICENSE_KEY&lt;/code> is your UPPAAL license key from &lt;a href="https://uppaal.veriaal.dk">uppaal.veriaal.dk&lt;/a>.&lt;/p></description></item></channel></rss>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>where &lt;code>$UPPAAL_LICENSE_KEY&lt;/code> is your UPPAAL license key from &lt;a href="https://uppaal.veriaal.dk">uppaal.veriaal.dk&lt;/a>.&lt;/p></description></item><item><title>verifyta</title><link>/toolsandapi/verifyta/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/toolsandapi/verifyta/</guid><description>&lt;p>The verifier functionality is accessible through &lt;code>verifyta&lt;/code> command line utility in &lt;code>bin&lt;/code> directory of the UPPAAL distribution.&lt;/p>
+&lt;p>The supported options are displayed when running &lt;code>verifyta -h&lt;/code> or &lt;code>verifyta --help&lt;/code>.&lt;/p></description></item><item><title>Java API</title><link>/toolsandapi/javaapi/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/toolsandapi/javaapi/</guid><description>&lt;p>UPPAAL models can be created, loaded, saved, simulated and properties checked using &lt;code>libs/model.jar&lt;/code> library. There is also javadoc documentation included in &lt;code>libs/model-javadoc.jar&lt;/code>.&lt;/p>
+&lt;p>A demonstrating example is included in the &lt;code>demo/ModelDemo.java&lt;/code> file of UPPAAL distribution.&lt;/p></description></item><item><title>Socketserver</title><link>/toolsandapi/socketserver/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/toolsandapi/socketserver/</guid><description>&lt;p>To start a remote server, use the &lt;code>socketserver&lt;/code> binary (included for Linux, macOS, SunOS).
+To use the remote server, see the section on &lt;a href="/gui-reference/menu-bar/edit/">Edit &amp;gt; Engine&lt;/a> for the GUI.&lt;/p>
+&lt;p>The &lt;code>socketserver&lt;/code> can be run from the command line on a remote machine using one of the following commands:&lt;/p>
+&lt;pre tabindex="0">&lt;code>Synopsis:
+ socketserver [-n] [-p&amp;lt;P1&amp;gt;] [command]...
+ socketserver -h
+ h : Print this help screen
+ n : Run in native mode
+ p : Set port in server mode (default is 2350)
+ d : Write communication to debug files in current directory
+ m : Write communication standard out
+ [commmand] : A series of argv to execute as the server command
+&lt;/code>&lt;/pre>&lt;p>The available command line options are:&lt;/p></description></item><item><title>File Formats</title><link>/toolsandapi/file-formats/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/toolsandapi/file-formats/</guid><description>&lt;p>UPPAAL supports three file formats for models: XML, XTA and TA. XML and XTA files can be loaded and stored via the &lt;strong>Open Project&lt;/strong>, &lt;strong>Open System&lt;/strong>, &lt;strong>Save System&lt;/strong>, and &lt;strong>Save System As&lt;/strong> menus. When saving a file, the file type is determined by the file name extension used. Each format is explained in more details below.&lt;/p>
+&lt;p>Notice that the above mentioned file formats are mostly independent from the type of changes made to the syntax between UPPAAL 3.4 and UPPAAL 4.0.&lt;/p></description></item><item><title>Latex</title><link>/toolsandapi/latex/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/toolsandapi/latex/</guid><description>&lt;p>UPPAAL web site includes links to uppaal.sty file — style for typesetting documents in LaTeX.&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/DEIS-Tools/uppaal-latex">UPPAAL Latex&lt;/a>&lt;/li>
+&lt;/ul></description></item></channel></rss>
