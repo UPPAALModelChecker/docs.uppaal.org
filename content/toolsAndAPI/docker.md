@@ -1,12 +1,16 @@
 ---
 title: Docker
-weight: 20
+weight: 50
 ---
 
-# Docker Containerization
+Docker provides a convenient containerization, allowing to run UPPAAL under an environment different from the main operating system.
 
+The instructions below show how to setup UPPAAL engine inside latest Ubuntu container.
 
-1. Install Docker desktop from [docker.com](//www.docker.com).
+1. Install Docker desktop from [docker.com](//www.docker.com). Most Linux distributions already have Docker in their repositories, so consult your Linux distribution on how to install it. For example, on Debian and Ubuntu:
+```sh
+sudo apt install docker.io
+```
 
 2. Download and extract/install UPPAAL for Linux.
 
@@ -62,13 +66,20 @@ UPPAAL engine exits (and releases the resources) when the UPPAAL GUI is closed o
 
 ## Diagnostics
 
-If something does not work, start an interactive shell to investigate:
+If docker commands give permission errors on Linux, you may need to add your account to `docker` group to be able to create docker images, so try the following:
+```sh
+sudo adduser $USER docker
+```
+then logout-login or reboot for the account changes to take effect.
+
+
+If UPPAAL cannot connect to the remote engine, or docker container does not work, then start an interactive shell to investigate:
 ```sh
 docker run --rm -it --entrypoint /bin/bash uppaal-5.0.0
 ```
 
 For example:
-- Normally the newer LIBC versions are backward compatible with older versions, so older UPPAAL should be running fine on newer OSes, but on older computers the older library versions can be incompatible with what UPPAAL has been compiled with (`verifyta` crashes right away).
+- Normally the newer LIBC versions are backward compatible with older versions, so older UPPAAL should be running fine on newer Linux releases, but if UPPAAL is newer than the Linux release, then the older library versions might be incompatible with what UPPAAL has been compiled with (e.g. running `verifyta` crashes right away).
 - Check UPPAAL version information:
 ```sh
 verifyta --version
