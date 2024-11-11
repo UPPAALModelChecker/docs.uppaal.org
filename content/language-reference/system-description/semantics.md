@@ -91,19 +91,34 @@ In [statistical model checking](/gui-reference/verifier/verifying/) the concrete
     *   Pick the concrete edge according to uniform distribution.
     *   If the edge has probabilistic branches, then the probability of taking a branch _i_ is determined by the ratio _<sup>w<sub>i</sub></sup>/<sub>W</sub>_, where _w<sub>i</sub>_ is the weight of the branch _i_ and _W_ is the sum of all branch weights: _W=Σ<sub>j</sub>w<sub>j</sub>_.
 
-[Statistical model checking](/gui-reference/verifier/verifying/) has the following assumptions about the model:
+## SMC Limitations
 
-<dl>
+Since [Statistical model checking](/gui-reference/verifier/verifying/) uses numerical simulations and statistics rather than symbolic operations, it allows many features like arbitrary derivatives over `clock` variables, arbitrary guard and invariant expressions, including floating point expressions (which are not supported in Symbolic queries).
 
-<dt>Input enableness (non-blocking inputs):</dt>
+Current UPPAAL SMC implementation relies on numerical methods and has the following assumptions and limitations about the model:
 
-<dd>Sending cannot be blocked, i.e. the channel is either broadcast or there is always one process with an enabled receiving edge-transition.</dd>
+Input enableness (non-blocking inputs):
+: Sending cannot be blocked, i.e. the channel is either `broadcast` or there is always one process with an enabled receiving edge-transition.
 
-<dt>Input determinism:</dt>
+Input determinism:
+: There is exactly one enabled receiving edge-transition per process at a time.
 
-<dd>There is exactly one enabled receiving edge-transition at a time. For binary synchronizations there is at most one receiving process at a time.</dd>
+Delay determinism:
+: Delay probability distribution need to always be defined: states with an upper delay bound (e.g. invariant over `clock` variable) are assigned a uniform delay distribution, and states without an upper delay limit (invariant not constraining any `clock` variable) are assigned an exponential distribution, therefore such locations may require an exponential rate to be defined.
 
-</dl>
+Deadlocks:
+: The model must be free of time-locks: the time must always be able to progress or an edge transition should be available.
+
+Zeno behavior:
+: Modeled system can take only a finite number of edge-transitions within finite amount of time.
+
+Numerical precision:
+: The exact clock constraints (e.g. guard `x==3.14`, or a combination of guard `x>=3.14` and invariant `x<=3.14` over `clock` variable `x`) require inifinite precision and thus cannot always be realized with adaptive integrator such as Runge-Kutta, thus such constraints need to be relaxed (e.g. replace guard with `3.14-eps<=x && x<=3.14`, or `x>=3.14-eps`, where `eps` is a precision constant). The precision of numerical integration can be controlled in [Statistical Parameters](/gui-reference/menu-bar/options#statistical-parameters).
+
+Urgent transitions over hybrid guards:
+: The time interval(s) when a complicated guard (other than simple clock constraint) becomes enabled are not computed for efficiency reasons. Instead, UPPAAL requires such transitions to be urgent, i.e. the edge should be taken as soon as the guard becomes enabled. The easiest way to make an edge urgent is to add a shouting synchronization over `urgent broadcast chan` variable (no processes is required to listen to it).
+
+For example, see [bouncing ball walk-through](https://github.com/DEIS-Tools/uppaal-models/tree/main/Demos/Statistical/bouncing-ball).
 
 For more details about probabilistic semantics of priced timed automata please see:
 
