@@ -75,7 +75,7 @@ Assume an order _p<sub>1</sub>, p<sub>2</sub>, … p<sub>n</sub>_ of processes g
 
 <a name="prob">
 
-### Probabilistic Transitions
+### Stochastic Transitions
 
 </a>
 
@@ -105,6 +105,10 @@ In [statistical model checking](/gui-reference/verifier/verifying/) the concrete
 
 </dl>
 
+### Examples
+
+
+
 For more details about probabilistic semantics of priced timed automata please see:
 
-> _Statistical Model Checking for Networks of Priced Timed Automata_, Alexandre David, Kim G. Larsen, Axel Legay, Marius Mikučionis, Danny Bøgsted Poulsen, Jonas van Vliet and Zheng Wang. In Proceedings of the 9<sup>th</sup> International Conference on Formal Modeling and Analysis of Timed Systems (FORMATS), Aalborg, Denmark, September 2011.
+**Statistical Model Checking for Networks of Priced Timed Automata**, Alexandre David, Kim G. Larsen, Axel Legay, Marius Mikučionis, Danny Bøgsted Poulsen, Jonas van Vliet and Zheng Wang. In _Proceedings of the 9<sup>th</sup> International Conference on Formal Modeling and Analysis of Timed Systems (FORMATS)_, Aalborg, Denmark, September 2011. DOI:<a href="https://doi.org/10.1007/978-3-642-24310-3_7">10.1007/978-3-642-24310-3_7</a>
