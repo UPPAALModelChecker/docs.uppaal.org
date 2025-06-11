@@ -103,6 +103,8 @@ The weight over branch is a constant non-negative integer expressions denoting t
 
 The weights are used in probabilistic and [statistical model checking](/gui-reference/verifier/verifying/).
 
+In symbolic semantics ([Symbolic Simulator](/gui-reference/symbolic-simulator) and [Symbolic Queries](/language-reference/query-syntax/symbolic_queries)) the probabilistic weights are abstracted away and all edges are considered as non-deterministic (an edge is *still possible* even if its weight happens to be zero). The weight expressions are *not* evaluated at all for efficiency, while preserving a sound over-approximation.
+
 ### Example
 
 **Select:** `i : int[0,3]`<br>
