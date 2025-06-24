@@ -54,4 +54,4 @@ Integers, clocks, floating points or even arbitrary expressions can be used in e
 Process locations are ignored when specifying observability unless explicitly specified using `location` keyword.
 For example `Cat.location` and `Mouse.location` refer to the locations of `Cat` and `Mouse` processes.
 
-The learning queries are usually used together with strategy assignment and refinement explained in [Strategy Queries]({{<relref "/strategy_queries">}}).
+The learning queries are usually used together with strategy assignment and refinement explained in [Strategy Queries]({{<relref "strategy_queries">}}).

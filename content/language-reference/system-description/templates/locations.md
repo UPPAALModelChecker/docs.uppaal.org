@@ -16,9 +16,9 @@ Locations are labelled with invariants. Invariants are expressions and thus foll
 
 An invariant must be a conjunction of simple conditions on clocks, differences between clocks, and boolean expressions not involving clocks. The bound must be given by an integer expression. Furthermore lower bounds on clocks are disallowed. It is important to understand that invariants influence the behaviour of the system -- they are distinctly different from specifying safety properties in the [requirements specification language](/language-reference/requirements-specification/). States which violate the invariants are undefined; by definition, such states do not exist. This influences the interpretation of urgent channels and broadcast channels. Please see the section on [synchronisations](/language-reference/system-description/templates/edges/#synchronisations) for a detailed discussion of this topic.
 
-In addition, stop-watches are supported and they are declared with invariants. Clock rate expressions are specified and they are part of the conjunction in the invariant. Furthermore, the <tt>forall</tt> construct is accepted in invariants to ease use of arrays.
+In addition, *stopwatches* are supported and they are declared within invariant expressions using [Lagrangian *derivative* notation](https://en.wikipedia.org/wiki/Notation_for_differentiation#Lagrange's_notation) (`x' == 0` for clock `x`) through conjunction (`&&` or `and`). Furthermore, the <tt>forall</tt> construct is accepted in invariants to ease use of clock arrays.
 
-Statistical model checker supports any integer expression as a clock rate which allows modeling costs.
+Statistical model checker supports arbitrary floating point expression as a clock *rate/derivative* which allows modeling of dynamical costs. Dynamical cost variables declared as `hybrid clock` are abstracted away from symbolic analysis, which allows to combine statistical and symbolic queries over the same model.
 
 <a name="rate">
 
@@ -46,7 +46,7 @@ The following are valid invariants. Here <tt>x</tt> and <tt>y</tt> are clocks an
 : The clocks `x[0]`, `x[1]` and `x[2]` of the clock array `x` are less or equal to `3`.
 
 `forall(i:int[0,2]) y[i]' == b[i]`
-: The clock rates `y[0]'`, `y[1]'`, and `y[2]'` are set to, respectively, `b[0]`, `b[1]` and `b[2]`. Note that for symbolic queries the only valid values are `0` and `1`. Setting the rate to `0` effectively stops a clock (makes it a stop-watch). In [statistical model checking](/gui-reference/verifier/verifying/) the rate is allowed to be any floating point value. `hybrid clock` can be interpreted as a continuous cost and abstracted away in symbolic queries while maintaining concrete values in statistical queries.
+: The clock rates/derivatives `y[0]'`, `y[1]'`, and `y[2]'` are set to, respectively, `b[0]`, `b[1]` and `b[2]`. Note that for symbolic queries the only valid values are `0` and `1`. Setting the rate to `0` effectively stops a clock (makes it a stopwatch). In [statistical model checking](/gui-reference/verifier/verifying/) the rate is allowed to be any floating point expression. `hybrid clock` can be interpreted as a dynamical cost and abstracted away in symbolic queries while maintaining concrete values in statistical queries.
 
 ## Initial locations
 
@@ -68,3 +68,8 @@ Furthermore, if any process is in a committed location, the next transition must
 
 Committed locations are useful for creating atomic sequences and for encoding synchronization between more than two components.
 Notice that if several processes are in a committed location at the same time, then they will interleave.
+
+
+> "The Impressive Power of Stopwatches" by Frank Cassez and Kim G. Larsen. In: "Concurrency Theory. CONCUR 2000", editor Catuscia Palamidessi. Lecture Notes in Computer Science, vol 1877. Springer, Berlin, Heidelberg. [doi:10.1007/3-540-44618-4_12](https://doi.org/10.1007/3-540-44618-4_12)
+
+> "UPPAAL SMC tutorial" by Alexandre David, Kim G. Larsen, Axel Legay, Marius Mikučionis and Danny Bøgsted Poulsen. In: "International Journal on Software Tools for Technology Transfer" 17, 397–415 (2015). [doi:10.1007/s10009-014-0361-y](https://doi.org/10.1007/s10009-014-0361-y)

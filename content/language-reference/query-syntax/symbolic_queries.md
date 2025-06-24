@@ -18,22 +18,30 @@ SymbolicQuery ::=
       | Expression --> Expression Subjection
 
       | 'sup' ':' List Subjection
-      | 'sup' '{' Expression '}' ':' List Subjection
+      | 'sup' '{' Predicate '}' ':' List Subjection
 
       | 'inf' ':' List Subjection
-      | 'inf' '{' Expression '}' ':' List Subjection
+      | 'inf' '{' Predicate '}' ':' List Subjection
+
+      | 'bounds' ':' List Subjection
+      | 'bounds' '{' Predicate '}' ':' List Subjection
 
 List ::= Expression | Expression ',' List
+
+Predicate ::= Expression
 
 Subjection ::=
 	    // empty for no subjection
 	  | under StrategyName
 ```
 
+<tt>Predicate</tt>
+: an expression over a system state evaluating to either `true` or `false`. The predicate typically refers to a process location, but it can also use integers, logical operations and clock constraints.
+
 <tt>Subjection</tt>
 : indicates whether the query should be subjected to a strategy.
 
-For `sup` properties, expression may not contain clock constraints and must evaluate to either an integer or a clock.
+For `sup` and `bounds` queries, the list of expressions may not contain clock constraints and must evaluate to either an integer or a clock.
 
 <!-- ![SymbolicQuery rail road diagram](/grammar/diagram/SymbolicQuery.svg) -->
 
@@ -63,3 +71,6 @@ See [rail road diagram for the entire SymbolicQuery syntax](/grammar/#SymbolicQu
 
 `inf{Gate.Occ}: Gate.len`
 : similarly to `sup`, `inf`query computes infimum of the given expression <tt>Gate.len</tt> while process <tt>Gate</tt> is in <tt>Occ</tt> location. When a clock infimum is needed, the state predicate should be used, otherwise the result is trivially `>=0`.
+
+`bounds{Train(1).Crossing}: Train(1).x`
+: computes all individual intervals of `Train(1).x` when `Train(1)` is in `Crossing`. Introduced in UPPAAL 5.1.0-beta5.
