@@ -20,7 +20,6 @@ Updates
 Weights
 : Edges emanating from a branchpoint can be assigned a probabilistic weight. The probability such edge-transition is proportional to the edge weight and inversely proportional to the sum of weights over all edges leaving that branchpoint.</dd>
 
-</dl>
 
 ## Selections
 
@@ -102,6 +101,8 @@ Please remember that any integers are bounded. Any attempt to assign a value out
 The weight over branch is a constant non-negative integer expressions denoting the probabilistic likely-hood of the branch being executed. The probability of a particular branch is determined as a ratio of its weight over the sum of weights of all branches emanating from the same branch node.
 
 The weights are used in probabilistic and [statistical model checking](/gui-reference/verifier/verifying/).
+
+In symbolic semantics ([Symbolic Simulator](/gui-reference/symbolic-simulator) and [Symbolic Queries](/language-reference/query-syntax/symbolic_queries)) the probabilistic weights are abstracted away and all edges are considered as non-deterministic (an edge is *still possible* even if its weight happens to be zero). The weight expressions are *not* evaluated at all for efficiency, while preserving a sound over-approximation.
 
 ### Example
 

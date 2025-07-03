@@ -69,7 +69,10 @@ Furthermore, if any process is in a committed location, the next transition must
 Committed locations are useful for creating atomic sequences and for encoding synchronization between more than two components.
 Notice that if several processes are in a committed location at the same time, then they will interleave.
 
+{{% notice note %}}
+_The Impressive Power of Stopwatches_ by ***Frank Cassez and Kim G. Larsen***. In: _Concurrency Theory. CONCUR 2000_, editor ***Catuscia Palamidessi***. Lecture Notes in Computer Science, vol 1877. Springer, Berlin, Heidelberg. [doi:10.1007/3-540-44618-4_12](https://doi.org/10.1007/3-540-44618-4_12)
+{{% /notice %}}
 
-> "The Impressive Power of Stopwatches" by Frank Cassez and Kim G. Larsen. In: "Concurrency Theory. CONCUR 2000", editor Catuscia Palamidessi. Lecture Notes in Computer Science, vol 1877. Springer, Berlin, Heidelberg. [doi:10.1007/3-540-44618-4_12](https://doi.org/10.1007/3-540-44618-4_12)
-
-> "UPPAAL SMC tutorial" by Alexandre David, Kim G. Larsen, Axel Legay, Marius Mikučionis and Danny Bøgsted Poulsen. In: "International Journal on Software Tools for Technology Transfer" 17, 397–415 (2015). [doi:10.1007/s10009-014-0361-y](https://doi.org/10.1007/s10009-014-0361-y)
+{{% notice note %}}
+_UPPAAL SMC tutorial_ by ***Alexandre David, Kim G. Larsen, Axel Legay, Marius Mikučionis and Danny Bøgsted Poulsen***. In: _International Journal on Software Tools for Technology Transfer_ 17, 397–415 (2015). [doi:10.1007/s10009-014-0361-y](https://doi.org/10.1007/s10009-014-0361-y)
+{{% /notice %}}

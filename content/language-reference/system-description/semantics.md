@@ -122,4 +122,6 @@ For example, see [bouncing ball walk-through](https://github.com/DEIS-Tools/uppa
 
 For more details about probabilistic semantics of priced timed automata please see:
 
-> _Statistical Model Checking for Networks of Priced Timed Automata_, Alexandre David, Kim G. Larsen, Axel Legay, Marius Mikučionis, Danny Bøgsted Poulsen, Jonas van Vliet and Zheng Wang. In Proceedings of the 9<sup>th</sup> International Conference on Formal Modeling and Analysis of Timed Systems (FORMATS), Aalborg, Denmark, September 2011.
+{{% notice note %}}
+_Statistical Model Checking for Networks of Priced Timed Automata_ by ***Alexandre David, Kim G. Larsen, Axel Legay, Marius Mikučionis, Danny Bøgsted Poulsen, Jonas van Vliet and Zheng Wang***. In _Proceedings of the 9<sup>th</sup> International Conference on Formal Modeling and Analysis of Timed Systems (FORMATS)_, Aalborg, Denmark, September 2011. DOI:<a href="https://doi.org/10.1007/978-3-642-24310-3_7">10.1007/978-3-642-24310-3_7</a>
+{{% /notice %}}
