@@ -138,6 +138,17 @@ Histogram bucket width
 Histogram bucket count
 : Specifies the number of columns in the histogram. By default it is set to zero meaning that the count is determined by taking a square root of a total number of samples and dividing by four.
 
+Trace resolution
+: compresses the expression trajectories for a specified screen resolution in dots-per-inch (DPI), by ommitting trajectory points which fall into the same screen pixel.
+
+Discretization step for hybrid systems
+: the (smallest) time step used to integrate dynamical equations. UPPAAL versions 4.1.3-4.1.26 except 4.1.20 use fixed time step Euler method. UPPAAL 5.0.0, UPPAAL 4.1.20, and Stratego versions use adaptive Runge-Kutta integrator based on precision.
+
+Local integration error bound
+: Numerical error bound in Runge-Kutta integration method, the computed dynamical signal should not differ from the true value by this error bound.
+
+Integration error bound pr. time-unit:
+: Accumulated numerical error bound in Runge-Kutta integratio method per time-unit, the computed dynamical signal should not diverge by more than specifified bound per model time-unit.
 
 ## More Information
 

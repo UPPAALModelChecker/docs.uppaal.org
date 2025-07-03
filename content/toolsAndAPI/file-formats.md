@@ -1,6 +1,6 @@
 ---
 title: File Formats
-weight: 50
+weight: 60
 ---
 
 UPPAAL supports three file formats for models: XML, XTA and TA. XML and XTA files can be loaded and stored via the **Open Project**, **Open System**, **Save System**, and **Save System As** menus. When saving a file, the file type is determined by the file name extension used. Each format is explained in more details below.
