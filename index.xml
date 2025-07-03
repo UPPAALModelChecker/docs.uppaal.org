@@ -80,12 +80,10 @@ valid identifier names.&lt;/li>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">ArrayDecl &lt;/span>&lt;span style="color:#960050;background-color:#1e0010">::=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;[&amp;#39;&lt;/span> [&lt;span style="color:#66d9ef">Expression&lt;/span>] &lt;span style="color:#e6db74">&amp;#39;]&amp;#39;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> | &lt;span style="color:#e6db74">&amp;#39;[&amp;#39;&lt;/span> &lt;span style="color:#66d9ef">Type &lt;/span>&lt;span style="color:#e6db74">&amp;#39;]&amp;#39;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The default range of an integer is &lt;code>[-32768, 32767]&lt;/code>. Any assignment out of range will cause the verification to abort.&lt;/p></description></item><item><title>UPPAAL</title><link>/toolsandapi/uppaal/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/toolsandapi/uppaal/</guid><description>&lt;p>UPPAAL can be executed from the command line using the following command on unix:&lt;/p>
-&lt;blockquote>
-&lt;p>&lt;tt>uppaal [OPTION] &amp;hellip; [FILENAME]&lt;/tt>&lt;/p>&lt;/blockquote>
-&lt;p>On windows, the following command can be used (for instance, using &amp;ldquo;Run&amp;rdquo; from the Start Menu):&lt;/p>
-&lt;blockquote>
-&lt;p>&lt;tt>java -jar \path\uppaal.jar [OPTION] &amp;hellip; [FILENAME]&lt;/tt>&lt;/p>&lt;/blockquote>
-&lt;p>where &lt;tt>path&lt;/tt> is the complete path to the &lt;tt>uppaal.jar&lt;/tt> file (it might also be necessary to specify the complete path to the &lt;tt>java&lt;/tt> executable).&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>uppaal &lt;span style="color:#f92672">[&lt;/span>OPTION&lt;span style="color:#f92672">]&lt;/span> ... &lt;span style="color:#f92672">[&lt;/span>FILENAME&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>On windows, the following command can be used (for instance, using &amp;ldquo;Run&amp;rdquo; from the Start Menu):&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>java -jar &lt;span style="color:#ae81ff">\p&lt;/span>ath&lt;span style="color:#ae81ff">\u&lt;/span>ppaal.jar &lt;span style="color:#f92672">[&lt;/span>OPTION&lt;span style="color:#f92672">]&lt;/span> ... &lt;span style="color:#f92672">[&lt;/span>FILENAME&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>where &lt;tt>path&lt;/tt> is the complete path to the &lt;tt>uppaal.jar&lt;/tt> file (it might also be necessary to specify the complete path to the &lt;tt>java&lt;/tt> executable).&lt;/p>
 &lt;p>The optional filename refers to a model to be loaded at startup.&lt;/p></description></item><item><title>Using Model Variables</title><link>/gui-reference/yggdrasil/tutorial/using-variables/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/gui-reference/yggdrasil/tutorial/using-variables/</guid><description>&lt;p>This tutorial assumes you have understood &lt;a href="../basic-test-generation">basic test case generation&lt;/a>.&lt;/p>
 &lt;h2 id="the-model-updown-system">The model: Up/Down system&lt;/h2>
 &lt;p>Open the &lt;tt> updown/updown.xml&lt;/tt> file in Uppaal.&lt;/p>
@@ -178,7 +176,6 @@ The &lt;em>&lt;em>Test Cases&lt;/em>&lt;/em> generator is able to search for tra
 &lt;dd>When an edge is traversed, the update expression of the edge is evaluated. The side effect of this expression changes the state of the system.&lt;/dd>
 &lt;dt>Weights&lt;/dt>
 &lt;dd>Edges emanating from a branchpoint can be assigned a probabilistic weight. The probability such edge-transition is proportional to the edge weight and inversely proportional to the sum of weights over all edges leaving that branchpoint.&lt;/dd>&lt;/dd>
-&lt;/dl>
 &lt;/dl>
 &lt;h2 id="selections">Selections&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-EBNF" data-lang="EBNF">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">SelectList &lt;/span>&lt;span style="color:#960050;background-color:#1e0010">::&lt;/span>&lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">ID &lt;/span>&lt;span style="color:#e6db74">&amp;#39;:&amp;#39;&lt;/span> &lt;span style="color:#66d9ef">Type&lt;/span>
