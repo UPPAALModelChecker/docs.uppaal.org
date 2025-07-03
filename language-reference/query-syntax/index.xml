@@ -36,6 +36,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> | &lt;span style="color:#66d9ef">CollaborativeControlSpecifier Goal Subjection&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> | &lt;span style="color:#66d9ef">PartialControlSpecifier Goal Subjection&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> | &lt;span style="color:#66d9ef">TimeEfficientGameSpecifier Goal&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> | &lt;span style="color:#66d9ef">ApproximateControlSpecifier &lt;/span>&lt;span style="color:#960050;background-color:#1e0010">//&lt;/span> &lt;span style="color:#66d9ef">In section below&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">ControlSpecifier &lt;/span>&lt;span style="color:#960050;background-color:#1e0010">::=&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#39;control:&amp;#39;&lt;/span>
