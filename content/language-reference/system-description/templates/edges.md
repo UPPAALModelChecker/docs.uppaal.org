@@ -20,7 +20,6 @@ Updates
 Weights
 : Edges emanating from a branchpoint can be assigned a probabilistic weight. The probability such edge-transition is proportional to the edge weight and inversely proportional to the sum of weights over all edges leaving that branchpoint.</dd>
 
-</dl>
 
 ## Selections
 

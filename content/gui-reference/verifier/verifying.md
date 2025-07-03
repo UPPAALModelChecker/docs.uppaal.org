@@ -39,10 +39,16 @@ Further, the plot labels and titles can be edited and several data sets can be s
 
 See also:
 
-> _UPPAAL SMC tutorial_, **Alexandre David**, **Kim G. Larsen**, **Axel Legay**, **Marius Mikučionis** and **Danny Bøgsted Poulsen**. In: _International Journal on Software Tools for Technology Transfer_ 17, 397–415 (2015). [doi:10.1007/s10009-014-0361-y](https://doi.org/10.1007/s10009-014-0361-y)
+{{% notice note %}}
+_UPPAAL SMC tutorial_, ***Alexandre David, Kim G. Larsen, Axel Legay, Marius Mikučionis and Danny Bøgsted Poulsen***. In: _International Journal on Software Tools for Technology Transfer_ 17, 397–415 (2015). [doi:10.1007/s10009-014-0361-y](https://doi.org/10.1007/s10009-014-0361-y)
+{{% /notice %}}
 
 An extensive overview and comparison of methods for computing confidence intervals for binomial distribution can be found in the following publications:
 
-> _Interval Estimators for a Binomial Proportion: Comparison of Twenty Methods_, **Ana M. Pires** and **Conceicao Amado**. REVSTAT -- Statistical Journal, Vol.6, No.2, June 2008, pages 165-197. [doi:10.57805/revstat.v6i2.63](https://doi.org/10.57805/revstat.v6i2.63)
+{{% notice note %}}
+_Interval Estimators for a Binomial Proportion: Comparison of Twenty Methods_, ***Ana M. Pires and Conceicao Amado***. In _REVSTAT -- Statistical Journal, Vol.6, No.2, June 2008, pages 165-197_. [doi:10.57805/revstat.v6i2.63](https://doi.org/10.57805/revstat.v6i2.63)
+{{% /notice %}}
 
-> _Interval Estimation for a Binomial Proportion_, **Lawrence D. Brown**, **T. Tony Cai** and **Anirban DasGupta**. Statistical Science, 2001, Vol.16, No.2, pages 101-133. [JSTOR](http://www.jstor.org/stable/2676784)
+{{% notice note %}}
+_Interval Estimation for a Binomial Proportion_, ***Lawrence D. Brown, T. Tony Cai and Anirban DasGupta***. In _Statistical Science, 2001, Vol.16, No.2, pages 101-133_. [JSTOR](http://www.jstor.org/stable/2676784)
+{{% /notice %}}

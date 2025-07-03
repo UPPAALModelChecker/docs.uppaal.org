@@ -47,6 +47,10 @@ Note that in case of extreme probability value (close to <tt>0</tt> or <tt>1</tt
 
 Several sequential CI estimation algorithms for binomial proportion are described in the literature below.
 
-> _Fixed-Width Sequential Confidence Intervals for a Proportion_, **Jesse Frey**. The American Statistician Volume 64, 2010 - Issue 3. [doi:10.1198/tast.2010.09140](https://doi.org/10.1198/tast.2010.09140)
+{{% notice note %}}
+_Fixed-Width Sequential Confidence Intervals for a Proportion_ by ***Jesse Frey***. In _The American Statistician_ Volume 64, 2010 - Issue 3. [doi:10.1198/tast.2010.09140](https://doi.org/10.1198/tast.2010.09140)
+{{% /notice %}}
 
-> _Exact Group Sequential Methods for Estimating a Binomial Proportion_, **Zhengjia Chen** and **Xinjia Chen**. Journal of Probability and Statistics, 2013, special issue "Adaptive and Sequential Methods for Clinical Trials". [doi:10.1155/2013/603297](https://doi.org/10.1155/2013/603297)
+{{% notice note %}}
+_Exact Group Sequential Methods for Estimating a Binomial Proportion_ by ***Zhengjia Chen and Xinjia Chen***. In: _Journal of Probability and Statistics_, 2013, special issue _Adaptive and Sequential Methods for Clinical Trials_. [doi:10.1155/2013/603297](https://doi.org/10.1155/2013/603297)
+{{% /notice %}}

@@ -7,25 +7,20 @@ To start a remote server, use the `socketserver` binary (included for Linux, Sun
 
 The <tt>socketserver</tt> can be executed from the command line using one of the following commands:
 
-> <tt>socketserver [-p<P1>] [-s<P2>]</tt>  
-> <tt>socketserver -h</tt>
+```shell
+socketserver [-p<P1>] [-s<P2>]
+socketserver -h
+```
 
 The available command line options are:
 
-<dl>
+`-h`
+: Prints a brief description of the command line options.
 
-<dt><tt>-h</tt></dt>
+`-p`
+: Set port in server mode (default is `2350`).
 
-<dd>Prints a brief description of the command line options.</dd>
+`-s`
+: Set filename of server binary to P2.
 
-<dt><tt>-p</tt></dt>
-
-<dd>Set port in server mode (default is 2350).</dd>
-
-<dt><tt>-s</tt></dt>
-
-<dd>Set filename of server binary to P2.</dd>
-
-</dl>
-
-The <tt>socketserver</tt> will load the <tt>server</tt> from the directory where it was invoked, and act as a proxy.
+The `socketserver` will load the `server` from the directory where it was invoked, and act as a proxy.

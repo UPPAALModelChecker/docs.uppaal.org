@@ -111,4 +111,6 @@ In [statistical model checking](/gui-reference/verifier/verifying/) the concrete
 
 For more details about probabilistic semantics of priced timed automata please see:
 
-**Statistical Model Checking for Networks of Priced Timed Automata**, Alexandre David, Kim G. Larsen, Axel Legay, Marius Mikučionis, Danny Bøgsted Poulsen, Jonas van Vliet and Zheng Wang. In _Proceedings of the 9<sup>th</sup> International Conference on Formal Modeling and Analysis of Timed Systems (FORMATS)_, Aalborg, Denmark, September 2011. DOI:<a href="https://doi.org/10.1007/978-3-642-24310-3_7">10.1007/978-3-642-24310-3_7</a>
+{{% notice note %}}
+_Statistical Model Checking for Networks of Priced Timed Automata_ by ***Alexandre David, Kim G. Larsen, Axel Legay, Marius Mikučionis, Danny Bøgsted Poulsen, Jonas van Vliet and Zheng Wang***. In _Proceedings of the 9<sup>th</sup> International Conference on Formal Modeling and Analysis of Timed Systems (FORMATS)_, Aalborg, Denmark, September 2011. DOI:<a href="https://doi.org/10.1007/978-3-642-24310-3_7">10.1007/978-3-642-24310-3_7</a>
+{{% /notice %}}
