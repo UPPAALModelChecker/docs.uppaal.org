@@ -105,11 +105,7 @@ Adjusts the amount of memory used to represent the state space when using bit-st
 
 When selected, instructs the verifier to (whenever possible) reuse the generated portion of the state space when several properties of the same system are checked.
 
-<a name="statparam">
-
 ## Statistical Parameters
-
-</a>
 
 Lower probabilistic deviation (-δ)
 : Used in hypothesis testing (qualitative model-checking) to specify the lower bound of indifference region from the specified probability.
@@ -150,8 +146,92 @@ Local integration error bound
 Integration error bound pr. time-unit:
 : Accumulated numerical error bound in Runge-Kutta integratio method per time-unit, the computed dynamical signal should not diverge by more than specifified bound per model time-unit.
 
+## Learning Parameters
+
+Based on publication: [On Time with Minimal Expected Cost!](https://homes.cs.aau.dk/~kgl/SSFT2015/ATVA.pdf) (Fig.2).
+
+Discussion: [Way to set a fixed number of training runs for reinforcement learning](https://github.com/orgs/UPPAALModelChecker/discussions/232#discussioncomment-8153813)
+
+Learning filter:
+- `Global filter`
+- `Local filter`
+- `Sweep filter`
+
+Learning method
+- `External learning library`
+- `Co-variance`
+- `Splitting`
+- `Regression`
+- `Naive`
+- `Q-learning`
+- `M-learning`
+
+Number of successful runs
+:
+
+Maximum number of runs
+:
+
+Number of good runs
+:
+
+Number of runs to evaluate
+:
+
+Total maximal number of iterations
+:
+
+Imitation iterations
+:
+
+Iterations with no improvement before reset
+:
+
+Maximum number of resets
+:
+
+Learning rate for Q-Learning
+:
+
+Upper limit for T-Test
+:
+
+Lower limit for T-Test
+:
+
+Limit for KS-Split
+:
+
+Filter smoothing
+:
+
+Critical filter value
+:
+
+Learning discount
+:
+
+Stochastic runs (%)
+:
+
+Deterministic runs (%)
+:
+
+Critical difference (%)
+:
+
+Difference smoothing (runs)
+:
+
+
 ## More Information
+
+Learning algorithm and parameters are described in the following papers:
+
+- [ATVA2019] _Teaching Stratego to Play Ball: Optimal Synthesis for Continuous Space MDPs_, Manfred Jaeger, Peter Gjøl Jensen, Kim Guldstrand Larsen, Axel Legay, Sean Sedwards & Jakob Haahr Taankvist. In: Chen, YF., Cheng, CH., Esparza, J. (eds) Automated Technology for Verification and Analysis. ATVA 2019. Lecture Notes in Computer Science(), vol 11781. Springer, Cham. [doi:10.1007/978-3-030-31784-3_5](https://doi.org/10.1007/978-3-030-31784-3_5)
+
+- [ATVA2015] _On Time with Minimal Expected Cost!_, Alexandre David, Peter Gjøl Jensen, Kim Guldstrand Larsen, Axel Legay, Didier Lime, Mathias Grund Sørensen and Jakob H. Taankvist. In: Cassez, F., Raskin, JF. (eds) Automated Technology for Verification and Analysis. ATVA 2014. Lecture Notes in Computer Science, vol 8837. Springer, Cham. [doi:10.1007/978-3-319-11936-6_10](https://doi.org/10.1007/978-3-319-11936-6_10)
 
 The compact data structure and the options for state space reduction are described in the following paper:
 
-> _Efficient Verification of Real-Time Systems: Compact Data Structure and State Space Reduction_, Kim G. Larsen, Fredrik Larsson, Paul Pettersson and Wang Yi. In Proceedings of the 18th IEEE Real-Time Systems Symposium, pages 14-24\. San Francisco, California, USA, 3-5 December 1997.
+- [RTSS1997] _Efficient Verification of Real-Time Systems: Compact Data Structure and State Space Reduction_, Kim G. Larsen, Fredrik Larsson, Paul Pettersson and Wang Yi. In Proceedings of the 18th IEEE Real-Time Systems Symposium, pages 14-24. San Francisco, California, USA, 3-5 December 1997. [doi:10.1109/REAL.1997.641265](https://doi.org/10.1109/REAL.1997.641265)
