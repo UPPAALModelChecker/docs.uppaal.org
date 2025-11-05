@@ -131,10 +131,10 @@ Due to some yet-to-be resolved parsing conflicts, TATL sub-expressions are wrapp
 ```EBNF
 TatlExpression ::=
       Identifier '¤' TatlExpressionOrExpression                             // (A)
-    | TatlCoalitition TatlPathProp
+    | TatlCoalition TatlPathProp
     ;
 
-TatlCoalitition ::=
+TatlCoalition ::=
       '<<' PlayerColorList '>>'                                             // (B1)
     | '[[' PlayerColorList ']]'                                             // (B2)
     ;
@@ -171,16 +171,16 @@ Alternating-Time Temporal (ATL) logic is an extension of computation-tree logic 
   - `<< S >> rho` (B1) is satisfied if there *exists* strategies for the players `S` such that *all* outcome paths satisfies path property `rho`.
   - `[[ S ]] rho` (B2) is satisfied if there *exists* an outcome path satisfying `rho` for *all* strategies the players `S`.
   - Empty clauses: `<< >>` is equivalent to `A`, and `[[ ]]` is equivalent to `E`.
-- **(C) Path Properties.** Your typical CTL temporal operators. Note that `X` is *next location*.
+- **(C) Path Properties.** Your typical CTL temporal operators. Note that `X` is the next *location* operator.
 
 #### Players
 
 TATL queries are defined over timed *multi-player* games. A TATL query considers each edge color a different player (it does not matter if an edge is marked uncontrollable).
 There are 11 different edge colors available in the UPPAAL GUI and they are referred to using their natural language name, i.e. `red`, `green`, `blue`, etc.
 
-The semantics are similar to that of a standard 2-player game. The player `red` may activate enabled red edges at any time, and must do it in a timed-locked state.
+The semantics are similar to that of a standard 2-player game. The player `red` may activate enabled red edges at any time, and must do it in a timed-locked state, if any is enabled.
 If two players activate an edge in the same instant, it is non-deterministic which activation happens.
-If a synchronization involves more than one player, it is consider "uncontrollable".
+If a synchronization involves more than one player, it is consider "uncontrollable", unless they are all working together.
 
 #### Examples
 
