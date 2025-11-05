@@ -168,7 +168,7 @@ Alternating-Time Temporal (ATL) logic is an extension of computation-tree logic 
 
 - **(A) The freeze operator.** The left-hand side must be a globally defined clock that is not used in any automata (undefined behavior otherwise). `z ¤ RHS` is satisfied if the right-hand side is satisfied after the clock `z` is reset in the current state.
 - **(B) Outcome quantifiers.**
-  - `<< S >> rho` (B1) is satisfied if there *exists* strategies for the players `S` such that *all* outcome paths satisfies path property `rho`.
+  - `<< S >> rho` (B1) is satisfied if there *exist* strategies for the players `S` such that *all* outcome paths satisfies path property `rho`.
   - `[[ S ]] rho` (B2) is satisfied if there *exists* an outcome path satisfying `rho` for *all* strategies the players `S`.
   - Empty clauses: `<< >>` is equivalent to `A`, and `[[ ]]` is equivalent to `E`.
 - **(C) Path Properties.** Your typical CTL temporal operators. Note that `X` is the next *location* operator.
