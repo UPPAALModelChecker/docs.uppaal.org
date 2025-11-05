@@ -130,7 +130,7 @@ Due to some yet-to-be resolved parsing conflicts, TATL sub-expressions are wrapp
 
 ```EBNF
 TatlExpression ::=
-      Identifier '¤' TatlExpressionOrExpression                             // (A)
+      Identifier '@' TatlExpressionOrExpression                             // (A)
     | TatlCoalition TatlPathProp
     ;
 
@@ -166,7 +166,7 @@ PlayerColor ::=
 
 Alternating-Time Temporal (ATL) logic is an extension of computation-tree logic (CTL), where the traditional for-all- and exists path quantifiers have been replaced with outcome quantifiers, quantifying over the possible outcome paths resulting from a coalition of players working together. The timed extension comes from the addition of the freeze operator.
 
-- **(A) The freeze operator.** The left-hand side must be a globally defined clock that is not used in any automata (undefined behavior otherwise). `z ¤ RHS` is satisfied if the right-hand side is satisfied after the clock `z` is reset in the current state.
+- **(A) The freeze operator.** The left-hand side must be a globally defined clock that is not used in any automata (undefined behavior otherwise). `z @ RHS` is satisfied if the right-hand side is satisfied after the clock `z` is reset in the current state.
 - **(B) Outcome quantifiers.**
   - `<< S >> rho` (B1) is satisfied if there *exist* strategies for the players `S` such that *all* outcome paths satisfies path property `rho`.
   - `[[ S ]] rho` (B2) is satisfied if there *exists* an outcome path satisfying `rho` for *all* strategies the players `S`.
@@ -193,5 +193,5 @@ If a synchronization involves more than one player, it is consider "uncontrollab
 `<<>> [] (<<red, blue>> <> goal)`
 : satisfied if in all reachable states `red` and `blue` can cooperate such that `goal` is eventually reached.
 
-`z ¤ (<< green, blue >> [ (safe && z <= 5) U goal ])`
+`z @ (<< green, blue >> [ (safe && z <= 5) U goal ])`
 : satisfied if `green` and `blue` can cooperate to reach a `goal` state within 5 time units and only visiting `safe` states along the way (`z` is a global clock).
