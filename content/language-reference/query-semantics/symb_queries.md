@@ -8,6 +8,24 @@ In the following we give a pseudo-formal semantics for the requirement specifica
 
 **See also** [Syntax of Symbolic Queries]({{<ref "language-reference/query-syntax/symbolic_queries">}}).
 
+The symbolic queries consist of a path quantifier (`E` or `A`), a state quantifier (`<>` or `[]`) followed by a state predicate (as in [CTL](https://en.wikipedia.org/wiki/Computation_tree_logic), except UPPAAL does not implement nested formulas).
+
+In particular, path quantifiers:
+- `E` stands for "there **exists** a *path* in a tree of computations",
+- `A` stands for "for **all** *paths* in the tree of computations".
+
+State quantifiers:
+- `<>` (diamond) stands for "there **exists** a *state* in the path",
+- `[]` (box) stands for "for **all** *states* in the path".
+
+Their combinations are given short names:
+- `E<>` -- *possibly*, as "there **exists** a *path* where there **exists** a *state* satisfying the predicate".
+- `E[]` -- *potentially always*, as "there **exists** a *path* where **all** *states* satisfy the predicate".
+- `A<>` -- *eventually*, as "for **all** *paths*, there **exists** a *state* satisfying the predicate".
+- `A[]` -- *invariantly* or *globally*, or *everywhere*, as "for **all** *paths*, **all** *states* satisfy the predicate".
+
+In addition, UPPAAL supports one special leads-to property: `p --> q` which is a shorthand for `A[] (p implies A<> q)` (if `p` then eventually `q`).
+
 ### Possibly
 
 The property `E<> p` evaluates to true for a timed transition system if and only if there is a sequence of delay and action transitions _s_<sub>_0_</sub> &rarr; _s_<sub>_1_</sub> &rarr; ... &rarr; _s_<sub>_n_</sub>, where _s_<sub>_0_</sub> is the initial state and _s_<sub>_n_</sub> satisfies _p_.

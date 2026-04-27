@@ -35,6 +35,9 @@ Subjection ::=
 	  | under StrategyName
 ```
 
+Quantifiers
+: `A` stands for "for **all** paths", `E` - "there **exists** a path", `[]` (box) - "**all** states along the path", `<>` (diamond) - "**exists** a state along the path". Combined: `A[]` - invariantly, `E<>` - possibly, `E[]` - potentially always, `A<>` - eventually. `-->` is a leads-to operator, a shorthand for `A[] (p imply A<> q)`, i.e. if `p` then eventually `q`.
+
 <tt>Predicate</tt>
 : an expression over a system state evaluating to either `true` or `false`. The predicate typically refers to a process location, but it can also use integers, logical operations and clock constraints.
 
