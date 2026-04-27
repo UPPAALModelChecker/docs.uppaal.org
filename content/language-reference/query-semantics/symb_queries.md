@@ -4,11 +4,9 @@ weight: 10
 menuTitle: "Symbolic Queries"
 ---
 
-In the following we give a pseudo-formal semantics for the requirement specification language of UPPAAL. We assume the existence of a timed transition system (_S, s<sub>0</sub>,_ →) as defined in the [semantics of UPPAAL timed automata](/language-reference/system-description/semantics/). In the following, `p` and `q` are [state properties](#state-properties) for which we define the following temporal properties:
+The symbolic queries consist of a path quantifier (`E` or `A`), a state quantifier (`<>` or `[]`) followed by a state predicate (as in [CTL](https://en.wikipedia.org/wiki/Computation_tree_logic), except UPPAAL does not implement nested formulas).
 
 **See also** [Syntax of Symbolic Queries]({{<ref "language-reference/query-syntax/symbolic_queries">}}).
-
-The symbolic queries consist of a path quantifier (`E` or `A`), a state quantifier (`<>` or `[]`) followed by a state predicate (as in [CTL](https://en.wikipedia.org/wiki/Computation_tree_logic), except UPPAAL does not implement nested formulas).
 
 In particular, path quantifiers:
 - `E` stands for "there **exists** a *path* in a tree of computations",
@@ -25,6 +23,8 @@ Their combinations are given short names:
 - `A[]` -- *invariantly* or *globally*, or *everywhere*, as "for **all** *paths*, **all** *states* satisfy the predicate".
 
 In addition, UPPAAL supports one special leads-to property: `p --> q` which is a shorthand for `A[] (p implies A<> q)` (if `p` then eventually `q`).
+
+The following sections give a pseudo-formal semantics for the requirement specification language of UPPAAL. We assume the existence of a timed transition system (_S, s<sub>0</sub>,_ →) as defined in the [semantics of UPPAAL timed automata](/language-reference/system-description/semantics/). In the following, `p` and `q` are [state properties](#state-properties) for which we define the following temporal properties:
 
 ### Possibly
 
