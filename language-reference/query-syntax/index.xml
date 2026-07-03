@@ -39,6 +39,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; | &lt;span style="color:#66d9ef"&gt;PartialControlSpecifier Goal Subjection&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; | &lt;span style="color:#66d9ef"&gt;TimeEfficientGameSpecifier Goal&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; | &lt;span style="color:#66d9ef"&gt;ApproximateControlSpecifier &lt;/span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;//&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;In section below&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; | &lt;span style="color:#66d9ef"&gt;TatlExpression &lt;/span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;//&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;In section below&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;ControlSpecifier &lt;/span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;::=&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#e6db74"&gt;&amp;#39;control:&amp;#39;&lt;/span&gt;
