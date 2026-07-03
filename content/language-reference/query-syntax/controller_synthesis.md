@@ -15,6 +15,7 @@ ControlQuery ::=
       | PartialControlSpecifier Goal Subjection
       | TimeEfficientGameSpecifier Goal
       | ApproximateControlSpecifier     // In section below
+      | TatlExpression                  // In section below
 
 ControlSpecifier ::=
         'control:'
@@ -115,3 +116,79 @@ strategy shield = acontrol: A[] water_level < 10 && water_level > 0 { WaterTank.
 ```
 
 Declares a strategy called `shield` to enforce the desired invaraint `water_level < 10 && water_level > 0`. The system has two, state variables. First, the `WaterTank` template has 5 locations, so `WaterTank.location` has 5 possible values. The second variable, `water_level[-1, 11]:24` is a double which gets split up into 24 intervals, with the corresponding size of 0.5. So the partition will contain `5·24 = 120` cells.
+
+
+### Timed Alternating-Time Temporal Logic (TATL)
+
+{{% notice info %}}
+TATL queries are available in the UPPAAL TATL version only.
+{{% /notice %}}
+
+```EBNF
+TatlExpression ::=
+      Expression
+    | ('!' | 'not') TatlExpression
+    | TatlExpression '&&' TatlExpression
+    | TatlExpression '||' TatlExpression
+    | Identifier '@' TatlExpression                                  // (A)
+    | TatlCoalition TatlPathProp
+    ;
+
+TatlCoalition ::=
+      '<<' PlayerColorList '>>'                                      // (B1)
+    | '[[' PlayerColorList ']]'                                      // (B2)
+    ;
+
+TatlPathProp ::=
+      '[' TatlExpression 'U' TatlExpression ']'                      // (C1)
+    | '<>' TatlExpression                                            // (C2)
+    | '[]' TatlExpression                                            // (C3)
+    | 'X' TatlExpression                                             // (C4)
+    ;
+
+PlayerColorList ::=
+      /* empty */
+    | PlayerColorListNonEmpty
+    ;
+
+PlayerColorListNonEmpty ::=
+      PlayerColor
+    | PlayerColorListNonEmpty ',' PlayerColor
+    ;
+
+
+PlayerColor ::=
+      'black' | 'lightgray' | 'darkgray' | 'red' | 'green' | 'blue' | 'yellow' | 'cyan' | 'magenta' | 'orange' | 'pink' ;
+```
+
+Alternating-Time Temporal Logic (ATL) is an extension of computation-tree logic (CTL), where the traditional for-all- and exists path quantifiers have been replaced with strategy quantifiers, quantifying over the possible outcome paths resulting from a coalition of players working together. The timed extension comes from the addition of the freeze operator.
+
+- **(A) The freeze operator.** The left-hand side must be a globally defined clock that is not used in any automata (undefined behavior otherwise). `z @ RHS` is holds if the right-hand side holds after the clock `z` is reset in the current state.
+- **(B) Outcome quantifiers.**
+  - `<< S >> rho` (B1) is satisfied if there *exist* strategies for the players `S` such that *all* outcome paths satisfies path property `rho`. Can be read as "`S` can guarantee `rho`".
+  - `[[ S ]] rho` (B2) is satisfied if under *all* strategies the players `S` there *exists* an outcome path satisfying `rho`. Can be read as "`S` cannot prevent `rho`".
+  - Empty clauses: `<< >>` is equivalent to `A`, and `[[ ]]` is equivalent to `E`.
+- **(C) Path Properties.** The typical temporal operators from CTL. Note that `X` is the next *location* operator.
+
+#### Players
+
+TATL queries are defined over timed *multi-player* games. A TATL query considers each edge color a different player (it does not matter if an edge is marked uncontrollable).
+There are 11 different edge colors available in the UPPAAL GUI and they are referred to using their natural language name, i.e. `red`, `green`, `blue`, etc.
+
+The semantics are similar to that of a standard 2-player game. The player `red` may activate enabled red edges at any time, and must do it in a timed-locked state, if any is enabled.
+If two players activate an edge in the same instant, it is non-deterministic which activation happens.
+If a synchronization involves more than one player, it is consider "uncontrollable", unless they are all working together.
+
+#### Examples
+
+`<< green >> [] safe`
+: satisfied if there exists a strategy for `green` such that only `safe` states are visited (despite the actions of other players).
+
+`[[ red ]] [ safe U safe && goal ]`
+: satisfied if the system *can* stay in `safe` states until eventually reaching a safe `goal` state despite the actions of player `red`.
+
+`<<>> [] (<<red, blue>> <> goal)`
+: satisfied if in all reachable states `red` and `blue` can cooperate such that `goal` is eventually reached.
+
+`z @ (<< green, blue >> [ (safe && z <= 5) U (safe && goal) ])`
+: satisfied if `green` and `blue` can cooperate to reach a safe `goal` state within 5 time units and only visiting `safe` states along the way (`z` is a global clock).
