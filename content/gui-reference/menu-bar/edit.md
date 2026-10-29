@@ -18,9 +18,9 @@ The Edit menu offers a set of commands supported in the system editor. The items
   * **Engine:** selects the engine to connect to:
     - `Bundled` is the `server` found in the UPPAAL installation directory (cannot be changed).
     - `Remote` is the `sockerserver` process accepting and relaying commands on a remote machine using TCP/IP protocol. See [socketserver](/toolsandapi/socketserver) for more details on how to launch it.
-
+    - `Command` is a custom command to launch the engine server. See [Remote Engine](/toolsandapi/uppaal#remote-engine)  
     Note that the GUI and server versions must match.
   * **Engines...** invokes an engine connection dialog to edit the engine selection in the **Engine** menu.
     The dialog allows to customize engine connections:
      - Address and port number for the remote connection.
-     - Specific engine server commands, including remote server through `ssh`, e.g.:  `ssh bigmachine uppaal/bin/server`
+     - Specific engine server commands, including remote server through `ssh`, see [Remote Engine](/toolsandapi/uppaal#remote-engine) for more details.
